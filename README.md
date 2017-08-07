@@ -5,7 +5,8 @@ This repository contains my portfolio as an iOS Developer.
 1. [HackIllinois Application](https://github.com/HackIllinois/iphone-2017)
     #### Launch Screen
   
-<img src="./preview/hackillinois-01.png" align="left" height="320">
+  <img src="./preview/hackillinois-01.png" height="320">
+  <img src="./preview/hackillinois-02.png" height="320">
 
     #### Login
    
