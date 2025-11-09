@@ -1,0 +1,38 @@
+# Claude Code / SuperClaude Framework
+.claude/
+.claude-flow/
+.swarm/
+claudedocs/
+
+# Node modules
+node_modules/
+
+# Build outputs
+dist/
+build/
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Environment files
+.env
+.env.local
+
+# Jekyll
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+
+# Temporary files
+*.tmp
+.tmp/
