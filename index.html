@@ -245,20 +245,46 @@
             <div class="flex items-center justify-between">
                 <div class="flex items-center gap-2">
                     <i data-lucide="code-2" class="w-6 h-6 text-primary"></i>
-                    <h1 class="text-xl font-bold">Kevin Rajan</h1>
+                    <h1 class="text-lg md:text-xl font-bold">Kevin Rajan</h1>
                 </div>
-                <div class="flex gap-6">
-                    <a href="#home" class="nav-link px-4 py-2 rounded-md transition-colors hover:bg-muted active">Home</a>
-                    <a href="#ai-engineering" class="nav-link px-4 py-2 rounded-md transition-colors hover:bg-muted">AI Engineering</a>
-                    <a href="#mobile" class="nav-link px-4 py-2 rounded-md transition-colors hover:bg-muted">iOS Development</a>
-                    <a href="#frontend" class="nav-link px-4 py-2 rounded-md transition-colors hover:bg-muted">Frontend</a>
-                    <a href="#devops" class="nav-link px-4 py-2 rounded-md transition-colors hover:bg-muted">DevOps</a>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" class="md:hidden text-foreground p-2">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex gap-4 lg:gap-6">
+                    <a href="#home" class="nav-link px-3 lg:px-4 py-2 rounded-md transition-colors hover:bg-muted active text-sm lg:text-base">Home</a>
+                    <a href="#ai-engineering" class="nav-link px-3 lg:px-4 py-2 rounded-md transition-colors hover:bg-muted text-sm lg:text-base">AI</a>
+                    <a href="#mobile" class="nav-link px-3 lg:px-4 py-2 rounded-md transition-colors hover:bg-muted text-sm lg:text-base">iOS</a>
+                    <a href="#frontend" class="nav-link px-3 lg:px-4 py-2 rounded-md transition-colors hover:bg-muted text-sm lg:text-base">Frontend</a>
+                    <a href="#devops" class="nav-link px-3 lg:px-4 py-2 rounded-md transition-colors hover:bg-muted text-sm lg:text-base">DevOps</a>
                 </div>
-                <div class="flex gap-4">
+
+                <!-- Social Links -->
+                <div class="hidden md:flex gap-4">
                     <a href="https://github.com/kvnloo" target="_blank" class="text-muted-foreground hover:text-foreground transition-colors">
                         <i data-lucide="github" class="w-5 h-5"></i>
                     </a>
-                    <a href="https://linkedin.com/in/kevinrajan" target="_blank" class="text-muted-foreground hover:text-foreground transition-colors">
+                    <a href="https://linkedin.com/in/kevinsrajan" target="_blank" class="text-muted-foreground hover:text-foreground transition-colors">
+                        <i data-lucide="linkedin" class="w-5 h-5"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="md:hidden hidden mt-4 pb-4 space-y-2">
+                <a href="#home" class="mobile-nav-link block px-4 py-2 rounded-md transition-colors hover:bg-muted">Home</a>
+                <a href="#ai-engineering" class="mobile-nav-link block px-4 py-2 rounded-md transition-colors hover:bg-muted">AI Engineering</a>
+                <a href="#mobile" class="mobile-nav-link block px-4 py-2 rounded-md transition-colors hover:bg-muted">iOS Development</a>
+                <a href="#frontend" class="mobile-nav-link block px-4 py-2 rounded-md transition-colors hover:bg-muted">Frontend</a>
+                <a href="#devops" class="mobile-nav-link block px-4 py-2 rounded-md transition-colors hover:bg-muted">DevOps</a>
+                <div class="flex gap-4 px-4 pt-4 border-t border-border">
+                    <a href="https://github.com/kvnloo" target="_blank" class="text-muted-foreground hover:text-foreground transition-colors">
+                        <i data-lucide="github" class="w-5 h-5"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/kevinsrajan" target="_blank" class="text-muted-foreground hover:text-foreground transition-colors">
                         <i data-lucide="linkedin" class="w-5 h-5"></i>
                     </a>
                 </div>
@@ -274,35 +300,35 @@
                 <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Full-Stack Developer | AI Engineer | iOS Specialist</h1>
                 <p class="text-lg md:text-xl text-muted-foreground mb-8">Building autonomous AI systems, mobile applications, and modern web experiences</p>
 
-                <div class="flex flex-wrap gap-4 justify-center mb-12">
-                    <div class="bg-card border border-border rounded-lg px-6 py-4">
-                        <div class="text-3xl font-bold text-primary">84.8%</div>
-                        <div class="text-sm text-muted-foreground">SWE-Bench Solve Rate</div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 max-w-4xl mx-auto mb-12">
+                    <div class="bg-card border border-border rounded-lg px-4 py-3 md:px-6 md:py-4 text-center">
+                        <div class="text-2xl md:text-3xl font-bold text-primary">84.8%</div>
+                        <div class="text-xs md:text-sm text-muted-foreground">SWE-Bench</div>
                     </div>
-                    <div class="bg-card border border-border rounded-lg px-6 py-4">
-                        <div class="text-3xl font-bold text-primary">98%</div>
-                        <div class="text-sm text-muted-foreground">Documentation Coverage</div>
+                    <div class="bg-card border border-border rounded-lg px-4 py-3 md:px-6 md:py-4 text-center">
+                        <div class="text-2xl md:text-3xl font-bold text-primary">98%</div>
+                        <div class="text-xs md:text-sm text-muted-foreground">Docs</div>
                     </div>
-                    <div class="bg-card border border-border rounded-lg px-6 py-4">
-                        <div class="text-3xl font-bold text-primary">54+</div>
-                        <div class="text-sm text-muted-foreground">Specialized AI Agents</div>
+                    <div class="bg-card border border-border rounded-lg px-4 py-3 md:px-6 md:py-4 text-center">
+                        <div class="text-2xl md:text-3xl font-bold text-primary">54+</div>
+                        <div class="text-xs md:text-sm text-muted-foreground">AI Agents</div>
                     </div>
-                    <div class="bg-card border border-border rounded-lg px-6 py-4">
-                        <div class="text-3xl font-bold text-primary">4.4x</div>
-                        <div class="text-sm text-muted-foreground">Speed Improvement</div>
+                    <div class="bg-card border border-border rounded-lg px-4 py-3 md:px-6 md:py-4 text-center">
+                        <div class="text-2xl md:text-3xl font-bold text-primary">4.4x</div>
+                        <div class="text-xs md:text-sm text-muted-foreground">Speed</div>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- AI Engineering Section -->
-        <section id="ai-engineering" class="mb-20">
-            <div class="flex items-center gap-3 mb-8">
-                <i data-lucide="brain" class="w-8 h-8 text-primary"></i>
-                <h2 class="text-4xl font-bold">AI Engineering & Intelligent Systems</h2>
+        <section id="ai-engineering" class="mb-16 md:mb-20">
+            <div class="flex items-center gap-2 md:gap-3 mb-6 md:mb-8">
+                <i data-lucide="brain" class="w-6 h-6 md:w-8 md:h-8 text-primary"></i>
+                <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold">AI Engineering & Intelligent Systems</h2>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-6 mb-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-8">
                 <div class="project-card bg-card rounded-lg p-6 cursor-pointer" onclick="loadProject('ai-engineering/evolve-framework.md')">
                     <h3 class="text-xl font-bold mb-2">Evolve Framework</h3>
                     <p class="text-muted-foreground mb-4">Multi-agent development orchestration with 54+ specialized agents and SPARC methodology</p>
@@ -336,13 +362,13 @@
         </section>
 
         <!-- Mobile Development Section -->
-        <section id="mobile" class="mb-20">
-            <div class="flex items-center gap-3 mb-8">
-                <i data-lucide="smartphone" class="w-8 h-8 text-primary"></i>
-                <h2 class="text-4xl font-bold">iOS Mobile Development</h2>
+        <section id="mobile" class="mb-16 md:mb-20">
+            <div class="flex items-center gap-2 md:gap-3 mb-6 md:mb-8">
+                <i data-lucide="smartphone" class="w-6 h-6 md:w-8 md:h-8 text-primary"></i>
+                <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold">iOS Mobile Development</h2>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                 <div class="project-card bg-card rounded-lg p-6 cursor-pointer" onclick="loadProject('mobile-development/phase-i-wireframe.md')">
                     <h3 class="text-xl font-bold mb-2">PhaseIWireframe</h3>
                     <p class="text-muted-foreground mb-4">Real-time audio processing with 14-band equalizer and 98% documentation coverage</p>
@@ -366,13 +392,13 @@
         </section>
 
         <!-- Frontend Development Section -->
-        <section id="frontend" class="mb-20">
-            <div class="flex items-center gap-3 mb-8">
-                <i data-lucide="palette" class="w-8 h-8 text-primary"></i>
-                <h2 class="text-4xl font-bold">Frontend Development</h2>
+        <section id="frontend" class="mb-16 md:mb-20">
+            <div class="flex items-center gap-2 md:gap-3 mb-6 md:mb-8">
+                <i data-lucide="palette" class="w-6 h-6 md:w-8 md:h-8 text-primary"></i>
+                <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold">Frontend Development</h2>
             </div>
 
-            <div class="grid md:grid-cols-1 gap-6">
+            <div class="grid grid-cols-1 gap-4 md:gap-6">
                 <div class="project-card bg-card rounded-lg p-6 cursor-pointer" onclick="loadProject('frontend-development/pixel-perfect-ui.md')">
                     <h3 class="text-xl font-bold mb-2">Pixel-Perfect UI Showcase</h3>
                     <p class="text-muted-foreground mb-4">Production-ready implementations across diverse design systems (brutalist, glassmorphism, analytics)</p>
@@ -386,13 +412,13 @@
         </section>
 
         <!-- DevOps Section -->
-        <section id="devops" class="mb-20">
-            <div class="flex items-center gap-3 mb-8">
-                <i data-lucide="settings" class="w-8 h-8 text-primary"></i>
-                <h2 class="text-4xl font-bold">DevOps & System Configuration</h2>
+        <section id="devops" class="mb-16 md:mb-20">
+            <div class="flex items-center gap-2 md:gap-3 mb-6 md:mb-8">
+                <i data-lucide="settings" class="w-6 h-6 md:w-8 md:h-8 text-primary"></i>
+                <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold">DevOps & System Configuration</h2>
             </div>
 
-            <div class="grid md:grid-cols-1 gap-6">
+            <div class="grid grid-cols-1 gap-4 md:gap-6">
                 <div class="project-card bg-card rounded-lg p-6 cursor-pointer" onclick="loadProject('devops-systems/dotfiles.md')">
                     <h3 class="text-xl font-bold mb-2">Dotfiles Configuration</h3>
                     <p class="text-muted-foreground mb-4">Personal development environment setup and automation (3 GitHub stars)</p>
@@ -527,6 +553,21 @@
             if (e.key === 'Escape') {
                 closeProject();
             }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking nav links
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
         });
 
         // Smooth scroll for navigation
