@@ -1,1 +1,15 @@
-theme: jekyll-theme-cayman
+# Dracula Theme for GitHub Pages
+remote_theme: dracula/gh-pages
+
+# Site Settings
+title: Kevin Rajan - Portfolio
+description: Full-Stack Developer | AI Engineer | iOS Specialist - Showcasing AI systems, mobile development, frontend engineering, and DevOps expertise
+
+# Optional Settings
+show_downloads: false
+show_header: true
+
+# GitHub Repository
+github:
+  repository_url: https://github.com/kvnloo/portfolio
+  repository_name: portfolio
