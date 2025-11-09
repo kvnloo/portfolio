@@ -1,10 +1,10 @@
-# PhaseIWireframe
+# AudioEngine
 ## Real-Time Audio Processing iOS Application
 
-**Repository:** [github.com/kvnloo/PhaseIWireframe](https://github.com/kvnloo/PhaseIWireframe)
+**Repository:** [github.com/kvnloo/AudioEngine](https://github.com/kvnloo/AudioEngine)
 **Status:** Production-Quality
 **Primary Language:** Swift (2,347 lines across 25 files)
-**Documentation:** [GitHub Pages (Jazzy)](https://kvnloo.github.io/PhaseIWireframe) (if deployed)
+**Documentation:** [GitHub Pages (Jazzy)](https://kvnloo.github.io/AudioEngine/)
 **Last Updated:** Recently maintained
 
 ---
@@ -101,7 +101,7 @@ import CoreGraphics    // Custom drawing
 ### Code Organization
 
 ```
-PhaseIWireframe/
+AudioEngine/
 ├── Controllers/          # MVC controllers (8 files)
 ├── Models/              # Data models
 ├── Views/               # Custom UI components (8 components)
@@ -266,7 +266,7 @@ jazzy \
   --output docs/ \
   --clean \
   --author "Kevin Rajan" \
-  --github_url https://github.com/kvnloo/PhaseIWireframe
+  --github_url https://github.com/kvnloo/AudioEngine
 ```
 
 **Documentation Includes:**
@@ -304,14 +304,14 @@ jazzy \
 
 ```bash
 # 1. Clone repository
-git clone https://github.com/kvnloo/PhaseIWireframe.git
-cd PhaseIWireframe
+git clone https://github.com/kvnloo/AudioEngine.git
+cd AudioEngine
 
 # 2. Install dependencies
 pod install
 
 # 3. Open workspace
-open PhaseIWireframe.xcworkspace
+open AudioEngine.xcworkspace
 
 # 4. Configure Firebase
 # Add GoogleService-Info.plist to project
@@ -390,8 +390,8 @@ open PhaseIWireframe.xcworkspace
 
 ## Links
 
-**Repository:** [github.com/kvnloo/PhaseIWireframe](https://github.com/kvnloo/PhaseIWireframe)
-**Documentation:** [GitHub Pages](https://kvnloo.github.io/PhaseIWireframe) (if deployed)
+**Repository:** [github.com/kvnloo/AudioEngine](https://github.com/kvnloo/AudioEngine)
+**Documentation:** [GitHub Pages](https://kvnloo.github.io/AudioEngine/)
 **Wireframes:** Available in repository
 **Color Palette:** Documented in README
 
