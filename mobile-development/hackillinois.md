@@ -3,8 +3,8 @@
 
 **Platform:** iOS
 **Year:** 2017
+**GitHub:** [HackIllinois/iOS](https://github.com/HackIllinois/iOS)
 **Behance:** [HackIllinois 2017 Application](https://www.behance.net/gallery/56050265/HackIllinois-2017-iOS-Application)
-**Assets:** [View Mockups](assets-hackillinois/)
 
 ---
 
@@ -33,23 +33,6 @@ Complete iOS application developed for HackIllinois 2017, a premier collegiate h
 - Intuitive navigation
 - Brand-consistent styling
 - Smooth animations and transitions
-
----
-
-## Design Assets
-
-### Available Mockups
-
-Located in `assets-hackillinois/`:
-- **Final Mockups** - Production-ready designs
-- **Raw Mockups** - Design iteration process
-- **Screen Designs** - Individual screen layouts
-
-### Visual Design System
-- Brand colors (HackIllinois orange/blue palette)
-- Typography hierarchy
-- Icon set
-- Component library
 
 ---
 
@@ -118,8 +101,8 @@ Located in `assets-hackillinois/`:
 
 ## Links
 
+**GitHub Repository:** [HackIllinois/iOS](https://github.com/HackIllinois/iOS)
 **Behance Project:** [View Full Case Study](https://www.behance.net/gallery/56050265/HackIllinois-2017-iOS-Application)
-**Local Assets:** [assets-hackillinois/](assets-hackillinois/)
 
 ---
 
