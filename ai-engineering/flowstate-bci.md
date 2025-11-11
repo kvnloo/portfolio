@@ -2,6 +2,7 @@
 ## Brain-Computer Interface for Attention-Based Video Control
 
 **Repository:** [github.com/kvnloo/FlowState](https://github.com/kvnloo/FlowState)
+**Documentation:** [kvnloo.github.io/FlowState](https://kvnloo.github.io/FlowState/)
 **Status:** Active (Fork with Contributions)
 **Primary Language:** Python
 **Last Updated:** November 2025
@@ -218,6 +219,7 @@ This project focuses specifically on attention-based video control for learning 
 ## Documentation & Resources
 
 **Repository:** [github.com/kvnloo/FlowState](https://github.com/kvnloo/FlowState)
+**Documentation:** [kvnloo.github.io/FlowState](https://kvnloo.github.io/FlowState/)
 
 **Related Reading:**
 - *Ultralearning* by Scott H. Young
