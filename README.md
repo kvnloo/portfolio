@@ -1,7 +1,11 @@
-# Kevin Rajan - Portfolio
-### Full-Stack Developer | AI Engineer | iOS Specialist
+# Kevin Rajan
+### Achieving state-of-the-art results through interdisciplinary engineering
 
-Welcome to my technical portfolio showcasing expertise across AI systems, mobile development, frontend engineering, and DevOps.
+AI Engineer | iOS Specialist | Neuroscience + Software
+
+**What I Do:** Build at the intersection of AI, neuroscience, and mobile systems, achieving measurable impact through rare skill combinations.
+
+**Key Achievements:** 84.8% SWE-Bench (state-of-the-art) • 98% Documentation Coverage (industry-exceptional) • Brain-Computer Interfaces • Multi-Agent AI Orchestration
 
 ---
 
@@ -40,24 +44,15 @@ Pixel-perfect UI implementations and design system expertise
 
 ---
 
-### ⚙️ [DevOps & System Configuration](devops-systems/)
-Infrastructure automation and system optimization
-
-**Featured Projects:**
-- **[Dotfiles Configuration](devops-systems/dotfiles.md)** - Personal development environment setup and automation (3 GitHub stars)
-
-**Tech Stack:** Bash, Vim Script, Git, System Administration
-
 ---
 
 ## 📊 Portfolio Highlights
 
 ### Quantitative Achievements
-- **98% Documentation Coverage** on iOS audio processing app (industry-exceptional)
 - **84.8% SWE-Bench Solve Rate** on AI framework (state-of-the-art)
+- **98% Documentation Coverage** on iOS audio processing app (industry-exceptional)
 - **54+ Specialized AI Agents** orchestrated in production workflow
 - **2.8-4.4x Speed Improvement** through parallel multi-agent execution
-- **3 GitHub Stars** on dotfiles (community-validated)
 
 ### Technical Depth
 - **Brain-Computer Interfaces**: EEG signal processing, alpha band detection, real-time biofeedback
@@ -90,12 +85,9 @@ portfolio/
 │   └── pixel-perfect-ui.md
 ├── mobile-development/       # iOS applications
 │   ├── phase-i-wireframe.md
-│   ├── hackillinois.md
-│   └── assets/
+│   └── hackillinois.md
 ├── frontend-development/     # UI implementations
 │   └── pixel-perfect-ui.md
-├── devops-systems/          # Infrastructure & config
-│   └── dotfiles.md
 └── assets/                  # Shared images, diagrams
 ```
 
@@ -107,10 +99,9 @@ portfolio/
 |--------|-------------|------------------|
 | **AI/ML Engineering** | ⭐⭐⭐⭐⭐ | Multi-Agent Systems, Neural Networks, SPARC, Claude Flow, JAX |
 | **iOS Development** | ⭐⭐⭐⭐⭐ | Swift, CoreAudio, AVFoundation, Firebase, UIKit |
-| **Frontend Engineering** | ⭐⭐⭐⭐ | HTML/CSS/JS, Tailwind, Design Systems, Responsive Design |
-| **DevOps/Systems** | ⭐⭐⭐ | Bash, Git, System Configuration, Automation |
 | **Neuroscience/BCI** | ⭐⭐⭐⭐ | EEG Processing, Alpha Band Detection, Real-time Biofeedback |
 | **Audio Processing** | ⭐⭐⭐⭐ | Real-time DSP, Equalizers, CoreAudio, AudioToolbox |
+| **Frontend Engineering** | ⭐⭐⭐⭐ | HTML/CSS/JS, Tailwind, Design Systems, Responsive Design |
 
 ---
 
