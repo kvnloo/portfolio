@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Branch Previews</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #0a0a0a;
+            color: #e0e0e0;
+        }
+        h1 { color: #60a5fa; }
+        .preview-list {
+            list-style: none;
+            padding: 0;
+        }
+        .preview-list li {
+            padding: 15px;
+            margin: 10px 0;
+            background: #1a1a1a;
+            border-radius: 8px;
+            border: 1px solid #333;
+        }
+        .preview-list a {
+            color: #60a5fa;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .preview-list a:hover {
+            text-decoration: underline;
+        }
+        .timestamp {
+            color: #888;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <h1>Portfolio Branch Previews</h1>
+    <p>Available preview deployments:</p>
+    <ul class="preview-list" id="previewList"></ul>
+    <script>
+        // This will be populated by the workflow
+        const previews = [];
+        const list = document.getElementById('previewList');
+        if (previews.length === 0) {
+            list.innerHTML = '<li>No previews available yet. Push to a claude/* branch to create one.</li>';
+        } else {
+            previews.forEach(preview => {
+                const li = document.createElement('li');
+                li.innerHTML = `<a href="${preview.path}/">${preview.name}</a><br><span class="timestamp">${preview.timestamp}</span>`;
+                list.appendChild(li);
+            });
+        }
+    </script>
+</body>
+</html>
