@@ -5,40 +5,33 @@
 **Documentation:** [kvnloo.github.io/FlowState](https://kvnloo.github.io/FlowState/)
 **Status:** Active (Fork with Contributions)
 **Primary Language:** Python
-**Last Updated:** November 2025
 
 ---
 
-## Overview
+## The Concept
 
-A Brain-Computer Interface (BCI) application that computes the alpha band of brain activity to speed up or slow down video playback based on your conscious attention levels.
+Your brain controls the video speed. Stay focused, content speeds up. Lose attention, it slows down.
 
-**Problem Solved:** Traditional learning and focus training rely on subjective self-assessment. FlowState provides objective, real-time biofeedback based on actual brain activity, enabling data-driven attention training and flow state optimization.
+**Problem Solved:** Traditional learning relies on subjective self-assessment of attention. FlowState provides objective, real-time biofeedback based on actual brain activity, enabling data-driven focus training.
 
 ---
 
 ## How It Works
 
-### EEG Signal Processing Pipeline
+### EEG Signal Processing
 
 ```
-EEG Headset → Raw Signal Acquisition → Alpha Band Extraction →
-Attention Score Calculation → Video Speed Modulation → Real-time Feedback
+EEG Headset → Alpha Band Detection (8-12 Hz) →
+Attention Score → Video Speed Control → Real-time Feedback
 ```
-
-### Alpha Band Detection
 
 **Alpha Waves (8-12 Hz):**
 - Dominant frequency during relaxed, focused attention
 - Higher alpha = better focus and engagement
 - Lower alpha = distraction or mind-wandering
 
-The application continuously monitors alpha band power and uses it as a proxy for attention level.
-
-### Video Playback Modulation
-
+**Video Playback Modulation:**
 ```python
-# Pseudocode representation
 if alpha_power > HIGH_THRESHOLD:
     video_speed = 1.5x  # High attention → faster playback
 elif alpha_power < LOW_THRESHOLD:
@@ -49,33 +42,16 @@ else:
 
 ---
 
-## Connection to Ultralearning
+## Interdisciplinary Engineering
 
-This project is directly related to systematic skill acquisition and accelerated learning methodologies:
+### Rare Skill Combination
+**Neuroscience + Signal Processing + Real-time Systems + UX Design**
 
-### Ultralearning Principles Applied
-
-1. **Meta-learning** - Understanding how you learn by measuring actual brain activity
-2. **Focus** - Objective feedback on attention quality during study sessions
-3. **Directness** - Real-time biofeedback creates immediate learning loops
-4. **Feedback** - Quantified attention data enables optimization
-
-### Use Cases
-
-**Focused Study Sessions:**
-- Monitor attention degradation during long learning sessions
-- Identify optimal break times based on brain state
-- Track focus improvement over time
-
-**Flow State Training:**
-- Recognize the neural signature of flow states
-- Practice entering flow more reliably
-- Quantify flow state duration and depth
-
-**Attention Training:**
-- Gamify focus improvement
-- Build sustained attention capacity
-- Measure progress objectively
+This project bridges four distinct domains:
+- **Neuroscience:** Understanding EEG alpha band correlates of attention
+- **Signal Processing:** Fast Fourier Transform, noise filtering, artifact removal
+- **Real-time Systems:** <100ms latency for immediate biofeedback
+- **UX Design:** Intuitive feedback that doesn't distract from content
 
 ---
 
@@ -87,136 +63,89 @@ This project is directly related to systematic skill acquisition and accelerated
 - EEG data acquisition and preprocessing
 - Fast Fourier Transform (FFT) for frequency analysis
 - Alpha band (8-12 Hz) extraction
-- Real-time signal processing
+- Real-time signal processing (<100ms latency)
 
 **Video Control:**
 - Python video playback integration
 - Dynamic speed adjustment
 - Smooth transition algorithms
 
-**Data Analysis:**
-- Time-series analysis of brain activity
-- Statistical correlation with attention tasks
-- Pattern recognition for flow states
-
-### Technical Challenges Solved
-
+**Key Challenges Solved:**
 1. **Real-time Processing** - Low-latency signal processing for immediate feedback
 2. **Noise Filtering** - Separating signal from artifacts (eye blinks, muscle tension)
 3. **Individual Calibration** - Alpha band characteristics vary per person
-4. **Smooth Transitions** - Avoiding jarring speed changes in video playback
+4. **Smooth Transitions** - Avoiding jarring speed changes
+
+---
+
+## Application: Ultralearning
+
+This project directly relates to systematic skill acquisition and accelerated learning:
+
+### Ultralearning Principles Applied
+
+1. **Meta-learning** - Understanding how you learn by measuring actual brain activity
+2. **Focus** - Objective feedback on attention quality during study sessions
+3. **Directness** - Real-time biofeedback creates immediate learning loops
+4. **Feedback** - Quantified attention data enables optimization
+
+### Use Cases
+
+**Focused Study:**
+- Monitor attention degradation during long sessions
+- Identify optimal break times based on brain state
+- Track focus improvement over time
+
+**Flow State Training:**
+- Recognize the neural signature of flow states
+- Practice entering flow more reliably
+- Quantify flow state duration and depth
 
 ---
 
 ## Skills Demonstrated
 
-### Neuroscience + Software Engineering
-- **EEG Signal Processing** - Understanding brain wave frequencies and their meaning
-- **Real-time Data Analysis** - Low-latency processing for immediate feedback
-- **Biofeedback Systems** - Closing the loop between brain state and external stimulus
+### Neuroscience + Software
+- EEG signal processing and frequency analysis
+- Real-time biofeedback systems
+- Understanding brain wave patterns and their behavioral correlates
 
 ### Python Development
-- **Scientific Computing** - NumPy, SciPy for signal processing
-- **Data Visualization** - Real-time plotting of brain activity
-- **Video Processing** - Integration with media playback libraries
+- Scientific computing (NumPy, SciPy)
+- Real-time data visualization
+- Video processing integration
 
 ### Research & Innovation
-- **Interdisciplinary Work** - Combining neuroscience, psychology, and software
-- **Experimental Design** - Testing attention measurement methodologies
-- **Quantified Self** - Data-driven personal optimization
+- Interdisciplinary problem-solving
+- Experimental design
+- Quantified self methodology
 
 ---
 
-## Contributions & Extensions
+## Why This Matters
 
-As a fork of the original project, my contributions include:
-
-### Enhancements
-- Improved alpha band detection algorithms
-- Video speed modulation implementation
-- Real-time feedback visualization
-- Calibration procedures for individual users
-
-### Future Directions
-- [ ] Machine learning for personalized attention models
-- [ ] Multi-band analysis (theta, beta, gamma)
-- [ ] Mobile app integration
-- [ ] Long-term progress tracking dashboard
-- [ ] Integration with spaced repetition systems (Anki)
-
----
-
-## Applications
-
-### Education & Learning
-- **Students** - Optimize study sessions with objective attention monitoring
-- **Online Courses** - Adaptive video speed based on comprehension
-- **Language Learning** - Focus tracking during immersion practice
-
-### Professional Development
-- **Deep Work** - Quantify focus quality during complex tasks
-- **Reading** - Adjust reading speed based on comprehension signals
-- **Coding** - Monitor flow state during programming sessions
-
-### Research
-- **Attention Science** - Study attention patterns in different contexts
-- **Flow State Research** - Quantify neural correlates of flow
-- **Learning Science** - Measure learning efficiency variations
-
----
-
-## Unique Value Proposition
-
-**Rare Skill Combination:**
-- Neuroscience domain knowledge
-- Signal processing expertise
-- Real-time systems development
-- UX design for biofeedback
-
-**Innovation:**
-- Bridges subjective experience (attention) with objective measurement (EEG)
-- Enables closed-loop learning optimization
-- Demonstrates interdisciplinary problem-solving
-
----
-
-## Role Alignment
-
-### ✅ AI/ML Engineer
-- Real-time signal processing
-- Pattern recognition in brain data
-- Predictive modeling of attention states
-
-### ✅ Research Engineer
-- Experimental methodology
-- Novel application of BCI technology
-- Scientific rigor in attention measurement
-
-### ✅ Full-Stack Developer
-- End-to-end system (hardware → software → UX)
-- Real-time data processing
-- User feedback integration
-
-### ✅ Neuroscience Engineer
-- EEG signal processing
-- Brain-computer interface design
-- Biofeedback system architecture
-
----
-
-## Related Technologies
-
-**Similar BCI Applications:**
-- Muse headband - Meditation feedback
-- Neurable - Focus-tracking for productivity
-- Neurosity Crown - BCI development platform
+**Unique Value Proposition:**
+Bridges subjective experience (attention) with objective measurement (EEG), enabling closed-loop learning optimization. Demonstrates rare combination of neuroscience domain knowledge with software engineering execution.
 
 **Differentiator:**
-This project focuses specifically on attention-based video control for learning optimization, connecting neuroscience research to practical ultralearning applications.
+While many portfolios show software projects, this demonstrates ability to work at the intersection of neuroscience, signal processing, and user experience—solving problems that require deep interdisciplinary expertise.
+
+**Impact:**
+Enables data-driven attention training, making focus improvement quantifiable and systematic rather than subjective and ad-hoc.
 
 ---
 
-## Documentation & Resources
+## Technical Stack
+
+**Languages:** Python 3.x
+**Signal Processing:** NumPy, SciPy (FFT, filtering)
+**Hardware:** EEG headset (various compatible)
+**Visualization:** Real-time plotting libraries
+**Video:** Python video playback framework
+
+---
+
+## Links
 
 **Repository:** [github.com/kvnloo/FlowState](https://github.com/kvnloo/FlowState)
 **Documentation:** [kvnloo.github.io/FlowState](https://kvnloo.github.io/FlowState/)
@@ -225,31 +154,6 @@ This project focuses specifically on attention-based video control for learning 
 - *Ultralearning* by Scott H. Young
 - EEG alpha band research papers
 - Flow state neuroscience literature
-
-**Dependencies:**
-- Python 3.x
-- NumPy, SciPy (signal processing)
-- EEG hardware interface libraries
-- Video playback framework
-
----
-
-## Impact
-
-**Personal Learning Enhancement:**
-- Quantified attention during study sessions
-- Identified optimal learning times based on brain state
-- Improved focus sustainability through training
-
-**Technical Demonstration:**
-- Interdisciplinary engineering capability
-- Real-time system design expertise
-- Research-to-product translation
-
-**Future Potential:**
-- Adaptive learning platforms
-- Personalized education technology
-- Attention training applications
 
 ---
 
