@@ -70,8 +70,8 @@ Pixel-perfect UI implementations and design system expertise
 ## 🔗 Quick Links
 
 - **GitHub:** [github.com/kvnloo](https://github.com/kvnloo)
-- **LinkedIn:** [Update your LinkedIn URL]
-- **Email:** [Update your email]
+- **LinkedIn:** [linkedin.com/in/kevinsrajan](https://linkedin.com/in/kevinsrajan)
+- **Email:** [kevinsrajan@gmail.com](mailto:kevinsrajan@gmail.com)
 
 ---
 
