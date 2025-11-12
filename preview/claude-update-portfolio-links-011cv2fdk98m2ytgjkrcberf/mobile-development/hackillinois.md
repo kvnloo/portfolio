@@ -1,8 +1,8 @@
 # HackIllinois 2017
-## Mobile Conference Application
+## Consumer Mobile App for 500+ Hackathon Attendees
 
 **Platform:** iOS
-**Year:** 2017
+**Year:** 2017 (Foundation Project)
 **GitHub:** [HackIllinois/iOS](https://github.com/HackIllinois/iOS)
 **Behance:** [HackIllinois 2017 Application](https://www.behance.net/gallery/56050265/HackIllinois-2017-iOS-Application)
 
@@ -10,28 +10,27 @@
 
 ## Overview
 
-Complete iOS application developed for HackIllinois 2017, a premier collegiate hackathon hosted by the University of Illinois. The app served as the primary mobile interface for attendees, providing event information, scheduling, and attendee features.
+Complete iOS conference application for HackIllinois 2017, a premier collegiate hackathon hosted by the University of Illinois. The app served as the primary mobile interface for 500+ attendees, providing event information, scheduling, and networking features.
+
+**Why It Matters:** This foundation project sparked my iOS development journey, leading to more advanced work like AudioEngine (2019) with 98% documentation coverage and production-grade architecture.
 
 ---
 
 ## Features
 
 ### Event Management
-- Real-time schedule updates
+- Real-time schedule updates and push notifications
 - Session tracking and favorites
-- Push notifications for events
 - Workshop and talk descriptions
 
 ### Attendee Experience
 - Conference map and navigation
-- Sponsor information
-- Networking features
+- Sponsor information and networking
 - Live updates during event
 
 ### User Interface
 - Clean, modern design system
-- Intuitive navigation
-- Brand-consistent styling
+- Intuitive navigation with brand-consistent styling
 - Smooth animations and transitions
 
 ---
@@ -40,11 +39,9 @@ Complete iOS application developed for HackIllinois 2017, a premier collegiate h
 
 **Development:**
 - Swift/Objective-C
-- iOS SDK
-- UIKit framework
+- iOS SDK + UIKit framework
 
 **Design:**
-- Sketch/Figma mockups
 - Complete visual specifications
 - Asset generation for multiple resolutions
 
@@ -52,57 +49,28 @@ Complete iOS application developed for HackIllinois 2017, a premier collegiate h
 
 ## Skills Demonstrated
 
-### iOS Development
-- Consumer-facing mobile application
-- Real-time data integration
-- Push notification implementation
-- Location-based features
-
-### UI/UX Design
-- Complete design system
-- User flow optimization
-- Accessibility considerations
-- Brand consistency
-
-### Project Management
-- Event-driven deadline (hackathon date)
-- Stakeholder collaboration
-- Production deployment
+- **Consumer App Development** - User-facing mobile application
+- **Real-time Integration** - Live event data updates
+- **Deadline-Driven Development** - Event date = hard deadline
+- **Stakeholder Collaboration** - Working with event organizers
+- **Production Deployment** - Real-world app for 500+ users
 
 ---
 
-## Impact
+## Career Progression
 
-**Audience:**
-- Hundreds of hackathon attendees
-- Real-world production app
-- Event-critical functionality
+**2017 → HackIllinois** - First real-world iOS deployment
+**2019 → AudioEngine** - Advanced audio processing with 98% documentation
+**2025 → AI/BCI Projects** - Expanding into neuroscience and AI systems
 
-**Learning:**
-- Consumer app development
-- Deadline-driven development
-- Production iOS deployment
-
----
-
-## Portfolio Significance
-
-**Foundation Project:**
-- Early iOS development work (2017)
-- Consumer app experience
-- Complete product lifecycle
-
-**Progression:**
-- Led to more advanced work (PhaseIWireframe in 2019)
-- Demonstrates growth trajectory
-- Shows sustained iOS interest
+This project demonstrated early iOS competency, establishing the foundation for more sophisticated mobile engineering work.
 
 ---
 
 ## Links
 
 **GitHub Repository:** [HackIllinois/iOS](https://github.com/HackIllinois/iOS)
-**Behance Project:** [View Full Case Study](https://www.behance.net/gallery/56050265/HackIllinois-2017-iOS-Application)
+**Behance Case Study:** [View Full Case Study](https://www.behance.net/gallery/56050265/HackIllinois-2017-iOS-Application)
 
 ---
 
