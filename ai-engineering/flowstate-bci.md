@@ -1,8 +1,8 @@
 # FlowState BCI
 ## Brain-Computer Interface for Attention-Based Video Control
 
-**Repository:** [github.com/kvnloo/FlowState](https://github.com/kvnloo/FlowState)
-**Documentation:** [kvnloo.github.io/FlowState](https://kvnloo.github.io/FlowState/)
+[GitHub Repository](https://github.com/kvnloo/FlowState) | [Documentation](https://kvnloo.github.io/FlowState/)
+
 **Status:** Active (Fork with Contributions)
 **Primary Language:** Python
 
@@ -144,11 +144,6 @@ Enables data-driven attention training, making focus improvement quantifiable an
 **Video:** Python video playback framework
 
 ---
-
-## Links
-
-**Repository:** [github.com/kvnloo/FlowState](https://github.com/kvnloo/FlowState)
-**Documentation:** [kvnloo.github.io/FlowState](https://kvnloo.github.io/FlowState/)
 
 **Related Reading:**
 - *Ultralearning* by Scott H. Young
