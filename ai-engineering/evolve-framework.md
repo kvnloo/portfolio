@@ -1,7 +1,8 @@
 # Evolve Framework
 ## State-of-the-Art Autonomous AI Development
 
-**Repository:** [github.com/kvnloo/evolve](https://github.com/kvnloo/evolve)
+[GitHub Repository](https://github.com/kvnloo/evolve) | [Documentation](https://github.com/kvnloo/evolve#quick-start)
+
 **Status:** Active Development (2025)
 
 ---
@@ -54,20 +55,20 @@ Reliable consensus even when individual agents disagree—ensuring consistent qu
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                     EVOLVE FRAMEWORK                         │
+│                     EVOLVE FRAMEWORK                        │
 ├─────────────────────────────────────────────────────────────┤
-│                                                              │
-│  ┌──────────────┐  ┌──────────────┐  ┌─────────────────┐  │
-│  │ SuperClaude  │  │     CCPM     │  │  Claude Flow     │  │
-│  │              │  │              │  │                  │  │
-│  │ • Behavioral │  │ • PRD Mgmt   │  │ • SPARC Engine   │  │
-│  │   Modes      │  │ • Epic Sync  │  │ • 54+ Agents     │  │
-│  │ • Research   │  │ • Worktrees  │  │ • Coordination   │  │
-│  │ • Efficiency │  │ • GitHub     │  │ • 27+ Neural     │  │
-│  └──────┬───────┘  └──────┬───────┘  └────────┬────────┘  │
-│         │                  │                    │           │
-│         └──────────────────┼────────────────────┘           │
-│                            ▼                                │
+│                                                             │
+│  ┌──────────────┐  ┌──────────────┐  ┌─────────────────┐    │
+│  │ SuperClaude  │  │     CCPM     │  │  Claude Flow    │    │
+│  │              │  │              │  │                 │    │
+│  │ • Behavioral │  │ • PRD Mgmt   │  │ • SPARC Engine  │    │
+│  │   Modes      │  │ • Epic Sync  │  │ • 54+ Agents    │    │
+│  │ • Research   │  │ • Worktrees  │  │ • Coordination  │    │
+│  │ • Efficiency │  │ • GitHub     │  │ • 27+ Neural    │    │
+│  └──────┬───────┘  └──────┬───────┘  └────────┬────────┘    │
+│         │                 │                   │             │
+│         └─────────────────┼───────────────────┘             │
+│                           ▼                                 │
 │              ┌──────────────────────────┐                   │
 │              │   Claude Code Engine     │                   │
 │              │  • File Operations       │                   │
@@ -138,15 +139,6 @@ Reliable consensus even when individual agents disagree—ensuring consistent qu
 
 **Differentiator:**
 Unlike single-agent AI systems, Evolve orchestrates 54+ specialized agents with Byzantine fault tolerance, systematic quality gates, and perfect cross-session memory—proving deep expertise in distributed AI coordination.
-
----
-
-## Links
-
-**Repository:** [github.com/kvnloo/evolve](https://github.com/kvnloo/evolve)
-**Documentation:** [Setup Guide (5 min)](https://github.com/kvnloo/evolve#quick-start)
-**Claude Flow:** [github.com/ruvnet/claude-flow](https://github.com/ruvnet/claude-flow)
-**CCPM:** [github.com/automazeio/ccpm](https://github.com/automazeio/ccpm)
 
 ---
 

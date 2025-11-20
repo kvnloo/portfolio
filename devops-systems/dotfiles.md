@@ -1,7 +1,8 @@
 # Dotfiles Configuration
 ## Development Environment Automation
 
-**Repository:** [github.com/kvnloo/.files](https://github.com/kvnloo/.files)
+[GitHub Repository](https://github.com/kvnloo/.files)
+
 **Status:** Active Maintenance
 **Primary Language:** Vim Script
 **Stars:** 3 (community-validated)
@@ -183,13 +184,6 @@ mkcd() {
 - [ ] Configuration guide
 - [ ] Customization tutorial
 - [ ] FAQ section
-
----
-
-## Links
-
-**Repository:** [github.com/kvnloo/.files](https://github.com/kvnloo/.files)
-**Stars:** 3
 
 ---
 

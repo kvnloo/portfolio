@@ -1,7 +1,8 @@
 # AI-Assisted Design-to-Code Workflow
 ## Systematic Process for Pixel-Perfect UI Implementation
 
-**Repository:** [github.com/kvnloo/aliens-made-this](https://github.com/kvnloo/aliens-made-this)
+[GitHub Repository](https://github.com/kvnloo/aliens-made-this)
+
 **Live Demo:** [Coming Soon]
 **Code Quality:** 945+ lines of production-ready code
 
@@ -125,13 +126,6 @@ Proves ability to deliver production-quality, pixel-perfect implementations acro
 
 **Unique Value:**
 Unlike portfolios showing only final products, this showcases the *process* of AI-assisted development—a differentiating skill in modern engineering.
-
----
-
-## Links
-
-**Repository:** [github.com/kvnloo/aliens-made-this](https://github.com/kvnloo/aliens-made-this)
-**Live Demo:** [Coming Soon]
 
 ---
 

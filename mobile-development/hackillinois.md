@@ -1,10 +1,10 @@
 # HackIllinois 2017
 ## Consumer Mobile App for 500+ Hackathon Attendees
 
+[GitHub Repository](https://github.com/HackIllinois/iOS) | [Behance Case Study](https://www.behance.net/gallery/56050265/HackIllinois-2017-iOS-Application)
+
 **Platform:** iOS
 **Year:** 2017 (Foundation Project)
-**GitHub:** [HackIllinois/iOS](https://github.com/HackIllinois/iOS)
-**Behance:** [HackIllinois 2017 Application](https://www.behance.net/gallery/56050265/HackIllinois-2017-iOS-Application)
 
 ---
 
@@ -64,13 +64,6 @@ Complete iOS conference application for HackIllinois 2017, a premier collegiate 
 **2025 → AI/BCI Projects** - Expanding into neuroscience and AI systems
 
 This project demonstrated early iOS competency, establishing the foundation for more sophisticated mobile engineering work.
-
----
-
-## Links
-
-**GitHub Repository:** [HackIllinois/iOS](https://github.com/HackIllinois/iOS)
-**Behance Case Study:** [View Full Case Study](https://www.behance.net/gallery/56050265/HackIllinois-2017-iOS-Application)
 
 ---
 

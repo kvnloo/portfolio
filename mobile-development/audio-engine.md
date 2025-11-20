@@ -1,8 +1,8 @@
 # AudioEngine
 ## Production-Quality iOS Audio Processing Application
 
-**Repository:** [github.com/kvnloo/AudioEngine](https://github.com/kvnloo/AudioEngine)
-**Documentation:** [GitHub Pages (Jazzy)](https://kvnloo.github.io/AudioEngine/)
+[GitHub Repository](https://github.com/kvnloo/AudioEngine) | [Documentation](https://kvnloo.github.io/AudioEngine/)
+
 **Primary Language:** Swift (2,347 lines across 25 files)
 
 ---
@@ -173,14 +173,6 @@ AudioEngine/ (2,347 lines Swift across 25 files)
 
 **Technical Depth:**
 Real-time audio processing with CoreAudio framework demonstrates low-level iOS expertise beyond typical UIKit development—solving hard problems with performance-critical code.
-
----
-
-## Links
-
-**Repository:** [github.com/kvnloo/AudioEngine](https://github.com/kvnloo/AudioEngine)
-**Documentation:** [GitHub Pages](https://kvnloo.github.io/AudioEngine/)
-**Quick Start:** [5-min setup guide](https://github.com/kvnloo/AudioEngine#installation)
 
 ---
 
