@@ -17,6 +17,7 @@ Building autonomous development frameworks and AI-assisted workflows
 **Featured Projects:**
 - **[Evolve Framework](ai-engineering/evolve-framework.md)** - Multi-agent development orchestration with 54+ specialized agents, SPARC methodology, and Byzantine fault tolerance (84.8% SWE-Bench solve rate)
 - **[FlowState BCI](ai-engineering/flowstate-bci.md)** - Brain-Computer Interface application using EEG alpha band detection to control video playback based on attention levels
+- **[Monument](ai-engineering/monument.md)** - Visual AI design showcase featuring pixel-perfect UI components and modern design systems with AI-assisted workflows
 - **[AI-Assisted UI Workflow](ai-engineering/pixel-perfect-ui.md)** - Design-to-code automation achieving pixel-perfect implementations from inspiration
 
 **Tech Stack:** Python, JavaScript/TypeScript, Shell, Neural Networks, Multi-Agent Systems, SPARC, Claude Flow, JAX
@@ -82,6 +83,7 @@ portfolio/
 ├── ai-engineering/           # AI frameworks, BCI, automation
 │   ├── evolve-framework.md
 │   ├── flowstate-bci.md
+│   ├── monument.md
 │   └── pixel-perfect-ui.md
 ├── mobile-development/       # iOS applications
 │   ├── phase-i-wireframe.md
