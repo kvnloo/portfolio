@@ -48,6 +48,9 @@ jobs:
             cp Gemfile build/
           fi
 
+          # Create .nojekyll to prevent Jekyll processing
+          touch build/.nojekyll
+
       - name: Deploy to GitHub Pages (Dev)
         uses: peaceiris/actions-gh-pages@v3
         with:
