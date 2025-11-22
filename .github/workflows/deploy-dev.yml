@@ -1,4 +1,4 @@
-name: Deploy Dev Branch
+name: Deploy Dev Site
 
 on:
   push:
@@ -20,34 +20,44 @@ jobs:
 
       - name: Setup dev directory
         run: |
-          # Create a build directory
-          mkdir -p build
+          # Create dev directory structure
+          mkdir -p dev
 
-          # Copy index.html
-          cp index.html build/
+          # Copy index.html to dev directory
+          cp index.html dev/
 
           # Copy all content directories
           for dir in ai-engineering mobile-development frontend-development devops-systems assets; do
             if [ -d "$dir" ]; then
-              cp -r "$dir" build/
+              cp -r "$dir" dev/
             fi
           done
 
           # Copy README if exists
           if [ -f "README.md" ]; then
-            cp README.md build/
+            cp README.md dev/
+          fi
+
+          # Copy _config.yml if exists
+          if [ -f "_config.yml" ]; then
+            cp _config.yml dev/
+          fi
+
+          # Copy Gemfile if exists
+          if [ -f "Gemfile" ]; then
+            cp Gemfile dev/
           fi
 
       - name: Deploy to GitHub Pages (Dev)
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build
-          destination_dir: dev  # Deploy to /dev subdirectory
-          keep_files: true  # Keep production site and preview directories
+          publish_dir: ./dev
+          destination_dir: dev
+          keep_files: true  # Keep main and preview directories
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'
-          commit_message: 'Deploy dev branch to /dev subdirectory'
+          commit_message: 'Deploy dev site from dev branch'
 
       - name: Deployment complete
         run: |
