@@ -1,0 +1,54 @@
+name: Deploy Dev Branch
+
+on:
+  push:
+    branches:
+      - dev  # Only deploy dev branch
+  workflow_dispatch:  # Allow manual trigger
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  deploy-dev:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup dev directory
+        run: |
+          # Create a build directory
+          mkdir -p build
+
+          # Copy index.html
+          cp index.html build/
+
+          # Copy all content directories
+          for dir in ai-engineering mobile-development frontend-development devops-systems assets; do
+            if [ -d "$dir" ]; then
+              cp -r "$dir" build/
+            fi
+          done
+
+          # Copy README if exists
+          if [ -f "README.md" ]; then
+            cp README.md build/
+          fi
+
+      - name: Deploy to GitHub Pages (Dev)
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
+          destination_dir: dev  # Deploy to /dev subdirectory
+          keep_files: true  # Keep production site and preview directories
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+          commit_message: 'Deploy dev branch to /dev subdirectory'
+
+      - name: Deployment complete
+        run: |
+          echo "✅ Dev site deployed to: https://kvnloo.github.io/portfolio/dev/"

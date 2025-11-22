@@ -9,7 +9,12 @@ This directory contains automated workflows for deploying the portfolio website.
 - **Purpose:** Deploys the production site to `https://kvnloo.github.io/portfolio/`
 - **Behavior:** Overwrites the root directory of the gh-pages branch
 
-### 2. `preview-deploy.yml` - Branch Preview Deployment
+### 2. `deploy-dev.yml` - Development Deployment
+- **Triggers:** Pushes to `dev` branch
+- **Purpose:** Deploys the development site to `https://kvnloo.github.io/portfolio/dev/`
+- **Behavior:** Deploys to `/dev` directory of gh-pages branch, preserving production site
+
+### 3. `preview-deploy.yml` - Branch Preview Deployment
 - **Triggers:** Pushes to `claude/**` branches
 - **Purpose:** Creates preview deployments for feature branches
 - **Behavior:** Deploys to `https://kvnloo.github.io/portfolio/preview/{branch-name}/`
@@ -27,6 +32,13 @@ This directory contains automated workflows for deploying the portfolio website.
 3. Deploys to root of gh-pages branch
 4. Site is live at `https://kvnloo.github.io/portfolio/`
 
+### Development Deployment
+1. Push to `dev` branch
+2. Workflow copies site files to build directory
+3. Deploys to `/dev` subdirectory of gh-pages branch
+4. Site is live at `https://kvnloo.github.io/portfolio/dev/`
+5. Production site remains unaffected
+
 ### Preview Deployment
 1. Push to any `claude/*` branch (e.g., `claude/update-portfolio-links-011CV2Fdk98m2YtGjKrcberF`)
 2. Workflow extracts and sanitizes branch name
@@ -35,6 +47,12 @@ This directory contains automated workflows for deploying the portfolio website.
 5. Preview is live at `https://kvnloo.github.io/portfolio/preview/{branch-name}/`
 
 ## Usage
+
+### Development Workflow
+1. Push changes to `dev` branch for development testing
+2. Wait for dev deployment workflow to complete (~1-2 minutes)
+3. Visit `https://kvnloo.github.io/portfolio/dev/` to review
+4. Merge `dev` to `main` when ready for production
 
 ### Testing Changes Before Production
 1. Create/push to a `claude/*` branch
