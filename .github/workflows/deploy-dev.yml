@@ -20,39 +20,39 @@ jobs:
 
       - name: Setup dev directory
         run: |
-          # Create dev directory structure
-          mkdir -p dev
+          # Create build directory
+          mkdir -p build
 
-          # Copy index.html to dev directory
-          cp index.html dev/
+          # Copy index.html
+          cp index.html build/
 
           # Copy all content directories
           for dir in ai-engineering mobile-development frontend-development devops-systems assets; do
             if [ -d "$dir" ]; then
-              cp -r "$dir" dev/
+              cp -r "$dir" build/
             fi
           done
 
           # Copy README if exists
           if [ -f "README.md" ]; then
-            cp README.md dev/
+            cp README.md build/
           fi
 
           # Copy _config.yml if exists
           if [ -f "_config.yml" ]; then
-            cp _config.yml dev/
+            cp _config.yml build/
           fi
 
           # Copy Gemfile if exists
           if [ -f "Gemfile" ]; then
-            cp Gemfile dev/
+            cp Gemfile build/
           fi
 
       - name: Deploy to GitHub Pages (Dev)
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dev
+          publish_dir: ./build
           destination_dir: dev
           keep_files: true  # Keep main and preview directories
           user_name: 'github-actions[bot]'
