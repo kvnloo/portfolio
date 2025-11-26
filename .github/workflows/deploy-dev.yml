@@ -1,9 +1,9 @@
-name: Deploy Production Site
+name: Deploy Dev Site
 
 on:
   push:
     branches:
-      - main  # Only deploy main branch to production
+      - dev  # Only deploy dev branch
   workflow_dispatch:  # Allow manual trigger
 
 permissions:
@@ -12,15 +12,15 @@ permissions:
   id-token: write
 
 jobs:
-  deploy-production:
+  deploy-dev:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup production directory
+      - name: Setup dev directory
         run: |
-          # Create a build directory
+          # Create build directory
           mkdir -p build
 
           # Copy index.html
@@ -38,17 +38,30 @@ jobs:
             cp README.md build/
           fi
 
-      - name: Deploy to GitHub Pages (Production)
+          # Copy _config.yml if exists
+          if [ -f "_config.yml" ]; then
+            cp _config.yml build/
+          fi
+
+          # Copy Gemfile if exists
+          if [ -f "Gemfile" ]; then
+            cp Gemfile build/
+          fi
+
+          # Create .nojekyll to prevent Jekyll processing
+          touch build/.nojekyll
+
+      - name: Deploy to GitHub Pages (Dev)
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build
-          exclude_assets: '.github,preview/**,dev/**'
-          keep_files: true  # Keep preview and dev directories
+          destination_dir: dev
+          keep_files: true  # Keep main and preview directories
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'
-          commit_message: 'Deploy production site from main'
+          commit_message: 'Deploy dev site from dev branch'
 
       - name: Deployment complete
         run: |
-          echo "✅ Production site deployed to: https://kvnloo.github.io/portfolio/"
+          echo "✅ Dev site deployed to: https://kvnloo.github.io/portfolio/dev/"
