@@ -1,0 +1,94 @@
+name: Deploy Portfolio (Unified)
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Checkout main branch
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Build main (production)
+        run: |
+          mkdir -p deploy
+          cp index.html deploy/
+
+          # Copy all content directories
+          for dir in ai-engineering mobile-development frontend-development devops-systems assets; do
+            if [ -d "$dir" ]; then
+              cp -r "$dir" deploy/
+            fi
+          done
+
+          # Copy config files if they exist
+          [ -f "README.md" ] && cp README.md deploy/
+          [ -f "_config.yml" ] && cp _config.yml deploy/
+          [ -f "Gemfile" ] && cp Gemfile deploy/
+
+          # Add .nojekyll to prevent Jekyll processing
+          touch deploy/.nojekyll
+
+          echo "✅ Main branch built to deploy/"
+
+      - name: Checkout dev branch
+        uses: actions/checkout@v4
+        with:
+          ref: dev
+
+      - name: Build dev
+        run: |
+          mkdir -p deploy/dev
+          cp index.html deploy/dev/
+
+          # Copy all content directories to dev subdirectory
+          for dir in ai-engineering mobile-development frontend-development devops-systems assets; do
+            if [ -d "$dir" ]; then
+              cp -r "$dir" deploy/dev/
+            fi
+          done
+
+          # Copy config files if they exist
+          [ -f "README.md" ] && cp README.md deploy/dev/
+          [ -f "_config.yml" ] && cp _config.yml deploy/dev/
+          [ -f "Gemfile" ] && cp Gemfile deploy/dev/
+
+          echo "✅ Dev branch built to deploy/dev/"
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'deploy'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      - name: Deployment complete
+        run: |
+          echo "✅ Portfolio deployed!"
+          echo "Production: https://kvnloo.github.io/portfolio/"
+          echo "Dev: https://kvnloo.github.io/portfolio/dev/"
