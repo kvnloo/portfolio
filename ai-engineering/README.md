@@ -36,7 +36,25 @@ Real-time EEG-based biofeedback system that modulates video playback speed based
 
 ---
 
-### 3. [AI-Assisted UI Workflow](pixel-perfect-ui.md) ⭐ DESIGN AUTOMATION
+### 4. [LawnTech Dynamics](lawntech-dynamics.md) ⭐ AI + ROBOTICS
+**Autonomous Sports Facility Management**
+
+Intelligent multi-sport complex combining AI, digital twins, and robotics for autonomous facility operations with real-time performance analytics and computer vision tracking.
+
+**Innovation:**
+- Autonomous grass court management with vertical farming
+- Google Gemini AI assistant for facility queries
+- Computer vision biomechanics tracking at 60 FPS
+- Digital twin operations (Eclipse Ditto & Hono)
+- Serve speed analysis up to 225 km/h
+
+**Technologies:** React 19, TypeScript, Three.js, Google Gemini API, Eclipse Ditto, IoT Systems, Computer Vision
+
+**Live Demo:** https://kvnloo.github.io/ace/
+
+---
+
+### 5. [AI-Assisted UI Workflow](pixel-perfect-ui.md) ⭐ DESIGN AUTOMATION
 **Design-to-Code Pipeline**
 
 Production-ready pixel-perfect UI implementations generated from design inspiration using AI-assisted workflows across multiple design paradigms.
