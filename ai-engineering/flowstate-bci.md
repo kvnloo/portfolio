@@ -10,7 +10,7 @@
 
 ## The Concept
 
-Your brain controls the video speed. Stay focused, content speeds up. Lose attention, it slows down.
+Brain-computer interface controlling video playback speed based on real-time attention measurement. Focused attention accelerates content, distraction slows it down.
 
 **Problem Solved:** Traditional learning relies on subjective self-assessment of attention. FlowState provides objective, real-time biofeedback based on actual brain activity, enabling data-driven focus training.
 
@@ -84,7 +84,7 @@ This project directly relates to systematic skill acquisition and accelerated le
 
 ### Ultralearning Principles Applied
 
-1. **Meta-learning** - Understanding how you learn by measuring actual brain activity
+1. **Meta-learning** - Understanding how learning happens by measuring actual brain activity
 2. **Focus** - Objective feedback on attention quality during study sessions
 3. **Directness** - Real-time biofeedback creates immediate learning loops
 4. **Feedback** - Quantified attention data enables optimization

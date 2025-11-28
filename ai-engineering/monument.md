@@ -9,9 +9,9 @@
 
 ## Overview
 
-A curated collection of pixel-perfect UI components and design patterns, showcasing AI-assisted design-to-code workflows and modern web development techniques.
+Curated collection of pixel-perfect UI components demonstrating AI-assisted design-to-code workflows and modern web development techniques.
 
-**Problem Solved:** Bridging the gap between design inspiration and production-ready code through AI-powered workflows that transform visual concepts into functional, accessible interfaces.
+**Problem Solved:** Bridging design inspiration and production-ready code through AI-powered workflows that transform visual concepts into functional, accessible interfaces.
 
 **Results:**
 - **Pixel-perfect implementations** - Design fidelity without compromise
@@ -71,7 +71,7 @@ A curated collection of pixel-perfect UI components and design patterns, showcas
 ## Why This Matters
 
 **Design-Code Bridge:**
-Monument demonstrates the ability to transform abstract design concepts into production-ready code through AI-assisted workflows—showcasing both technical implementation skills and design sensibility.
+Demonstrates the ability to transform abstract design concepts into production-ready code through AI-assisted workflows—showcasing both technical implementation skills and design sensibility.
 
 **Quality Focus:**
 Every component represents attention to detail, accessibility standards, and modern web development best practices, proving capability to deliver professional-grade frontend work.
