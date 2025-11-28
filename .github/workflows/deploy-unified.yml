@@ -24,56 +24,84 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
+      # Checkout main branch to isolated directory
       - name: Checkout main branch
         uses: actions/checkout@v4
         with:
           ref: main
+          path: temp/main
 
+      # Build main branch content to deploy root
       - name: Build main (production)
         run: |
           mkdir -p deploy
-          cp index.html deploy/
+
+          # Copy main content to deploy root
+          cp temp/main/index.html deploy/
 
           # Copy all content directories
           for dir in ai-engineering mobile-development frontend-development devops-systems assets; do
-            if [ -d "$dir" ]; then
-              cp -r "$dir" deploy/
+            if [ -d "temp/main/$dir" ]; then
+              cp -r "temp/main/$dir" deploy/
             fi
           done
 
           # Copy config files if they exist
-          [ -f "README.md" ] && cp README.md deploy/
-          [ -f "_config.yml" ] && cp _config.yml deploy/
-          [ -f "Gemfile" ] && cp Gemfile deploy/
+          [ -f "temp/main/README.md" ] && cp temp/main/README.md deploy/
+          [ -f "temp/main/_config.yml" ] && cp temp/main/_config.yml deploy/
+          [ -f "temp/main/Gemfile" ] && cp temp/main/Gemfile deploy/
 
           # Add .nojekyll to prevent Jekyll processing
           touch deploy/.nojekyll
 
           echo "✅ Main branch built to deploy/"
+          ls -la deploy/
 
+      # Checkout dev branch to isolated directory
       - name: Checkout dev branch
         uses: actions/checkout@v4
         with:
           ref: dev
+          path: temp/dev
 
+      # Build dev branch content to deploy/dev subdirectory
       - name: Build dev
         run: |
           mkdir -p deploy/dev
-          cp index.html deploy/dev/
+
+          # Copy dev content to deploy/dev subdirectory
+          cp temp/dev/index.html deploy/dev/
 
           # Copy all content directories to dev subdirectory
           for dir in ai-engineering mobile-development frontend-development devops-systems assets; do
-            if [ -d "$dir" ]; then
-              cp -r "$dir" deploy/dev/
+            if [ -d "temp/dev/$dir" ]; then
+              cp -r "temp/dev/$dir" deploy/dev/
             fi
           done
 
           # Copy config files if they exist
-          [ -f "README.md" ] && cp README.md deploy/dev/
-          [ -f "_config.yml" ] && cp _config.yml deploy/dev/
-          [ -f "Gemfile" ] && cp Gemfile deploy/dev/
+          [ -f "temp/dev/README.md" ] && cp temp/dev/README.md deploy/dev/
+          [ -f "temp/dev/_config.yml" ] && cp temp/dev/_config.yml deploy/dev/
+          [ -f "temp/dev/Gemfile" ] && cp temp/dev/Gemfile deploy/dev/
 
           echo "✅ Dev branch built to deploy/dev/"
+          ls -la deploy/dev/
+
+      # Verify final directory structure
+      - name: Verify deployment structure
+        run: |
+          echo "📦 Final deployment structure:"
+          tree -L 2 deploy/ || find deploy/ -maxdepth 2 -type d
+
+          echo ""
+          echo "📊 Deployment summary:"
+          echo "  Main content: $(find deploy/ -maxdepth 1 -type f | wc -l) files"
+          echo "  Dev content:  $(find deploy/dev/ -type f 2>/dev/null | wc -l) files"
+
+          # Verify critical files exist
+          [ -f "deploy/index.html" ] && echo "✅ Main index.html exists" || echo "❌ Main index.html MISSING"
+          [ -f "deploy/dev/index.html" ] && echo "✅ Dev index.html exists" || echo "❌ Dev index.html MISSING"
+          [ -f "deploy/.nojekyll" ] && echo "✅ .nojekyll exists" || echo "❌ .nojekyll MISSING"
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -89,6 +117,10 @@ jobs:
 
       - name: Deployment complete
         run: |
-          echo "✅ Portfolio deployed!"
-          echo "Production: https://kvnloo.github.io/portfolio/"
-          echo "Dev: https://kvnloo.github.io/portfolio/dev/"
+          echo "✅ Portfolio deployed successfully!"
+          echo ""
+          echo "📍 URLs:"
+          echo "  Production: https://kvnloo.github.io/portfolio/"
+          echo "  Dev:        https://kvnloo.github.io/portfolio/dev/"
+          echo ""
+          echo "🔗 Deployment URL: ${{ steps.deployment.outputs.page_url }}"
