@@ -3,17 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kevin Rajan - Portfolio</title>
-    <meta name="description" content="Full-Stack Developer | AI Engineer | iOS Specialist - Showcasing AI systems, mobile development, frontend engineering, and DevOps expertise">
 
-    <!-- Tailwind CSS -->
+    <!-- Primary Meta Tags -->
+    <title>Kevin Rajan - AI/ML Engineer & iOS Developer | 84.8% SWE-Bench</title>
+    <meta name="description" content="AI/ML Engineer & iOS Developer specializing in LLM optimization, RAG systems, and Swift/SwiftUI. 84.8% SWE-Bench solve rate, 98% documentation coverage.">
+    <meta name="keywords" content="AI Engineer, ML Engineer, iOS Developer, LLM, RAG, SwiftUI, Python, PyTorch, TensorFlow, Multi-Agent Systems, CoreAudio, React, Brain-Computer Interface">
+    <meta name="author" content="Kevin Rajan">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="profile">
+    <meta property="og:url" content="https://kvnloo.github.io/portfolio/">
+    <meta property="og:title" content="Kevin Rajan - AI/ML Engineer & iOS Developer">
+    <meta property="og:description" content="84.8% SWE-Bench | LLM optimization | iOS development expert">
+    <meta property="og:site_name" content="Kevin Rajan Portfolio">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://kvnloo.github.io/portfolio/">
+    <meta name="twitter:title" content="Kevin Rajan - AI/ML Engineer & iOS Developer">
+    <meta name="twitter:description" content="84.8% SWE-Bench | LLM specialist | iOS developer">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://kvnloo.github.io/portfolio/">
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Kevin Rajan",
+      "url": "https://kvnloo.github.io/portfolio/",
+      "jobTitle": "AI/ML Engineer & iOS Developer",
+      "description": "AI/ML Engineer specializing in LLM optimization, RAG systems, and multi-agent orchestration",
+      "knowsAbout": ["Artificial Intelligence", "Machine Learning", "iOS Development", "LLM Optimization", "RAG Systems", "Swift", "Python", "PyTorch"],
+      "sameAs": [
+        "https://github.com/kvnloo",
+        "https://linkedin.com/in/kevinsrajan"
+      ]
+    }
+    </script>
+
+    <!-- Project Structured Data - Evolve Framework -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Evolve Framework",
+      "description": "Multi-agent development orchestration with 54+ specialized agents and SPARC methodology achieving 84.8% SWE-Bench solve rate",
+      "applicationCategory": "DeveloperApplication",
+      "creator": {
+        "@type": "Person",
+        "name": "Kevin Rajan"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+
+    <!-- Project Structured Data - AudioEngine -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "AudioEngine",
+      "description": "Real-time audio processing engine with 14-band equalizer and 98% documentation coverage",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "iOS",
+      "creator": {
+        "@type": "Person",
+        "name": "Kevin Rajan"
+      },
+      "programmingLanguage": "Swift"
+    }
+    </script>
+
+    <!-- Project Structured Data - FlowState BCI -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "FlowState BCI",
+      "description": "Brain-Computer Interface using EEG alpha band detection for attention-based video control",
+      "applicationCategory": "MultimediaApplication",
+      "creator": {
+        "@type": "Person",
+        "name": "Kevin Rajan"
+      },
+      "keywords": "BCI, Neuroscience, EEG, Brain-Computer Interface"
+    }
+    </script>
+
+    <!-- Preconnect to external domains for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://unpkg.com">
+
+    <!-- Tailwind CSS with defer for non-critical -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Marked.js for Markdown parsing -->
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <!-- Marked.js for Markdown parsing - deferred -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
 
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Lucide Icons - deferred -->
+    <script src="https://unpkg.com/lucide@latest" defer></script>
 
     <script>
         tailwind.config = {
@@ -61,9 +158,11 @@
     </script>
 
     <style>
+        /* Critical CSS - Inlined for performance */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
         :root {
+            /* Dark mode color scheme */
             --background: 222.2 84% 4.9%;
             --foreground: 210 40% 98%;
             --card: 222.2 84% 4.9%;
@@ -103,6 +202,27 @@
             --card-spacing: clamp(1rem, 2vw, 1.5rem);
         }
 
+        /* Light mode color scheme */
+        @media (prefers-color-scheme: light) {
+            :root:not(.dark) {
+                --background: 0 0% 100%;
+                --foreground: 222.2 84% 4.9%;
+                --card: 0 0% 100%;
+                --card-foreground: 222.2 84% 4.9%;
+                --primary: 217.2 91.2% 59.8%;
+                --primary-foreground: 210 40% 98%;
+                --secondary: 210 40% 96.1%;
+                --secondary-foreground: 222.2 47.4% 11.2%;
+                --muted: 210 40% 96.1%;
+                --muted-foreground: 215.4 16.3% 46.9%;
+                --accent: 210 40% 96.1%;
+                --accent-foreground: 222.2 47.4% 11.2%;
+                --border: 214.3 31.8% 91.4%;
+                --input: 214.3 31.8% 91.4%;
+                --ring: 217.2 91.2% 59.8%;
+            }
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -110,7 +230,8 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-display: swap;
             background-color: hsl(var(--background));
             color: hsl(var(--foreground));
             line-height: 1.6;
@@ -295,6 +416,29 @@
             top: 0;
         }
 
+        /* Dark mode toggle button */
+        .theme-toggle {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            background: hsl(var(--card));
+            border: 1px solid hsl(var(--border));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 40;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            border-color: hsl(var(--primary));
+        }
+
         /* Touch Target Sizing - Minimum 44x44px for accessibility */
         @media (pointer: coarse) {
             .nav-link,
@@ -323,24 +467,61 @@
             min-height: 44px;
             min-width: 44px;
         }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+                color: black;
+            }
+
+            nav, .theme-toggle, .skip-link, footer {
+                display: none;
+            }
+
+            .project-card {
+                page-break-inside: avoid;
+                border: 1px solid #ccc;
+                box-shadow: none;
+            }
+
+            a[href]:after {
+                content: " (" attr(href) ")";
+                font-size: 0.8em;
+                color: #666;
+            }
+
+            a[href^="#"]:after {
+                content: "";
+            }
+
+            h1, h2, h3 {
+                page-break-after: avoid;
+            }
+        }
     </style>
 </head>
 <body class="dark">
     <!-- Skip to main content link for accessibility -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
+    <!-- Dark Mode Toggle Button -->
+    <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">
+        <i data-lucide="moon" class="w-5 h-5" id="themeIcon"></i>
+    </button>
+
     <!-- Navigation -->
-    <nav class="sticky top-0 z-50 backdrop-blur-lg bg-background/80 border-b border-border">
+    <nav class="sticky top-0 z-50 backdrop-blur-lg bg-background/80 border-b border-border" role="navigation" aria-label="Main navigation">
         <div class="container mx-auto px-4 py-4">
             <div class="flex items-center justify-between">
                 <div class="flex items-center gap-2">
-                    <i data-lucide="code-2" class="w-6 h-6 text-primary"></i>
-                    <h1 class="text-lg md:text-xl font-bold">Kevin Rajan</h1>
+                    <i data-lucide="code-2" class="w-6 h-6 text-primary" aria-hidden="true"></i>
+                    <span class="text-lg md:text-xl font-bold">Kevin Rajan</span>
                 </div>
 
                 <!-- Mobile Menu Button -->
-                <button id="mobileMenuBtn" class="md:hidden text-foreground p-2" aria-expanded="false" aria-label="Toggle mobile menu">
-                    <i data-lucide="menu" class="w-6 h-6"></i>
+                <button id="mobileMenuBtn" class="md:hidden text-foreground p-2" aria-expanded="false" aria-controls="mobileMenu" aria-label="Toggle mobile menu">
+                    <i data-lucide="menu" class="w-6 h-6" aria-hidden="true"></i>
                 </button>
 
                 <!-- Desktop Navigation -->
@@ -355,10 +536,10 @@
                 <!-- Social Links -->
                 <div class="hidden md:flex gap-4">
                     <a href="https://github.com/kvnloo" target="_blank" rel="noopener noreferrer" aria-label="Visit Kevin Rajan's GitHub profile" class="text-muted-foreground hover:text-foreground transition-colors">
-                        <i data-lucide="github" class="w-5 h-5"></i>
+                        <i data-lucide="github" class="w-5 h-5" aria-hidden="true"></i>
                     </a>
                     <a href="https://linkedin.com/in/kevinsrajan" target="_blank" rel="noopener noreferrer" aria-label="Visit Kevin Rajan's LinkedIn profile" class="text-muted-foreground hover:text-foreground transition-colors">
-                        <i data-lucide="linkedin" class="w-5 h-5"></i>
+                        <i data-lucide="linkedin" class="w-5 h-5" aria-hidden="true"></i>
                     </a>
                 </div>
             </div>
@@ -372,10 +553,10 @@
                 <a href="#devops" class="mobile-nav-link block px-4 py-2 rounded-md transition-colors hover:bg-muted">DevOps</a>
                 <div class="flex gap-4 px-4 pt-4 border-t border-border">
                     <a href="https://github.com/kvnloo" target="_blank" rel="noopener noreferrer" aria-label="Visit Kevin Rajan's GitHub profile" class="text-muted-foreground hover:text-foreground transition-colors">
-                        <i data-lucide="github" class="w-5 h-5"></i>
+                        <i data-lucide="github" class="w-5 h-5" aria-hidden="true"></i>
                     </a>
                     <a href="https://linkedin.com/in/kevinsrajan" target="_blank" rel="noopener noreferrer" aria-label="Visit Kevin Rajan's LinkedIn profile" class="text-muted-foreground hover:text-foreground transition-colors">
-                        <i data-lucide="linkedin" class="w-5 h-5"></i>
+                        <i data-lucide="linkedin" class="w-5 h-5" aria-hidden="true"></i>
                     </a>
                 </div>
             </div>
@@ -387,7 +568,7 @@
         <!-- Hero Section -->
         <section id="home" class="mb-20">
             <div class="max-w-6xl mx-auto text-center">
-                <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Full-Stack Developer | AI Engineer | iOS Specialist</h1>
+                <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4">AI/ML Engineer & iOS Developer</h1>
                 <p class="text-lg md:text-xl text-muted-foreground mb-8">Building autonomous AI systems, mobile applications, and modern web experiences</p>
 
                 <div class="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 max-w-4xl mx-auto mb-12">
@@ -413,13 +594,13 @@
 
         <!-- AI Engineering Section -->
         <section id="ai-engineering" class="mb-16 md:mb-24">
-            <div class="flex items-center gap-2 md:gap-3 mb-6 md:mb-8">
-                <i data-lucide="brain" class="w-6 h-6 md:w-8 md:h-8 text-primary"></i>
+            <header class="flex items-center gap-2 md:gap-3 mb-6 md:mb-8">
+                <i data-lucide="brain" class="w-6 h-6 md:w-8 md:h-8 text-primary" aria-hidden="true"></i>
                 <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold">AI Engineering & Intelligent Systems</h2>
-            </div>
+            </header>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-8">
-                <div class="project-card bg-card rounded-lg p-4 sm:p-5 md:p-6 cursor-pointer" onclick="loadProject('ai-engineering/evolve-framework.md')">
+                <article class="project-card bg-card rounded-lg p-4 sm:p-5 md:p-6 cursor-pointer" onclick="loadProject('ai-engineering/evolve-framework.md')">
                     <h3 class="text-xl font-bold mb-2">Evolve Framework</h3>
                     <p class="text-muted-foreground mb-4">Multi-agent development orchestration with 54+ specialized agents and SPARC methodology</p>
                     <div class="flex flex-wrap gap-2">
@@ -427,9 +608,9 @@
                         <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded">Multi-Agent</span>
                         <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded">SPARC</span>
                     </div>
-                </div>
+                </article>
 
-                <div class="project-card bg-card rounded-lg p-4 sm:p-5 md:p-6 cursor-pointer" onclick="loadProject('ai-engineering/flowstate-bci.md')">
+                <article class="project-card bg-card rounded-lg p-4 sm:p-5 md:p-6 cursor-pointer" onclick="loadProject('ai-engineering/flowstate-bci.md')">
                     <h3 class="text-xl font-bold mb-2">FlowState BCI</h3>
                     <p class="text-muted-foreground mb-4">Brain-Computer Interface using EEG alpha band detection for attention-based video control</p>
                     <div class="flex flex-wrap gap-2">
@@ -437,9 +618,9 @@
                         <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded">Neuroscience</span>
                         <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded">EEG</span>
                     </div>
-                </div>
+                </article>
 
-                <div class="project-card bg-card rounded-lg p-4 sm:p-5 md:p-6 cursor-pointer" onclick="loadProject('ai-engineering/pixel-perfect-ui.md')">
+                <article class="project-card bg-card rounded-lg p-4 sm:p-5 md:p-6 cursor-pointer" onclick="loadProject('ai-engineering/pixel-perfect-ui.md')">
                     <h3 class="text-xl font-bold mb-2">AI-Assisted UI Workflow</h3>
                     <p class="text-muted-foreground mb-4">Design-to-code automation achieving pixel-perfect implementations from inspiration</p>
                     <div class="flex flex-wrap gap-2">
@@ -447,9 +628,9 @@
                         <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded">Design</span>
                         <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded">Automation</span>
                     </div>
-                </div>
+                </article>
 
-                <div class="project-card bg-card rounded-lg p-4 sm:p-5 md:p-6 cursor-pointer" onclick="loadProject('ai-engineering/monument.md')">
+                <article class="project-card bg-card rounded-lg p-4 sm:p-5 md:p-6 cursor-pointer" onclick="loadProject('ai-engineering/monument.md')">
                     <h3 class="text-xl font-bold mb-2">Monument</h3>
                     <p class="text-muted-foreground mb-4">Visual AI design showcase featuring pixel-perfect UI components and modern design systems</p>
                     <div class="flex flex-wrap gap-2">
@@ -457,9 +638,9 @@
                         <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded">UI/UX</span>
                         <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded">Components</span>
                     </div>
-                </div>
+                </article>
 
-                <div class="project-card bg-card rounded-lg p-4 sm:p-5 md:p-6 cursor-pointer" onclick="loadProject('ai-engineering/lawntech-dynamics.md')">
+                <article class="project-card bg-card rounded-lg p-4 sm:p-5 md:p-6 cursor-pointer" onclick="loadProject('ai-engineering/lawntech-dynamics.md')">
                     <h3 class="text-xl font-bold mb-2">LawnTech Dynamics</h3>
                     <p class="text-muted-foreground mb-4">Autonomous indoor racquet sports facility with AI operations, digital twins, and real-time biomechanics analytics</p>
                     <div class="flex flex-wrap gap-2">
@@ -468,19 +649,19 @@
                         <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded">IoT</span>
                         <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded">React</span>
                     </div>
-                </div>
+                </article>
             </div>
         </section>
 
         <!-- Mobile Development Section -->
         <section id="mobile" class="mb-16 md:mb-24">
-            <div class="flex items-center gap-2 md:gap-3 mb-6 md:mb-8">
-                <i data-lucide="smartphone" class="w-6 h-6 md:w-8 md:h-8 text-primary"></i>
+            <header class="flex items-center gap-2 md:gap-3 mb-6 md:mb-8">
+                <i data-lucide="smartphone" class="w-6 h-6 md:w-8 md:h-8 text-primary" aria-hidden="true"></i>
                 <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold">iOS Mobile Development</h2>
-            </div>
+            </header>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-                <div class="project-card bg-card rounded-lg p-4 sm:p-5 md:p-6 cursor-pointer" onclick="loadProject('mobile-development/audio-engine.md')">
+                <article class="project-card bg-card rounded-lg p-4 sm:p-5 md:p-6 cursor-pointer" onclick="loadProject('mobile-development/audio-engine.md')">
                     <h3 class="text-xl font-bold mb-2">AudioEngine</h3>
                     <p class="text-muted-foreground mb-4">Real-time audio processing with 14-band equalizer and 98% documentation coverage</p>
                     <div class="flex flex-wrap gap-2">
@@ -488,9 +669,9 @@
                         <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded">CoreAudio</span>
                         <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded">Firebase</span>
                     </div>
-                </div>
+                </article>
 
-                <div class="project-card bg-card rounded-lg p-4 sm:p-5 md:p-6 cursor-pointer" onclick="loadProject('mobile-development/hackillinois.md')">
+                <article class="project-card bg-card rounded-lg p-4 sm:p-5 md:p-6 cursor-pointer" onclick="loadProject('mobile-development/hackillinois.md')">
                     <h3 class="text-xl font-bold mb-2">HackIllinois 2017</h3>
                     <p class="text-muted-foreground mb-4">Complete mobile conference application for HackIllinois hackathon</p>
                     <div class="flex flex-wrap gap-2">
@@ -498,19 +679,19 @@
                         <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded">UIKit</span>
                         <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded">Design</span>
                     </div>
-                </div>
+                </article>
             </div>
         </section>
 
         <!-- Frontend Development Section -->
         <section id="frontend" class="mb-16 md:mb-24">
-            <div class="flex items-center gap-2 md:gap-3 mb-6 md:mb-8">
-                <i data-lucide="palette" class="w-6 h-6 md:w-8 md:h-8 text-primary"></i>
+            <header class="flex items-center gap-2 md:gap-3 mb-6 md:mb-8">
+                <i data-lucide="palette" class="w-6 h-6 md:w-8 md:h-8 text-primary" aria-hidden="true"></i>
                 <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold">Frontend Development</h2>
-            </div>
+            </header>
 
             <div class="grid grid-cols-1 gap-4 md:gap-6">
-                <div class="project-card bg-card rounded-lg p-4 sm:p-5 md:p-6 cursor-pointer" onclick="loadProject('frontend-development/pixel-perfect-ui.md')">
+                <article class="project-card bg-card rounded-lg p-4 sm:p-5 md:p-6 cursor-pointer" onclick="loadProject('frontend-development/pixel-perfect-ui.md')">
                     <h3 class="text-xl font-bold mb-2">Pixel-Perfect UI Showcase</h3>
                     <p class="text-muted-foreground mb-4">Production-ready implementations across diverse design systems (brutalist, glassmorphism, analytics)</p>
                     <div class="flex flex-wrap gap-2">
@@ -518,19 +699,19 @@
                         <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded">Tailwind</span>
                         <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded">Design Systems</span>
                     </div>
-                </div>
+                </article>
             </div>
         </section>
 
         <!-- DevOps Section -->
         <section id="devops" class="mb-16 md:mb-24">
-            <div class="flex items-center gap-2 md:gap-3 mb-6 md:mb-8">
-                <i data-lucide="settings" class="w-6 h-6 md:w-8 md:h-8 text-primary"></i>
+            <header class="flex items-center gap-2 md:gap-3 mb-6 md:mb-8">
+                <i data-lucide="settings" class="w-6 h-6 md:w-8 md:h-8 text-primary" aria-hidden="true"></i>
                 <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold">DevOps & System Configuration</h2>
-            </div>
+            </header>
 
             <div class="grid grid-cols-1 gap-4 md:gap-6">
-                <div class="project-card bg-card rounded-lg p-4 sm:p-5 md:p-6 cursor-pointer" onclick="loadProject('devops-systems/dotfiles.md')">
+                <article class="project-card bg-card rounded-lg p-4 sm:p-5 md:p-6 cursor-pointer" onclick="loadProject('devops-systems/dotfiles.md')">
                     <h3 class="text-xl font-bold mb-2">Dotfiles Configuration</h3>
                     <p class="text-muted-foreground mb-4">Personal development environment setup and automation (3 GitHub stars)</p>
                     <div class="flex flex-wrap gap-2">
@@ -538,7 +719,7 @@
                         <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded">Vim</span>
                         <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded">Git</span>
                     </div>
-                </div>
+                </article>
             </div>
         </section>
     </main>
@@ -548,17 +729,17 @@
         <div class="container mx-auto px-4 py-12">
             <div class="max-w-4xl mx-auto bg-card border border-border rounded-lg p-8">
                 <div class="flex justify-between items-start mb-8">
-                    <button onclick="closeProject()" class="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
-                        <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                    <button onclick="closeProject()" class="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors" aria-label="Go back to projects">
+                        <i data-lucide="arrow-left" class="w-5 h-5" aria-hidden="true"></i>
                         Back
                     </button>
-                    <button onclick="closeProject()" class="text-muted-foreground hover:text-foreground transition-colors">
-                        <i data-lucide="x" class="w-6 h-6"></i>
+                    <button onclick="closeProject()" class="text-muted-foreground hover:text-foreground transition-colors" aria-label="Close project details">
+                        <i data-lucide="x" class="w-6 h-6" aria-hidden="true"></i>
                     </button>
                 </div>
                 <div id="projectContent" class="markdown-content">
                     <div class="flex justify-center items-center h-64">
-                        <div class="loading"></div>
+                        <div class="loading" role="status" aria-label="Loading project details"></div>
                     </div>
                 </div>
             </div>
@@ -574,15 +755,50 @@
     </footer>
 
     <script>
-        // Initialize Lucide icons
-        lucide.createIcons();
+        // Initialize on DOM load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Lucide icons
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
 
-        // Configure marked options
-        marked.setOptions({
-            breaks: true,
-            gfm: true,
-            headerIds: true,
-            mangle: false
+            // Configure marked options
+            if (typeof marked !== 'undefined') {
+                marked.setOptions({
+                    breaks: true,
+                    gfm: true,
+                    headerIds: true,
+                    mangle: false
+                });
+            }
+
+            // Dark mode functionality
+            const themeToggle = document.getElementById('themeToggle');
+            const themeIcon = document.getElementById('themeIcon');
+            const htmlElement = document.documentElement;
+
+            // Load saved theme preference
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            if (savedTheme === 'light') {
+                htmlElement.classList.remove('dark');
+                if (themeIcon && typeof lucide !== 'undefined') {
+                    themeIcon.setAttribute('data-lucide', 'sun');
+                    lucide.createIcons();
+                }
+            }
+
+            // Theme toggle handler
+            if (themeToggle) {
+                themeToggle.addEventListener('click', function() {
+                    const isDark = htmlElement.classList.toggle('dark');
+                    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+
+                    if (themeIcon && typeof lucide !== 'undefined') {
+                        themeIcon.setAttribute('data-lucide', isDark ? 'moon' : 'sun');
+                        lucide.createIcons();
+                    }
+                });
+            }
         });
 
         // Navigation active state
@@ -613,14 +829,14 @@
             const content = document.getElementById('projectContent');
 
             modal.classList.remove('hidden');
-            content.innerHTML = '<div class="flex justify-center items-center h-64"><div class="loading"></div></div>';
+            content.innerHTML = '<div class="flex justify-center items-center h-64"><div class="loading" role="status" aria-label="Loading project details"></div></div>';
 
             try {
                 const response = await fetch(path);
                 if (!response.ok) throw new Error('Failed to load project');
 
                 const markdown = await response.text();
-                const html = marked.parse(markdown);
+                const html = typeof marked !== 'undefined' ? marked.parse(markdown) : markdown;
 
                 content.innerHTML = html;
 
@@ -641,19 +857,24 @@
                 // Add lazy loading to all images for better performance
                 content.querySelectorAll('img').forEach(img => {
                     img.setAttribute('loading', 'lazy');
+                    img.setAttribute('alt', img.getAttribute('alt') || 'Project image');
                 });
 
                 // Reinitialize Lucide icons for new content
-                lucide.createIcons();
+                if (typeof lucide !== 'undefined') {
+                    lucide.createIcons();
+                }
             } catch (error) {
                 content.innerHTML = `
                     <div class="text-center text-destructive">
-                        <i data-lucide="alert-circle" class="w-12 h-12 mx-auto mb-4"></i>
+                        <i data-lucide="alert-circle" class="w-12 h-12 mx-auto mb-4" aria-hidden="true"></i>
                         <p>Failed to load project details</p>
                         <p class="text-sm text-muted-foreground mt-2">${error.message}</p>
                     </div>
                 `;
-                lucide.createIcons();
+                if (typeof lucide !== 'undefined') {
+                    lucide.createIcons();
+                }
             }
         }
 
@@ -675,22 +896,24 @@
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const mobileMenu = document.getElementById('mobileMenu');
 
-        mobileMenuBtn.addEventListener('click', () => {
-            const isHidden = mobileMenu.classList.toggle('hidden');
-            // Update ARIA attributes for accessibility
-            mobileMenuBtn.setAttribute('aria-expanded', !isHidden);
-            mobileMenu.setAttribute('aria-hidden', isHidden);
-        });
-
-        // Close mobile menu when clicking nav links
-        document.querySelectorAll('.mobile-nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-                // Update ARIA attributes when closing menu
-                mobileMenuBtn.setAttribute('aria-expanded', 'false');
-                mobileMenu.setAttribute('aria-hidden', 'true');
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                const isHidden = mobileMenu.classList.toggle('hidden');
+                // Update ARIA attributes for accessibility
+                mobileMenuBtn.setAttribute('aria-expanded', !isHidden);
+                mobileMenu.setAttribute('aria-hidden', isHidden);
             });
-        });
+
+            // Close mobile menu when clicking nav links
+            document.querySelectorAll('.mobile-nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    // Update ARIA attributes when closing menu
+                    mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                    mobileMenu.setAttribute('aria-hidden', 'true');
+                });
+            });
+        }
 
         // Smooth scroll for navigation
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
