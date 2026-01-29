@@ -1,0 +1,3008 @@
+{
+  "nodes": [
+    {
+      "id": "b359b195f583428f",
+      "type": "group",
+      "x": 2300,
+      "y": 200,
+      "width": 1320,
+      "height": 3082,
+      "color": "6",
+      "label": "AI Agents & Orchestration (51)"
+    },
+    {
+      "id": "4ccd7a3de2cd4646",
+      "type": "group",
+      "x": 5440,
+      "y": 1400,
+      "width": 890,
+      "height": 1858,
+      "color": "4",
+      "label": "Systems & Infrastructure (25)"
+    },
+    {
+      "id": "d7e7110be1d546b4",
+      "type": "group",
+      "x": 2000,
+      "y": 5800,
+      "width": 890,
+      "height": 1826,
+      "color": "3",
+      "label": "Education & Career (19)"
+    },
+    {
+      "id": "07fbd37344994667",
+      "type": "group",
+      "x": 4000,
+      "y": 2320,
+      "width": 890,
+      "height": 1650,
+      "color": "5",
+      "label": "Design & Creative (17)"
+    },
+    {
+      "id": "73d8e4124d344025",
+      "type": "group",
+      "x": 7140,
+      "y": 2760,
+      "width": 890,
+      "height": 1498,
+      "color": "5",
+      "label": "Web Development & Frontend (16)"
+    },
+    {
+      "id": "d99a3430b7a24a2d",
+      "type": "group",
+      "x": 5790,
+      "y": 4500,
+      "width": 890,
+      "height": 1498,
+      "color": "5",
+      "label": "Mobile Development (16)"
+    },
+    {
+      "id": "cfafcffd7f584511",
+      "type": "group",
+      "x": 800,
+      "y": 5800,
+      "width": 890,
+      "height": 1322,
+      "color": "2",
+      "label": "Competitive Gaming & Performance (13)"
+    },
+    {
+      "id": "d8f62f47aa7f4832",
+      "type": "group",
+      "x": 3000,
+      "y": 5800,
+      "width": 890,
+      "height": 1282,
+      "color": "1",
+      "label": "Uncategorized / Empty (16)"
+    },
+    {
+      "id": "f5f0aa1a66094670",
+      "type": "group",
+      "x": 500,
+      "y": 100,
+      "width": 890,
+      "height": 1146,
+      "color": "6",
+      "label": "Foundation Models & ML Research (12)"
+    },
+    {
+      "id": "402b9aff52f74cf9",
+      "type": "group",
+      "x": -120,
+      "y": 2800,
+      "width": 890,
+      "height": 1146,
+      "color": "6",
+      "label": "Robotics & Simulation (11)"
+    },
+    {
+      "id": "7b859d28efca4c9b",
+      "type": "group",
+      "x": 4000,
+      "y": 200,
+      "width": 890,
+      "height": 1122,
+      "color": "4",
+      "label": "Developer Tools & Productivity (11)"
+    },
+    {
+      "id": "5652d0bfec9f4150",
+      "type": "group",
+      "x": 3990,
+      "y": 6098,
+      "width": 890,
+      "height": 994,
+      "color": "3",
+      "label": "Finance & Trading (10)"
+    },
+    {
+      "id": "3ffd795939a24c22",
+      "type": "group",
+      "x": 800,
+      "y": 4500,
+      "width": 890,
+      "height": 946,
+      "color": "2",
+      "label": "Game Development (9)"
+    },
+    {
+      "id": "7f747f8d87eb4eff",
+      "type": "group",
+      "x": -1200,
+      "y": -600,
+      "width": 1000,
+      "height": 552,
+      "color": "6",
+      "label": "Legend"
+    },
+    {
+      "id": "c5d0f450fecb4d68",
+      "type": "group",
+      "x": 200,
+      "y": 1600,
+      "width": 890,
+      "height": 794,
+      "color": "6",
+      "label": "Computer Vision & 3D (7)"
+    },
+    {
+      "id": "5bed9f245c664128",
+      "type": "group",
+      "x": 2300,
+      "y": 3680,
+      "width": 890,
+      "height": 466,
+      "color": "6",
+      "label": "Generative AI & Creative AI (4)"
+    },
+    {
+      "id": "e30b161c1e1a43ca",
+      "type": "group",
+      "x": -400,
+      "y": 4500,
+      "width": 890,
+      "height": 442,
+      "color": "6",
+      "label": "Neuroscience & BCI (3)"
+    },
+    {
+      "id": "2ea39a2a51814e14",
+      "type": "group",
+      "x": 2200,
+      "y": 4500,
+      "width": 890,
+      "height": 442,
+      "color": "2",
+      "label": "Audio & Speech (4)"
+    },
+    {
+      "id": "0597debfeb8b43b6",
+      "type": "group",
+      "x": -400,
+      "y": 5800,
+      "width": 890,
+      "height": 442,
+      "color": "3",
+      "label": "Health & Biotech (4)"
+    },
+    {
+      "id": "64420213147b4b22",
+      "type": "group",
+      "x": 4000,
+      "y": 1680,
+      "width": 890,
+      "height": 266,
+      "color": "4",
+      "label": "Knowledge Management (2)"
+    },
+    {
+      "id": "9f8d79804e064338",
+      "type": "text",
+      "text": "**andrej-karpathy-skills** [Fork]\nFork of a Claude Code guidelines file inspired by Andrej Karpathy's observations on LLM coding pi...\n_AI Agents \u00b7 DevTools_",
+      "x": 2330,
+      "y": 788,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "8ae617d6ceda4468",
+      "type": "text",
+      "text": "**awesome-claude-skills** [Fork]\nA curated collection of example skills for Anthropic's Claude AI -- ranging from creative tasks (...\n_AI Agents \u00b7 DevTools_",
+      "x": 2330,
+      "y": 964,
+      "width": 400,
+      "height": 156,
+      "color": "5"
+    },
+    {
+      "id": "7af05460cf6e4b6e",
+      "type": "text",
+      "text": "**Qwen3-TTS** [Fork]\nAlibaba Qwen team's open-source text-to-speech models (0.6B/1.7B params) supporting voice cloning...\n_Foundation Models \u00b7 Audio \u00b7 Generative AI_",
+      "x": 530,
+      "y": 864,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "1fbc37ad9bc343e0",
+      "type": "text",
+      "text": "**Qwen3-VL** [Fork]\nQwen3-VL is Alibaba's multimodal vision-language model series featuring visual agent capabilities...\n_Foundation Models \u00b7 Computer Vision_",
+      "x": 960,
+      "y": 864,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "7d79899198d74d07",
+      "type": "text",
+      "text": "**thrml** [Fork]\nA JAX library by Extropic for building and sampling probabilistic graphical models, focused on ef...\n_Foundation Models \u00b7 Infrastructure_",
+      "x": 530,
+      "y": 1040,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "c1f98b22b0eb4c7a",
+      "type": "text",
+      "text": "**tinygrad** [Fork]\nA minimalist deep learning framework positioned between PyTorch and micrograd, focused on simplic...\n_Foundation Models \u00b7 Infrastructure_",
+      "x": 960,
+      "y": 1040,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "cf45da6df0d24c21",
+      "type": "text",
+      "text": "**anthropic-quickstarts** [Fork]\nA collection of starter projects for building applications with the Anthropic API, including a cu...\n_AI Agents \u00b7 Education_",
+      "x": 2760,
+      "y": 788,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "d7e71f9c7f914807",
+      "type": "text",
+      "text": "**assistant** [Original]\nPrivate repository with minimal public information. README contains only the title \"assistant\".\n_AI Agents_",
+      "x": 3190,
+      "y": 788,
+      "width": 400,
+      "height": 132,
+      "color": "1"
+    },
+    {
+      "id": "56d9cec3ee334348",
+      "type": "text",
+      "text": "**Auto-Claude** [Fork]\nFork of an autonomous multi-agent coding framework that plans, builds, and validates software usi...\n_AI Agents \u00b7 DevTools_",
+      "x": 3190,
+      "y": 940,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "e79d3c2feb4548f6",
+      "type": "text",
+      "text": "**beads** [Fork]\nFork of steveyegge/beads -- a distributed, git-backed graph issue tracker designed as persistent ...\n_AI Agents \u00b7 DevTools \u00b7 Knowledge Mgmt_",
+      "x": 2760,
+      "y": 964,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "e2f388892e5648a4",
+      "type": "text",
+      "text": "**graphcast** [Fork]\nGoogle DeepMind's GraphCast and GenCast weather forecasting models using graph neural networks on...\n_Foundation Models \u00b7 Infrastructure_",
+      "x": 530,
+      "y": 512,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "08e1c456f295409a",
+      "type": "text",
+      "text": "**open_spiel** [Fork]\nDeepMind's framework for reinforcement learning and search/planning in games, supporting n-player...\n_Foundation Models \u00b7 Game Dev_",
+      "x": 960,
+      "y": 512,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "4194e533320746eb",
+      "type": "text",
+      "text": "**ParScale** [Fork]\nResearch implementation of a parallel scaling law for language models, introducing a third scalin...\n_Foundation Models_",
+      "x": 530,
+      "y": 688,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "d707723848bb4b62",
+      "type": "text",
+      "text": "**Qwen3** [Fork]\nFork of Alibaba's Qwen3 large language model series. Includes dense and Mixture-of-Experts models...\n_Foundation Models_",
+      "x": 960,
+      "y": 688,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "1ead8201d85c44c2",
+      "type": "text",
+      "text": "**A2UI** [Fork]\nAgent-to-User Interface -- an open standard and declarative JSON format that allows AI agents to ...\n_AI Agents \u00b7 Web Dev_",
+      "x": 2330,
+      "y": 260,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "c43955cac4d34502",
+      "type": "text",
+      "text": "**agent-browser** [Fork]\nHeadless browser automation CLI designed for AI agents, providing accessibility-tree-based elemen...\n_AI Agents \u00b7 DevTools \u00b7 Infrastructure_",
+      "x": 2330,
+      "y": 436,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "c7ebd215c6e040fb",
+      "type": "text",
+      "text": "**agents** [Fork]\nA production-ready system of 85 specialized AI agents, 15 multi-agent workflow orchestrators, and...\n_AI Agents \u00b7 DevTools_",
+      "x": 2330,
+      "y": 612,
+      "width": 400,
+      "height": 156,
+      "color": "5"
+    },
+    {
+      "id": "b970bdd2f9b14d0f",
+      "type": "text",
+      "text": "**alphaevolve_results** [Fork]\nCompanion repository to Google DeepMind's AlphaEvolve paper containing a Colab notebook with math...\n_Foundation Models_",
+      "x": 530,
+      "y": 160,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "f8021249c5704fc2",
+      "type": "text",
+      "text": "**deepmind-research** [Fork]\nCollection of implementations and illustrative code accompanying DeepMind publications, spanning ...\n_Foundation Models \u00b7 Robotics_",
+      "x": 960,
+      "y": 160,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "534a2fb89f3a4110",
+      "type": "text",
+      "text": "**earth2-weather-analytics** [Fork]\nNVIDIA Omniverse Blueprint reference implementation for geospatial weather analytics. Combines Om...\n_Foundation Models \u00b7 Infrastructure_",
+      "x": 530,
+      "y": 336,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "a9b725ff6cfc4bbb",
+      "type": "text",
+      "text": "**exo** [Fork]\nFork of exo labs' distributed AI inference framework that clusters multiple devices (e.g., Mac St...\n_Foundation Models \u00b7 Infrastructure_",
+      "x": 960,
+      "y": 336,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "d16eca805c3a4964",
+      "type": "text",
+      "text": "**cofounder** [Fork]\nAI-powered full-stack generative web app builder. Generates backend, database, and stateful web a...\n_AI Agents \u00b7 Web Dev_",
+      "x": 3190,
+      "y": 1820,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "54ea990614dd4a85",
+      "type": "text",
+      "text": "**continuous-claude** [Fork]\nAutomates Claude Code in a continuous loop, creating PRs, waiting for CI checks, and merging -- e...\n_AI Agents \u00b7 DevTools_",
+      "x": 2330,
+      "y": 1844,
+      "width": 400,
+      "height": 156,
+      "color": "5"
+    },
+    {
+      "id": "15f3a8e6a3e742ff",
+      "type": "text",
+      "text": "**dgm** [Fork]\nDarwin Godel Machine -- a self-improving AI system that iteratively modifies its own code and val...\n_AI Agents \u00b7 Foundation Models_",
+      "x": 2760,
+      "y": 1844,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "fdf5e6ce4ba14f0c",
+      "type": "text",
+      "text": "**everything-claude-code** [Fork]\nFork of affaan-m's battle-tested Claude Code configuration collection -- includes production-read...\n_AI Agents \u00b7 DevTools_",
+      "x": 3190,
+      "y": 1996,
+      "width": 400,
+      "height": 156,
+      "color": "5"
+    },
+    {
+      "id": "137a26c6ff5c4b00",
+      "type": "text",
+      "text": "**evolve** [Original]\nAn integrated autonomous AI development framework combining SuperClaude behavioral modes, CCPM pr...\n_AI Agents \u00b7 DevTools \u00b7 Infrastructure_",
+      "x": 2330,
+      "y": 2020,
+      "width": 400,
+      "height": 156,
+      "color": "4"
+    },
+    {
+      "id": "47c50886a72a47b1",
+      "type": "text",
+      "text": "**MetaGPT** [Fork]\nA multi-agent framework that simulates a software company by assigning GPT-based roles (product m...\n_AI Agents \u00b7 Foundation Models_",
+      "x": 2330,
+      "y": 2196,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "1133b9cef3714573",
+      "type": "text",
+      "text": "**opencode** [Fork]\nFork of SST's OpenCode -- an AI coding agent built for the terminal, supporting multiple LLM prov...\n_AI Agents \u00b7 DevTools_",
+      "x": 2760,
+      "y": 2196,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "525e2b531860444b",
+      "type": "text",
+      "text": "**OpenHands** [Fork]\nAn AI-powered software development agent platform (formerly OpenDevin) where AI agents can modify...\n_AI Agents \u00b7 DevTools_",
+      "x": 2330,
+      "y": 2372,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "54df17e990a44fe0",
+      "type": "text",
+      "text": "**OpenManus** [Fork]\nFork of the open-source AI agent framework from MetaGPT/FoundationAgents. Provides autonomous age...\n_AI Agents_",
+      "x": 2760,
+      "y": 2372,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "185db37124f5429c",
+      "type": "text",
+      "text": "**bolt.new-any-llm** [Fork]\nA fork of Bolt.new (oTToDev) that enables AI-powered full-stack web development in the browser wi...\n_AI Agents \u00b7 Web Dev_",
+      "x": 2330,
+      "y": 1140,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "9101e5d97bcc4d95",
+      "type": "text",
+      "text": "**ChatDev** [Fork]\nVirtual software company powered by LLM multi-agent collaboration (CEO, CTO, Programmer, Tester, ...\n_AI Agents \u00b7 Foundation Models_",
+      "x": 2760,
+      "y": 1140,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "eb87d52ce4f14275",
+      "type": "text",
+      "text": "**claude-code** [Fork]\nAnthropic's agentic coding tool that operates in the terminal, providing codebase understanding, ...\n_AI Agents \u00b7 DevTools_",
+      "x": 2330,
+      "y": 1316,
+      "width": 400,
+      "height": 156,
+      "color": "5"
+    },
+    {
+      "id": "eba55936f8a54f8a",
+      "type": "text",
+      "text": "**claude-flow** [Fork]\nEnterprise-grade AI orchestration platform featuring hive-mind swarm intelligence, 100+ MCP tools...\n_AI Agents \u00b7 DevTools_",
+      "x": 3190,
+      "y": 1468,
+      "width": 400,
+      "height": 156,
+      "color": "5"
+    },
+    {
+      "id": "1d120d806d06477c",
+      "type": "text",
+      "text": "**claude-mem** [Fork]\nA Claude Code plugin that automatically captures tool usage during coding sessions, compresses ob...\n_AI Agents \u00b7 Knowledge Mgmt \u00b7 DevTools_",
+      "x": 2330,
+      "y": 1492,
+      "width": 400,
+      "height": 156,
+      "color": "5"
+    },
+    {
+      "id": "75d8ffc8239b434c",
+      "type": "text",
+      "text": "**claude-squad** [Fork]\nFork of smtg-ai's terminal multiplexer for managing multiple AI coding agents (Claude Code, Codex...\n_AI Agents \u00b7 DevTools_",
+      "x": 2760,
+      "y": 1492,
+      "width": 400,
+      "height": 156,
+      "color": "5"
+    },
+    {
+      "id": "2360dec4ee524ed1",
+      "type": "text",
+      "text": "**claude-task-master** [Fork]\nAI-powered task management system designed for AI-driven development workflows. Integrates with C...\n_AI Agents \u00b7 DevTools_",
+      "x": 3190,
+      "y": 1644,
+      "width": 400,
+      "height": 156,
+      "color": "5"
+    },
+    {
+      "id": "4d031e2f3a174127",
+      "type": "text",
+      "text": "**codeassist** [Fork]\nA fully local and private AI coding assistant by Gensyn that learns from your keystrokes and codi...\n_AI Agents \u00b7 DevTools_",
+      "x": 2330,
+      "y": 1668,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "b8da7e7c57e14329",
+      "type": "text",
+      "text": "**codex** [Fork]\nFork of OpenAI's Codex CLI, a lightweight terminal-based coding agent. Supports interactive and f...\n_AI Agents \u00b7 DevTools_",
+      "x": 2760,
+      "y": 1668,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "a132224134524a21",
+      "type": "text",
+      "text": "**harness** [Fork]\nA minimal harness demonstrating long-running autonomous coding with the Claude Agent SDK. Impleme...\n_AI Agents \u00b7 DevTools_",
+      "x": 2760,
+      "y": 2020,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "3d9f55cbafb344c4",
+      "type": "text",
+      "text": "**BMAD-METHOD** [Fork]\n\"Build More, Architect Dreams\" -- an AI-driven agile development framework with 21 specialized ag...\n_AI Agents \u00b7 DevTools_",
+      "x": 3190,
+      "y": 1116,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "1cfdfb4eb9f04b28",
+      "type": "text",
+      "text": "**claude-canvas** [Fork]\nA TUI toolkit that gives Claude Code its own external display by spawning interactive terminal in...\n_AI Agents \u00b7 DevTools_",
+      "x": 3190,
+      "y": 1292,
+      "width": 400,
+      "height": 156,
+      "color": "5"
+    },
+    {
+      "id": "b3a08608d07e496d",
+      "type": "text",
+      "text": "**Claude-Code-Deep-Research** [Fork]\nInstructions and methodology for turning Claude Code into a deep research agent. Provides a Graph...\n_AI Agents \u00b7 DevTools_",
+      "x": 2760,
+      "y": 1316,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "988f9143c9914fcb",
+      "type": "text",
+      "text": "**gesture-lab** [Fork]\nA laboratory for interactive experiments with hand gesture tracking and 3D visuals. Features an I...\n_Computer Vision \u00b7 Web Dev \u00b7 Design_",
+      "x": 230,
+      "y": 1660,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "6ea757f0304443e5",
+      "type": "text",
+      "text": "**gesture-lab-copy** [Original]\nA laboratory of interactive experiments combining hand/gesture tracking (MediaPipe) with Three.js...\n_Computer Vision \u00b7 Web Dev \u00b7 Design_",
+      "x": 660,
+      "y": 1660,
+      "width": 400,
+      "height": 156,
+      "color": "4"
+    },
+    {
+      "id": "23fcb91fc9c54cf3",
+      "type": "text",
+      "text": "**PartPacker** [Fork]\nNVIDIA research project for efficient part-level 3D object generation from single-view images usi...\n_Computer Vision \u00b7 Generative AI_",
+      "x": 230,
+      "y": 1836,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "1503e564461d4af4",
+      "type": "text",
+      "text": "**PhysX-Anything** [Fork]\nGenerates simulation-ready physical 3D assets from a single image. Converts 2D images into physic...\n_Computer Vision \u00b7 Generative AI \u00b7 Robotics_",
+      "x": 660,
+      "y": 1836,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "76cbb3acbf0040c0",
+      "type": "text",
+      "text": "**raisr** [Fork]\nA forked Python implementation of the RAISR (Rapid and Accurate Image Super Resolution) algorithm...\n_Computer Vision \u00b7 Foundation Models_",
+      "x": 230,
+      "y": 2012,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "be0a29542f3949b1",
+      "type": "text",
+      "text": "**sam-3d-objects** [Fork]\nMeta's SAM 3D Objects foundation model for reconstructing full 3D shape geometry, texture, and la...\n_Computer Vision \u00b7 Generative AI_",
+      "x": 660,
+      "y": 2012,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "50ebc5f098e449ef",
+      "type": "text",
+      "text": "**super-resolution** [Original]\nImage/video super-resolution project using waifu2x (a deep learning-based upscaling tool). Contai...\n_Computer Vision_",
+      "x": 230,
+      "y": 2188,
+      "width": 400,
+      "height": 156,
+      "color": "1"
+    },
+    {
+      "id": "889c57ce67b74797",
+      "type": "text",
+      "text": "**Brain-Cog** [Fork]\nAn open-source spiking neural network platform for brain-inspired cognitive AI, brain simulation ...\n_Neuroscience \u00b7 Foundation Models \u00b7 Robotics_",
+      "x": -370,
+      "y": 4560,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "05700666c677418e",
+      "type": "text",
+      "text": "**Deep-BCI** [Fork]\nOpen software package for developing Brain-Computer Interfaces using deep learning, covering inte...\n_Neuroscience \u00b7 Foundation Models_",
+      "x": 60,
+      "y": 4560,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "1cbf79aab5d94dba",
+      "type": "text",
+      "text": "**FlowState** [Fork]\nA brain-computer interface (BCI) application that adjusts YouTube video playback speed based on t...\n_Neuroscience \u00b7 Web Dev_",
+      "x": -370,
+      "y": 4736,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "9590a1f197f246cf",
+      "type": "text",
+      "text": "**aiohealth** [Original]\nA health-oriented web application generated from the cofounder/boilerplate framework, with API an...\n_Health \u00b7 Web Dev_",
+      "x": -370,
+      "y": 5860,
+      "width": 400,
+      "height": 156,
+      "color": "4"
+    },
+    {
+      "id": "de386f0582104677",
+      "type": "text",
+      "text": "**live-swe-agent** [Fork]\nThe first live, runtime self-evolving software engineering agent. Expands and revises its own cap...\n_AI Agents_",
+      "x": 3190,
+      "y": 2172,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "3f91e724a4f74d22",
+      "type": "text",
+      "text": "**openevolve** [Fork]\nOpen-source implementation of Google DeepMind's AlphaEvolve system -- an evolutionary coding agen...\n_AI Agents \u00b7 Foundation Models_",
+      "x": 3190,
+      "y": 2348,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "07d6ae89c5a24f15",
+      "type": "text",
+      "text": "**alphafold3** [Fork]\nGoogle DeepMind's AlphaFold 3 inference pipeline for predicting biomolecular structures. Provides...\n_Foundation Models \u00b7 Health_",
+      "x": 60,
+      "y": 5860,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "bf31fbdfee2a48f8",
+      "type": "text",
+      "text": "**prenosis-api** [Original]\nAn API project related to Prenosis (a healthcare/biotech company focused on sepsis diagnostics). ...\n_Health \u00b7 Infrastructure_",
+      "x": -370,
+      "y": 6036,
+      "width": 400,
+      "height": 156,
+      "color": "1"
+    },
+    {
+      "id": "94551a4f09894820",
+      "type": "text",
+      "text": "**uara** [Fork]\nOpen-source health OS for connecting wearables, labs, and lifestyle data. Helps founders track he...\n_Health \u00b7 AI Agents_",
+      "x": 60,
+      "y": 6036,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "59b5953771b84bf6",
+      "type": "text",
+      "text": "**Acontext** [Fork]\nContext data platform for building cloud-native AI agents -- handles unified LLM message storage,...\n_AI Agents \u00b7 Knowledge Mgmt \u00b7 Infrastructure_",
+      "x": 2760,
+      "y": 260,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "4328794b564a4f75",
+      "type": "text",
+      "text": "**ag-ui** [Fork]\nAG-UI (Agent-User Interaction Protocol) -- an open, lightweight, event-based protocol that standa...\n_AI Agents \u00b7 Web Dev_",
+      "x": 3190,
+      "y": 260,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "3440a8ab8d884eb1",
+      "type": "text",
+      "text": "**agent-sandbox-skill** [Fork]\nAgent skill for managing isolated E2B sandbox execution environments, enabling AI coding agents (...\n_AI Agents \u00b7 DevTools \u00b7 Infrastructure_",
+      "x": 2760,
+      "y": 436,
+      "width": 400,
+      "height": 156,
+      "color": "5"
+    },
+    {
+      "id": "0f7c10bb789547e4",
+      "type": "text",
+      "text": "**Agent0** [Fork]\nAgent0 Series -- framework for self-evolving language and vision-language agents that improve aut...\n_AI Agents \u00b7 Foundation Models_",
+      "x": 3190,
+      "y": 436,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "240fede4c1e2423b",
+      "type": "text",
+      "text": "**aliens-made-this** [Original]\nExperimental test project exploring AI capability -- \"just a little test to see how capable the a...\n_AI Agents_",
+      "x": 2760,
+      "y": 612,
+      "width": 400,
+      "height": 156,
+      "color": "4"
+    },
+    {
+      "id": "380daac81eda430b",
+      "type": "text",
+      "text": "**alpha-evolve** [Original]\nPrivate repository with no description or visible language data. Likely an early/experimental exp...\n_AI Agents \u00b7 Foundation Models_",
+      "x": 3190,
+      "y": 612,
+      "width": 400,
+      "height": 156,
+      "color": "4"
+    },
+    {
+      "id": "d76e602a5801442e",
+      "type": "text",
+      "text": "**orchestra** [Original]\nPrivate MCP-based workflow orchestration system integrating browser research, Obsidian knowledge ...\n_AI Agents \u00b7 Knowledge Mgmt \u00b7 DevTools_",
+      "x": 3190,
+      "y": 2524,
+      "width": 400,
+      "height": 156,
+      "color": "4"
+    },
+    {
+      "id": "45a42c1af58d493e",
+      "type": "text",
+      "text": "**shadow** [Fork]\nOpen-source background coding agent with a real-time web interface that sets up isolated executio...\n_AI Agents \u00b7 Infrastructure \u00b7 DevTools_",
+      "x": 3190,
+      "y": 2700,
+      "width": 400,
+      "height": 156,
+      "color": "5"
+    },
+    {
+      "id": "e22d91024beb4172",
+      "type": "text",
+      "text": "**SuperClaude_Framework** [Fork]\nA meta-programming configuration framework that transforms Claude Code into a structured developm...\n_AI Agents \u00b7 DevTools_",
+      "x": 3190,
+      "y": 2876,
+      "width": 400,
+      "height": 156,
+      "color": "5"
+    },
+    {
+      "id": "9c967024bfde4e1f",
+      "type": "text",
+      "text": "**vibeship-spark** [Fork]\nA self-evolving intelligence system that observes, decides, acts, measures, learns, and improves ...\n_AI Agents_",
+      "x": 3190,
+      "y": 3052,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "07f222843ebc45d7",
+      "type": "text",
+      "text": "**OSWorld** [Fork]\nA NeurIPS 2024 benchmark for evaluating multimodal AI agents on open-ended tasks in real computer...\n_AI Agents \u00b7 Foundation Models_",
+      "x": 2330,
+      "y": 2548,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "cd9f0a7396924e48",
+      "type": "text",
+      "text": "**qwen-code** [Fork]\nFork of QwenLM/qwen-code -- an open-source AI coding agent for the terminal optimized for Qwen3-C...\n_AI Agents \u00b7 DevTools_",
+      "x": 2760,
+      "y": 2548,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "99bcfa8c99504d3f",
+      "type": "text",
+      "text": "**taches-cc-resources** [Fork]\nA curated collection of custom Claude Code resources including 27 slash commands, 7 autonomous sk...\n_AI Agents \u00b7 DevTools_",
+      "x": 2330,
+      "y": 2900,
+      "width": 400,
+      "height": 156,
+      "color": "5"
+    },
+    {
+      "id": "90557f29f26f4098",
+      "type": "text",
+      "text": "**ToolOrchestra** [Fork]\nEnd-to-end RL training framework for orchestrating tools and agentic workflows. Trains small orch...\n_AI Agents \u00b7 Foundation Models_",
+      "x": 2760,
+      "y": 2900,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "585fe524c44b4ac5",
+      "type": "text",
+      "text": "**vibeship-spawner-skills** [Fork]\nA directory of 462 production-grade specialized agent skills for Claude with YAML-based patterns,...\n_AI Agents \u00b7 DevTools_",
+      "x": 2330,
+      "y": 3076,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "1934395bfddb4bfd",
+      "type": "text",
+      "text": "**Voyager** [Fork]\nFirst LLM-powered (GPT-4) embodied lifelong learning agent in Minecraft that continuously explore...\n_AI Agents \u00b7 Game Dev \u00b7 Foundation Models_",
+      "x": 2760,
+      "y": 3076,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "5410a1bf91d840af",
+      "type": "text",
+      "text": "**skills** [Fork]\nAnthropic's public repository of Agent Skills for Claude -- folders of instructions, scripts, and...\n_AI Agents \u00b7 DevTools_",
+      "x": 2330,
+      "y": 2724,
+      "width": 400,
+      "height": 156,
+      "color": "5"
+    },
+    {
+      "id": "d04d0dbe9c804520",
+      "type": "text",
+      "text": "**superclaude** [Fork]\nCLI tool that supercharges GitHub workflows with Claude AI. Generates conventional commit message...\n_AI Agents \u00b7 DevTools_",
+      "x": 2760,
+      "y": 2724,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "8ee156a9c3ea48ac",
+      "type": "text",
+      "text": "**dont-look-down** [Original]\nA Unity game project (likely a VR or platformer game given the name and GLSL shaders). Built with...\n_Game Dev_",
+      "x": 1260,
+      "y": 4560,
+      "width": 400,
+      "height": 156,
+      "color": "1"
+    },
+    {
+      "id": "08c1268b9a2c46c9",
+      "type": "text",
+      "text": "**pokemon-ice-and-fire** [Original]\nA Pokemon-themed project (likely a game or fan project combining \"Ice and Fire\" elements). Repo i...\n_Game Dev_",
+      "x": 1260,
+      "y": 4736,
+      "width": 400,
+      "height": 156,
+      "color": "1"
+    },
+    {
+      "id": "023e41cb68d54fae",
+      "type": "text",
+      "text": "**terraria** [Original]\nPrivate repository related to the game Terraria. Created and last updated in June 2020.\n_Game Dev_",
+      "x": 1260,
+      "y": 4912,
+      "width": 400,
+      "height": 132,
+      "color": "1"
+    },
+    {
+      "id": "48c8b01997c9429f",
+      "type": "text",
+      "text": "**Unreal-Agent** [Fork]\nFork of an AI-powered editor copilot plugin for Unreal Engine 5.6. Provides an in-editor chat ass...\n_Game Dev \u00b7 AI Agents_",
+      "x": 1260,
+      "y": 5064,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "fbb7184bc4c94ecb",
+      "type": "text",
+      "text": "**GamePerfTesting** [Fork]\nFork of klasbo/GamePerfTesting, a toolkit for measuring and analyzing game performance metrics. C...\n_Competitive Gaming \u00b7 DevTools_",
+      "x": 830,
+      "y": 6212,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "ca467fcdec794329",
+      "type": "text",
+      "text": "**GamingPCSetup** [Fork]\nResearch and evidence-based guide for optimizing gaming PC configuration, covering BIOS setup, Wi...\n_Competitive Gaming \u00b7 Infrastructure_",
+      "x": 1260,
+      "y": 6212,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "e52606aba0f64881",
+      "type": "text",
+      "text": "**handbook** [Fork]\nFork of sieger/handbook, a comprehensive guide to PC/hardware optimization for low-latency gaming...\n_Competitive Gaming \u00b7 Infrastructure_",
+      "x": 830,
+      "y": 6388,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "ccb6a57a4fc94962",
+      "type": "text",
+      "text": "**HoneCtrl** [Fork]\nFork of the Hone desktop optimization utility that aims to improve FPS, reduce input lag, and opt...\n_Competitive Gaming \u00b7 Infrastructure_",
+      "x": 1260,
+      "y": 6388,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "4db71fc3557e405e",
+      "type": "text",
+      "text": "**apex** [Original]\nVersion-controlled Apex Legends game configuration files including autoexec scripts, custom retic...\n_Competitive Gaming_",
+      "x": 830,
+      "y": 5860,
+      "width": 400,
+      "height": 156,
+      "color": "5"
+    },
+    {
+      "id": "2957824c531e49c2",
+      "type": "text",
+      "text": "**BlinkCamp** [Fork]\nFree and open-source vision training app to improve reaction time, hand-eye coordination, and vis...\n_Competitive Gaming \u00b7 Health_",
+      "x": 1260,
+      "y": 5860,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "d72a2a222ef84082",
+      "type": "text",
+      "text": "**Corporate-Serf-Dashboard** [Fork]\nA dashboard app that scans KovaaK's (aim trainer) stats directory and plots Sensitivity vs Score ...\n_Competitive Gaming_",
+      "x": 830,
+      "y": 6036,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "00efa57828d64cbf",
+      "type": "text",
+      "text": "**FPSWarpDemo** [Fork]\nFork of NVIDIA Research (NVlabs) late warp demo built on Web FPSci. A browser-based interactive e...\n_Competitive Gaming_",
+      "x": 1260,
+      "y": 6036,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "52cda899b5c74fdc",
+      "type": "text",
+      "text": "**kovaaks-api-wrapper** [Fork]\nA TypeScript API client for KovaaK's (aim training game), providing access to leaderboards, user ...\n_Competitive Gaming \u00b7 DevTools_",
+      "x": 830,
+      "y": 6564,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "06cc8d945ab344e7",
+      "type": "text",
+      "text": "**lagless** [Original]\nLow-latency gaming/input system using VirtualBox and a multi-agent autonomous development pipelin...\n_Competitive Gaming \u00b7 DevTools \u00b7 AI Agents_",
+      "x": 1260,
+      "y": 6564,
+      "width": 400,
+      "height": 156,
+      "color": "4"
+    },
+    {
+      "id": "be043c0a1f2143e3",
+      "type": "text",
+      "text": "**PC-Optimization-Hub** [Fork]\nCurated collection of resources devoted to PC performance optimization and input lag reduction, w...\n_Competitive Gaming \u00b7 Infrastructure_",
+      "x": 830,
+      "y": 6740,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "c29aa2b32a284aee",
+      "type": "text",
+      "text": "**PC-Tuning** [Fork]\nStep-by-step guide for configuring hardware, OS, and software to reduce system latency, improve p...\n_Competitive Gaming \u00b7 Infrastructure_",
+      "x": 1260,
+      "y": 6740,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "912114f31be341f1",
+      "type": "text",
+      "text": "**refleks** [Fork]\nA local desktop analytics app for Kovaak's (FPS aim trainer) that watches exported CSV stats, gro...\n_Competitive Gaming_",
+      "x": 830,
+      "y": 6916,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "d68e19b028b94bfb",
+      "type": "text",
+      "text": "**civ** [Original]\nEmpty repository with a homepage pointing to a Replit-hosted \"Hex Conquest\" game. Likely a hex-ba...\n_Game Dev_",
+      "x": 830,
+      "y": 4560,
+      "width": 400,
+      "height": 156,
+      "color": "1"
+    },
+    {
+      "id": "2ea0d4fff9ad4e8c",
+      "type": "text",
+      "text": "**duckgame** [Original]\nA game project built in C# (likely Unity-based given the language and file sizes). Contains game ...\n_Game Dev_",
+      "x": 830,
+      "y": 4736,
+      "width": 400,
+      "height": 156,
+      "color": "1"
+    },
+    {
+      "id": "ea7703199aaf4b21",
+      "type": "text",
+      "text": "**saves** [Original]\nBackup of PC game save files and desktop configuration (Rainmeter), including saves for Assassin'...\n_Game Dev_",
+      "x": 830,
+      "y": 4912,
+      "width": 400,
+      "height": 156,
+      "color": "1"
+    },
+    {
+      "id": "16f0c703a5454be8",
+      "type": "text",
+      "text": "**unreal-engine-mcp** [Fork]\nFork of the Flopperam MCP server for controlling Unreal Engine 5.5+ through natural language. Ena...\n_Game Dev \u00b7 AI Agents_",
+      "x": 830,
+      "y": 5088,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "da13428da6b04f4d",
+      "type": "text",
+      "text": "**Unreal_mcp** [Fork]\nFork of a comprehensive MCP (Model Context Protocol) server enabling AI assistants to control Unr...\n_Game Dev \u00b7 AI Agents_",
+      "x": 1260,
+      "y": 5240,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "01d1c0510c0e4e96",
+      "type": "text",
+      "text": "**jazzy** [Fork]\nA command-line utility that generates documentation for Swift and Objective-C projects by hooking...\n_DevTools \u00b7 Mobile Dev_",
+      "x": 4030,
+      "y": 612,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "d94fde2fa9af43e8",
+      "type": "text",
+      "text": "**Maestro** [Fork]\nAn open-source E2E UI testing framework for Android, iOS, and web apps. Uses human-readable YAML ...\n_DevTools \u00b7 Mobile Dev_",
+      "x": 4460,
+      "y": 612,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "b4d0230c2fa74820",
+      "type": "text",
+      "text": "**ManyMany.dev** [Fork]\nDesktop application for managing Git worktrees with integrated terminal support. Lets developers ...\n_DevTools_",
+      "x": 4030,
+      "y": 788,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "5627a4ab78e343e6",
+      "type": "text",
+      "text": "**opcode** [Fork]\nA powerful GUI desktop application and toolkit for Claude Code, built with Tauri 2. Provides visu...\n_DevTools \u00b7 AI Agents_",
+      "x": 4460,
+      "y": 788,
+      "width": 400,
+      "height": 156,
+      "color": "5"
+    },
+    {
+      "id": "683e97a6be9c47c0",
+      "type": "text",
+      "text": "**.files** [Original]\nPersonal dotfiles repository with configuration for tmux, zsh, vim, fish, git, and macOS window m...\n_DevTools \u00b7 Infrastructure_",
+      "x": 4030,
+      "y": 260,
+      "width": 400,
+      "height": 156,
+      "color": "5"
+    },
+    {
+      "id": "f804922cba2d4d06",
+      "type": "text",
+      "text": "**.i3** [Original]\ni3 window manager configuration for Linux. Includes setup instructions for i3-gaps with dependenc...\n_DevTools \u00b7 Infrastructure_",
+      "x": 4460,
+      "y": 260,
+      "width": 400,
+      "height": 156,
+      "color": "5"
+    },
+    {
+      "id": "a03a1e2b77644c45",
+      "type": "text",
+      "text": "**.sublime** [Original]\nSublime Text editor configuration and plugin files. Contains Python packages, CSS, HTML, JavaScri...\n_DevTools_",
+      "x": 4030,
+      "y": 436,
+      "width": 400,
+      "height": 156,
+      "color": "5"
+    },
+    {
+      "id": "87409eca5798487b",
+      "type": "text",
+      "text": "**flow** [Original]\nFlow Orchestrator TUI -- a cross-platform terminal user interface built with Ratatui for visualiz...\n_DevTools \u00b7 AI Agents_",
+      "x": 4460,
+      "y": 436,
+      "width": 400,
+      "height": 156,
+      "color": "4"
+    },
+    {
+      "id": "fe6049117f344eff",
+      "type": "text",
+      "text": "**project2prompt** [Original]\nA tool for converting project codebases into LLM-ready prompts (minimal README, details inferred ...\n_DevTools \u00b7 AI Agents_",
+      "x": 4030,
+      "y": 964,
+      "width": 400,
+      "height": 156,
+      "color": "4"
+    },
+    {
+      "id": "07f1da532777423d",
+      "type": "text",
+      "text": "**ratatui** [Fork]\nA Rust crate for building terminal user interfaces (TUIs). Provides a flexible API for creating t...\n_DevTools \u00b7 Infrastructure_",
+      "x": 4460,
+      "y": 964,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "0da74891db8a457a",
+      "type": "text",
+      "text": "**whatsmyip** [Original]\nSimple Python utility script to retrieve and display the user's public IP address.\n_DevTools_",
+      "x": 4030,
+      "y": 1140,
+      "width": 400,
+      "height": 132,
+      "color": "1"
+    },
+    {
+      "id": "5d4ae3286ac84e0c",
+      "type": "text",
+      "text": "**EatThis** [Original]\nRestaurant rating and recommendation app that uses location history (Google/Apple Maps) to sugges...\n_Mobile Dev \u00b7 AI Agents_",
+      "x": 5820,
+      "y": 4560,
+      "width": 400,
+      "height": 156,
+      "color": "1"
+    },
+    {
+      "id": "4b19e5bb17f04642",
+      "type": "text",
+      "text": "**Flicks** [Original]\niOS movie browsing app using The Movie Database (TMDb) API. Features include now playing/top rate...\n_Mobile Dev_",
+      "x": 5820,
+      "y": 4736,
+      "width": 400,
+      "height": 156,
+      "color": "1"
+    },
+    {
+      "id": "edf80c8e12344338",
+      "type": "text",
+      "text": "**iOS-2017** [Fork]\nOfficial HackIllinois 2017 iOS application -- a hackathon event app with login, event schedule, p...\n_Mobile Dev \u00b7 Education_",
+      "x": 5820,
+      "y": 5088,
+      "width": 400,
+      "height": 156,
+      "color": "1"
+    },
+    {
+      "id": "a58d4415c0304588",
+      "type": "text",
+      "text": "**mixmax-live** [Original]\niOS application that allows users to view their live feed from MixMax (an email productivity plat...\n_Mobile Dev_",
+      "x": 6250,
+      "y": 5088,
+      "width": 400,
+      "height": 156,
+      "color": "1"
+    },
+    {
+      "id": "2051cd2ac1f646d8",
+      "type": "text",
+      "text": "**PKPass-Server** [Original]\nBackend server for generating Apple Wallet PKPass files. A Flask API receives POST requests and s...\n_Infrastructure \u00b7 Mobile Dev_",
+      "x": 5820,
+      "y": 5264,
+      "width": 400,
+      "height": 156,
+      "color": "1"
+    },
+    {
+      "id": "d4396675dcf445ee",
+      "type": "text",
+      "text": "**prenosis-iphone** [Original]\niOS physician portal app for Prenosis, Inc. (healthcare/diagnostics company). Built with Swift an...\n_Mobile Dev \u00b7 Health_",
+      "x": 6250,
+      "y": 5264,
+      "width": 400,
+      "height": 156,
+      "color": "1"
+    },
+    {
+      "id": "ad5d507ea64f4eaf",
+      "type": "text",
+      "text": "**alexa-skills** [Original]\nAmazon Alexa skill development -- includes a \"CVHelper\" resume/CV skill and an \"EasterEggs\" skill...\n_AI Agents \u00b7 Audio_",
+      "x": 2230,
+      "y": 4560,
+      "width": 400,
+      "height": 156,
+      "color": "1"
+    },
+    {
+      "id": "590fa8e3f9c245f0",
+      "type": "text",
+      "text": "**AudioEngine** [Original]\nPublic mirror/evolution of PhaseIWireframe -- same iOS audio engine with noise metering and equal...\n_Audio \u00b7 Mobile Dev_",
+      "x": 2660,
+      "y": 4560,
+      "width": 400,
+      "height": 156,
+      "color": "1"
+    },
+    {
+      "id": "b59ddac9b71f490e",
+      "type": "text",
+      "text": "**AutoEq** [Fork]\nTool for automatically equalizing headphones based on frequency response measurements. Includes a...\n_Audio \u00b7 DevTools_",
+      "x": 2230,
+      "y": 4736,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "b77c359f8683488d",
+      "type": "text",
+      "text": "**PhaseIWireframe** [Original]\niOS audio application featuring a real-time noise meter (dB display) and a 14-band dual-channel a...\n_Audio \u00b7 Mobile Dev_",
+      "x": 2660,
+      "y": 4736,
+      "width": 400,
+      "height": 156,
+      "color": "1"
+    },
+    {
+      "id": "0ed86672f53f4fc6",
+      "type": "text",
+      "text": "**Handi** [Original]\niOS mobile application project with planning documents, logo design assets, and milestone trackin...\n_Mobile Dev_",
+      "x": 5820,
+      "y": 4912,
+      "width": 400,
+      "height": 156,
+      "color": "1"
+    },
+    {
+      "id": "08060bcf1b9b4362",
+      "type": "text",
+      "text": "**RoutinePlus** [Original]\niOS smart alarm and daily routine automation app that integrates with Google/Apple Calendar, Appl...\n_Mobile Dev \u00b7 Infrastructure_",
+      "x": 5820,
+      "y": 5440,
+      "width": 400,
+      "height": 156,
+      "color": "1"
+    },
+    {
+      "id": "ea29f691c93548b8",
+      "type": "text",
+      "text": "**s8Wallpapers** [Original]\nAn Android application, likely for Samsung Galaxy S8 wallpapers based on the name. Built as a sta...\n_Mobile Dev \u00b7 Design_",
+      "x": 6250,
+      "y": 5440,
+      "width": 400,
+      "height": 156,
+      "color": "1"
+    },
+    {
+      "id": "d3056473363d4b47",
+      "type": "text",
+      "text": "**Twitter** [Original]\nAn iOS Twitter client using the Twitter API with OAuth authentication. Features home timeline vie...\n_Mobile Dev \u00b7 Education_",
+      "x": 5820,
+      "y": 5792,
+      "width": 400,
+      "height": 156,
+      "color": "1"
+    },
+    {
+      "id": "1dfed7b9c7604f74",
+      "type": "text",
+      "text": "**Yelp** [Original]\nAn iOS Yelp search app using the Yelp API v2. Features dynamic-height table rows, Auto Layout, an...\n_Mobile Dev \u00b7 Education_",
+      "x": 6250,
+      "y": 5792,
+      "width": 400,
+      "height": 156,
+      "color": "1"
+    },
+    {
+      "id": "35bc36905cc54fe6",
+      "type": "text",
+      "text": "**effective-goggles** [Fork]\nHackIllinois 2017 QR code scanner iOS app for event hosts to track participant attendance at hack...\n_Mobile Dev_",
+      "x": 6250,
+      "y": 4560,
+      "width": 400,
+      "height": 156,
+      "color": "1"
+    },
+    {
+      "id": "2c5531c9b37a4818",
+      "type": "text",
+      "text": "**3D** [Original]\nAn empty repository with no code, commits, or README content. Likely a placeholder for a planned ...",
+      "x": 3030,
+      "y": 5860,
+      "width": 400,
+      "height": 132,
+      "color": "1"
+    },
+    {
+      "id": "a99ccd8c9ccc49a9",
+      "type": "text",
+      "text": "**botw** [Original]\nEmpty/placeholder repository with only a LICENSE file. No code, README content, or description. N...",
+      "x": 3460,
+      "y": 5860,
+      "width": 400,
+      "height": 132,
+      "color": "1"
+    },
+    {
+      "id": "397d512109fa42e4",
+      "type": "text",
+      "text": "**GithubPortfolioApp** [Original]\nA native iOS app for displaying a GitHub portfolio -- an Xcode project (\"Portfolio\") with test su...\n_Mobile Dev \u00b7 Web Dev_",
+      "x": 6250,
+      "y": 4736,
+      "width": 400,
+      "height": 156,
+      "color": "1"
+    },
+    {
+      "id": "0447e4c6ec6f4220",
+      "type": "text",
+      "text": "**InstagramParse** [Original]\nAn iOS Instagram clone using Parse as a backend. Supports user sign-up/login with persistence, ph...\n_Mobile Dev \u00b7 Education_",
+      "x": 6250,
+      "y": 4912,
+      "width": 400,
+      "height": 156,
+      "color": "1"
+    },
+    {
+      "id": "600d9738c18d491a",
+      "type": "text",
+      "text": "**farm** [Original]\nEmpty repository with no description, no code, and no README. Appears to be a placeholder or earl...",
+      "x": 3030,
+      "y": 6292,
+      "width": 400,
+      "height": 132,
+      "color": "1"
+    },
+    {
+      "id": "d0db8b8efc714236",
+      "type": "text",
+      "text": "**flo** [Original]\nEmpty repository containing only a LICENSE file. No code, README, or description. Appears to be a...",
+      "x": 3460,
+      "y": 6292,
+      "width": 400,
+      "height": 132,
+      "color": "1"
+    },
+    {
+      "id": "a2f8277526d6473b",
+      "type": "text",
+      "text": "**tempplex** [Original]\nAn empty or near-empty private repository with no detectable languages or README content. Purpose...",
+      "x": 3030,
+      "y": 6724,
+      "width": 400,
+      "height": 142,
+      "color": "1"
+    },
+    {
+      "id": "6883d14abe074be6",
+      "type": "text",
+      "text": "**whisper** [Original]\nEmpty repository containing only a LICENSE file. Likely a placeholder (not the OpenAI Whisper for...",
+      "x": 3460,
+      "y": 6748,
+      "width": 400,
+      "height": 132,
+      "color": "1"
+    },
+    {
+      "id": "301a81fc2c0f4c49",
+      "type": "text",
+      "text": "**z0** [Original]\nEmpty/placeholder repository containing only a LICENSE file. No code or documentation content yet.",
+      "x": 3030,
+      "y": 6876,
+      "width": 400,
+      "height": 142,
+      "color": "1"
+    },
+    {
+      "id": "9e9c3fb38f8e46ad",
+      "type": "text",
+      "text": "**zii** [Original]\nStorage for Adobe Zii patcher DMG file (Adobe CC15-CC18 activation tool by TNT). Contains a singl...",
+      "x": 3460,
+      "y": 6900,
+      "width": 400,
+      "height": 132,
+      "color": "1"
+    },
+    {
+      "id": "bbeef2d011104b06",
+      "type": "text",
+      "text": "**smartvest** [Original]\nAn iOS smart clothing / wearable tech application (originally called \"smartshirt\") with Figma des...\n_Mobile Dev \u00b7 Health_",
+      "x": 5820,
+      "y": 5616,
+      "width": 400,
+      "height": 156,
+      "color": "1"
+    },
+    {
+      "id": "93701796cf0043bf",
+      "type": "text",
+      "text": "**TipCalculator** [Original]\nA full-featured iOS tip calculator with customizable tip percentages, bill splitting, settings pe...\n_Mobile Dev \u00b7 Education_",
+      "x": 6250,
+      "y": 5616,
+      "width": 400,
+      "height": 156,
+      "color": "1"
+    },
+    {
+      "id": "a3df101c407946f4",
+      "type": "text",
+      "text": "**agent-toolkit** [Fork]\nPython and TypeScript library for integrating Stripe's payment APIs into agentic AI workflows. Su...\n_AI Agents \u00b7 Finance_",
+      "x": 4020,
+      "y": 6158,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "0b21f311f3a64002",
+      "type": "text",
+      "text": "**akaunting** [Fork]\nOnline accounting software for small businesses and freelancers, featuring invoicing, expense tra...\n_Finance \u00b7 Web Dev_",
+      "x": 4450,
+      "y": 6158,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "3f7c7732414e4d21",
+      "type": "text",
+      "text": "**jobs** [Original]\nPrivate repository, likely related to job search or career tracking. Created in 2017, last update...\n_Education_",
+      "x": 2030,
+      "y": 6740,
+      "width": 400,
+      "height": 156,
+      "color": "1"
+    },
+    {
+      "id": "6faa30c3786c47cb",
+      "type": "text",
+      "text": "**kubernetes-the-hard-way** [Fork]\nFork of Kelsey Hightower's canonical tutorial for bootstrapping Kubernetes manually. Covers etcd,...\n_Infrastructure \u00b7 Education_",
+      "x": 2460,
+      "y": 6740,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "296ec533bc4449eb",
+      "type": "text",
+      "text": "**iris** [Original]\nPrivate, empty repository with no description, no code, and no README. Purpose unknown; possibly ...",
+      "x": 3030,
+      "y": 6444,
+      "width": 400,
+      "height": 120,
+      "color": "1"
+    },
+    {
+      "id": "29ef6ffa9ad84dcc",
+      "type": "text",
+      "text": "**migrate** [Original]\nEmpty/placeholder repository with only a LICENSE and README containing the title \"migrate\". No co...",
+      "x": 3460,
+      "y": 6444,
+      "width": 400,
+      "height": 132,
+      "color": "1"
+    },
+    {
+      "id": "b1222c43ce44493d",
+      "type": "text",
+      "text": "**playground** [Original]\nEmpty repository containing only a LICENSE file. Likely an experimental/sandbox space.",
+      "x": 3030,
+      "y": 6596,
+      "width": 400,
+      "height": 108,
+      "color": "1"
+    },
+    {
+      "id": "658ad77d3e0a4664",
+      "type": "text",
+      "text": "**cloudminer** [Original]\nA cryptocurrency cloud mining tool or automation project with Python backend and a small JavaScri...\n_Finance_",
+      "x": 4020,
+      "y": 6334,
+      "width": 400,
+      "height": 156,
+      "color": "1"
+    },
+    {
+      "id": "2e1835b5e26c4565",
+      "type": "text",
+      "text": "**ethos** [Original]\nConfiguration for ethOS, a Linux-based cryptocurrency mining operating system. Contains Ethereum ...\n_Finance \u00b7 Infrastructure_",
+      "x": 4450,
+      "y": 6334,
+      "width": 400,
+      "height": 156,
+      "color": "1"
+    },
+    {
+      "id": "87e06e0e49964b36",
+      "type": "text",
+      "text": "**polymarket-kalshi-copy-trading-arbitrage-bot** [Fork]\nDual-implementation bot (Python and Rust) for automated copy trading and arbitrage on Polymarket ...\n_Finance_",
+      "x": 4020,
+      "y": 6686,
+      "width": 400,
+      "height": 180,
+      "color": "1"
+    },
+    {
+      "id": "58fdf916032d49b0",
+      "type": "text",
+      "text": "**quant** [Original]\nOriginal private repository: \"Project Cobalt Flow\" -- a custom ASIC proposal for crypto market ma...\n_Finance \u00b7 Infrastructure_",
+      "x": 4450,
+      "y": 6686,
+      "width": 400,
+      "height": 156,
+      "color": "4"
+    },
+    {
+      "id": "9c653187a6d34ff9",
+      "type": "text",
+      "text": "**spy** [Original]\nA documentation site (GitHub Pages) containing a sports betting indicator tool and a MotherDuck b...\n_Finance \u00b7 Design_",
+      "x": 4450,
+      "y": 6862,
+      "width": 400,
+      "height": 156,
+      "color": "4"
+    },
+    {
+      "id": "a3ad050d0d894909",
+      "type": "text",
+      "text": "**tradingview-mcp** [Fork]\nMCP server providing AI-powered market analysis with real-time crypto and stock screening, techni...\n_Finance \u00b7 AI Agents_",
+      "x": 4020,
+      "y": 6886,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "2f80ba6eca0b4bac",
+      "type": "text",
+      "text": "**lad** [Original]\nCS 296 final project -- a C/C++ application built with CMake, with an HTML/JS front-end component...\n_Education_",
+      "x": 2030,
+      "y": 6916,
+      "width": 400,
+      "height": 156,
+      "color": "1"
+    },
+    {
+      "id": "e17c8ceede474448",
+      "type": "text",
+      "text": "**micrograd** [Fork]\nTiny scalar-valued autograd engine implementing backpropagation over a dynamically built DAG, plu...\n_Foundation Models \u00b7 Education_",
+      "x": 2460,
+      "y": 6916,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "57270c2f023e46ac",
+      "type": "text",
+      "text": "**original_performance_takehome** [Fork]\nAnthropic's open-sourced performance engineering take-home challenge -- optimize a simulated proc...\n_Infrastructure \u00b7 Education_",
+      "x": 2030,
+      "y": 7092,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "15cbe92c35fa479b",
+      "type": "text",
+      "text": "**phys** [Original]\nPhysics coursework repository containing materials for PHYS 212 and PHYS 213 (likely university-l...\n_Education_",
+      "x": 2460,
+      "y": 7092,
+      "width": 400,
+      "height": 156,
+      "color": "1"
+    },
+    {
+      "id": "577c2b7250454c66",
+      "type": "text",
+      "text": "**kalshi-bot** [Original]\nRepository containing Obsidian vault notes and research canvases on prediction market arbitrage s...\n_Finance \u00b7 Knowledge Mgmt_",
+      "x": 4020,
+      "y": 6510,
+      "width": 400,
+      "height": 156,
+      "color": "1"
+    },
+    {
+      "id": "26f69f963d4e45d6",
+      "type": "text",
+      "text": "**OpenBB** [Fork]\nAn open-source financial data platform (\"connect once, consume everywhere\") for analysts, quants,...\n_Finance_",
+      "x": 4450,
+      "y": 6510,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "0a9425b4eee7414c",
+      "type": "text",
+      "text": "**bpa** [Original]\nA repository with content organized by year (2013, 2014). Likely related to the Business Professi...\n_Education_",
+      "x": 2030,
+      "y": 5860,
+      "width": 400,
+      "height": 156,
+      "color": "1"
+    },
+    {
+      "id": "11c4b3741b6d4f33",
+      "type": "text",
+      "text": "**cs410project** [Original]\nUniversity of Illinois CS 410 (Text Information Systems) course project -- a Sublime Text extensi...\n_Education \u00b7 AI Agents \u00b7 DevTools_",
+      "x": 2030,
+      "y": 6212,
+      "width": 400,
+      "height": 156,
+      "color": "1"
+    },
+    {
+      "id": "1f1e0a41c5b8491d",
+      "type": "text",
+      "text": "**cs498-rk-mp0** [Original]\nUIUC CS 498 \"Web Programming\" introductory assignment -- building a personal card with HTML/CSS a...\n_Education \u00b7 Web Dev_",
+      "x": 2460,
+      "y": 6212,
+      "width": 400,
+      "height": 156,
+      "color": "1"
+    },
+    {
+      "id": "3e4a9b32e84e4dcc",
+      "type": "text",
+      "text": "**cv** [Original]\nLaTeX-based resume and CV repository with multiple role-targeted variants (AI/ML Engineer, DevOps...\n_Education_",
+      "x": 2030,
+      "y": 6388,
+      "width": 400,
+      "height": 156,
+      "color": "5"
+    },
+    {
+      "id": "1bc60431f30c4d50",
+      "type": "text",
+      "text": "**ets-challenge** [Original]\nPre-interview coding challenge implementing a deck of cards with `shuffle()` and `dealOneCard()` ...\n_Education_",
+      "x": 2460,
+      "y": 6388,
+      "width": 400,
+      "height": 156,
+      "color": "1"
+    },
+    {
+      "id": "037417fdc9f5440e",
+      "type": "text",
+      "text": "**event-storming-cheatsheet** [Fork]\nA forked cheat sheet providing a concise reference for preparing and facilitating Event Storming ...\n_Education \u00b7 DevTools_",
+      "x": 2030,
+      "y": 6564,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "c2e68cc06fd64e6a",
+      "type": "text",
+      "text": "**hypernym-learning-guide** [Original]\nPrivate repository with minimal public information; appears to be a learning guide related to hyp...\n_Education_",
+      "x": 2460,
+      "y": 6564,
+      "width": 400,
+      "height": 156,
+      "color": "4"
+    },
+    {
+      "id": "52949c521bf846be",
+      "type": "text",
+      "text": "**coding-interview-university** [Fork]\nA comprehensive multi-month computer science study plan for preparing for software engineering in...\n_Education_",
+      "x": 2460,
+      "y": 5860,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "155e500fe329444a",
+      "type": "text",
+      "text": "**CodingChallenges** [Original]\nCollection of coding interview solutions and competitive programming challenges from platforms an...\n_Education_",
+      "x": 2030,
+      "y": 6036,
+      "width": 400,
+      "height": 156,
+      "color": "5"
+    },
+    {
+      "id": "fd581f32fd3f4b3b",
+      "type": "text",
+      "text": "**cs242-hw0** [Original]\nUniversity coursework for CS 242 (likely UIUC \"Programming Studio\"). Multi-platform assignments s...\n_Education \u00b7 Mobile Dev \u00b7 Web Dev_",
+      "x": 2460,
+      "y": 6036,
+      "width": 400,
+      "height": 156,
+      "color": "1"
+    },
+    {
+      "id": "311d2ccbce594fa3",
+      "type": "text",
+      "text": "**phys212** [Fork]\nForked physics coursework repository for SmartPhysics/FlipItPhysics covering Electricity, Magneti...\n_Education_",
+      "x": 2030,
+      "y": 7268,
+      "width": 400,
+      "height": 156,
+      "color": "1"
+    },
+    {
+      "id": "c149e86827134c59",
+      "type": "text",
+      "text": "**repos** [Original]\nA large collection of university computer science coursework spanning 17+ courses (CS225, CS233, ...\n_Education_",
+      "x": 2460,
+      "y": 7268,
+      "width": 400,
+      "height": 156,
+      "color": "5"
+    },
+    {
+      "id": "65ecf3f8c2f74d2f",
+      "type": "text",
+      "text": "**resume** [Original]\nPrivate repository for personal resume content. No public description or language data available.\n_Education_",
+      "x": 2030,
+      "y": 7444,
+      "width": 400,
+      "height": 132,
+      "color": "5"
+    },
+    {
+      "id": "0512f3065ed7401f",
+      "type": "text",
+      "text": "**deep-brew** [Original]\nPrivate repository with no public description or README. Content is not accessible.",
+      "x": 3030,
+      "y": 6012,
+      "width": 400,
+      "height": 108,
+      "color": "1"
+    },
+    {
+      "id": "504ad92e5acf4bde",
+      "type": "text",
+      "text": "**docs-boilerplate** [Original]\nEmpty/placeholder repository containing only a LICENSE file. No code or documentation content yet.",
+      "x": 3460,
+      "y": 6012,
+      "width": 400,
+      "height": 108,
+      "color": "1"
+    },
+    {
+      "id": "8d38de3ee24a4abe",
+      "type": "text",
+      "text": "**echeck** [Original]\nEmpty repository with no code or description. Purpose unclear from available metadata; possibly a...",
+      "x": 3030,
+      "y": 6140,
+      "width": 400,
+      "height": 132,
+      "color": "1"
+    },
+    {
+      "id": "6a7bea5c04b844d0",
+      "type": "text",
+      "text": "**expert** [Original]\nPublic repository containing only a LICENSE file (GPL-3.0). No code, no README, and no descriptio...",
+      "x": 3460,
+      "y": 6140,
+      "width": 400,
+      "height": 132,
+      "color": "1"
+    },
+    {
+      "id": "1637b00959b64440",
+      "type": "text",
+      "text": "**pws** [Original]\nPrivate storage for sensitive text files including a password file and an IOTA cryptocurrency seed.",
+      "x": 3460,
+      "y": 6596,
+      "width": 400,
+      "height": 132,
+      "color": "1"
+    },
+    {
+      "id": "dca21656f3424612",
+      "type": "text",
+      "text": "**obsidian** [Original]\nPrivate Obsidian knowledge vault for personal notes and knowledge management.\n_Knowledge Mgmt_",
+      "x": 4030,
+      "y": 1740,
+      "width": 400,
+      "height": 132,
+      "color": "5"
+    },
+    {
+      "id": "19ceac3f5ea249e4",
+      "type": "text",
+      "text": "**supermemory** [Fork]\nAI-powered \"second brain\" for saving, organizing, and chatting with your memories from URLs, PDFs...\n_Knowledge Mgmt \u00b7 AI Agents_",
+      "x": 4460,
+      "y": 1740,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "2889d4e687a24dea",
+      "type": "text",
+      "text": "**adblock-rust** [Fork]\nBrave's high-performance ad-blocking engine written in Rust, used for content filtering and track...\n_Infrastructure_",
+      "x": 5470,
+      "y": 1460,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "45a4bf4a59914d77",
+      "type": "text",
+      "text": "**brave-browser** [Fork]\nBuild and release orchestration repository for the Brave privacy-focused browser across Android, ...\n_Infrastructure_",
+      "x": 5900,
+      "y": 1460,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "8593ade63371417c",
+      "type": "text",
+      "text": "**brave-core** [Fork]\nCore engine powering the Brave browser across mobile and desktop platforms, implementing privacy-...\n_Infrastructure_",
+      "x": 5470,
+      "y": 1636,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "61dbe53ab997423a",
+      "type": "text",
+      "text": "**bun** [Fork]\nAll-in-one JavaScript/TypeScript runtime, bundler, test runner, and package manager designed as a...\n_Infrastructure \u00b7 DevTools_",
+      "x": 5900,
+      "y": 1636,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "25e6ee0d5e0248b9",
+      "type": "text",
+      "text": "**chromium** [Fork]\nThe official Chromium open-source browser project, which forms the foundation for Google Chrome a...\n_Infrastructure_",
+      "x": 5470,
+      "y": 1812,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "da7470edb0ad41e2",
+      "type": "text",
+      "text": "**homelab** [Original]\nInfrastructure-as-code for a home lab setup including Plex media server, pfSense firewall, Home A...\n_Infrastructure_",
+      "x": 5900,
+      "y": 1812,
+      "width": 400,
+      "height": 156,
+      "color": "5"
+    },
+    {
+      "id": "2c579e6d2d1145ba",
+      "type": "text",
+      "text": "**hydenix** [Original]\nPrivate personal NixOS flake configuration built with the Hydenix distribution. Configured for an...\n_Infrastructure_",
+      "x": 5470,
+      "y": 1988,
+      "width": 400,
+      "height": 156,
+      "color": "4"
+    },
+    {
+      "id": "72d5672e27f144e6",
+      "type": "text",
+      "text": "**i3** [Fork]\nA tiling window manager for X11 that organizes windows into non-overlapping tiles for keyboard-dr...\n_Infrastructure \u00b7 DevTools_",
+      "x": 5900,
+      "y": 1988,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "a0fd3f4b7ea34aab",
+      "type": "text",
+      "text": "**kestra** [Fork]\nEvent-driven declarative orchestration platform for scheduled and real-time workflows. Provides a...\n_Infrastructure \u00b7 DevTools_",
+      "x": 5470,
+      "y": 2164,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "1a6753a03bd54ab1",
+      "type": "text",
+      "text": "**KhorvieOSScripts** [Fork]\nA collection of Windows registry tweaks and batch scripts for OS optimization, including network ...\n_Infrastructure \u00b7 Competitive Gaming_",
+      "x": 5900,
+      "y": 2164,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "5482e3f23d6c45f5",
+      "type": "text",
+      "text": "**kpu** [Original]\nPrivate repository with minimal README (just the title \"kpu\"). Contains HTML content; likely rela...\n_Infrastructure_",
+      "x": 5470,
+      "y": 2340,
+      "width": 400,
+      "height": 156,
+      "color": "4"
+    },
+    {
+      "id": "25fcbd0084e1454a",
+      "type": "text",
+      "text": "**kpu-sim** [Fork]\nA high-performance C++20 functional simulator for the Stillwater Knowledge Processing Unit (KPU) ...\n_Infrastructure \u00b7 Robotics_",
+      "x": 5900,
+      "y": 2340,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "36750d22864340ca",
+      "type": "text",
+      "text": "**linux** [Fork]\nThe Linux kernel source tree -- the core operating system kernel powering most servers, Android d...\n_Infrastructure_",
+      "x": 5470,
+      "y": 2516,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "553a5cf7cce74674",
+      "type": "text",
+      "text": "**Mailspring** [Fork]\nBeautiful, fast, fully open-source desktop email client for Mac, Windows, and Linux. Built on Ele...\n_Infrastructure \u00b7 Web Dev_",
+      "x": 5900,
+      "y": 2516,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "2802cbfb70124042",
+      "type": "text",
+      "text": "**nvidia-container-toolkit** [Fork]\nToolkit for building and running GPU-accelerated containers, providing runtime libraries and util...\n_Infrastructure_",
+      "x": 5470,
+      "y": 2692,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "0c36ac7b57444127",
+      "type": "text",
+      "text": "**nvidia-docker** [Fork]\nTooling for building and running Docker containers leveraging NVIDIA GPUs. Now deprecated in favo...\n_Infrastructure_",
+      "x": 5900,
+      "y": 2692,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "808d81a476b34d64",
+      "type": "text",
+      "text": "**ace** [Original]\nOriginal project: \"Ace Sports\" -- a digital twin website for an autonomous multi-floor racket spo...\n_Web Dev \u00b7 Robotics \u00b7 Design_",
+      "x": 7170,
+      "y": 2820,
+      "width": 400,
+      "height": 156,
+      "color": "4"
+    },
+    {
+      "id": "1541fd7a15e144a7",
+      "type": "text",
+      "text": "**fizzy** [Fork]\nFork of 37signals' Kanban tracking tool for issues and ideas. A self-hostable project management ...\n_Web Dev \u00b7 DevTools_",
+      "x": 7600,
+      "y": 2820,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "3009142d71774707",
+      "type": "text",
+      "text": "**jobapp** [Original]\nJob application toolkit containing cloned site templates, a factory/portfolio system, and utility...\n_Web Dev_",
+      "x": 7170,
+      "y": 2996,
+      "width": 400,
+      "height": 156,
+      "color": "1"
+    },
+    {
+      "id": "8296e4375e034068",
+      "type": "text",
+      "text": "**launch** [Original]\nA product landing page project built with HTML/CSS, deployed on Vercel. Contains UI design assets...\n_Web Dev \u00b7 Design_",
+      "x": 7600,
+      "y": 2996,
+      "width": 400,
+      "height": 156,
+      "color": "4"
+    },
+    {
+      "id": "3af6f54542e44afd",
+      "type": "text",
+      "text": "**portfolio** [Original]\nPersonal portfolio website for Kevin Rajan showcasing AI engineering, iOS development, BCI projec...\n_Web Dev_",
+      "x": 7170,
+      "y": 3524,
+      "width": 400,
+      "height": 156,
+      "color": "4"
+    },
+    {
+      "id": "ea2575eb755c4d57",
+      "type": "text",
+      "text": "**pretotype** [Original]\nPrivate repository with a minimal README (\"# pretotype\"). Based on the name and tech stack (HTML/...\n_Web Dev \u00b7 DevTools_",
+      "x": 7600,
+      "y": 3524,
+      "width": 400,
+      "height": 156,
+      "color": "4"
+    },
+    {
+      "id": "6a70dae8770e4f3f",
+      "type": "text",
+      "text": "**nylas-mail** [Fork]\nFork of Nylas Mail -- an open-source, extensible desktop email client built on Electron with Reac...\n_Web Dev \u00b7 Infrastructure_",
+      "x": 7570,
+      "y": 2828,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "e5c06a8507b94a0f",
+      "type": "text",
+      "text": "**plex** [Original]\nPlex Media Server configuration backup and application data sync, including Radarr, Sonarr, and D...\n_Infrastructure_",
+      "x": 7570,
+      "y": 3004,
+      "width": 400,
+      "height": 156,
+      "color": "5"
+    },
+    {
+      "id": "321fccf686624e3c",
+      "type": "text",
+      "text": "**winutil** [Fork]\nChris Titus Tech's Windows utility for streamlining program installs, debloating with tweaks, tro...\n_Infrastructure \u00b7 DevTools_",
+      "x": 7570,
+      "y": 3532,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "c8547e93f5624a54",
+      "type": "text",
+      "text": "**scrollytelling** [Original]\nA Next.js scrollytelling project (headphones product showcase) using scroll-driven animations wit...\n_Web Dev \u00b7 Design_",
+      "x": 7170,
+      "y": 3700,
+      "width": 400,
+      "height": 156,
+      "color": "4"
+    },
+    {
+      "id": "5b21c2efdebf45da",
+      "type": "text",
+      "text": "**solarpunk** [Original]\nPretotype landing page for \"The Algorithmic Home\" -- a solarpunk mansion concept where rooms opti...\n_Web Dev \u00b7 Design \u00b7 Robotics_",
+      "x": 7600,
+      "y": 3700,
+      "width": 400,
+      "height": 156,
+      "color": "4"
+    },
+    {
+      "id": "1dad0784a6f0466a",
+      "type": "text",
+      "text": "**website** [Original]\nPersonal website/portfolio project with multiple sub-projects including a HackIllinois project, a...\n_Web Dev_",
+      "x": 7600,
+      "y": 4052,
+      "width": 400,
+      "height": 156,
+      "color": "1"
+    },
+    {
+      "id": "1e8a3d1bc75447a0",
+      "type": "text",
+      "text": "**techradar** [Original]\nA technology radar visualization web application, likely inspired by ThoughtWorks-style tech rada...\n_Web Dev \u00b7 DevTools_",
+      "x": 7170,
+      "y": 3876,
+      "width": 400,
+      "height": 156,
+      "color": "1"
+    },
+    {
+      "id": "b055452d970f41eb",
+      "type": "text",
+      "text": "**tesla** [Original]\nOriginal project: A Tesla vehicle infotainment UI clone built with React 19, featuring a status b...\n_Web Dev \u00b7 Design_",
+      "x": 7600,
+      "y": 3876,
+      "width": 400,
+      "height": 156,
+      "color": "4"
+    },
+    {
+      "id": "e30b34f818494b4a",
+      "type": "text",
+      "text": "**tesla-infotainment** [Original]\nOriginal project built with Google AI Studio / Gemini Pro -- a Tesla infotainment system prototyp...\n_Web Dev \u00b7 Design_",
+      "x": 7170,
+      "y": 4052,
+      "width": 400,
+      "height": 156,
+      "color": "4"
+    },
+    {
+      "id": "f33fa87505ae4874",
+      "type": "text",
+      "text": "**misc** [Original]\nA small personal website project. The README references \"website\" and the repo contains only CSS ...\n_Web Dev_",
+      "x": 7170,
+      "y": 3172,
+      "width": 400,
+      "height": 156,
+      "color": "1"
+    },
+    {
+      "id": "b9272ff888ec441d",
+      "type": "text",
+      "text": "**monkeytype** [Fork]\nA minimalistic, highly customizable typing test website with multiple test modes, account system,...\n_Web Dev_",
+      "x": 7600,
+      "y": 3172,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "a8d037be8ed4452f",
+      "type": "text",
+      "text": "**rofi** [Fork]\nA window switcher, application launcher, and dmenu replacement for Linux desktops (X11/Wayland). ...\n_Infrastructure \u00b7 DevTools_",
+      "x": 7570,
+      "y": 3180,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "48673c24166c4601",
+      "type": "text",
+      "text": "**monument** [Original]\nA Google AI Studio app (likely a Gemini-powered AI application) deployed via GitHub Pages. Contai...\n_Web Dev \u00b7 AI Agents_",
+      "x": 7170,
+      "y": 3348,
+      "width": 400,
+      "height": 156,
+      "color": "4"
+    },
+    {
+      "id": "e3a08c6fdf2d4a20",
+      "type": "text",
+      "text": "**swift** [Fork]\nApple's Swift programming language compiler and standard library, a general-purpose language buil...\n_Infrastructure \u00b7 Mobile Dev_",
+      "x": 7570,
+      "y": 3356,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "e184facce5ff45a4",
+      "type": "text",
+      "text": "**onlook** [Fork]\nFork of the open-source \"Cursor for Designers\" -- an AI-first visual code editor for building, st...\n_Web Dev \u00b7 Design \u00b7 AI Agents_",
+      "x": 7600,
+      "y": 3348,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "0da9f47cde744636",
+      "type": "text",
+      "text": "**open-gpu-kernel-modules** [Fork]\nNVIDIA's open-source Linux GPU kernel module source code (v580.95.05). Provides buildable kernel ...\n_Infrastructure_",
+      "x": 5470,
+      "y": 2880,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "ab62a4d4ff384ad8",
+      "type": "text",
+      "text": "**architecture_demo** [Original]\nAI-generated architectural portfolio showcasing detailed research and visualizations of fictional...\n_Design \u00b7 Generative AI_",
+      "x": 4030,
+      "y": 2380,
+      "width": 400,
+      "height": 156,
+      "color": "4"
+    },
+    {
+      "id": "3ae48c03c7c34fd9",
+      "type": "text",
+      "text": "**Cyber-Ocean** [Fork]\nInteractive WebGL experience featuring an animated dolphin swimming through a cyberpunk wormhole ...\n_Web Dev \u00b7 Design \u00b7 Generative AI_",
+      "x": 4460,
+      "y": 2380,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "b96b7235cf2e432a",
+      "type": "text",
+      "text": "**UX** [Original]\nA curated personal collection of high-quality wallpapers (organized by resolution from QHD to 8K)...\n_Design_",
+      "x": 4460,
+      "y": 3764,
+      "width": 400,
+      "height": 156,
+      "color": "5"
+    },
+    {
+      "id": "0c823c089cac4bad",
+      "type": "text",
+      "text": "**fox** [Original]\nDesign assets repository containing image files (PNG, PSD, SVG) -- appears to be graphic design w...\n_Design_",
+      "x": 4030,
+      "y": 2556,
+      "width": 400,
+      "height": 156,
+      "color": "1"
+    },
+    {
+      "id": "344c1ff557bc4255",
+      "type": "text",
+      "text": "**interface-design** [Fork]\nA Claude Code plugin for maintaining design consistency across sessions. Provides principle-based...\n_Design \u00b7 DevTools \u00b7 AI Agents_",
+      "x": 4030,
+      "y": 2732,
+      "width": 400,
+      "height": 156,
+      "color": "5"
+    },
+    {
+      "id": "6f0d808e07b44078",
+      "type": "text",
+      "text": "**furtif** [Original]\nCollection of desk/furniture reference images, likely for interior design or workspace planning p...\n_Design_",
+      "x": 4460,
+      "y": 2556,
+      "width": 400,
+      "height": 156,
+      "color": "1"
+    },
+    {
+      "id": "871718e7493745ff",
+      "type": "text",
+      "text": "**logo** [Original]\nA personal logo design project created in Figma, inspired by the GitLab logo. Contains exported i...\n_Design_",
+      "x": 4460,
+      "y": 2732,
+      "width": 400,
+      "height": 156,
+      "color": "1"
+    },
+    {
+      "id": "40019035e4324b06",
+      "type": "text",
+      "text": "**MacOSColors** [Original]\nA macOS color-related project. Repo appears empty of code -- likely a color palette resource or u...\n_Design_",
+      "x": 4030,
+      "y": 2908,
+      "width": 400,
+      "height": 156,
+      "color": "1"
+    },
+    {
+      "id": "487628a873284c83",
+      "type": "text",
+      "text": "**maymac** [Original]\nImage processing/upscaling project using waifu2x -- contains original photos and their upscaled c...\n_Computer Vision \u00b7 Design_",
+      "x": 4460,
+      "y": 2908,
+      "width": 400,
+      "height": 156,
+      "color": "1"
+    },
+    {
+      "id": "76cf73707f3a4ae2",
+      "type": "text",
+      "text": "**mbday** [Original]\nA birthday invitation/greeting project with animated visuals -- includes a sparkle candle video, ...\n_Design_",
+      "x": 4030,
+      "y": 3084,
+      "width": 400,
+      "height": 156,
+      "color": "1"
+    },
+    {
+      "id": "ee810abe77f54f17",
+      "type": "text",
+      "text": "**metallic-card** [Original]\nA metallic silver border card UI component built with v0.app and deployed on Vercel. Synced with ...\n_Web Dev \u00b7 Design_",
+      "x": 4460,
+      "y": 3084,
+      "width": 400,
+      "height": 156,
+      "color": "4"
+    },
+    {
+      "id": "49a58744979c49d6",
+      "type": "text",
+      "text": "**mockup-tools** [Original]\nCollection of app screen mockups and device frames (iMac, iPhone) for presenting design work. No ...\n_Design_",
+      "x": 4030,
+      "y": 3260,
+      "width": 400,
+      "height": 156,
+      "color": "1"
+    },
+    {
+      "id": "9f0fbb433e804d50",
+      "type": "text",
+      "text": "**queue-all** [Original]\nUI/UX design project for a music queue application (Adobe XD file). Includes design inspiration f...\n_Design \u00b7 Audio_",
+      "x": 4460,
+      "y": 3260,
+      "width": 400,
+      "height": 156,
+      "color": "1"
+    },
+    {
+      "id": "9a48443e752b4d22",
+      "type": "text",
+      "text": "**sketchup-mcp** [Fork]\nFork of mhyrr's Model Context Protocol integration for SketchUp. Enables Claude AI to directly co...\n_Design \u00b7 AI Agents_",
+      "x": 4030,
+      "y": 3436,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "66165b1463284652",
+      "type": "text",
+      "text": "**solar-poster** [Original]\nBackground images and poster assets, likely design resources for a solar-themed poster or project.\n_Design_",
+      "x": 4460,
+      "y": 3436,
+      "width": 400,
+      "height": 132,
+      "color": "1"
+    },
+    {
+      "id": "09709317f1a74d06",
+      "type": "text",
+      "text": "**superdesign** [Fork]\nAn open-source AI design agent that lives inside your IDE (Cursor, Windsurf, Claude Code, VS Code...\n_Design \u00b7 AI Agents \u00b7 DevTools_",
+      "x": 4460,
+      "y": 3588,
+      "width": 400,
+      "height": 156,
+      "color": "5"
+    },
+    {
+      "id": "90d0262a36fb4e39",
+      "type": "text",
+      "text": "**ui-ux-pro-max-skill** [Fork]\nAn AI skill providing design intelligence for building professional UI/UX across platforms. Featu...\n_Design \u00b7 AI Agents \u00b7 DevTools_",
+      "x": 4030,
+      "y": 3612,
+      "width": 400,
+      "height": 156,
+      "color": "5"
+    },
+    {
+      "id": "cf43b67e38824840",
+      "type": "text",
+      "text": "**3d-guided-genai-rtx** [Fork]\nFork of NVIDIA AI Blueprints project enabling 3D-guided generative AI image creation. Uses Blende...\n_Generative AI \u00b7 Computer Vision_",
+      "x": 2330,
+      "y": 3740,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "15310ad88f404d27",
+      "type": "text",
+      "text": "**Gausian_native_editor** [Fork]\nFast, native video editor built in Rust with GPU rendering (WGPU), timeline editing, and local Co...\n_Generative AI \u00b7 DevTools_",
+      "x": 2760,
+      "y": 3740,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "6622aa30098748e5",
+      "type": "text",
+      "text": "**LTX-Video** [Fork]\nOfficial repository for LTX-Video, a DiT-based video generation model capable of producing up to ...\n_Generative AI \u00b7 Foundation Models \u00b7 Computer Vision_",
+      "x": 2330,
+      "y": 3916,
+      "width": 400,
+      "height": 180,
+      "color": "3"
+    },
+    {
+      "id": "78c234b62ec0412b",
+      "type": "text",
+      "text": "**TalkingHead** [Fork]\nA JavaScript class for real-time lip-sync using Ready Player Me full-body 3D avatars. Supports Go...\n_Generative AI \u00b7 Computer Vision \u00b7 Audio_",
+      "x": 2760,
+      "y": 3916,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "86dd1bb452c14649",
+      "type": "text",
+      "text": "**refind** [Original]\nCustom configuration for the rEFInd boot manager, including a background-switching shell script a...\n_Infrastructure_",
+      "x": 5900,
+      "y": 2880,
+      "width": 400,
+      "height": 156,
+      "color": "5"
+    },
+    {
+      "id": "1bca6a89520045a4",
+      "type": "text",
+      "text": "**servo** [Fork]\nA prototype web browser engine built in Rust, designed as a lightweight, high-performance alterna...\n_Infrastructure_",
+      "x": 5470,
+      "y": 3064,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "38e0df0c9a6044c5",
+      "type": "text",
+      "text": "**uiua** [Fork]\nA tacit, stack-based array programming language with a built-in language server and online interp...\n_Infrastructure \u00b7 Education_",
+      "x": 5900,
+      "y": 3064,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "ce4efffbbee143c2",
+      "type": "text",
+      "text": "**blueprint** [Original]\nA self-optimizing digital twin system for controlled environment agriculture (vertical farming), ...\n_Robotics \u00b7 AI Agents \u00b7 Design_",
+      "x": -90,
+      "y": 2860,
+      "width": 400,
+      "height": 156,
+      "color": "4"
+    },
+    {
+      "id": "05ae7609ac8a433a",
+      "type": "text",
+      "text": "**dm_control** [Fork]\nFork of Google DeepMind's software stack for physics-based simulation and reinforcement learning ...\n_Robotics \u00b7 Foundation Models_",
+      "x": -90,
+      "y": 3036,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "484c6bb025914948",
+      "type": "text",
+      "text": "**Genesis** [Fork]\nA generative physics platform for robotics and embodied AI, featuring a universal physics engine ...\n_Robotics \u00b7 Generative AI_",
+      "x": -90,
+      "y": 3212,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "3853b8b9ff224b4b",
+      "type": "text",
+      "text": "**Thor** [Fork]\nFork of AngelLM's open-source, 3D-printable 6-DOF robotic arm designed for education and makers. ...\n_Robotics_",
+      "x": -90,
+      "y": 3740,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "57859f09e6eb4c70",
+      "type": "text",
+      "text": "**digital-twin** [Original]\nPrivate autonomous AI development system featuring dynamic skill composition, a decision engine, ...\n_AI Agents \u00b7 Robotics \u00b7 Infrastructure_",
+      "x": 340,
+      "y": 2860,
+      "width": 400,
+      "height": 156,
+      "color": "4"
+    },
+    {
+      "id": "85ba5d7f8c3a47a1",
+      "type": "text",
+      "text": "**Eureka** [Fork]\nLLM-powered (GPT-4) reward design algorithm for reinforcement learning that generates human-level...\n_Robotics \u00b7 Foundation Models_",
+      "x": 340,
+      "y": 3036,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "4e868ac510db4217",
+      "type": "text",
+      "text": "**holohub** [Fork]\nNVIDIA's central repository of Holoscan reference applications, operators, tutorials, and benchma...\n_Robotics \u00b7 Computer Vision \u00b7 AI Agents_",
+      "x": 340,
+      "y": 3212,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "206a852cb7e0463c",
+      "type": "text",
+      "text": "**mujoco** [Fork]\nFork of Google DeepMind's MuJoCo -- a general-purpose physics engine for robotics, biomechanics, ...\n_Robotics_",
+      "x": -90,
+      "y": 3388,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "c220b8ab75454162",
+      "type": "text",
+      "text": "**openpilot** [Fork]\nFork of comma.ai's openpilot, an open-source operating system for robotics that upgrades the driv...\n_Robotics \u00b7 Computer Vision_",
+      "x": 340,
+      "y": 3388,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "12dd628ee6d14eaa",
+      "type": "text",
+      "text": "**opentwins** [Fork]\nOpen-source platform for developing next-generation compositional digital twins, covering real-ti...\n_Robotics \u00b7 Infrastructure_",
+      "x": -90,
+      "y": 3564,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "ea7c5f470ca74fc2",
+      "type": "text",
+      "text": "**SimWorld** [Fork]\nOpen-ended realistic simulator for autonomous LLM/VLM agents in physical and social worlds, built...\n_Robotics \u00b7 AI Agents_",
+      "x": 340,
+      "y": 3564,
+      "width": 400,
+      "height": 156,
+      "color": "3"
+    },
+    {
+      "id": "35b1882dea2a404e",
+      "type": "text",
+      "x": -1180,
+      "y": -580,
+      "width": 960,
+      "height": 46,
+      "text": "### Card Colors (PARA Status)"
+    },
+    {
+      "id": "0b02e666d76c4c1f",
+      "type": "text",
+      "x": -1180,
+      "y": -524,
+      "width": 470,
+      "height": 70,
+      "text": "**Project**\nActive, goal-driven work",
+      "color": "4"
+    },
+    {
+      "id": "5e5a41cef2894b01",
+      "type": "text",
+      "x": -690,
+      "y": -524,
+      "width": 470,
+      "height": 70,
+      "text": "**Area**\nOngoing responsibility",
+      "color": "5"
+    },
+    {
+      "id": "9d6e6cb46176451b",
+      "type": "text",
+      "x": -1180,
+      "y": -444,
+      "width": 470,
+      "height": 70,
+      "text": "**Resource**\nReference material",
+      "color": "3"
+    },
+    {
+      "id": "348d07fc83784536",
+      "type": "text",
+      "x": -690,
+      "y": -444,
+      "width": 470,
+      "height": 70,
+      "text": "**Archive**\nInactive / completed",
+      "color": "1"
+    },
+    {
+      "id": "9ef531c0ce9b4fd4",
+      "type": "text",
+      "x": -1180,
+      "y": -354,
+      "width": 960,
+      "height": 46,
+      "text": "### Group Colors (Domain Zones)"
+    },
+    {
+      "id": "b9d8774276924bb8",
+      "type": "text",
+      "x": -1180,
+      "y": -298,
+      "width": 470,
+      "height": 70,
+      "text": "**AI & Machine Learning**\nPurple zone",
+      "color": "6"
+    },
+    {
+      "id": "a35edbda36334a42",
+      "type": "text",
+      "x": -690,
+      "y": -298,
+      "width": 470,
+      "height": 70,
+      "text": "**Interactive & Media**\nOrange zone",
+      "color": "2"
+    },
+    {
+      "id": "c63951de75dc4408",
+      "type": "text",
+      "x": -1180,
+      "y": -218,
+      "width": 470,
+      "height": 70,
+      "text": "**Software Development**\nCyan zone",
+      "color": "5"
+    },
+    {
+      "id": "b853d2f45c074fb1",
+      "type": "text",
+      "x": -690,
+      "y": -218,
+      "width": 470,
+      "height": 70,
+      "text": "**Tools & Systems**\nGreen zone",
+      "color": "4"
+    },
+    {
+      "id": "1fd9bcac7af74a9b",
+      "type": "text",
+      "x": -1180,
+      "y": -138,
+      "width": 470,
+      "height": 70,
+      "text": "**Specialized Domains**\nYellow zone",
+      "color": "3"
+    },
+    {
+      "id": "7a38bf1461264d7c",
+      "type": "text",
+      "x": -690,
+      "y": -138,
+      "width": 470,
+      "height": 70,
+      "text": "**Uncategorized / Empty**\nRed zone",
+      "color": "1"
+    }
+  ],
+  "edges": [
+    {
+      "id": "4f15e88087d64443",
+      "fromNode": "b359b195f583428f",
+      "fromSide": "top",
+      "toNode": "f5f0aa1a66094670",
+      "toSide": "right",
+      "label": "uses models"
+    },
+    {
+      "id": "4f773e77238449bd",
+      "fromNode": "b359b195f583428f",
+      "fromSide": "right",
+      "toNode": "7b859d28efca4c9b",
+      "toSide": "left",
+      "label": "powers tools"
+    },
+    {
+      "id": "388995d421064214",
+      "fromNode": "b359b195f583428f",
+      "fromSide": "bottom",
+      "toNode": "c5d0f450fecb4d68",
+      "toSide": "top",
+      "label": "visual reasoning"
+    },
+    {
+      "id": "531cf79ab9c64015",
+      "fromNode": "b359b195f583428f",
+      "fromSide": "bottom",
+      "toNode": "402b9aff52f74cf9",
+      "toSide": "top",
+      "label": "embodied agents"
+    },
+    {
+      "id": "376ae24106fc4ec2",
+      "fromNode": "b359b195f583428f",
+      "fromSide": "right",
+      "toNode": "64420213147b4b22",
+      "toSide": "left",
+      "label": "agent memory"
+    },
+    {
+      "id": "ad835b86a7fd479b",
+      "fromNode": "b359b195f583428f",
+      "fromSide": "right",
+      "toNode": "07fbd37344994667",
+      "toSide": "left",
+      "label": "AI design tools"
+    },
+    {
+      "id": "f49b0664846b4179",
+      "fromNode": "b359b195f583428f",
+      "fromSide": "bottom",
+      "toNode": "5bed9f245c664128",
+      "toSide": "top",
+      "label": "creative agents"
+    },
+    {
+      "id": "1ef7c738f0364165",
+      "fromNode": "f5f0aa1a66094670",
+      "fromSide": "bottom",
+      "toNode": "c5d0f450fecb4d68",
+      "toSide": "top",
+      "label": "vision-language models"
+    },
+    {
+      "id": "fbbd1b048cec4176",
+      "fromNode": "f5f0aa1a66094670",
+      "fromSide": "bottom",
+      "toNode": "5bed9f245c664128",
+      "toSide": "left",
+      "label": "generation backbone"
+    },
+    {
+      "id": "d8026dd59bd1401a",
+      "fromNode": "f5f0aa1a66094670",
+      "fromSide": "left",
+      "toNode": "402b9aff52f74cf9",
+      "toSide": "left",
+      "label": "reward modeling"
+    },
+    {
+      "id": "bcf44b4fdc5c4c53",
+      "fromNode": "c5d0f450fecb4d68",
+      "fromSide": "right",
+      "toNode": "5bed9f245c664128",
+      "toSide": "left",
+      "label": "visual generation"
+    },
+    {
+      "id": "506fcf76fb7c441f",
+      "fromNode": "c5d0f450fecb4d68",
+      "fromSide": "bottom",
+      "toNode": "402b9aff52f74cf9",
+      "toSide": "top",
+      "label": "perception"
+    },
+    {
+      "id": "035cb3ccf03448b0",
+      "fromNode": "5bed9f245c664128",
+      "fromSide": "right",
+      "toNode": "07fbd37344994667",
+      "toSide": "left",
+      "label": "creative AI"
+    },
+    {
+      "id": "c0b878d897ea41c8",
+      "fromNode": "5bed9f245c664128",
+      "fromSide": "bottom",
+      "toNode": "2ea39a2a51814e14",
+      "toSide": "top",
+      "label": "speech synthesis"
+    },
+    {
+      "id": "83612772bfa54f2a",
+      "fromNode": "402b9aff52f74cf9",
+      "fromSide": "right",
+      "toNode": "3ffd795939a24c22",
+      "toSide": "left",
+      "label": "physics & simulation"
+    },
+    {
+      "id": "4d6581dd100246fe",
+      "fromNode": "402b9aff52f74cf9",
+      "fromSide": "bottom",
+      "toNode": "e30b161c1e1a43ca",
+      "toSide": "top",
+      "label": "embodied cognition"
+    },
+    {
+      "id": "29a80eb1458c4d07",
+      "fromNode": "e30b161c1e1a43ca",
+      "fromSide": "bottom",
+      "toNode": "0597debfeb8b43b6",
+      "toSide": "top",
+      "label": "brain & body"
+    },
+    {
+      "id": "87bd42014c944332",
+      "fromNode": "3ffd795939a24c22",
+      "fromSide": "bottom",
+      "toNode": "cfafcffd7f584511",
+      "toSide": "top",
+      "label": "gaming domain"
+    },
+    {
+      "id": "4a43bceef5234c2c",
+      "fromNode": "73d8e4124d344025",
+      "fromSide": "bottom",
+      "toNode": "07fbd37344994667",
+      "toSide": "bottom",
+      "label": "frontend design"
+    },
+    {
+      "id": "71525335564c42cf",
+      "fromNode": "73d8e4124d344025",
+      "fromSide": "bottom",
+      "toNode": "d99a3430b7a24a2d",
+      "toSide": "top",
+      "label": "app development"
+    },
+    {
+      "id": "a30fc3ddbacb4714",
+      "fromNode": "7b859d28efca4c9b",
+      "fromSide": "bottom",
+      "toNode": "4ccd7a3de2cd4646",
+      "toSide": "top",
+      "label": "tooling & systems"
+    },
+    {
+      "id": "1ef56b10344a4ee4",
+      "fromNode": "4ccd7a3de2cd4646",
+      "fromSide": "bottom",
+      "toNode": "5652d0bfec9f4150",
+      "toSide": "top",
+      "label": "fintech infra"
+    },
+    {
+      "id": "bbf8a9aa5f834eff",
+      "fromNode": "d7e7110be1d546b4",
+      "fromSide": "left",
+      "toNode": "b359b195f583428f",
+      "toSide": "left",
+      "label": "learning AI"
+    }
+  ]
+}
