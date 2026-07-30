@@ -219,8 +219,8 @@ export function ProjectHotspots({ projects, selectedId, onSelect }: Props) {
 
   return (
     <group name="ProjectHotspots">
-      {/* Ramen on counter — evolve */}
-      <group position={[-0.85, 1.02, -0.45]} scale={0.9}>
+      {/* Ramen on counter — evolve (left seat) */}
+      <group position={[-0.9, 1.04, -0.42]} scale={0.92}>
         <HotspotRoot
           selected={selectedId === 'evolve'}
           hovered={hovered === 'evolve'}
@@ -236,8 +236,8 @@ export function ProjectHotspots({ projects, selectedId, onSelect }: Props) {
         </HotspotRoot>
       </group>
 
-      {/* Boba pair on counter — ace + monument */}
-      <group position={[0.75, 1.02, -0.5]} scale={1.0}>
+      {/* Boba pair on counter — ace + monument (center-right) */}
+      <group position={[0.55, 1.04, -0.48]} scale={1.0}>
         <HotspotRoot
           selected={bobaSelected}
           hovered={hovered === 'boba'}
@@ -262,7 +262,6 @@ export function ProjectHotspots({ projects, selectedId, onSelect }: Props) {
             <primitive object={boba} />
           </group>
         </HotspotRoot>
-        {/* Secondary label for monument when hovered/selected */}
         {(hovered === 'boba' || bobaSelected) && monument && selectedId !== 'monument' && (
           <Html position={[0.22, 0.95, 0]} center distanceFactor={7} style={{ pointerEvents: 'auto' }}>
             <div
@@ -280,7 +279,7 @@ export function ProjectHotspots({ projects, selectedId, onSelect }: Props) {
       </group>
 
       {/* Laptop on booth table — files + fleet */}
-      <group position={[-1.5, 0.76, 1.0]} rotation={[0, 0.4, 0]} scale={1.15}>
+      <group position={[-1.58, 0.8, 1.07]} rotation={[0, 0.4, 0]} scale={1.15}>
         <HotspotRoot
           selected={laptopSelected}
           hovered={hovered === 'laptop'}
@@ -317,8 +316,8 @@ export function ProjectHotspots({ projects, selectedId, onSelect }: Props) {
         )}
       </group>
 
-      {/* Headphones near counter end — audio */}
-      <group position={[1.65, 1.05, -0.35]} scale={1.45}>
+      {/* Headphones near counter right — audio (left of decorative bowl) */}
+      <group position={[1.15, 1.06, -0.32]} scale={1.4}>
         <HotspotRoot
           selected={selectedId === 'audio'}
           hovered={hovered === 'audio'}

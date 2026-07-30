@@ -29,6 +29,16 @@ body,
   min-height: 100dvh;
 }
 
+/* Pure 3D beauty shots: hide chrome, full-bleed canvas */
+.app.beauty {
+  grid-template-columns: 1fr;
+}
+
+.app.beauty .stage {
+  min-height: 100%;
+  height: 100%;
+}
+
 .stage {
   position: relative;
   min-height: 50vh;
