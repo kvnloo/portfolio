@@ -12,14 +12,12 @@ type Props = {
   onSelect: (id: string) => void
 }
 
-function useModelTick(root: THREE.Object3D | null) {
+/** Call tick only on model root — never traverse every child every frame. */
+function useModelTick(model: THREE.Object3D | null) {
   useFrame(({ clock }) => {
-    if (!root) return
-    const t = clock.elapsedTime
-    root.traverse((obj) => {
-      const tick = obj.userData?.tick as ((time: number) => void) | undefined
-      if (typeof tick === 'function') tick(t)
-    })
+    if (!model) return
+    const tick = model.userData?.tick as ((t: number) => void) | undefined
+    if (typeof tick === 'function') tick(clock.elapsedTime)
   })
 }
 
@@ -44,11 +42,17 @@ function HotspotRoot({
 }) {
   const ref = useRef<THREE.Group>(null)
   const showLabel = selected || hovered
+  const active = selected || hovered
 
   useFrame(() => {
     const g = ref.current
     if (!g) return
+    // Skip work when already at rest scale
     const target = selected ? 1.1 : hovered ? 1.05 : 1
+    if (!active && Math.abs(g.scale.x - 1) < 0.001) {
+      if (g.scale.x !== 1) g.scale.set(1, 1, 1)
+      return
+    }
     g.scale.lerp(new THREE.Vector3(target, target, target), 0.14)
   })
 
@@ -70,9 +74,9 @@ function HotspotRoot({
       }}
     >
       {children}
-      {(selected || hovered) && (
+      {active && (
         <mesh position={[0, 0.02, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-          <ringGeometry args={[0.28, 0.38, 48]} />
+          <ringGeometry args={[0.28, 0.38, 32]} />
           <meshBasicMaterial
             color={glowColor}
             transparent
@@ -95,31 +99,26 @@ function DetailedLaptop({ selected }: { selected: boolean }) {
   const screenGlow = selected ? 0.55 : 0.22
   return (
     <group>
-      {/* Base */}
       <mesh position={[0, 0.03, 0]} castShadow receiveShadow>
         <boxGeometry args={[0.42, 0.02, 0.28]} />
-        <meshPhysicalMaterial color="#1c1e22" roughness={0.35} metalness={0.55} clearcoat={0.3} />
+        <meshStandardMaterial color="#1c1e22" roughness={0.35} metalness={0.55} />
       </mesh>
-      {/* Keyboard deck */}
       <mesh position={[0, 0.045, 0.02]} castShadow>
         <boxGeometry args={[0.38, 0.008, 0.2]} />
         <meshStandardMaterial color="#12141a" roughness={0.5} />
       </mesh>
-      {/* Keys suggestion */}
       <mesh position={[0, 0.052, 0.03]}>
         <boxGeometry args={[0.32, 0.004, 0.14]} />
         <meshStandardMaterial color="#2a2e38" roughness={0.6} />
       </mesh>
-      {/* Trackpad */}
       <mesh position={[0, 0.052, -0.08]}>
         <boxGeometry args={[0.1, 0.003, 0.06]} />
         <meshStandardMaterial color="#3a404c" roughness={0.4} />
       </mesh>
-      {/* Screen hinge + lid */}
       <group position={[0, 0.05, -0.12]} rotation={[-0.35, 0, 0]}>
         <mesh position={[0, 0.14, 0]} castShadow>
           <boxGeometry args={[0.42, 0.28, 0.012]} />
-          <meshPhysicalMaterial color="#1a1c20" roughness={0.3} metalness={0.5} />
+          <meshStandardMaterial color="#1a1c20" roughness={0.3} metalness={0.5} />
         </mesh>
         <mesh position={[0, 0.14, 0.008]}>
           <planeGeometry args={[0.38, 0.24]} />
@@ -130,13 +129,6 @@ function DetailedLaptop({ selected }: { selected: boolean }) {
             roughness={0.2}
           />
         </mesh>
-        {/* Fake terminal lines */}
-        {[0.06, 0.02, -0.02, -0.06].map((y, i) => (
-          <mesh key={i} position={[-0.08, 0.14 + y, 0.01]}>
-            <planeGeometry args={[0.18 - i * 0.02, 0.012]} />
-            <meshBasicMaterial color={i === 0 ? '#7ddea2' : '#6ec6ff'} transparent opacity={0.7} />
-          </mesh>
-        ))}
       </group>
     </group>
   )
@@ -146,10 +138,9 @@ function Headphones({ selected }: { selected: boolean }) {
   const accent = selected ? 0xb794f6 : 0x2a2430
   return (
     <group rotation={[0, 0.4, 0]}>
-      {/* Headband */}
       <mesh castShadow>
-        <torusGeometry args={[0.12, 0.015, 10, 28, Math.PI]} />
-        <meshPhysicalMaterial
+        <torusGeometry args={[0.12, 0.015, 8, 20, Math.PI]} />
+        <meshStandardMaterial
           color="#1a1a1e"
           roughness={0.4}
           metalness={0.3}
@@ -157,26 +148,24 @@ function Headphones({ selected }: { selected: boolean }) {
           emissiveIntensity={selected ? 0.25 : 0}
         />
       </mesh>
-      {/* Left cup */}
       <mesh position={[-0.12, -0.02, 0]} rotation={[0, 0, 0.15]} castShadow>
-        <cylinderGeometry args={[0.05, 0.055, 0.04, 20]} />
-        <meshPhysicalMaterial color="#141418" roughness={0.45} clearcoat={0.3} />
+        <cylinderGeometry args={[0.05, 0.055, 0.04, 16]} />
+        <meshStandardMaterial color="#141418" roughness={0.45} />
       </mesh>
       <mesh position={[-0.12, -0.02, 0.02]} rotation={[Math.PI / 2, 0, 0]}>
-        <circleGeometry args={[0.04, 16]} />
+        <circleGeometry args={[0.04, 12]} />
         <meshStandardMaterial
           color="#1a1020"
           emissive={accent}
           emissiveIntensity={selected ? 0.4 : 0.08}
         />
       </mesh>
-      {/* Right cup */}
       <mesh position={[0.12, -0.02, 0]} rotation={[0, 0, -0.15]} castShadow>
-        <cylinderGeometry args={[0.05, 0.055, 0.04, 20]} />
-        <meshPhysicalMaterial color="#141418" roughness={0.45} clearcoat={0.3} />
+        <cylinderGeometry args={[0.05, 0.055, 0.04, 16]} />
+        <meshStandardMaterial color="#141418" roughness={0.45} />
       </mesh>
       <mesh position={[0.12, -0.02, 0.02]} rotation={[Math.PI / 2, 0, 0]}>
-        <circleGeometry args={[0.04, 16]} />
+        <circleGeometry args={[0.04, 12]} />
         <meshStandardMaterial
           color="#1a1020"
           emissive={accent}
@@ -187,25 +176,16 @@ function Headphones({ selected }: { selected: boolean }) {
   )
 }
 
-/**
- * Clickable project props placed in the shop.
- * evolve → ramen · ace+monument → boba · files+fleet → laptop · audio → headphones
- */
 export function ProjectHotspots({ projects, selectedId, onSelect }: Props) {
   const [hovered, setHovered] = useState<string | null>(null)
 
   const ramen = useMemo(() => createRamenBowlModel({ castShadow: true }), [])
   const boba = useMemo(() => createBobaCupPairModel({ castShadow: true }), [])
-  const ramenRef = useRef<THREE.Group>(null)
-  const bobaRef = useRef<THREE.Group>(null)
 
   useModelTick(ramen)
   useModelTick(boba)
 
-  const byId = useMemo(() => {
-    const m = new Map(projects.map((p) => [p.id, p]))
-    return m
-  }, [projects])
+  const byId = useMemo(() => new Map(projects.map((p) => [p.id, p])), [projects])
 
   const evolve = byId.get('evolve')
   const ace = byId.get('ace')
@@ -219,8 +199,7 @@ export function ProjectHotspots({ projects, selectedId, onSelect }: Props) {
 
   return (
     <group name="ProjectHotspots">
-      {/* Ramen on counter — evolve (left seat) */}
-      <group position={[-0.9, 1.04, -0.42]} scale={0.92}>
+      <group position={[-0.85, 1.02, -0.45]} scale={0.9}>
         <HotspotRoot
           selected={selectedId === 'evolve'}
           hovered={hovered === 'evolve'}
@@ -230,14 +209,11 @@ export function ProjectHotspots({ projects, selectedId, onSelect }: Props) {
           labelY={0.72}
           glowColor={evolve?.accent ?? '#e8a54b'}
         >
-          <group ref={ramenRef}>
-            <primitive object={ramen} />
-          </group>
+          <primitive object={ramen} />
         </HotspotRoot>
       </group>
 
-      {/* Boba pair on counter — ace + monument (center-right) */}
-      <group position={[0.55, 1.04, -0.48]} scale={1.0}>
+      <group position={[0.75, 1.02, -0.5]} scale={1.0}>
         <HotspotRoot
           selected={bobaSelected}
           hovered={hovered === 'boba'}
@@ -246,21 +222,13 @@ export function ProjectHotspots({ projects, selectedId, onSelect }: Props) {
             else if (ace) onSelect('ace')
           }}
           onHover={(v) => setHovered(v ? 'boba' : null)}
-          label={
-            selectedId === 'monument'
-              ? monument?.menuName
-              : ace?.menuName
-          }
+          label={selectedId === 'monument' ? monument?.menuName : ace?.menuName}
           labelY={0.9}
           glowColor={
-            selectedId === 'monument'
-              ? monument?.accent ?? '#f0a0c0'
-              : ace?.accent ?? '#c47a3a'
+            selectedId === 'monument' ? monument?.accent ?? '#f0a0c0' : ace?.accent ?? '#c47a3a'
           }
         >
-          <group ref={bobaRef}>
-            <primitive object={boba} />
-          </group>
+          <primitive object={boba} />
         </HotspotRoot>
         {(hovered === 'boba' || bobaSelected) && monument && selectedId !== 'monument' && (
           <Html position={[0.22, 0.95, 0]} center distanceFactor={7} style={{ pointerEvents: 'auto' }}>
@@ -278,8 +246,7 @@ export function ProjectHotspots({ projects, selectedId, onSelect }: Props) {
         )}
       </group>
 
-      {/* Laptop on booth table — files + fleet */}
-      <group position={[-1.58, 0.8, 1.07]} rotation={[0, 0.4, 0]} scale={1.15}>
+      <group position={[-1.5, 0.76, 1.0]} rotation={[0, 0.4, 0]} scale={1.15}>
         <HotspotRoot
           selected={laptopSelected}
           hovered={hovered === 'laptop'}
@@ -288,36 +255,17 @@ export function ProjectHotspots({ projects, selectedId, onSelect }: Props) {
             else if (files) onSelect('files')
           }}
           onHover={(v) => setHovered(v ? 'laptop' : null)}
-          label={
-            selectedId === 'fleet' ? fleet?.menuName : files?.menuName
-          }
+          label={selectedId === 'fleet' ? fleet?.menuName : files?.menuName}
           labelY={0.45}
           glowColor={
-            selectedId === 'fleet'
-              ? fleet?.accent ?? '#7ddea2'
-              : files?.accent ?? '#6ec6ff'
+            selectedId === 'fleet' ? fleet?.accent ?? '#7ddea2' : files?.accent ?? '#6ec6ff'
           }
         >
           <DetailedLaptop selected={laptopSelected} />
         </HotspotRoot>
-        {(hovered === 'laptop' || laptopSelected) && fleet && selectedId !== 'fleet' && (
-          <Html position={[0.2, 0.4, 0]} center distanceFactor={7} style={{ pointerEvents: 'auto' }}>
-            <div
-              className="r3f-label"
-              style={{ cursor: 'pointer' }}
-              onClick={(e) => {
-                e.stopPropagation()
-                onSelect('fleet')
-              }}
-            >
-              {fleet.menuName}
-            </div>
-          </Html>
-        )}
       </group>
 
-      {/* Headphones near counter right — audio (left of decorative bowl) */}
-      <group position={[1.15, 1.06, -0.32]} scale={1.4}>
+      <group position={[1.65, 1.05, -0.35]} scale={1.45}>
         <HotspotRoot
           selected={selectedId === 'audio'}
           hovered={hovered === 'audio'}

@@ -51,7 +51,7 @@ function latheOuterBowl(): THREE.LatheGeometry {
     new THREE.Vector2(0.43, 0.342),
     new THREE.Vector2(0.4, 0.338),
   ]
-  return new THREE.LatheGeometry(pts, 64)
+  return new THREE.LatheGeometry(pts, 32)
 }
 
 /** Inner cavity (glazed). */
@@ -65,7 +65,7 @@ function latheInnerBowl(): THREE.LatheGeometry {
     new THREE.Vector2(0.385, 0.32),
     new THREE.Vector2(0.39, 0.332),
   ]
-  return new THREE.LatheGeometry(pts, 64)
+  return new THREE.LatheGeometry(pts, 32)
 }
 
 /** Broth volume: flat-ish bottom with raised meniscus at bowl wall. */
@@ -86,7 +86,7 @@ function latheBrothVolume(): THREE.LatheGeometry {
     new THREE.Vector2(0.08, 0.252),
     new THREE.Vector2(0.0, 0.25),
   ]
-  return new THREE.LatheGeometry(pts, 56)
+  return new THREE.LatheGeometry(pts, 28)
 }
 
 function seeded(i: number, salt = 0) {
@@ -294,7 +294,7 @@ export function createRamenBowlModel(options: ProceduralModelOptions = {}): THRE
   // Speckle flecks on outer ceramic
   const fleckMat = phys(0xb8a890, { roughness: 0.7 }, w)
   for (let i = 0; i < 28; i++) {
-    const fleck = new THREE.Mesh(new THREE.SphereGeometry(0.004 + seeded(i) * 0.004, 5, 4), fleckMat)
+    const fleck = new THREE.Mesh(new THREE.SphereGeometry(0.004 + seeded(i) * 0.004, 4, 3), fleckMat)
     const a = seeded(i, 1) * Math.PI * 2
     const y = 0.06 + seeded(i, 2) * 0.22
     const r = 0.28 + seeded(i, 3) * 0.12
@@ -346,7 +346,7 @@ export function createRamenBowlModel(options: ProceduralModelOptions = {}): THRE
   // --- Noodles (thicker, denser nest) ---
   const noodleGroup = new THREE.Group()
   noodleGroup.name = 'noodles'
-  for (let i = 0; i < 32; i++) {
+  for (let i = 0; i < 18; i++) {
     const a0 = (i / 32) * Math.PI * 2 + seeded(i, 9) * 0.4
     const r = 0.06 + (i % 5) * 0.032 + seeded(i, 10) * 0.02
     const lift = 0.255 + (i % 4) * 0.01
@@ -375,10 +375,10 @@ export function createRamenBowlModel(options: ProceduralModelOptions = {}): THRE
     ])
     const radius = 0.009 + (i % 4) * 0.0025
     const tube = new THREE.Mesh(
-      new THREE.TubeGeometry(curve, 36, radius, 7, false),
+      new THREE.TubeGeometry(curve, 16, radius, 5, false),
       noodle,
     )
-    tube.castShadow = cast
+    tube.castShadow = false
     noodleGroup.add(tube)
   }
   root.add(noodleGroup)
@@ -428,7 +428,7 @@ export function createRamenBowlModel(options: ProceduralModelOptions = {}): THRE
 
   // Outer white half-dome
   const white = new THREE.Mesh(
-    new THREE.SphereGeometry(0.078, 32, 24, 0, Math.PI * 2, 0, Math.PI * 0.58),
+    new THREE.SphereGeometry(0.078, 20, 14, 0, Math.PI * 2, 0, Math.PI * 0.58),
     eggWhite,
   )
   white.scale.set(1.1, 0.55, 1.2)
@@ -450,7 +450,7 @@ export function createRamenBowlModel(options: ProceduralModelOptions = {}): THRE
   egg.add(cutFace)
 
   // Yolk dome on cut face
-  const yolk = new THREE.Mesh(new THREE.SphereGeometry(0.038, 22, 16), eggYolk)
+  const yolk = new THREE.Mesh(new THREE.SphereGeometry(0.038, 14, 10), eggYolk)
   yolk.position.set(0.008, 0.028, 0.002)
   yolk.scale.set(1.05, 0.7, 1.05)
   yolk.castShadow = cast
@@ -516,7 +516,7 @@ export function createRamenBowlModel(options: ProceduralModelOptions = {}): THRE
   // --- Sesame seeds (white + black mix) ---
   const sesameGroup = new THREE.Group()
   sesameGroup.name = 'sesame'
-  for (let i = 0; i < 36; i++) {
+  for (let i = 0; i < 18; i++) {
     const black = i % 4 === 0
     const seed = new THREE.Mesh(
       new THREE.SphereGeometry(0.0045 + seeded(i, 18) * 0.0025, 6, 5),

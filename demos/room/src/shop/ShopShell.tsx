@@ -40,7 +40,7 @@ function SteamField({
         cycle * 0.75,
         s.z + Math.cos(t * 0.7 + s.phase) * 0.03,
       )
-      const mat = child.material as THREE.MeshStandardMaterial
+      const mat = child.material as THREE.MeshBasicMaterial
       mat.opacity = Math.sin(cycle * Math.PI) * 0.42
       child.scale.setScalar(s.scale * (0.5 + cycle * 1.8))
     })
@@ -50,16 +50,8 @@ function SteamField({
     <group ref={group} position={position}>
       {seeds.map((s, i) => (
         <mesh key={i} position={[s.x, 0, s.z]}>
-          <sphereGeometry args={[1, 10, 10]} />
-          <meshStandardMaterial
-            color="#fff8f0"
-            emissive="#ffe8d0"
-            emissiveIntensity={0.45}
-            transparent
-            opacity={0.28}
-            depthWrite={false}
-            roughness={1}
-          />
+          <sphereGeometry args={[1, 6, 6]} />
+          <meshBasicMaterial color="#fff2e8" transparent opacity={0.28} depthWrite={false} />
         </mesh>
       ))}
     </group>
@@ -86,12 +78,13 @@ function NeonTube({
         <meshStandardMaterial
           color={color}
           emissive={color}
-          emissiveIntensity={intensity}
+          // Slightly hotter emissive so bloom still sells glow without a pointLight per tube
+          emissiveIntensity={intensity * 1.15}
           roughness={0.2}
           toneMapped={false}
         />
       </mesh>
-      <pointLight color={color} intensity={intensity * 0.4} distance={2.8} />
+      {/* No per-tube pointLight — was exploding light count (main FPS killer) */}
     </group>
   )
 }
@@ -214,8 +207,7 @@ function NeonRamenGlyph({ position }: { position: [number, number, number] }) {
         <cylinderGeometry args={[0.012, 0.012, 0.26, 8]} />
         <meshStandardMaterial color="#ffb0e0" emissive="#ff66cc" emissiveIntensity={1.4} toneMapped={false} />
       </mesh>
-      <pointLight color="#44e8ff" intensity={1.1} distance={3.5} />
-      <pointLight color="#ff66cc" intensity={0.6} distance={2.5} position={[0.1, 0.15, 0.2]} />
+      {/* Glyph glow handled by shared brand key light in lighting rig */}
     </group>
   )
 }
@@ -285,8 +277,7 @@ function NeonBrandSign() {
           depthWrite={false}
         />
       </mesh>
-      <pointLight color="#ff66cc" intensity={2.8} distance={8} position={[0, 0, 0.7]} />
-      <pointLight color="#44e8ff" intensity={1.6} distance={6} position={[0.9, -0.15, 0.5]} />
+      {/* Brand wash is a single shared pointLight in the lighting rig */}
     </group>
   )
 }
@@ -327,7 +318,7 @@ function PaperLantern({
         <cylinderGeometry args={[0.065, 0.05, 0.03, 16]} />
         <meshStandardMaterial color="#1a1008" />
       </mesh>
-      <pointLight color={hue} intensity={0.75} distance={3.4} decay={2} />
+      {/* Shared awning key lights cover lantern contribution; skip per-lantern lights */}
     </group>
   )
 }
@@ -431,8 +422,7 @@ function SignPost({ position }: { position: [number, number, number] }) {
         <boxGeometry args={[0.14, 0.18, 0.04]} />
         <meshStandardMaterial color="#1a2030" emissive="#4080c0" emissiveIntensity={0.4} />
       </mesh>
-      <pointLight color="#ff66dd" intensity={1.4} distance={6} position={[0.58, 2.45, 0.12]} />
-      <pointLight color="#66eeff" intensity={1.2} distance={6} position={[-0.58, 2.45, 0.12]} />
+      {/* Globe contribution covered by signpost light in lighting rig */}
 
       {signs.map((s) => (
         <group key={s.label} position={[0.55, s.y, 0]} rotation={[0, s.yaw, 0]}>
@@ -893,50 +883,44 @@ export function ShopShell() {
         <meshStandardMaterial color="#f0e8e0" roughness={0.9} />
       </mesh>
 
-      {/* Steam plumes (stronger) */}
-      <SteamField position={[-0.85, 1.08, -0.4]} count={22} spread={0.2} />
-      <SteamField position={[0.7, 1.08, -0.45]} count={16} spread={0.16} />
-      <SteamField position={[1.55, 1.12, -0.5]} count={10} spread={0.1} />
+      {/* Steam — fewer particles (was 48 total) */}
+      <SteamField position={[-0.85, 1.08, -0.4]} count={10} spread={0.2} />
+      <SteamField position={[0.7, 1.08, -0.45]} count={8} spread={0.16} />
 
-      {/* ═══ LIGHTING RIG — warm key under awning, cool ground handled in canvas ═══ */}
-      <ambientLight intensity={0.06} />
-      <hemisphereLight args={['#ffb0e0', '#06040c', 0.28]} />
+      {/* ═══ LIGHTING RIG — consolidated (was 8+ local + many neon lights) ═══ */}
+      <ambientLight intensity={0.08} />
+      <hemisphereLight args={['#ffb0e0', '#06040c', 0.32]} />
+      {/* Single shadow-casting key — 1024 map is enough at this scale */}
       <directionalLight
         castShadow
         position={[2.8, 4.2, 3.2]}
-        intensity={0.4}
+        intensity={0.55}
         color="#ffd0f0"
-        shadow-mapSize={[2048, 2048]}
-        shadow-camera-far={20}
-        shadow-camera-left={-7}
-        shadow-camera-right={7}
-        shadow-camera-top={7}
-        shadow-camera-bottom={-7}
+        shadow-mapSize={[1024, 1024]}
+        shadow-camera-far={16}
+        shadow-camera-left={-5}
+        shadow-camera-right={5}
+        shadow-camera-top={5}
+        shadow-camera-bottom={-5}
         shadow-bias={-0.00025}
       />
-      {/* Warm key under awning (primary stage light) */}
-      <pointLight position={[0, 2.05, 0.15]} intensity={2.0} color="#ffb070" distance={5.5} decay={2} />
-      <pointLight position={[-1.2, 2.0, 0.25]} intensity={0.9} color="#ff9060" distance={4} decay={2} />
-      <pointLight position={[1.2, 2.0, 0.2]} intensity={0.85} color="#ff80a0" distance={4} decay={2} />
-      {/* Cool fill from front */}
-      <pointLight position={[-1.6, 1.5, 1.2]} intensity={0.5} color="#88ccff" distance={4.5} decay={2} />
-      <spotLight
-        position={[0, 3.4, 1.4]}
-        angle={0.55}
-        penumbra={0.7}
-        intensity={1.0}
-        color="#ffe8ff"
-        castShadow
-      />
-      {/* Interior back wall wash */}
-      <pointLight position={[0, 1.8, -1.4]} intensity={0.7} color="#c070a0" distance={4} decay={2} />
+      {/* One warm under-awning key (was 3) */}
+      <pointLight position={[0, 2.05, 0.2]} intensity={2.8} color="#ffb070" distance={6} decay={2} />
+      {/* One cool fill */}
+      <pointLight position={[-1.4, 1.6, 1.3]} intensity={0.7} color="#88ccff" distance={5} decay={2} />
+      {/* Brand neon bounce (keeps sign readable without per-tube lights) */}
+      <pointLight position={[0.2, 2.55, 0.5]} intensity={1.6} color="#ff66cc" distance={5} decay={2} />
+      {/* Signpost globes */}
+      <pointLight position={[-2.9, 2.4, 1.6]} intensity={1.1} color="#ffe0ff" distance={5} decay={2} />
 
       <ContactShadows
         position={[0, 0.02, 0]}
-        opacity={0.82}
-        scale={16}
-        blur={2.4}
-        far={6}
+        opacity={0.78}
+        scale={14}
+        blur={2.2}
+        far={5}
+        resolution={512}
+        frames={1}
         color="#050208"
       />
     </group>

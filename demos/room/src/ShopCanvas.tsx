@@ -1,6 +1,6 @@
 import { Suspense, useEffect } from 'react'
 import { Canvas, useThree } from '@react-three/fiber'
-import { Environment, OrbitControls } from '@react-three/drei'
+import { AdaptiveDpr, AdaptiveEvents, Environment, OrbitControls, PerformanceMonitor } from '@react-three/drei'
 import { EffectComposer, Bloom, Vignette } from '@react-three/postprocessing'
 import * as THREE from 'three'
 import type { Project } from './types'
@@ -12,7 +12,6 @@ type Props = {
   selectedId: string | null
   onSelect: (id: string) => void
   onReady?: () => void
-  /** Pure-3D capture mode (chrome hidden in App); reserved for future shot tweaks */
   beauty?: boolean
 }
 
@@ -28,7 +27,7 @@ function FirstFrameReady({ onReady }: { onReady?: () => void }) {
     })
     const t = window.setTimeout(() => {
       if (!cancelled) onReady()
-    }, 1500)
+    }, 1200)
     return () => {
       cancelled = true
       cancelAnimationFrame(id)
@@ -38,22 +37,24 @@ function FirstFrameReady({ onReady }: { onReady?: () => void }) {
   return null
 }
 
+/** Invalidate render loop when orbiting so we can use demand framing carefully — keep always for steam. */
 function Scene({ projects, selectedId, onSelect, onReady }: Props) {
   return (
     <>
       <FirstFrameReady onReady={onReady} />
       <ShopShell />
       <ProjectHotspots projects={projects} selectedId={selectedId} onSelect={onSelect} />
-      <Environment preset="night" environmentIntensity={0.35} />
-      {/* Neon bloom — jesse-class emissive soft falloff */}
-      <EffectComposer multisampling={0}>
+      {/* Lower intensity env — IBL is expensive; bloom carries neon */}
+      <Environment preset="night" environmentIntensity={0.22} />
+      <EffectComposer multisampling={0} enableNormalPass={false}>
         <Bloom
-          intensity={0.85}
-          luminanceThreshold={0.35}
-          luminanceSmoothing={0.4}
+          intensity={0.7}
+          luminanceThreshold={0.42}
+          luminanceSmoothing={0.45}
           mipmapBlur
+          levels={5}
         />
-        <Vignette offset={0.25} darkness={0.55} />
+        <Vignette offset={0.28} darkness={0.5} />
       </EffectComposer>
       <OrbitControls
         makeDefault
@@ -68,40 +69,52 @@ function Scene({ projects, selectedId, onSelect, onReady }: Props) {
         dampingFactor={0.055}
         enableDamping
       />
+      <AdaptiveDpr pixelated />
+      <AdaptiveEvents />
     </>
   )
 }
 
 /**
- * Stage camera framed like jesse ref: full kiosk silhouette + ground glow,
- * pure black void, strong magenta/cyan stage wash.
+ * Performance-tuned canvas:
+ * - dpr capped (1–1.5) + AdaptiveDpr regress under load
+ * - fewer ground lights (2) vs previous 6+
+ * - shadow maps 1024, single caster
+ * - preserveDrawingBuffer only in beauty/capture
+ * - bloom levels reduced
  */
 export function ShopCanvas(props: Props) {
+  const beauty = !!props.beauty
+
   return (
     <div className="canvas-host">
       <Canvas
         shadows
-        dpr={[1, 1.85]}
-        camera={{ position: [5.4, 3.15, 6.4], fov: 36, near: 0.1, far: 60 }}
+        dpr={[1, 1.5]}
+        camera={{ position: [5.4, 3.15, 6.4], fov: 36, near: 0.1, far: 50 }}
+        performance={{ min: 0.5, max: 1, debounce: 200 }}
         gl={{
           antialias: true,
           toneMapping: THREE.ACESFilmicToneMapping,
           toneMappingExposure: 1.15,
           powerPreference: 'high-performance',
-          preserveDrawingBuffer: true,
+          // Only for screenshots — has a real GPU cost every frame
+          preserveDrawingBuffer: beauty,
+          stencil: false,
+          depth: true,
         }}
         onCreated={({ gl }) => {
           gl.toneMapping = THREE.ACESFilmicToneMapping
           gl.toneMappingExposure = 1.15
+          gl.shadowMap.type = THREE.PCFSoftShadowMap
         }}
       >
         <color attach="background" args={['#000000']} />
-        {/* Soft falloff into black — silhouette pops */}
         <fog attach="fog" args={['#000000', 14, 28]} />
 
-        {/* Ground plane — purple→cyan gradient via layered emissives */}
+        {/* Stage ground — fewer segments (48 vs 80), same look */}
         <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.06, 0.2]} receiveShadow>
-          <circleGeometry args={[12, 80]} />
+          <circleGeometry args={[12, 48]} />
           <meshStandardMaterial
             color="#080612"
             emissive="#6a22d8"
@@ -109,9 +122,8 @@ export function ShopCanvas(props: Props) {
             roughness={0.92}
           />
         </mesh>
-        {/* Magenta inner wash */}
         <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.05, 0.3]}>
-          <circleGeometry args={[5.5, 72]} />
+          <circleGeometry args={[5.5, 40]} />
           <meshStandardMaterial
             color="#0a0614"
             emissive="#d028a0"
@@ -121,9 +133,8 @@ export function ShopCanvas(props: Props) {
             opacity={0.85}
           />
         </mesh>
-        {/* Cyan outer ring */}
         <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.045, 0.4]}>
-          <ringGeometry args={[4.2, 9.5, 80]} />
+          <ringGeometry args={[4.2, 9.5, 48]} />
           <meshStandardMaterial
             color="#060414"
             emissive="#18e0d0"
@@ -134,33 +145,21 @@ export function ShopCanvas(props: Props) {
             side={THREE.DoubleSide}
           />
         </mesh>
-        {/* Soft pink halo near stall feet */}
-        <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.04, 0]}>
-          <ringGeometry args={[1.6, 4.0, 64]} />
-          <meshStandardMaterial
-            color="#0a0610"
-            emissive="#ff40b0"
-            emissiveIntensity={0.14}
-            roughness={1}
-            transparent
-            opacity={0.65}
-            side={THREE.DoubleSide}
-          />
-        </mesh>
 
-        {/* Ground-level stage wash lights */}
-        <pointLight position={[-5.0, 0.3, 4.0]} color="#ff2bd6" intensity={3.0} distance={16} decay={2} />
-        <pointLight position={[5.0, 0.3, 4.0]} color="#2bfff0" intensity={2.6} distance={16} decay={2} />
-        <pointLight position={[0, 0.18, 6.5]} color="#9040ff" intensity={1.5} distance={14} decay={2} />
-        <pointLight position={[0, 0.12, -4]} color="#ff50c0" intensity={0.9} distance={10} decay={2} />
-        <pointLight position={[-3, 0.15, -1]} color="#c040ff" intensity={0.7} distance={8} decay={2} />
-        <pointLight position={[3, 0.15, -1]} color="#40e0ff" intensity={0.65} distance={8} decay={2} />
+        {/* 2 stage wash lights (was 6) — same magenta/cyan read, far less fill rate */}
+        <pointLight position={[-4.2, 0.35, 3.8]} color="#ff2bd6" intensity={3.6} distance={14} decay={2} />
+        <pointLight position={[4.2, 0.35, 3.8]} color="#2bfff0" intensity={3.2} distance={14} decay={2} />
+
+        {/* Default PerformanceMonitor drives AdaptiveDpr when FPS dips */}
+        <PerformanceMonitor />
 
         <Suspense fallback={null}>
           <Scene {...props} />
         </Suspense>
       </Canvas>
-      <p className="pipeline-badge">Kevin&apos;s Ramen &amp; Boba · orbit · click a dish</p>
+      {!beauty && (
+        <p className="pipeline-badge">Kevin&apos;s Ramen &amp; Boba · orbit · click a dish</p>
+      )}
     </div>
   )
 }

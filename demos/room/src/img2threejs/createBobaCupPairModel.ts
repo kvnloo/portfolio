@@ -38,7 +38,7 @@ function latheCupWall(): THREE.LatheGeometry {
     new THREE.Vector2(0.128, 0.36),
     new THREE.Vector2(0.122, 0.44),
   ]
-  return new THREE.LatheGeometry(pts, 48)
+  return new THREE.LatheGeometry(pts, 28)
 }
 
 /** Liquid body with surface meniscus. */
@@ -60,7 +60,7 @@ function latheLiquid(fillH: number, bottomR: number, topR: number): THREE.LatheG
   pts.push(new THREE.Vector2(topR - 0.01, fillH + 0.01))
   pts.push(new THREE.Vector2(topR * 0.55, fillH + 0.004))
   pts.push(new THREE.Vector2(0.0, fillH))
-  return new THREE.LatheGeometry(pts, 40)
+  return new THREE.LatheGeometry(pts, 24)
 }
 
 function makeStripedStraw(
@@ -191,7 +191,7 @@ function makeCup(
     ior: 1.5,
   }, w)
   const lid = new THREE.Mesh(
-    new THREE.SphereGeometry(0.138, 40, 20, 0, Math.PI * 2, 0, Math.PI * 0.52),
+    new THREE.SphereGeometry(0.138, 24, 12, 0, Math.PI * 2, 0, Math.PI * 0.52),
     lidMat,
   )
   lid.name = 'lid'
@@ -439,10 +439,10 @@ function makeCup(
     clearcoatRoughness: 0.1,
   }, w)
 
-  const pearlCount = isBrown ? 48 : 40
+  const pearlCount = isBrown ? 28 : 22
   for (let i = 0; i < pearlCount; i++) {
     const rad = 0.016 + seeded(i, 13) * 0.01
-    const pearl = new THREE.Mesh(new THREE.SphereGeometry(rad, 14, 12), i % 7 === 0 ? pearlHilite : pearlMat)
+    const pearl = new THREE.Mesh(new THREE.SphereGeometry(rad, 8, 6), i % 7 === 0 ? pearlHilite : pearlMat)
     const ang = seeded(i, 14) * Math.PI * 2
     // Density higher near bottom
     const layer = seeded(i, 15)
@@ -451,7 +451,7 @@ function makeCup(
       ? 0.035 + layer * 0.2 + seeded(i, 17) * 0.04
       : 0.04 + layer * 0.24 + seeded(i, 17) * 0.03
     pearl.position.set(Math.cos(ang) * r, y, Math.sin(ang) * r)
-    pearl.castShadow = cast
+    pearl.castShadow = false
     // Slight squash
     pearl.scale.set(1, 0.92 + seeded(i, 18) * 0.12, 1)
     g.add(pearl)
@@ -459,14 +459,14 @@ function makeCup(
 
   // Pearls sitting on lid underside for brown sugar (ref has pearls visible under dome)
   if (isBrown) {
-    for (let i = 0; i < 12; i++) {
+    for (let i = 0; i < 6; i++) {
       const pearl = new THREE.Mesh(
         new THREE.SphereGeometry(0.018 + seeded(i, 19) * 0.008, 12, 10),
         pearlMat,
       )
       const a = (i / 12) * Math.PI * 2
       pearl.position.set(Math.cos(a) * 0.07, 0.48 + seeded(i, 20) * 0.04, Math.sin(a) * 0.07)
-      pearl.castShadow = cast
+      pearl.castShadow = false
       g.add(pearl)
     }
   }
@@ -483,9 +483,9 @@ function makeCup(
     clearcoatRoughness: 0.02,
   }, w)
 
-  for (let i = 0; i < 32; i++) {
+  for (let i = 0; i < 14; i++) {
     const s = 0.005 + seeded(i, 21) * 0.007
-    const drop = new THREE.Mesh(new THREE.SphereGeometry(s, 8, 6), dropMat)
+    const drop = new THREE.Mesh(new THREE.SphereGeometry(s, 6, 4), dropMat)
     const ang = seeded(i, 22) * Math.PI * 2
     const y = 0.06 + seeded(i, 23) * 0.34
     // Sit on outer wall radius at height
