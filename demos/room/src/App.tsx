@@ -1,6 +1,6 @@
-import { useMemo, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import shopData from './data/projects.json'
-import type { Project, ShopData } from './types'
+import type { ShopData } from './types'
 import { ShopCanvas } from './ShopCanvas'
 
 const data = shopData as ShopData
@@ -16,7 +16,9 @@ const PLATES: Record<string, string> = {
 
 export default function App() {
   const [selectedId, setSelectedId] = useState<string | null>('evolve')
-  const [showRef, setShowRef] = useState(true)
+  const [ready, setReady] = useState(false)
+
+  const onReady = useCallback(() => setReady(true), [])
 
   const project = useMemo(
     () => data.projects.find((p) => p.id === selectedId) ?? null,
@@ -32,38 +34,34 @@ export default function App() {
           projects={data.projects}
           selectedId={selectedId}
           onSelect={setSelectedId}
+          onReady={onReady}
         />
+
+        {!ready && (
+          <div className="loading-overlay" aria-live="polite" aria-busy="true">
+            <div className="loading-card">
+              <p className="eyebrow">Opening tonight</p>
+              <h2 className="loading-title">{data.shopName}</h2>
+              <div className="loading-bar" />
+              <p className="loading-hint">Warming the broth…</p>
+            </div>
+          </div>
+        )}
 
         <header className="stage-chrome">
           <div>
-            <p className="eyebrow">img2threejs reconstruction</p>
+            <p className="eyebrow">Portfolio · interactive shop</p>
             <h1>{data.shopName}</h1>
             <p className="tagline">
-              Reference images rebuilt as code-only Three.js models — not photogrammetry.
+              {data.tagline} Pull up a stool — every dish is a project.
             </p>
           </div>
           <div className="chrome-actions">
-            <button type="button" className="ghost" onClick={() => setShowRef((v) => !v)}>
-              {showRef ? 'Hide reference' : 'Show reference'}
-            </button>
             <a className="ghost" href="/portfolio/">
               ← Portfolio
             </a>
           </div>
         </header>
-
-        {showRef && (
-          <div className="ref-strip" aria-label="img2threejs reference images">
-            <figure>
-              <img src={`${import.meta.env.BASE_URL}assets/ramen.jpg`} alt="Ramen reference" />
-              <figcaption>Ref → createRamenBowlModel</figcaption>
-            </figure>
-            <figure>
-              <img src={`${import.meta.env.BASE_URL}assets/boba.jpg`} alt="Boba reference" />
-              <figcaption>Ref → createBobaCupPairModel</figcaption>
-            </figure>
-          </div>
-        )}
       </div>
 
       <aside className="panel" aria-label="Project order">
@@ -111,11 +109,15 @@ export default function App() {
 
         <footer className="panel-footer">
           <p>
-            Pipeline:{' '}
-            <a href="https://github.com/img2threejs/img2threejs" target="_blank" rel="noreferrer">
-              img2threejs
-            </a>{' '}
-            forge + agent form pass · Imagine refs
+            <a href={data.contact.github} target="_blank" rel="noreferrer">
+              GitHub
+            </a>
+            {' · '}
+            <a href={data.contact.linkedin} target="_blank" rel="noreferrer">
+              LinkedIn
+            </a>
+            {' · '}
+            <a href={data.contact.email}>Email</a>
           </p>
           <p className="muted">{data.attribution}</p>
         </footer>

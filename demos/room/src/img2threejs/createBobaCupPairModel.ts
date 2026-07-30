@@ -30,14 +30,15 @@ function makeCup(
   g.name = variant === 'brown-sugar' ? 'BrownSugarBoba' : 'TaroBoba'
 
   const plastic = phys(0xe8f4ff, {
-    roughness: 0.25,
-    transmission: 0.55,
-    thickness: 0.15,
+    roughness: 0.18,
+    transmission: 0.72,
+    thickness: 0.2,
     transparent: true,
-    opacity: 0.55,
-    ior: 1.4,
-    clearcoat: 0.8,
-    clearcoatRoughness: 0.15,
+    opacity: 0.48,
+    ior: 1.46,
+    clearcoat: 1,
+    clearcoatRoughness: 0.08,
+    envMapIntensity: 1.1,
   }, w)
 
   // Cup body (slight taper)
@@ -98,11 +99,16 @@ function makeCup(
   const liquid = new THREE.Mesh(
     new THREE.CylinderGeometry(0.13, 0.15, 0.32, 32),
     phys(liquidColor, {
-      roughness: 0.2,
-      transmission: 0.25,
+      roughness: 0.14,
+      transmission: 0.35,
       transparent: true,
-      opacity: 0.92,
-      thickness: 0.5,
+      opacity: 0.9,
+      thickness: 0.65,
+      clearcoat: 0.5,
+      clearcoatRoughness: 0.15,
+      ior: 1.35,
+      attenuationColor: new THREE.Color(liquidColor),
+      attenuationDistance: 0.35,
     }, w),
   )
   liquid.position.y = 0.18

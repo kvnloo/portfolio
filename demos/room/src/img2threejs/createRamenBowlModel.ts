@@ -56,22 +56,31 @@ export function createRamenBowlModel(options: ProceduralModelOptions = {}): THRE
   const destructionGroups: Record<string, THREE.Object3D[]> = {}
 
   const ceramic = mat(0xf2ebe0, {
-    roughness: 0.42,
-    clearcoat: 0.35,
-    clearcoatRoughness: 0.35,
-    sheen: 0.15,
+    roughness: 0.28,
+    clearcoat: 0.75,
+    clearcoatRoughness: 0.18,
+    sheen: 0.22,
     sheenColor: new THREE.Color(0xe8dcc8),
+    metalness: 0.02,
   }, w)
-  const ceramicBlue = mat(0x6a8aa8, { roughness: 0.5, metalness: 0.05 }, w)
+  const ceramicBlue = mat(0x6a8aa8, {
+    roughness: 0.4,
+    metalness: 0.08,
+    clearcoat: 0.45,
+    clearcoatRoughness: 0.25,
+  }, w)
   const broth = mat(0xf0e4c8, {
-    roughness: 0.18,
-    metalness: 0.05,
-    transmission: 0.12,
-    thickness: 0.4,
+    roughness: 0.12,
+    metalness: 0.08,
+    transmission: 0.22,
+    thickness: 0.55,
     transparent: true,
-    opacity: 0.96,
-    clearcoat: 0.6,
-    clearcoatRoughness: 0.2,
+    opacity: 0.94,
+    clearcoat: 0.85,
+    clearcoatRoughness: 0.12,
+    ior: 1.33,
+    attenuationColor: new THREE.Color(0xe8c878),
+    attenuationDistance: 0.4,
   }, w)
   const noodle = mat(0xf5e6b8, { roughness: 0.65 }, w)
   const eggWhite = mat(0xfff8ee, { roughness: 0.45 }, w)

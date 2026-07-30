@@ -112,8 +112,9 @@ async function main() {
   try {
     await withChromium(async (browser) => {
       const page = await browser.newPage({ viewport: { width: 1440, height: 900 } })
-      await page.goto(origin, { waitUntil: 'networkidle', timeout: 60000 })
-      await page.waitForTimeout(800)
+      // load not networkidle — Environment HDR / fonts keep network busy
+      await page.goto(origin, { waitUntil: 'load', timeout: 60000 })
+      await page.waitForTimeout(3500)
       await page.screenshot({ path: join(outDir, '01-hero.png'), fullPage: false })
 
       // open first hotspot / menu item
