@@ -31,6 +31,11 @@ jobs:
           ref: main
           path: temp/main
 
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
       # Build main branch content to deploy root
       - name: Build main (production)
         run: |
@@ -40,7 +45,7 @@ jobs:
           cp temp/main/index.html deploy/
 
           # Copy all content directories
-          for dir in ai-engineering mobile-development frontend-development devops-systems assets; do
+          for dir in ai-engineering mobile-development frontend-development devops-systems assets demos; do
             if [ -d "temp/main/$dir" ]; then
               cp -r "temp/main/$dir" deploy/
             fi
@@ -51,11 +56,24 @@ jobs:
           [ -f "temp/main/_config.yml" ] && cp temp/main/_config.yml deploy/
           [ -f "temp/main/Gemfile" ] && cp temp/main/Gemfile deploy/
 
+          # Build interactive demos (Kevin's Ramen & Boba)
+          if [ -d "temp/main/demos/room" ]; then
+            (cd temp/main/demos/room && npm ci && npm run build)
+            mkdir -p deploy/demos/room
+            cp -r temp/main/demos/room/dist/. deploy/demos/room/
+          fi
+          if [ -d "temp/main/demos/spline" ]; then
+            (cd temp/main/demos/spline && npm ci && npm run build)
+            mkdir -p deploy/demos/spline
+            cp -r temp/main/demos/spline/dist/. deploy/demos/spline/
+          fi
+
           # Add .nojekyll to prevent Jekyll processing
           touch deploy/.nojekyll
 
           echo "✅ Main branch built to deploy/"
           ls -la deploy/
+          ls -la deploy/demos 2>/dev/null || true
 
       # Checkout dev branch to isolated directory
       - name: Checkout dev branch
@@ -73,7 +91,7 @@ jobs:
           cp temp/dev/index.html deploy/dev/
 
           # Copy all content directories to dev subdirectory
-          for dir in ai-engineering mobile-development frontend-development devops-systems assets; do
+          for dir in ai-engineering mobile-development frontend-development devops-systems assets demos; do
             if [ -d "temp/dev/$dir" ]; then
               cp -r "temp/dev/$dir" deploy/dev/
             fi
@@ -83,6 +101,22 @@ jobs:
           [ -f "temp/dev/README.md" ] && cp temp/dev/README.md deploy/dev/
           [ -f "temp/dev/_config.yml" ] && cp temp/dev/_config.yml deploy/dev/
           [ -f "temp/dev/Gemfile" ] && cp temp/dev/Gemfile deploy/dev/
+
+          # Build demos for dev preview (same bases work under /portfolio/dev/ only if base is adjusted;
+          # room/spline use /portfolio/demos/... so also publish to deploy root demos from whichever branch has them.
+          # Prefer building from dev when present so previews stay current.)
+          if [ -d "temp/dev/demos/room" ]; then
+            (cd temp/dev/demos/room && npm ci && npm run build)
+            mkdir -p deploy/demos/room deploy/dev/demos/room
+            cp -r temp/dev/demos/room/dist/. deploy/demos/room/
+            cp -r temp/dev/demos/room/dist/. deploy/dev/demos/room/
+          fi
+          if [ -d "temp/dev/demos/spline" ]; then
+            (cd temp/dev/demos/spline && npm ci && npm run build)
+            mkdir -p deploy/demos/spline deploy/dev/demos/spline
+            cp -r temp/dev/demos/spline/dist/. deploy/demos/spline/
+            cp -r temp/dev/demos/spline/dist/. deploy/dev/demos/spline/
+          fi
 
           echo "✅ Dev branch built to deploy/dev/"
           ls -la deploy/dev/

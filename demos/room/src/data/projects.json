@@ -1,0 +1,78 @@
+{
+  "shopName": "Kevin's Ramen & Boba",
+  "tagline": "Interactive shop · projects on the menu",
+  "attribution": "Interactive shop portfolio format inspired by sites like jesse-zhou.com",
+  "contact": {
+    "github": "https://github.com/kvnloo",
+    "linkedin": "https://linkedin.com/in/kevinsrajan",
+    "email": "mailto:kevinsrajan@gmail.com"
+  },
+  "projects": [
+    {
+      "id": "evolve",
+      "title": "Evolve Framework",
+      "menuName": "Miso Multi-Agent Ramen",
+      "zone": "ramen",
+      "blurb": "Multi-agent development orchestration with SPARC methodology, swarm topologies, and autonomous workflows.",
+      "tags": ["AI", "Multi-Agent", "SPARC"],
+      "demoUrl": "https://kvnloo.github.io/evolve/",
+      "repoUrl": "https://github.com/kvnloo/evolve",
+      "accent": "#e8a54b"
+    },
+    {
+      "id": "ace",
+      "title": "LawnTech ACE",
+      "menuName": "Brown Sugar Boba",
+      "zone": "boba",
+      "blurb": "Autonomous indoor racquet sports facility digital twin — React, Three.js, Gemini-powered ops concept.",
+      "tags": ["React", "Three.js", "Digital Twin"],
+      "demoUrl": "https://kvnloo.github.io/ace/",
+      "repoUrl": "https://github.com/kvnloo/ace",
+      "accent": "#c47a3a"
+    },
+    {
+      "id": "files",
+      "title": ".files",
+      "menuName": "Laptop Lunch Set",
+      "zone": "booth",
+      "blurb": "Agent-native Linux/macOS environment: Hyprland, tmux fleet, skills, onboarding, and desktop tooling.",
+      "tags": ["Agents", "Desktop", "Dotfiles"],
+      "demoUrl": "https://kvnloo.github.io/.files/",
+      "repoUrl": "https://github.com/kvnloo/.files",
+      "accent": "#6ec6ff"
+    },
+    {
+      "id": "fleet",
+      "title": "tmux-agent-fleet",
+      "menuName": "Side of Terminal Pickles",
+      "zone": "booth",
+      "blurb": "Zero-daemon, harness-neutral command palette for every coding agent across tmux panes.",
+      "tags": ["tmux", "CLI", "Agents"],
+      "demoUrl": "https://github.com/kvnloo/tmux-agent-fleet",
+      "repoUrl": "https://github.com/kvnloo/tmux-agent-fleet",
+      "accent": "#7ddea2"
+    },
+    {
+      "id": "audio",
+      "title": "AudioEngine",
+      "menuName": "Noise-Meter Nitro",
+      "zone": "audio",
+      "blurb": "iOS real-time audio — noise meter and 14-band dual-channel equalizer with deep CoreAudio work.",
+      "tags": ["Swift", "CoreAudio", "iOS"],
+      "demoUrl": "https://kvnloo.github.io/AudioEngine/",
+      "repoUrl": "https://github.com/kvnloo/AudioEngine",
+      "accent": "#b794f6"
+    },
+    {
+      "id": "monument",
+      "title": "Monument",
+      "menuName": "Taro Monument Float",
+      "zone": "boba",
+      "blurb": "Monument Valley–style isometric WebGL demo and AI game-design workbench (React, R3F).",
+      "tags": ["WebGL", "R3F", "UI"],
+      "demoUrl": "https://kvnloo.github.io/monument/",
+      "repoUrl": "https://github.com/kvnloo/monument",
+      "accent": "#f0a0c0"
+    }
+  ]
+}
