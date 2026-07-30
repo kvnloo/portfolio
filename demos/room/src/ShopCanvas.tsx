@@ -68,7 +68,7 @@ export function ShopCanvas(props: Props) {
       <Canvas
         shadows
         dpr={[1, 1.75]}
-        camera={{ position: [4.0, 2.4, 4.2], fov: 40, near: 0.1, far: 40 }}
+        camera={{ position: [2.8, 2.0, 3.6], fov: 42, near: 0.1, far: 40 }}
         gl={{
           antialias: true,
           toneMapping: THREE.ACESFilmicToneMapping,

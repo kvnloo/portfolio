@@ -260,11 +260,7 @@ export function ShopShell() {
         <boxGeometry args={[0.18, 3.2, 6.5]} />
         <meshStandardMaterial map={wallMap} color={plasterWarm} roughness={0.88} />
       </mesh>
-      {/* front partial (behind camera-ish) */}
-      <mesh position={[0, 1.6, 3.4]} receiveShadow>
-        <boxGeometry args={[10, 3.2, 0.12]} />
-        <meshStandardMaterial color="#1a1410" roughness={0.95} />
-      </mesh>
+      {/* Open front — diorama presentation (jesse-style), no solid wall blocking orbit */}
 
       {/* —— CEILING —— */}
       <mesh position={[0, 3.15, 0]} receiveShadow>
