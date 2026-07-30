@@ -1,20 +1,13 @@
 # Deployment Workflows
 
-## Current Setup
+## Current setup
 
-### deploy-unified.yml (NEW - Recommended)
-- Builds both main and dev branches in a single job
-- Main branch → root of gh-pages
-- Dev branch → dev/ subdirectory
-- Prevents overwriting between deployments
-- Matches the working pattern from the ACE repository
+### `deploy-unified.yml` (active)
+- Builds **main** and **dev** in one job with isolated checkouts (`temp/main`, `temp/dev`)
+- **main** → site root (`https://kvnloo.github.io/portfolio/`)
+- **dev** → `dev/` subdirectory (`https://kvnloo.github.io/portfolio/dev/`)
+- Writes `.nojekyll` and publishes via GitHub Pages (`actions/upload-pages-artifact` + `deploy-pages`)
 
-### Legacy Workflows (Can be removed after unified workflow is verified)
-- deploy-main.yml - Old production deployment
-- deploy-dev.yml - Old dev deployment
+See also: [`docs/DEPLOYMENT_FIX.md`](../../docs/DEPLOYMENT_FIX.md) for the multi-workflow overwrite fix history.
 
-## Migration Plan
-
-1. Test deploy-unified.yml by pushing to main or dev
-2. Verify both https://kvnloo.github.io/portfolio/ and https://kvnloo.github.io/portfolio/dev/ work
-3. Remove deploy-main.yml and deploy-dev.yml after verification
+Legacy `deploy-main.yml` / `deploy-dev.yml` were retired in favor of the unified workflow.

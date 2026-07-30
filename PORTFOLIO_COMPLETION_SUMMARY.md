@@ -1,7 +1,7 @@
 # Portfolio Redesign - Completion Summary
 **Date:** November 9, 2025
 **Developer:** Kevin Rajan
-**Repository:** github.com/kvnloo/evolve/repos/portfolio
+**Repository:** github.com/kvnloo/portfolio
 
 ---
 
@@ -23,7 +23,7 @@ portfolio/
 │   └── pixel-perfect-ui.md
 ├── mobile-development/
 │   ├── README.md
-│   ├── phase-i-wireframe.md
+│   ├── audio-engine.md
 │   ├── hackillinois.md
 │   └── assets-hackillinois/ (migrated)
 ├── frontend-development/
@@ -224,7 +224,7 @@ Each project includes:
 - [x] evolve-framework.md (AI flagship)
 - [x] flowstate-bci.md (BCI application)
 - [x] pixel-perfect-ui.md (AI workflow + Frontend)
-- [x] phase-i-wireframe.md (iOS technical depth)
+- [x] audio-engine.md (iOS technical depth; formerly PhaseIWireframe)
 - [x] hackillinois.md (iOS consumer app)
 - [x] dotfiles.md (DevOps)
 

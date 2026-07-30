@@ -1,0 +1,28 @@
+# Normalize text files
+* text=auto eol=lf
+
+# Explicit text
+*.md text eol=lf
+*.html text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.css text eol=lf
+*.js text eol=lf
+*.json text eol=lf
+*.svg text eol=lf
+
+# Binary assets (HackIllinois mockups / media)
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.ico binary
+*.pdf binary
+*.psd binary
+*.zip binary
+*.7z binary
+*.mkv binary
+*.mov binary
+*.mp4 binary
+*.canvas binary

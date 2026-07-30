@@ -6,7 +6,7 @@ Production-quality iOS applications showcasing advanced audio processing, Fireba
 
 ## Featured Projects
 
-### 1. [PhaseIWireframe](phase-i-wireframe.md) ⭐⭐ TECHNICAL DEPTH
+### 1. [AudioEngine (PhaseIWireframe)](audio-engine.md) ⭐⭐ TECHNICAL DEPTH
 **Real-Time Audio Processing Application**
 
 Dual-purpose iOS app implementing both a real-time noise meter and a 14-band dual-channel audio equalizer with Firebase cloud integration.

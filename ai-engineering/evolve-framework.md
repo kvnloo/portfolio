@@ -10,21 +10,23 @@
 ## Achievement
 
 # 84.8% SWE-Bench Solve Rate
-### Industry-leading autonomous code problem resolution
+### High autonomous code problem-resolution performance (framework-reported)
+
+> **Note:** The 84.8% figure and related efficiency metrics below are reported from Evolve framework evaluation materials. For hiring or external citation, confirm the exact SWE-Bench variant (e.g. Lite vs full), harness, model stack, and whether results are official leaderboard submissions vs internal runs. Source repo: [kvnloo/evolve](https://github.com/kvnloo/evolve).
 
 ---
 
 ## Overview
 
-Integrated framework combining 54+ specialized AI agents with Byzantine fault tolerance, SPARC methodology, and zero context loss across development sessions.
+Integrated framework combining 54+ specialized AI agents with Byzantine fault tolerance, SPARC methodology, and durable context across development sessions.
 
-**Problem Solved:** Traditional AI-assisted development suffers from lost context and inconsistent quality. Evolve provides systematic multi-agent coordination with proven quality gates.
+**Problem Solved:** Traditional AI-assisted development suffers from lost context and inconsistent quality. Evolve provides systematic multi-agent coordination with quality gates.
 
-**Results:**
-- **84.8% SWE-Bench** - State-of-the-art benchmark performance
-- **4.4x faster** - Parallel multi-agent execution
-- **32.3% cost reduction** - Token efficiency through coordination
-- **Zero context loss** - Perfect cross-session memory
+**Results (framework-reported):**
+- **84.8% SWE-Bench** — strong benchmark performance under the Evolve evaluation setup
+- **4.4x faster** — parallel multi-agent execution
+- **32.3% cost reduction** — token efficiency through coordination
+- **Zero context loss** — cross-session memory design goal
 
 ---
 
