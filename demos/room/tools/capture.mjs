@@ -114,7 +114,27 @@ async function main() {
       const page = await browser.newPage({ viewport: { width: 1440, height: 900 } })
       // load not networkidle — Environment HDR / fonts keep network busy
       await page.goto(origin, { waitUntil: 'load', timeout: 60000 })
-      await page.waitForTimeout(3500)
+      // Wait for loading overlay to clear (first WebGL frame ready)
+      await page.waitForSelector('.loading-overlay', { state: 'detached', timeout: 20000 }).catch(() => {})
+      await page.waitForTimeout(2500)
+      // Ensure canvas has painted non-black pixels (retry)
+      for (let i = 0; i < 5; i++) {
+        const dark = await page.evaluate(() => {
+          const c = document.querySelector('canvas')
+          if (!c) return true
+          const ctx = document.createElement('canvas')
+          ctx.width = 64
+          ctx.height = 36
+          const g = ctx.getContext('2d')
+          g.drawImage(c, 0, 0, 64, 36)
+          const d = g.getImageData(0, 0, 64, 36).data
+          let sum = 0
+          for (let j = 0; j < d.length; j += 4) sum += d[j] + d[j + 1] + d[j + 2]
+          return sum < 500
+        })
+        if (!dark) break
+        await page.waitForTimeout(1200)
+      }
       await page.screenshot({ path: join(outDir, '01-hero.png'), fullPage: false })
 
       // open first hotspot / menu item

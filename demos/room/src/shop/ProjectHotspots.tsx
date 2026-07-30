@@ -220,7 +220,7 @@ export function ProjectHotspots({ projects, selectedId, onSelect }: Props) {
   return (
     <group name="ProjectHotspots">
       {/* Ramen on counter — evolve */}
-      <group position={[-0.5, 0.95, -1.35]} scale={0.85}>
+      <group position={[-0.85, 1.02, -0.45]} scale={0.9}>
         <HotspotRoot
           selected={selectedId === 'evolve'}
           hovered={hovered === 'evolve'}
@@ -237,7 +237,7 @@ export function ProjectHotspots({ projects, selectedId, onSelect }: Props) {
       </group>
 
       {/* Boba pair on counter — ace + monument */}
-      <group position={[0.85, 0.95, -1.4]} scale={0.95}>
+      <group position={[0.75, 1.02, -0.5]} scale={1.0}>
         <HotspotRoot
           selected={bobaSelected}
           hovered={hovered === 'boba'}
@@ -280,7 +280,7 @@ export function ProjectHotspots({ projects, selectedId, onSelect }: Props) {
       </group>
 
       {/* Laptop on booth table — files + fleet */}
-      <group position={[-2.65, 0.75, 0.3]} rotation={[0, 0.55, 0]} scale={1.15}>
+      <group position={[-1.5, 0.76, 1.0]} rotation={[0, 0.4, 0]} scale={1.15}>
         <HotspotRoot
           selected={laptopSelected}
           hovered={hovered === 'laptop'}
@@ -318,7 +318,7 @@ export function ProjectHotspots({ projects, selectedId, onSelect }: Props) {
       </group>
 
       {/* Headphones near counter end — audio */}
-      <group position={[2.55, 0.98, -1.15]} scale={1.4}>
+      <group position={[1.65, 1.05, -0.35]} scale={1.45}>
         <HotspotRoot
           selected={selectedId === 'audio'}
           hovered={hovered === 'audio'}

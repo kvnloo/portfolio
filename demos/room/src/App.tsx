@@ -53,7 +53,7 @@ export default function App() {
             <p className="eyebrow">Portfolio · interactive shop</p>
             <h1>{data.shopName}</h1>
             <p className="tagline">
-              {data.tagline} Pull up a stool — every dish is a project.
+              Interactive shop · projects on the menu · pull up a stool
             </p>
           </div>
           <div className="chrome-actions">

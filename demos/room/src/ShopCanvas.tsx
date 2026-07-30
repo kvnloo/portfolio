@@ -18,16 +18,14 @@ function FirstFrameReady({ onReady }: { onReady?: () => void }) {
   useEffect(() => {
     if (!onReady) return
     let cancelled = false
-    // Wait two frames so Environment/maps have a chance to settle
     const id = requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         if (!cancelled) onReady()
       })
     })
-    // Fallback if rAF is delayed
     const t = window.setTimeout(() => {
       if (!cancelled) onReady()
-    }, 1200)
+    }, 1500)
     return () => {
       cancelled = true
       cancelAnimationFrame(id)
@@ -43,19 +41,18 @@ function Scene({ projects, selectedId, onSelect, onReady }: Props) {
       <FirstFrameReady onReady={onReady} />
       <ShopShell />
       <ProjectHotspots projects={projects} selectedId={selectedId} onSelect={onSelect} />
-      {/* Night exterior mood; apartment fill for soft interior reflections */}
-      <Environment preset="apartment" environmentIntensity={0.4} />
+      <Environment preset="night" environmentIntensity={0.35} />
       <OrbitControls
         makeDefault
-        target={[0.1, 1.0, -0.8]}
-        minPolarAngle={0.45}
-        maxPolarAngle={1.4}
-        minAzimuthAngle={-1.1}
-        maxAzimuthAngle={1.25}
-        minDistance={2.2}
-        maxDistance={8}
+        target={[0, 1.15, -0.15]}
+        minPolarAngle={0.3}
+        maxPolarAngle={1.45}
+        minAzimuthAngle={-1.5}
+        maxAzimuthAngle={1.5}
+        minDistance={2.5}
+        maxDistance={12}
         enablePan={false}
-        dampingFactor={0.06}
+        dampingFactor={0.055}
         enableDamping
       />
     </>
@@ -67,33 +64,49 @@ export function ShopCanvas(props: Props) {
     <div className="canvas-host">
       <Canvas
         shadows
-        dpr={[1, 1.75]}
-        camera={{ position: [2.8, 2.0, 3.6], fov: 42, near: 0.1, far: 40 }}
+        dpr={[1, 1.85]}
+        camera={{ position: [4.8, 2.8, 5.6], fov: 38, near: 0.1, far: 50 }}
         gl={{
           antialias: true,
           toneMapping: THREE.ACESFilmicToneMapping,
-          toneMappingExposure: 1.05,
+          toneMappingExposure: 1.28,
           powerPreference: 'high-performance',
         }}
         onCreated={({ gl }) => {
           gl.toneMapping = THREE.ACESFilmicToneMapping
-          gl.toneMappingExposure = 1.05
+          gl.toneMappingExposure = 1.28
         }}
       >
         <color attach="background" args={['#000000']} />
-        <fog attach="fog" args={['#050208', 8, 18]} />
-        {/* jesse-zhou stage: neon ground wash */}
-        <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.02, 0]} receiveShadow>
-          <circleGeometry args={[7, 64]} />
+        <fog attach="fog" args={['#020008', 11, 22]} />
+
+        {/* jesse-style stage wash — stronger magenta/cyan */}
+        <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.05, 0]} receiveShadow>
+          <circleGeometry args={[10, 72]} />
           <meshStandardMaterial
-            color="#120818"
-            emissive="#6b2cff"
-            emissiveIntensity={0.18}
+            color="#0c0818"
+            emissive="#7a28e8"
+            emissiveIntensity={0.38}
             roughness={0.9}
           />
         </mesh>
-        <pointLight position={[-3, 0.2, 2]} color="#ff2bd6" intensity={1.2} distance={10} />
-        <pointLight position={[3, 0.2, 2]} color="#2bfff0" intensity={1.0} distance={10} />
+        <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.04, 0]}>
+          <ringGeometry args={[2.8, 7.2, 72]} />
+          <meshStandardMaterial
+            color="#0a0614"
+            emissive="#ff2db0"
+            emissiveIntensity={0.16}
+            roughness={1}
+            transparent
+            opacity={0.75}
+            side={THREE.DoubleSide}
+          />
+        </mesh>
+        <pointLight position={[-4.5, 0.35, 3.5]} color="#ff2bd6" intensity={2.4} distance={14} />
+        <pointLight position={[4.5, 0.35, 3.5]} color="#2bfff0" intensity={2.0} distance={14} />
+        <pointLight position={[0, 0.2, 5.5]} color="#9040ff" intensity={1.2} distance={12} />
+        <pointLight position={[0, 0.15, -3]} color="#ff60c0" intensity={0.7} distance={8} />
+
         <Suspense fallback={null}>
           <Scene {...props} />
         </Suspense>
