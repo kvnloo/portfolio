@@ -13,7 +13,8 @@ Autonomous loops ran without user input:
 | prompt-loop-01/02/03 | Immersive shell, open-front fix | `shots/prompt-loop-*` |
 | overnight-01 | Neon stall diorama rewrite + prop v2 | `shots/overnight-01` |
 | overnight-02 | Wider framing, roof clutter, noren | `shots/overnight-02` |
-| overnight-03 | Stage saturation/exposure punch | `shots/overnight-03` **(best)** |
+| overnight-03 | (black frame — capture too early) | discard |
+| overnight-03b | Exposure + capture wait fix | `shots/overnight-03b` **(best)** |
 
 ### Systems in place
 - **ShopShell:** compact neon stall (not empty props-on-plane), awning, neon Kevin’s sign, signpost, chalkboard, bottles, roof clutter, lanterns, steam, Imagine wood/wall maps
