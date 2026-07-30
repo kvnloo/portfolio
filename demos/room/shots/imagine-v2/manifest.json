@@ -1,0 +1,11 @@
+{
+  "label": "imagine-v2",
+  "origin": "http://127.0.0.1:4177/portfolio/demos/room/",
+  "rubric": "docs/VISUAL-BAR.md",
+  "shots": [
+    "01-hero.png",
+    "02-project-panel.png",
+    "03-hotspot.png"
+  ],
+  "note": "Critic must score against VISUAL-BAR.md; regenerate Imagine assets if < 8 avg."
+}
