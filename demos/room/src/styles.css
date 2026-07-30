@@ -121,31 +121,66 @@ body,
 }
 
 .r3f-label {
-  padding: 0.34rem 0.7rem;
+  padding: 0.38rem 0.85rem;
   border-radius: 999px;
-  font-size: 0.68rem;
+  font-size: 0.7rem;
   font-weight: 600;
-  color: #faf3ea;
+  color: #fff8f0;
   background:
-    linear-gradient(180deg, rgba(28, 18, 12, 0.92), rgba(10, 7, 6, 0.88));
-  border: 1px solid rgba(255, 186, 110, 0.5);
+    linear-gradient(
+      165deg,
+      rgba(42, 26, 16, 0.96),
+      rgba(14, 9, 7, 0.94) 52%,
+      rgba(8, 5, 4, 0.95)
+    );
+  border: 1px solid rgba(255, 190, 120, 0.58);
   white-space: nowrap;
   font-family: 'DM Sans', system-ui, sans-serif;
   box-shadow:
-    0 8px 22px rgba(0, 0, 0, 0.5),
-    0 0 12px rgba(255, 140, 60, 0.12);
-  letter-spacing: 0.02em;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.55);
-  backdrop-filter: blur(6px);
+    0 10px 26px rgba(0, 0, 0, 0.6),
+    0 0 18px rgba(255, 140, 60, 0.18),
+    inset 0 1px 0 rgba(255, 230, 190, 0.16);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(10px);
 }
 
 .r3f-label.selected {
-  border-color: rgba(255, 210, 140, 0.9);
+  border-color: rgba(255, 220, 160, 0.95);
   box-shadow:
-    0 0 18px rgba(255, 160, 80, 0.4),
-    0 8px 24px rgba(0, 0, 0, 0.5);
+    0 0 24px rgba(255, 160, 80, 0.52),
+    0 10px 28px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(255, 236, 200, 0.22);
   background:
-    linear-gradient(180deg, rgba(42, 26, 14, 0.95), rgba(14, 9, 6, 0.9));
+    linear-gradient(
+      165deg,
+      rgba(62, 36, 16, 0.97),
+      rgba(22, 12, 7, 0.95) 58%,
+      rgba(12, 7, 5, 0.96)
+    );
+}
+
+/* Secondary dual-project chip (boba→monument, etc.) */
+.r3f-label-alt {
+  font-size: 0.62rem;
+  font-weight: 600;
+  opacity: 0.94;
+  text-transform: uppercase;
+  letter-spacing: 0.045em;
+  border-color: rgba(255, 175, 205, 0.5);
+  box-shadow:
+    0 8px 18px rgba(0, 0, 0, 0.48),
+    0 0 12px rgba(240, 140, 180, 0.16),
+    inset 0 1px 0 rgba(255, 220, 230, 0.12);
+}
+
+.r3f-label-alt:hover {
+  opacity: 1;
+  border-color: rgba(255, 195, 215, 0.78);
+  box-shadow:
+    0 0 16px rgba(255, 150, 190, 0.28),
+    0 8px 18px rgba(0, 0, 0, 0.48);
 }
 
 .stage-chrome {

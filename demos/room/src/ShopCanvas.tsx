@@ -95,18 +95,23 @@ function Scene({ projects, selectedId, onSelect, onReady }: Props) {
       <CameraBridge />
       <ShopShell />
       <ProjectHotspots projects={projects} selectedId={selectedId} onSelect={onSelect} />
-      {/* Night IBL — ceramic clearcoat / glass bottles need catch lights */}
-      <Environment preset="night" environmentIntensity={0.42} />
+      {/* Night IBL — residual #6: glass-tube IOR + ceramic/wood clearcoat catch (not mush) */}
+      <Environment preset="night" environmentIntensity={0.72} />
       <EffectComposer multisampling={0} enableNormalPass={false}>
-        {/* Bloom: lower threshold so lantern cores + paper shells soft-glow; steam stays soft via smoothing */}
+        {/*
+          Residual #6 bloom (loop-r6): hot white neon plasma cores + tube gas only.
+          Higher threshold kills midtone wash / blown signpost globes / lantern shells so
+          glass-tube IOR and counter varnish read; soft mipmap keeps multi-layer tube halo
+          (not flat emissive-quad billboard).
+        */}
         <Bloom
-          intensity={0.96}
-          luminanceThreshold={0.28}
-          luminanceSmoothing={0.64}
+          intensity={1.08}
+          luminanceThreshold={0.34}
+          luminanceSmoothing={0.68}
           mipmapBlur
           levels={5}
         />
-        <Vignette offset={0.26} darkness={0.52} />
+        <Vignette offset={0.22} darkness={0.52} />
       </EffectComposer>
       <OrbitControls
         makeDefault
@@ -130,15 +135,15 @@ function Scene({ projects, selectedId, onSelect, onReady }: Props) {
 /**
  * Performance-tuned canvas:
  * - dpr capped (1–1.5) + AdaptiveDpr regress under load
- * - stage rim (2) + warm lantern key + cool window + neon bounce (5 total; no per-tube)
+ * - stage rim (2) + dual lantern-neighbor keys + cool window + neon bounce (6; no per-tube)
  * - shadow maps 1024, single caster (in ShopShell)
  * - preserveDrawingBuffer only in beauty/capture
- * - bloom levels 5; night fog for depth layering (near clear / far void)
+ * - bloom levels 5; night fog depth (near readable / far void)
  */
 export function ShopCanvas(props: Props) {
   const beauty = !!props.beauty
-  // Warm interior so ceramic/wood clearcoat catch; void still dark via fog
-  const exposure = 1.34
+  // Residual #6 / loop-r6: keep wood varnish + ceramic clearcoat lit; avoid globe/lantern blowout
+  const exposure = 1.48
 
   return (
     <div className="canvas-host">
@@ -164,73 +169,86 @@ export function ShopCanvas(props: Props) {
         }}
       >
         <color attach="background" args={['#000000']} />
-        {/* Night fog: near stall stays readable; denser far void for depth (critic: soft depth lacking) */}
-        <fog attach="fog" args={['#06030c', 8.2, 19.5]} />
+        {/*
+          Residual #6 / loop-r6 atmosphere: cool-violet void → pure black like jesse ground falloff.
+          Near holds counter/food readable; far eats shell edges into void (depth layers).
+        */}
+        <fog attach="fog" args={['#03010e', 5.6, 15.8]} />
 
         {/*
-          Stage ground — soft gradient disc, NOT harsh purple/cyan ring tell.
-          Outer fades via fog; inner warm wash under kiosk (lantern key spill).
+          Stage ground — soft jesse-class purple→cyan gradient (NOT hard L/R color-split tell).
+          Base disc: cool violet void. Center: warm lantern/neon spill under stall.
+          Side washes: larger radius + lower opacity + more overlap so L→R blends seamlessly.
         */}
         <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.06, 0.15]} receiveShadow>
-          <circleGeometry args={[14, 64]} />
+          <circleGeometry args={[15, 64]} />
           <meshStandardMaterial
-            color="#06040c"
-            emissive="#3a1868"
-            emissiveIntensity={0.2}
-            roughness={0.96}
+            color="#03010a"
+            emissive="#2e1058"
+            emissiveIntensity={0.42}
+            roughness={0.98}
           />
         </mesh>
-        {/* Soft warm-pink pool under stall — sells lantern spill on ground */}
-        <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.052, 0.25]}>
-          <circleGeometry args={[6.2, 48]} />
+        {/* Warm-magenta pool under stall — lantern + neon fascia neighbor spill on ground */}
+        <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0.05, -0.052, 0.25]}>
+          <circleGeometry args={[8.2, 48]} />
           <meshStandardMaterial
-            color="#0a0612"
-            emissive="#b02860"
-            emissiveIntensity={0.22}
+            color="#0a0610"
+            emissive="#b02870"
+            emissiveIntensity={0.52}
             roughness={1}
             transparent
             opacity={0.58}
           />
         </mesh>
-        {/* Faint cyan side wash — cool window spill on stage floor */}
-        <mesh rotation={[-Math.PI / 2, 0, 0]} position={[2.8, -0.048, 1.2]}>
-          <circleGeometry args={[5.5, 40]} />
+        {/* Cool cyan floor wash (R) — large, soft, overlaps warm center (no hard seam) */}
+        <mesh rotation={[-Math.PI / 2, 0, 0]} position={[2.8, -0.048, 1.1]}>
+          <circleGeometry args={[8.6, 40]} />
           <meshStandardMaterial
-            color="#04060c"
-            emissive="#18c0b8"
-            emissiveIntensity={0.14}
+            color="#03060c"
+            emissive="#14b8c8"
+            emissiveIntensity={0.18}
             roughness={1}
             transparent
-            opacity={0.38}
+            opacity={0.28}
           />
         </mesh>
-        <mesh rotation={[-Math.PI / 2, 0, 0]} position={[-2.8, -0.048, 1.2]}>
-          <circleGeometry args={[5.5, 40]} />
+        {/* Magenta floor wash (L / signpost) — soft blend into warm center */}
+        <mesh rotation={[-Math.PI / 2, 0, 0]} position={[-2.6, -0.048, 1.0]}>
+          <circleGeometry args={[8.4, 40]} />
           <meshStandardMaterial
-            color="#06040c"
-            emissive="#c028a0"
-            emissiveIntensity={0.12}
+            color="#06030c"
+            emissive="#a82090"
+            emissiveIntensity={0.16}
             roughness={1}
             transparent
-            opacity={0.32}
+            opacity={0.26}
           />
         </mesh>
-
-        {/* ── Soft stage rim washes (magenta L / cyan R) — dialed so interior key reads ── */}
-        <pointLight position={[-4.0, 0.55, 3.6]} color="#ff2bd6" intensity={2.15} distance={14} decay={2} />
-        <pointLight position={[4.0, 0.55, 3.6]} color="#2bfff0" intensity={1.95} distance={14} decay={2} />
 
         {/*
-          Residual #1 / critic bounce-fill:
-          Emissive materials never light neighbors — short-range real lights co-located with
-          lantern cluster + cool “window” fill + neon fascia bounce (5 total, no per-tube bloat).
+          Soft stage rims — real lights so ground + stall flanks pick up color (emissive discs
+          alone never light neighbors). Lower intensity + longer distance = soft jesse gradient,
+          not hard L/R color bands.
         */}
-        {/* Warm lantern key — under-awning cluster lights wood/counter/food neighbors */}
-        <pointLight position={[-0.35, 2.16, 0.18]} color="#ff9a55" intensity={5.4} distance={4.2} decay={2} />
-        {/* Cool night-window bounce — back-left fill so warm key has contrast (not ambient mush) */}
-        <pointLight position={[-2.55, 2.4, -1.35]} color="#5a9cff" intensity={3.4} distance={7.2} decay={2} />
-        {/* Neon fascia short bounce — pink wash on brand / upper fascia */}
-        <pointLight position={[0.05, 2.58, 1.08]} color="#ff48c8" intensity={3.1} distance={4.0} decay={2} />
+        <pointLight position={[-4.8, 0.55, 3.6]} color="#e832c0" intensity={1.35} distance={18} decay={2} />
+        <pointLight position={[4.8, 0.55, 3.6]} color="#24e0d8" intensity={1.28} distance={18} decay={2} />
+
+        {/*
+          Residual #6 / loop-r6 — warm key + cool window bounce; emissives light neighbors:
+          Dual warm keys sit *below* paper lanterns (y≈1.45–1.55) so counter wood, stools,
+          ceramic/glass catch value without cooking lantern shells. Cool window sculpts contrast
+          (no ambient mush). Neon fascia pink washes brand housing / letterforms / awning edge
+          so tubes light neighbors (not pure self-emissive quads). Budget: 6 point lights.
+        */}
+        {/* Warm lantern L — under left paper lantern; lights ramen / left counter / noren / stools */}
+        <pointLight position={[-1.35, 1.48, 0.35]} color="#ff9a52" intensity={11.5} distance={6.8} decay={2} />
+        {/* Warm lantern C-R span — center→right lanterns; lights boba / mid-right counter / apron / stools */}
+        <pointLight position={[0.75, 1.52, 0.42]} color="#ffc070" intensity={10.8} distance={6.6} decay={2} />
+        {/* Cool night-window bounce — back-left; blue fill sculpts warm key on counter edge / stools */}
+        <pointLight position={[-2.15, 2.35, -1.55]} color="#5aa0ff" intensity={7.6} distance={10.2} decay={2} />
+        {/* Neon fascia bounce — pink wash on brand housing / letterforms / awning underside (neighbor spill) */}
+        <pointLight position={[0.05, 2.72, 1.15]} color="#ff48c8" intensity={6.8} distance={6.4} decay={2} />
 
         {/* Default PerformanceMonitor drives AdaptiveDpr when FPS dips */}
         <PerformanceMonitor />

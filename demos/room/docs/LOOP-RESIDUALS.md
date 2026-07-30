@@ -3,12 +3,12 @@
 **Date:** 2026-07-30  
 **Bar:** harsh blind compare vs **jesse-zhou.com** (`prompt.md` ship gate)  
 **Rubric:** `docs/VISUAL-BAR.md`  
-**Honesty:** `docs/PROMPT-TRUTH.md` · latest critic `docs/CRITIC-PASS-loop-r1.md`  
+**Honesty:** `docs/PROMPT-TRUTH.md` · latest critic `docs/CRITIC-PASS-loop-r6.md`  
 **Ship gate:** **OPEN** — not met; continue loop
 
-| Field (loop-r1 critic) | Value |
+| Field (loop-r6 critic) | Value |
 |------------------------|------:|
-| capture_label | `loop-r1` |
+| capture_label | `loop-r6` |
 | capture_ok | **true** |
 | usable_critics | 3 |
 | ship_votes | 0 |
@@ -28,10 +28,15 @@ This file is the residual backlog for the quality loop.
 
 | Role | Path | Notes |
 |------|------|--------|
-| **Best beauty still (R3F)** | `demos/room/shots/loop-r1/01-beauty-hero.png` | Valid non-black; craft still fails bar |
-| **Front brand check** | `demos/room/shots/loop-r1/03-beauty-front.png` | Brand readable; neon face still flat graphic |
-| **Counter crop** | `demos/room/shots/loop-r1/04-beauty-counter.png` | Wood / ramen / boba residuals most visible |
-| **Prior beauty** | `demos/room/shots/critic-v3/01-beauty-hero.png` | Keep for regression |
+| **Best beauty still (R3F)** | `demos/room/shots/loop-r6/01-beauty-hero.png` | Valid non-black; craft still fails bar |
+| **Front brand check** | `demos/room/shots/loop-r6/03-beauty-front.png` | Brand/noren residual check |
+| **Counter crop** | `demos/room/shots/loop-r6/04-beauty-counter.png` | Countertop / ramen / boba residuals most visible |
+| **Prior beauty (loop-r5)** | `demos/room/shots/loop-r5/01-beauty-hero.png` | Keep for regression |
+| **Prior beauty (loop-r4)** | `demos/room/shots/loop-r4/01-beauty-hero.png` | Keep for regression |
+| **Prior beauty (loop-r3)** | `demos/room/shots/loop-r3/01-beauty-hero.png` | Keep for regression |
+| **Prior beauty (loop-r2)** | `demos/room/shots/loop-r2/01-beauty-hero.png` | Keep for regression |
+| **Prior beauty (loop-r1)** | `demos/room/shots/loop-r1/01-beauty-hero.png` | Keep for regression |
+| **Prior beauty (critic-v3)** | `demos/room/shots/critic-v3/01-beauty-hero.png` | Keep for regression |
 | **Best overnight + UI** | `demos/room/shots/overnight-03b/01-hero.png` | Full chrome + project panel |
 | **Jesse ref (stall)** | `demos/room/shots/ref-jesse-zhou-02.png` | Primary blind target — neon night-market diorama |
 | **Jesse ref (intro)** | `demos/room/shots/ref-jesse-zhou-01.png` | START screen only — not craft bar |
@@ -39,56 +44,56 @@ This file is the residual backlog for the quality loop.
 | **Discard / weak** | `shots/overnight-03/` (too early), `shots/loop-proper-01/` (black frame) | Do not score |
 
 **Primary blind pair for next critic:**  
-`loop-r1/01-beauty-hero.png` **vs** `ref-jesse-zhou-02.png`  
-(secondary: `loop-r1/04-beauty-counter.png` for material residuals)
+`loop-r6/01-beauty-hero.png` **vs** `ref-jesse-zhou-02.png`  
+(secondary: `loop-r6/04-beauty-counter.png` for material residuals)
 
 ---
 
 ## Current state (one line)
 
-**loop-r1 critic (3 usable, 0 ship, 0 prefer):** captures valid (`capture_ok=true`) but materials fail hard — lanterns/awnings read **solid candy plastic**, wood is **uniform brown without grain/varnish**, boba **meniscus/condense weak**, ramen **glaze soft + toy toppings**, menu boards / ceiling floats = **untextured albedo planes**, neon sign face = **flat emissive graphic** not glass tubing. Blind pick still **jesse-zhou**; nowhere near average ≥ 8.
+**loop-r6 critic (3 usable, 0 ship, 0 prefer):** captures valid (`capture_ok=true`) but materials fail hard — **ramen** ceramic lacks clearcoat/glaze ring; broth + noodles read soft/plastic not liquid/food; **boba** weak pearl volume, no condensation, generic cylinder transmission vs premium plastic/glass; **noren/menu** flat color slabs (no fabric weave, chalk, micro-roughness); **floor / stool legs / shell walls** default matte plastic primitives; **faucet/sink/metal rail** lack metalness/anisotropy — chrome missing; **counter wood grain/varnish is the only surface that approaches bar** — props do not match it. Blind pick still **jesse-zhou**; nowhere near average ≥ 8.
 
 Key code: `src/shop/ShopShell.tsx`, `src/ShopCanvas.tsx`, `src/shop/ProjectHotspots.tsx`, `src/img2threejs/createRamenBowlModel.ts`, `src/img2threejs/createBobaCupPairModel.ts`, `tools/capture.mjs`.
 
 ---
 
-## Top residuals (by blind-compare impact) — refreshed after loop-r1 critic
+## Top residuals (by blind-compare impact) — refreshed after loop-r6 critic
 
-### 1. Lanterns + awnings — paper / fabric, not candy plastic — `lighting` · `shell` — **OPEN**
-- **Why (critic):** Lanterns/awnings = solid candy plastic; **zero paper translucency or fabric sheen**.
-- **Do:** Lanterns → paper-like **transmission** or thin **emissive shell with falloff** (not solid matte pink Standard orbs). Awnings/noren → fabric **roughness + sheen/alpha / fold normal** — kill scallop candy mass.
-- **Where:** `PaperLantern`, `ScallopedAwning`, noren block in `ShopShell.tsx`.
-- **Prove:** warm glow with soft paper edge; fabric reads cloth not plastic; Lighting / Not-toy ≥ 8.
-
-### 2. Counter / stools / desk wood — grain + varnish — `shell` — **OPEN**
-- **Why (critic):** Wood lacks **grain + varnish variation** vs jesse warm timber.
-- **Do:** Wood **albedo + roughness** maps (or strong procedural grain); **edge varnish** strip; **contact darkening** under props — kill uniform brown Standard.
-- **Where:** counter / stool / desk meshes in `ShopShell.tsx` (`tex-wood.jpg` or better authored maps).
-- **Prove:** counter crop shows grain + edge sheen + contact; Material ≥ 8.
-
-### 3. Boba cups — meniscus / condensation / transmission — `boba` — **OPEN**
-- **Why (critic):** Weak liquid **meniscus/condensation**; **transmission only middling**.
-- **Do:** Cup **transmission / thickness / IOR**; liquid **attenuationColor + thickness** + visible **meniscus ring**; exterior **roughness noise** for condensation; **straw anisotropy**.
-- **Where:** `createBobaCupPairModel.ts`.
-- **Prove:** beauty/counter crop; liquid reads wet glass; Not-toy ≥ 8 on cups.
-
-### 4. Ramen ceramic glaze + food toppings — `ramen` — **OPEN**
-- **Why (critic):** Ceramic glaze **soft**; toppings read **toy prims**, not food materials.
-- **Do:** Bowl `MeshPhysicalMaterial` with **clearcoat + clearcoatRoughness + envMap**; layered broth with slight **transmission/roughness**; egg/nori/chashu as **distinct food materials**, not solid colored spheres/boxes.
+### 1. Ramen bowl — ceramic clearcoat / glaze ring; broth + noodles as liquid/food — `ramen` — **OPEN**
+- **Why (critic):** Ceramic lacks clearcoat/glaze ring; broth + noodles read **soft/plastic**, not liquid/food surface.
+- **Do:** Bowl **ceramic glaze + clearcoat + glaze ring**; broth as **liquid surface** (spec/roughness/translucency); noodles as **food form** (kill soft plastic mass).
 - **Where:** `createRamenBowlModel.ts`; counter deco in `ShopShell`.
 - **Prove:** beauty/counter crop; Material / Not-toy ≥ 8 on food.
 
-### 5. Menu boards + ceiling floats — textured surfaces — `shell` · `ui` — **OPEN**
-- **Why (critic):** Menu boards + ceiling floats = **untextured albedo planes** (hobby fail).
-- **Do:** Authored **albedo + roughness** (chalkboard grain, paper, metal trim); kill raw colored planes as hero mass; ceiling floaters need thickness/trim or remove.
-- **Where:** menu board block + ceiling prop meshes in `ShopShell.tsx`.
-- **Prove:** front/hero stills no flat-plane hobby tell; Not-toy ≥ 8.
+### 2. Boba — pearl volume, condensation, premium cup transmission — `boba` — **OPEN**
+- **Why (critic):** Weak **pearl volume**, **no condensation**, **generic cylinder transmission** vs premium plastic/glass.
+- **Do:** **Pearl sphere volume** + depth; exterior **condensation**; cup as **premium plastic/glass transmission** (not generic frosted cylinder).
+- **Where:** `createBobaCupPairModel.ts`.
+- **Prove:** beauty/counter crop — pearls + condensate + premium cup; Not-toy ≥ 8.
 
-### 6. Neon sign face — glass tubing, not flat graphic — `shell` — **OPEN**
-- **Why (critic):** Neon sign face is a **flat emissive graphic**, not **neon-glass tubing**.
-- **Do:** Prefer **tube letter / logo mark** geometry (glass Physical + emissive core + halo) over a single emissive image plane; if plate kept, push channel depth + real tube border that reads as glass at beauty distance.
-- **Where:** `NeonBrandSign` / `NeonRamenGlyph` in `ShopShell.tsx`; `public/assets/neon-sign.jpg`.
-- **Prove:** Brand ≥ 8 **and** tubes readable vs flat plate; prefer-ours not claimed until critic says so.
+### 3. Noren / menu tiles — fabric weave, chalk, micro-roughness — `shell` · `ui` — **OPEN**
+- **Why (critic):** Noren/menu tiles are **flat color slabs** — no fabric weave, chalk, or micro-roughness.
+- **Do:** Noren **fabric weave + sheen/opacity**; menu **chalk / board micro-roughness** (not flat slabs).
+- **Where:** noren + menu meshes in `ShopShell.tsx` / related UI props.
+- **Prove:** front/hero stills read cloth weave + chalk board; Not-toy ≥ 8.
+
+### 4. Floor / stool legs / shell walls — leave default matte plastic primitives — `shell` — **OPEN**
+- **Why (critic):** Floor, stool legs, shell walls still **default matte plastic primitives**.
+- **Do:** Authored **albedo + roughness** (floor tile/wood, stool metal/wood legs, wall plaster/paint) — kill default Standard plastic look.
+- **Where:** floor / stool / wall meshes in `ShopShell.tsx`.
+- **Prove:** hero/overhead stills read material variety; Not-toy ≥ 8.
+
+### 5. Faucet / sink / metal rail — metalness / anisotropy / chrome — `shell` — **OPEN**
+- **Why (critic):** Faucet/sink/metal rail **lack metalness/anisotropy**; **chrome is missing**.
+- **Do:** **metalness high**, **low roughness**, optional **anisotropy** on rails; true **chrome** read under env light.
+- **Where:** faucet / sink / rail meshes in `ShopShell.tsx`.
+- **Prove:** counter/hero stills show chrome metals vs wood; Material ≥ 8.
+
+### 6. Material parity — props must match counter wood bar — `shell` · `ramen` · `boba` — **OPEN**
+- **Why (critic):** Counter wood grain/varnish is the **only** surface that approaches bar; props do not match it.
+- **Do:** Lift residuals #1–#5 to the **same craft level as counter wood** (grain/varnish standard); no single “hero” material while everything else is plastic.
+- **Where:** all prop materials above; compare against counter in `ShopShell.tsx`.
+- **Prove:** beauty/counter crop — food, cups, fabric, metals, floor read as one cohesive set matching counter wood quality; Material / Not-toy ≥ 8.
 
 ---
 
@@ -104,10 +109,10 @@ Key code: `src/shop/ShopShell.tsx`, `src/ShopCanvas.tsx`, `src/shop/ProjectHotsp
 
 ## Loop contract (reminder)
 
-1. Pick **one** residual (prefer materials #1–#4 or boards #5 — highest critic pain).  
+1. Pick **one** residual (prefer ramen #1, boba #2, metals #5, parity #6 — highest critic pain).  
 2. `cd demos/room && npm run build && npm run capture -- --label <round> --beauty`  
 3. Independent harsh critic: open PNGs + this list + `VISUAL-BAR` + `ref-jesse-zhou-02.png` → ship YES/NO only. **Unanimous ship required.**  
 4. Record critic md under `docs/`; update `PROMPT-TRUTH.md`.  
 5. Stop only on **prefer ours blind** or hard blocker with evidence.
 
-**Status:** Gate **OPEN**. loop-r1 = `capture_ok=true`, **0/3 ship**, **0/3 prefer ours**. Materials + neon tubing + untextured boards fail bar hard. No ship without harsh critic YES.
+**Status:** Gate **OPEN**. loop-r6 = `capture_ok=true`, **0/3 ship**, **0/3 prefer ours**. Ramen no glaze/clearcoat ring + soft plastic food; boba weak pearls/no condensate/generic transmission; noren/menu flat slabs; floor/stools/walls matte plastic; faucet/sink/rail missing chrome; only counter wood approaches bar. No ship without harsh critic YES.

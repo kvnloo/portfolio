@@ -137,30 +137,30 @@ function NeonTube({
   const [ax, ay, az] = args
   const len = Math.max(ax, ay, az)
   // Thicker glass sleeve so tubes read as volume, not hairlines
-  const t = Math.max(0.018, Math.min(ax, ay, az) * 0.88)
+  const t = Math.max(0.02, Math.min(ax, ay, az) * 0.95)
   // Default cylinder is Y-up; reorient so length matches the longest box axis.
   let localRot: [number, number, number] = [0, 0, 0]
-  let haloSize: [number, number] = [t * 4.4, len * 1.06]
+  let haloSize: [number, number] = [t * 5.2, len * 1.08]
   if (ax >= ay && ax >= az) {
     localRot = [0, 0, Math.PI / 2] // length → X
-    haloSize = [len * 1.06, t * 4.4]
+    haloSize = [len * 1.08, t * 5.2]
   } else if (az >= ax && az >= ay) {
     localRot = [Math.PI / 2, 0, 0] // length → Z
-    haloSize = [t * 4.4, len * 1.06]
+    haloSize = [t * 5.2, len * 1.08]
   }
   return (
     <group position={position} rotation={rotation}>
       {/* Tube body — localRot maps Y-up cylinder onto longest axis */}
       <group rotation={localRot}>
-        {/* Hot white plasma core (feeds bloom) */}
+        {/* Hot white plasma core (feeds bloom — high contrast for letter readability) */}
         <mesh>
-          <cylinderGeometry args={[t * 0.38, t * 0.38, len * 0.995, 10]} />
+          <cylinderGeometry args={[t * 0.42, t * 0.42, len * 0.995, 10]} />
           <meshBasicMaterial color="#ffffff" toneMapped={false} />
         </mesh>
         {/* Colored gas fill */}
         <mesh>
-          <cylinderGeometry args={[t * 0.62, t * 0.62, len * 0.998, 12]} />
-          <meshBasicMaterial color={color} toneMapped={false} transparent opacity={0.95} />
+          <cylinderGeometry args={[t * 0.68, t * 0.68, len * 0.998, 12]} />
+          <meshBasicMaterial color={color} toneMapped={false} transparent opacity={0.98} />
         </mesh>
         {/* Outer glass sleeve — Physical for rim highlight / glass thickness read */}
         <mesh>
@@ -168,36 +168,36 @@ function NeonTube({
           <meshPhysicalMaterial
             color={color}
             emissive={color}
-            emissiveIntensity={intensity * 1.7}
-            roughness={0.08}
+            emissiveIntensity={intensity * 2.05}
+            roughness={0.06}
             metalness={0.02}
-            transmission={0.22}
-            thickness={0.04}
+            transmission={0.18}
+            thickness={0.05}
             ior={1.45}
             transparent
-            opacity={0.92}
-            clearcoat={0.55}
-            clearcoatRoughness={0.12}
+            opacity={0.94}
+            clearcoat={0.65}
+            clearcoatRoughness={0.1}
             toneMapped={false}
           />
         </mesh>
-        {/* End-cap beads (local Y) so tube terminates as glass, not cut cylinder */}
+        {/* Soft end roundedness (local Y) — small so letter joints don't blob */}
         <mesh position={[0, len * 0.5, 0]}>
-          <sphereGeometry args={[t * 0.95, 8, 8]} />
+          <sphereGeometry args={[t * 0.82, 8, 8]} />
           <meshBasicMaterial color={color} toneMapped={false} />
         </mesh>
         <mesh position={[0, -len * 0.5, 0]}>
-          <sphereGeometry args={[t * 0.95, 8, 8]} />
+          <sphereGeometry args={[t * 0.82, 8, 8]} />
           <meshBasicMaterial color={color} toneMapped={false} />
         </mesh>
       </group>
-      {/* Additive halo — primary face */}
+      {/* Additive halo — primary face (stronger for tube readability) */}
       <mesh>
         <planeGeometry args={haloSize} />
         <meshBasicMaterial
           color={color}
           transparent
-          opacity={0.32 * Math.min(intensity, 2)}
+          opacity={0.4 * Math.min(intensity, 2.2)}
           depthWrite={false}
           toneMapped={false}
           blending={THREE.AdditiveBlending}
@@ -205,11 +205,11 @@ function NeonTube({
       </mesh>
       {/* Soft dual-axis halo so tubes stay round under orbit */}
       <mesh rotation={[0, 0, Math.PI / 2]}>
-        <planeGeometry args={[haloSize[1] * 0.95, haloSize[0] * 0.6]} />
+        <planeGeometry args={[haloSize[1] * 0.95, haloSize[0] * 0.65]} />
         <meshBasicMaterial
           color={color}
           transparent
-          opacity={0.14 * Math.min(intensity, 2)}
+          opacity={0.18 * Math.min(intensity, 2.2)}
           depthWrite={false}
           toneMapped={false}
           blending={THREE.AdditiveBlending}
@@ -409,84 +409,230 @@ function NeonWord({
   )
 }
 
-/** Thick fabric scalloped awning — volumetric pink canopy, not a flat slab. */
 /**
- * Fabric awning — thick body + flattened half-cylinder scallops (not mushroom spheres).
- * Residual #6: stop pure emissive flat / toy scallop tell.
+ * Canvas fabric weave maps — residual #1 (noren/awning fabric, not plastic).
+ * Albedo: dyed canvas weave + warp/weft + soft wear. Roughness: sheen breakup.
+ */
+function makeFabricMaps(baseRgb: [number, number, number]): {
+  albedo: THREE.CanvasTexture
+  roughness: THREE.CanvasTexture
+} {
+  const size = 256
+  const [br, bg, bb] = baseRgb
+  const aCanvas = document.createElement('canvas')
+  aCanvas.width = aCanvas.height = size
+  const aCtx = aCanvas.getContext('2d')!
+  aCtx.fillStyle = `rgb(${br},${bg},${bb})`
+  aCtx.fillRect(0, 0, size, size)
+  // Warp / weft thread grid (canvas tell)
+  for (let i = 0; i < size; i += 3) {
+    const shade = (i % 6 === 0 ? 14 : 6) * (0.6 + Math.sin(i * 0.2) * 0.4)
+    aCtx.fillStyle = `rgba(${Math.min(255, br + shade)},${Math.min(255, bg + shade * 0.55)},${Math.min(255, bb + shade * 0.4)},0.12)`
+    aCtx.fillRect(i, 0, 1, size)
+    aCtx.fillStyle = `rgba(${Math.max(0, br - shade)},${Math.max(0, bg - shade * 0.7)},${Math.max(0, bb - shade * 0.5)},0.1)`
+    aCtx.fillRect(0, i, size, 1)
+  }
+  // Soft dye mottling
+  for (let i = 0; i < 90; i++) {
+    const cx = Math.random() * size
+    const cy = Math.random() * size
+    const r = 8 + Math.random() * 28
+    const g = aCtx.createRadialGradient(cx, cy, 1, cx, cy, r)
+    const lite = Math.random() > 0.45
+    g.addColorStop(
+      0,
+      lite
+        ? `rgba(${br + 40},${bg + 18},${bb + 12},0.14)`
+        : `rgba(${Math.max(0, br - 30)},${Math.max(0, bg - 22)},${Math.max(0, bb - 18)},0.16)`,
+    )
+    g.addColorStop(1, 'rgba(0,0,0,0)')
+    aCtx.fillStyle = g
+    aCtx.beginPath()
+    aCtx.arc(cx, cy, r, 0, Math.PI * 2)
+    aCtx.fill()
+  }
+  // Fine fiber noise
+  for (let i = 0; i < 2800; i++) {
+    const x = Math.random() * size
+    const y = Math.random() * size
+    const v = (Math.random() - 0.5) * 28
+    aCtx.fillStyle = `rgba(${br + v},${bg + v * 0.6},${bb + v * 0.4},0.07)`
+    aCtx.fillRect(x, y, 1.2, 1.6)
+  }
+
+  const rCanvas = document.createElement('canvas')
+  rCanvas.width = rCanvas.height = size
+  const rCtx = rCanvas.getContext('2d')!
+  rCtx.fillStyle = '#b0b0b0'
+  rCtx.fillRect(0, 0, size, size)
+  // Thread-direction roughness lanes (darker = smoother sheen)
+  for (let i = 0; i < 40; i++) {
+    const y = Math.random() * size
+    rCtx.strokeStyle = `rgba(55,55,55,${0.12 + Math.random() * 0.25})`
+    rCtx.lineWidth = 1 + Math.random() * 3
+    rCtx.beginPath()
+    rCtx.moveTo(0, y)
+    for (let x = 0; x <= size; x += 8) {
+      rCtx.lineTo(x, y + Math.sin(x * 0.04 + i) * 2)
+    }
+    rCtx.stroke()
+  }
+  // Worn matte patches
+  for (let i = 0; i < 18; i++) {
+    const cx = Math.random() * size
+    const cy = Math.random() * size
+    const r = 10 + Math.random() * 30
+    const g = rCtx.createRadialGradient(cx, cy, 1, cx, cy, r)
+    g.addColorStop(0, `rgba(210,210,210,${0.35 + Math.random() * 0.35})`)
+    g.addColorStop(1, 'rgba(180,180,180,0)')
+    rCtx.fillStyle = g
+    rCtx.beginPath()
+    rCtx.arc(cx, cy, r, 0, Math.PI * 2)
+    rCtx.fill()
+  }
+
+  const albedo = new THREE.CanvasTexture(aCanvas)
+  albedo.colorSpace = THREE.SRGBColorSpace
+  albedo.wrapS = albedo.wrapT = THREE.RepeatWrapping
+  albedo.repeat.set(3.2, 1.6)
+  albedo.anisotropy = 4
+  albedo.needsUpdate = true
+
+  const roughness = new THREE.CanvasTexture(rCanvas)
+  roughness.wrapS = roughness.wrapT = THREE.RepeatWrapping
+  roughness.repeat.set(3.2, 1.6)
+  roughness.anisotropy = 2
+  roughness.needsUpdate = true
+
+  return { albedo, roughness }
+}
+
+/**
+ * Fabric awning — residual #1: cloth body + draped valance panels (not plastic half-discs).
+ * Thick canopy mass, weave maps, sheen, multi-layer scallop flaps with lining.
  */
 function ScallopedAwning() {
   const scallops = 9
   const width = 4.6
   const step = width / scallops
-  const fabric = {
-    color: '#c42862',
-    emissive: '#e02868',
-    emissiveIntensity: 0.12,
-    roughness: 0.82,
-    metalness: 0.02,
-  }
+  const fabricMaps = useMemo(() => makeFabricMaps([196, 40, 98]), [])
   return (
     <group position={[0, 2.28, 0.55]}>
-      {/* Main fabric body (thick) */}
+      {/* Main fabric body (thick canvas slab) */}
       <mesh position={[0, 0.08, -0.22]} rotation={[-0.38, 0, 0]} castShadow receiveShadow>
-        <boxGeometry args={[width, 0.12, 1.15]} />
-        <meshStandardMaterial {...fabric} />
+        <boxGeometry args={[width, 0.14, 1.15]} />
+        <meshPhysicalMaterial
+          map={fabricMaps.albedo}
+          roughnessMap={fabricMaps.roughness}
+          color="#d03068"
+          emissive="#c02050"
+          emissiveIntensity={0.06}
+          roughness={0.78}
+          metalness={0}
+          sheen={0.55}
+          sheenRoughness={0.62}
+          sheenColor="#ff80a8"
+        />
       </mesh>
-      {/* Subtle weave fold ridges */}
-      {[-0.35, 0, 0.35].map((z, i) => (
-        <mesh key={i} position={[0, 0.14 - i * 0.01, -0.22 + z * 0.15]} rotation={[-0.38, 0, 0]}>
-          <boxGeometry args={[width - 0.12, 0.015, 0.08]} />
-          <meshStandardMaterial color="#a81848" roughness={0.88} />
+      {/* Weave fold ridges (stitch seams) */}
+      {[-0.38, -0.12, 0.14, 0.38].map((z, i) => (
+        <mesh key={i} position={[0, 0.15 - i * 0.008, -0.22 + z * 0.12]} rotation={[-0.38, 0, 0]}>
+          <boxGeometry args={[width - 0.1, 0.018, 0.055]} />
+          <meshPhysicalMaterial
+            map={fabricMaps.albedo}
+            color="#9a1848"
+            roughness={0.86}
+            sheen={0.3}
+            sheenColor="#c04070"
+          />
         </mesh>
       ))}
-      {/* Underside warm bounce (not pure emissive plane) */}
-      <mesh position={[0, -0.02, -0.15]} rotation={[-0.38, 0, 0]}>
-        <boxGeometry args={[width - 0.08, 0.02, 1.05]} />
+      {/* Underside lining (warm bounce, matte cloth not pure emissive plane) */}
+      <mesh position={[0, -0.03, -0.15]} rotation={[-0.38, 0, 0]}>
+        <boxGeometry args={[width - 0.08, 0.028, 1.05]} />
         <meshStandardMaterial
-          color="#ff9a60"
+          color="#ff9a68"
           emissive="#ff8050"
-          emissiveIntensity={0.38}
-          roughness={0.92}
+          emissiveIntensity={0.32}
+          roughness={0.94}
           toneMapped={false}
         />
       </mesh>
-      {/* Front valance bar */}
+      {/* Front valance bar (wood/metal rod) */}
       <mesh position={[0, -0.02, 0.32]} castShadow>
         <boxGeometry args={[width + 0.08, 0.05, 0.07]} />
-        <meshStandardMaterial color="#6a1838" roughness={0.55} metalness={0.18} />
+        <meshStandardMaterial color="#5a1830" roughness={0.5} metalness={0.22} />
       </mesh>
-      {/* Scallop flaps — half-cylinder cloth, flattened (not solid mushroom spheres) */}
+      {/* Scallop flaps — multi-layer draped cloth panels (not half-disc plastic) */}
       {Array.from({ length: scallops }, (_, i) => {
         const x = -width / 2 + step * 0.5 + i * step
-        const sag = (i % 2) * 0.02
+        const sag = (i % 2) * 0.025 + Math.sin(i * 0.9) * 0.01
+        const w = step * 0.88
         return (
-          <group key={i} position={[x, -0.14 - sag, 0.36]}>
-            <mesh castShadow rotation={[Math.PI / 2, 0, 0]} scale={[1, 0.55, 1]}>
-              <cylinderGeometry args={[step * 0.46, step * 0.46, 0.055, 14, 1, false, 0, Math.PI]} />
-              <meshStandardMaterial
-                color="#b42058"
+          <group key={i} position={[x, -0.12 - sag, 0.34]} rotation={[0.18 + sag * 2, 0, (i - 4) * 0.012]}>
+            {/* Outer face cloth */}
+            <mesh castShadow position={[0, -0.1, 0.01]}>
+              <boxGeometry args={[w, 0.22, 0.028]} />
+              <meshPhysicalMaterial
+                map={fabricMaps.albedo}
+                roughnessMap={fabricMaps.roughness}
+                color={i % 2 === 0 ? '#c42862' : '#b02058'}
                 emissive="#d02860"
-                emissiveIntensity={0.1}
+                emissiveIntensity={0.05}
                 roughness={0.8}
-                side={THREE.DoubleSide}
+                sheen={0.5}
+                sheenRoughness={0.65}
+                sheenColor="#ff70a0"
               />
             </mesh>
-            {/* Thin inner lining for thickness read */}
-            <mesh position={[0, 0.01, -0.02]} rotation={[Math.PI / 2, 0, 0]} scale={[0.92, 0.45, 0.9]}>
-              <cylinderGeometry args={[step * 0.42, step * 0.42, 0.02, 12, 1, false, 0, Math.PI]} />
-              <meshStandardMaterial color="#8a1840" roughness={0.88} side={THREE.DoubleSide} />
+            {/* Rounded bottom hem (soft cloth edge — thin cylinder, not disc plate) */}
+            <mesh position={[0, -0.21, 0.01]} rotation={[0, 0, Math.PI / 2]} castShadow>
+              <cylinderGeometry args={[0.018, 0.018, w * 0.92, 10]} />
+              <meshPhysicalMaterial
+                map={fabricMaps.albedo}
+                color="#a01848"
+                roughness={0.82}
+                sheen={0.4}
+                sheenColor="#e05080"
+              />
+            </mesh>
+            {/* Inner lining (thickness read) */}
+            <mesh position={[0, -0.09, -0.012]}>
+              <boxGeometry args={[w * 0.9, 0.18, 0.012]} />
+              <meshStandardMaterial color="#701030" roughness={0.9} />
+            </mesh>
+            {/* Center crease fold highlight */}
+            <mesh position={[0, -0.08, 0.026]}>
+              <boxGeometry args={[0.012, 0.16, 0.006]} />
+              <meshStandardMaterial color="#e05080" roughness={0.7} transparent opacity={0.4} />
             </mesh>
           </group>
         )
       })}
-      {/* Side flaps */}
+      {/* Side flaps — thick fabric returns */}
       <mesh position={[-width / 2 - 0.02, 0.05, -0.15]} rotation={[0, 0, 0.12]} castShadow>
-        <boxGeometry args={[0.07, 0.55, 0.9]} />
-        <meshStandardMaterial color="#a81850" emissive="#c02058" emissiveIntensity={0.08} roughness={0.8} />
+        <boxGeometry args={[0.09, 0.58, 0.92]} />
+        <meshPhysicalMaterial
+          map={fabricMaps.albedo}
+          color="#a81850"
+          emissive="#c02058"
+          emissiveIntensity={0.05}
+          roughness={0.8}
+          sheen={0.4}
+          sheenColor="#ff6088"
+        />
       </mesh>
       <mesh position={[width / 2 + 0.02, 0.05, -0.15]} rotation={[0, 0, -0.12]} castShadow>
-        <boxGeometry args={[0.07, 0.55, 0.9]} />
-        <meshStandardMaterial color="#a81850" emissive="#c02058" emissiveIntensity={0.08} roughness={0.8} />
+        <boxGeometry args={[0.09, 0.58, 0.92]} />
+        <meshPhysicalMaterial
+          map={fabricMaps.albedo}
+          color="#a81850"
+          emissive="#c02058"
+          emissiveIntensity={0.05}
+          roughness={0.8}
+          sheen={0.4}
+          sheenColor="#ff6088"
+        />
       </mesh>
     </group>
   )
@@ -665,11 +811,11 @@ function NeonBrandSign() {
         <meshStandardMaterial color="#0a0610" metalness={0.4} roughness={0.4} />
       </mesh>
 
-      {/* Glass tube border — cyan top / pink bottom (jesse dual-neon) */}
-      <NeonTube position={[0, 0.43, 0.055]} args={[2.92, 0.038, 0.038]} color="#44f0ff" intensity={2.05} />
-      <NeonTube position={[0, -0.43, 0.055]} args={[2.92, 0.038, 0.038]} color="#ff2d9a" intensity={1.95} />
-      <NeonTube position={[-1.46, 0, 0.055]} args={[0.038, 0.84, 0.038]} color="#b044ff" intensity={1.55} />
-      <NeonTube position={[1.46, 0, 0.055]} args={[0.038, 0.84, 0.038]} color="#b044ff" intensity={1.55} />
+      {/* Glass tube border — thicker dual-neon frame (cyan top / pink bottom) */}
+      <NeonTube position={[0, 0.43, 0.06]} args={[2.92, 0.048, 0.048]} color="#44f0ff" intensity={2.2} />
+      <NeonTube position={[0, -0.43, 0.06]} args={[2.92, 0.048, 0.048]} color="#ff2d9a" intensity={2.1} />
+      <NeonTube position={[-1.46, 0, 0.06]} args={[0.048, 0.84, 0.048]} color="#b044ff" intensity={1.7} />
+      <NeonTube position={[1.46, 0, 0.06]} args={[0.048, 0.84, 0.048]} color="#b044ff" intensity={1.7} />
       {/* Corner beads */}
       {(
         [
@@ -845,6 +991,10 @@ function PaperLantern({
   )
 }
 
+/**
+ * Counter stool — residual #1: warm wood seat + varnish, not untextured gray.
+ * Tight-grain wood UV clone so small geometry still reads timber.
+ */
 function Stool({
   position,
   woodMap,
@@ -852,47 +1002,117 @@ function Stool({
   position: [number, number, number]
   woodMap: THREE.Texture
 }) {
+  // Local UV tiles — shared map.repeat is too coarse on seat-scale cylinders
+  const seatWood = useMemo(() => {
+    const t = woodMap.clone()
+    t.wrapS = t.wrapT = THREE.RepeatWrapping
+    t.colorSpace = THREE.SRGBColorSpace
+    t.repeat.set(1.6, 1.6)
+    t.offset.set(0.12, 0.07)
+    t.anisotropy = 8
+    t.needsUpdate = true
+    return t
+  }, [woodMap])
+  const legWood = useMemo(() => {
+    const t = woodMap.clone()
+    t.wrapS = t.wrapT = THREE.RepeatWrapping
+    t.colorSpace = THREE.SRGBColorSpace
+    t.repeat.set(0.55, 2.4)
+    t.anisotropy = 4
+    t.needsUpdate = true
+    return t
+  }, [woodMap])
+
   return (
     <group position={position}>
-      {/* Seat — wood + varnish edge ring */}
-      <mesh position={[0, 0.42, 0]} castShadow receiveShadow>
-        <cylinderGeometry args={[0.15, 0.16, 0.055, 24]} />
+      {/* Seat disc — thick timber slab with warm varnish (primary wood read) */}
+      <mesh position={[0, 0.43, 0]} castShadow receiveShadow>
+        <cylinderGeometry args={[0.155, 0.165, 0.06, 28]} />
         <meshPhysicalMaterial
-          map={woodMap}
-          color="#5a3a28"
-          roughness={0.42}
-          clearcoat={0.45}
-          clearcoatRoughness={0.28}
+          map={seatWood}
+          color="#8a5a38"
+          roughness={0.38}
+          clearcoat={0.55}
+          clearcoatRoughness={0.22}
+          metalness={0.03}
+          envMapIntensity={0.9}
+        />
+      </mesh>
+      {/* Polished seat top (grain + clearcoat, not gray plastic) */}
+      <mesh position={[0, 0.462, 0]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
+        <circleGeometry args={[0.145, 28]} />
+        <meshPhysicalMaterial
+          map={seatWood}
+          color="#9a6844"
+          roughness={0.22}
+          clearcoat={0.78}
+          clearcoatRoughness={0.12}
           metalness={0.04}
+          envMapIntensity={1.05}
         />
       </mesh>
-      {/* Seat top varnish disc */}
-      <mesh position={[0, 0.45, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-        <circleGeometry args={[0.13, 24]} />
+      {/* Underside seat (darker wood) */}
+      <mesh position={[0, 0.398, 0]} rotation={[Math.PI / 2, 0, 0]}>
+        <circleGeometry args={[0.15, 20]} />
+        <meshStandardMaterial map={seatWood} color="#3a2418" roughness={0.75} />
+      </mesh>
+      {/* Edge bullnose ring (varnish catch) */}
+      <mesh position={[0, 0.43, 0]} rotation={[Math.PI / 2, 0, 0]}>
+        <torusGeometry args={[0.155, 0.012, 8, 28]} />
         <meshPhysicalMaterial
-          map={woodMap}
-          color="#4a3020"
-          roughness={0.2}
-          clearcoat={0.7}
-          clearcoatRoughness={0.15}
+          map={seatWood}
+          color="#7a4a30"
+          roughness={0.28}
+          clearcoat={0.65}
+          clearcoatRoughness={0.18}
         />
       </mesh>
-      <mesh position={[0, 0.42, 0]} castShadow>
-        <cylinderGeometry args={[0.13, 0.13, 0.035, 24]} />
-        <meshPhysicalMaterial color="#1a1210" roughness={0.3} clearcoat={0.45} clearcoatRoughness={0.25} />
+      {/* Soft leather/foam pad under rim — dark brown, not gray Standard */}
+      <mesh position={[0, 0.4, 0]} castShadow>
+        <cylinderGeometry args={[0.12, 0.125, 0.028, 24]} />
+        <meshPhysicalMaterial
+          color="#2a1814"
+          roughness={0.55}
+          clearcoat={0.25}
+          clearcoatRoughness={0.4}
+          sheen={0.2}
+          sheenColor="#4a3028"
+        />
       </mesh>
+      {/* Four tapered wood legs */}
       {[0, 1, 2, 3].map((i) => {
         const a = (i / 4) * Math.PI * 2 + 0.4
         return (
-          <mesh key={i} position={[Math.cos(a) * 0.09, 0.2, Math.sin(a) * 0.09]} castShadow>
-            <cylinderGeometry args={[0.016, 0.02, 0.4, 8]} />
-            <meshStandardMaterial map={woodMap} color="#3a281c" roughness={0.7} metalness={0.08} />
+          <mesh key={i} position={[Math.cos(a) * 0.095, 0.2, Math.sin(a) * 0.095]} castShadow>
+            <cylinderGeometry args={[0.015, 0.022, 0.4, 10]} />
+            <meshStandardMaterial map={legWood} color="#5a3a28" roughness={0.62} metalness={0.06} />
           </mesh>
         )
       })}
-      <mesh position={[0, 0.02, 0]} receiveShadow>
-        <cylinderGeometry args={[0.11, 0.12, 0.03, 16]} />
-        <meshStandardMaterial color="#2a1c14" roughness={0.8} />
+      {/* Cross braces (wood density) */}
+      {[0, 1].map((i) => {
+        const a = (i / 2) * Math.PI + 0.4
+        return (
+          <mesh
+            key={`brace-${i}`}
+            position={[0, 0.14, 0]}
+            rotation={[0, a, Math.PI / 2]}
+            castShadow
+          >
+            <cylinderGeometry args={[0.008, 0.008, 0.2, 6]} />
+            <meshStandardMaterial map={legWood} color="#4a3020" roughness={0.68} />
+          </mesh>
+        )
+      })}
+      {/* Foot ring — dark wood, ground contact mass */}
+      <mesh position={[0, 0.025, 0]} receiveShadow castShadow>
+        <cylinderGeometry args={[0.115, 0.125, 0.032, 20]} />
+        <meshStandardMaterial map={seatWood} color="#2a1810" roughness={0.78} />
+      </mesh>
+      {/* Contact darkening disc under stool (prop contact residual spirit) */}
+      <mesh position={[0, 0.006, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+        <circleGeometry args={[0.16, 20]} />
+        <meshBasicMaterial color="#050208" transparent opacity={0.38} depthWrite={false} />
       </mesh>
     </group>
   )
@@ -1135,6 +1355,210 @@ function AFrameChalkboard({ position }: { position: [number, number, number] }) 
 }
 
 /**
+ * Counter oak surfaces (residual #3 / shell) — UV grain + varnish + edge wear.
+ * Boosts tex-wood.jpg contrast so grain survives neon wash; not flat tinted planes.
+ * Roughness: dark = polished varnish, light = matte wear. ClearcoatRough: wet pools.
+ */
+function makeCounterSurfaceMaps(woodMap: THREE.Texture): {
+  albedo: THREE.CanvasTexture
+  roughness: THREE.CanvasTexture
+  clearcoatRough: THREE.CanvasTexture
+} {
+  const size = 512
+  // ── Albedo: photo oak + contrast boost + authored grain + edge wear darken ──
+  const aCanvas = document.createElement('canvas')
+  aCanvas.width = aCanvas.height = size
+  const aCtx = aCanvas.getContext('2d')!
+  const src = woodMap.image as CanvasImageSource | undefined
+  if (src && (src as HTMLImageElement).width) {
+    aCtx.drawImage(src, 0, 0, size, size)
+  } else {
+    aCtx.fillStyle = '#8a6238'
+    aCtx.fillRect(0, 0, size, size)
+  }
+  // Contrast / saturation push so grain reads under warm neon key
+  const img = aCtx.getImageData(0, 0, size, size)
+  const d = img.data
+  for (let i = 0; i < d.length; i += 4) {
+    let r = d[i]
+    let g = d[i + 1]
+    let b = d[i + 2]
+    // Midtone contrast (push away from 128)
+    r = Math.max(0, Math.min(255, (r - 128) * 1.45 + 118))
+    g = Math.max(0, Math.min(255, (g - 128) * 1.35 + 108))
+    b = Math.max(0, Math.min(255, (b - 128) * 1.25 + 88))
+    // Warm oak bias
+    r = Math.min(255, r * 1.06 + 8)
+    g = Math.min(255, g * 0.98)
+    b = Math.min(255, b * 0.82)
+    d[i] = r
+    d[i + 1] = g
+    d[i + 2] = b
+  }
+  aCtx.putImageData(img, 0, 0)
+  // Authored grain streaks (dark/light lanes along X — UV grain tell at beauty FOV)
+  for (let i = 0; i < 48; i++) {
+    const y = Math.random() * size
+    const dark = Math.random() > 0.45
+    aCtx.strokeStyle = dark
+      ? `rgba(${28 + Math.random() * 30},${16 + Math.random() * 18},${8},${0.18 + Math.random() * 0.28})`
+      : `rgba(${210 + Math.random() * 40},${170 + Math.random() * 30},${110},${0.1 + Math.random() * 0.16})`
+    aCtx.lineWidth = 1 + Math.random() * 4.5
+    aCtx.beginPath()
+    aCtx.moveTo(0, y)
+    for (let x = 0; x <= size; x += 6) {
+      aCtx.lineTo(x, y + Math.sin(x * 0.022 + i) * 10 + Math.sin(x * 0.07 + i * 0.3) * 3)
+    }
+    aCtx.stroke()
+  }
+  // Figure/ring knots (oak character, not procedural noise only)
+  for (let i = 0; i < 7; i++) {
+    const cx = 60 + Math.random() * (size - 120)
+    const cy = 60 + Math.random() * (size - 120)
+    const rr = 10 + Math.random() * 28
+    for (let k = 0; k < 5; k++) {
+      aCtx.strokeStyle = `rgba(40,22,10,${0.08 + k * 0.03})`
+      aCtx.lineWidth = 1.2
+      aCtx.beginPath()
+      aCtx.ellipse(cx, cy, rr + k * 3.5, (rr + k * 3.5) * 0.55, i * 0.4, 0, Math.PI * 2)
+      aCtx.stroke()
+    }
+  }
+  // Edge wear darkening (UV perimeter → front lip / bullnose reads worn timber)
+  const edge = aCtx.createLinearGradient(0, 0, 0, size)
+  edge.addColorStop(0, 'rgba(22,12,6,0.38)')
+  edge.addColorStop(0.08, 'rgba(22,12,6,0)')
+  edge.addColorStop(0.92, 'rgba(22,12,6,0)')
+  edge.addColorStop(1, 'rgba(18,10,4,0.45)')
+  aCtx.fillStyle = edge
+  aCtx.fillRect(0, 0, size, size)
+  const edgeX = aCtx.createLinearGradient(0, 0, size, 0)
+  edgeX.addColorStop(0, 'rgba(20,10,4,0.32)')
+  edgeX.addColorStop(0.06, 'rgba(20,10,4,0)')
+  edgeX.addColorStop(0.94, 'rgba(20,10,4,0)')
+  edgeX.addColorStop(1, 'rgba(20,10,4,0.32)')
+  aCtx.fillStyle = edgeX
+  aCtx.fillRect(0, 0, size, size)
+  // Scuff chips near "front" (bottom of UV) — matte worn flecks
+  for (let i = 0; i < 28; i++) {
+    const x = Math.random() * size
+    const y = size * 0.78 + Math.random() * size * 0.22
+    aCtx.fillStyle = `rgba(${50 + Math.random() * 40},${32 + Math.random() * 24},${14},${0.2 + Math.random() * 0.25})`
+    aCtx.fillRect(x, y, 2 + Math.random() * 10, 1 + Math.random() * 3)
+  }
+
+  // ── Roughness: varnish lanes vs wear ──
+  const rCanvas = document.createElement('canvas')
+  rCanvas.width = rCanvas.height = size
+  const rCtx = rCanvas.getContext('2d')!
+  rCtx.fillStyle = '#3a3a3a' // glossy base varnish
+  rCtx.fillRect(0, 0, size, size)
+  for (let i = 0; i < 42; i++) {
+    const y = Math.random() * size
+    rCtx.strokeStyle = `rgba(8,8,8,${0.28 + Math.random() * 0.5})`
+    rCtx.lineWidth = 2 + Math.random() * 14
+    rCtx.beginPath()
+    rCtx.moveTo(0, y)
+    for (let x = 0; x <= size; x += 8) {
+      rCtx.lineTo(x, y + Math.sin(x * 0.018 + i * 0.5) * 12 + Math.sin(x * 0.05) * 3)
+    }
+    rCtx.stroke()
+  }
+  // Wet-varnish pools
+  for (let i = 0; i < 12; i++) {
+    const cx = 50 + Math.random() * (size - 100)
+    const cy = 50 + Math.random() * (size - 100)
+    const rx = 22 + Math.random() * 70
+    const ry = 14 + Math.random() * 48
+    const g = rCtx.createRadialGradient(cx, cy, 2, cx, cy, rx)
+    g.addColorStop(0, `rgba(4,4,4,${0.6 + Math.random() * 0.35})`)
+    g.addColorStop(0.55, `rgba(18,18,18,${0.28 + Math.random() * 0.2})`)
+    g.addColorStop(1, 'rgba(40,40,40,0)')
+    rCtx.fillStyle = g
+    rCtx.beginPath()
+    rCtx.ellipse(cx, cy, rx, ry, Math.random() * Math.PI, 0, Math.PI * 2)
+    rCtx.fill()
+  }
+  // Wear / contact patches (lighter = rougher matte)
+  for (let i = 0; i < 20; i++) {
+    const cx = 40 + Math.random() * (size - 80)
+    const cy = 40 + Math.random() * (size - 80)
+    const rx = 14 + Math.random() * 52
+    const ry = 10 + Math.random() * 40
+    const g = rCtx.createRadialGradient(cx, cy, 2, cx, cy, rx)
+    g.addColorStop(0, `rgba(210,200,185,${0.45 + Math.random() * 0.4})`)
+    g.addColorStop(1, 'rgba(160,155,145,0)')
+    rCtx.fillStyle = g
+    rCtx.beginPath()
+    rCtx.ellipse(cx, cy, rx, ry, Math.random() * Math.PI, 0, Math.PI * 2)
+    rCtx.fill()
+  }
+  // Perimeter edge wear (rougher at UV edges = bullnose hand-wear)
+  const wearEdge = rCtx.createLinearGradient(0, 0, 0, size)
+  wearEdge.addColorStop(0, 'rgba(200,190,170,0.55)')
+  wearEdge.addColorStop(0.07, 'rgba(200,190,170,0)')
+  wearEdge.addColorStop(0.93, 'rgba(200,190,170,0)')
+  wearEdge.addColorStop(1, 'rgba(215,205,185,0.7)')
+  rCtx.fillStyle = wearEdge
+  rCtx.fillRect(0, 0, size, size)
+  for (let i = 0; i < 9000; i++) {
+    const x = Math.random() * size
+    const y = Math.random() * size
+    const v = 50 + Math.floor(Math.random() * 100)
+    rCtx.fillStyle = `rgba(${v},${v},${v},0.06)`
+    rCtx.fillRect(x, y, 1.4, 0.8)
+  }
+
+  // ── Clearcoat roughness: smooth wet pools vs dry worn chips ──
+  const cCanvas = document.createElement('canvas')
+  cCanvas.width = cCanvas.height = size
+  const cCtx = cCanvas.getContext('2d')!
+  cCtx.fillStyle = '#2a2a2a'
+  cCtx.fillRect(0, 0, size, size)
+  for (let i = 0; i < 14; i++) {
+    const cx = 40 + Math.random() * (size - 80)
+    const cy = 40 + Math.random() * (size - 80)
+    const rx = 18 + Math.random() * 60
+    const g = cCtx.createRadialGradient(cx, cy, 1, cx, cy, rx)
+    g.addColorStop(0, 'rgba(0,0,0,0.85)')
+    g.addColorStop(1, 'rgba(40,40,40,0)')
+    cCtx.fillStyle = g
+    cCtx.beginPath()
+    cCtx.ellipse(cx, cy, rx, rx * 0.6, Math.random() * Math.PI, 0, Math.PI * 2)
+    cCtx.fill()
+  }
+  for (let i = 0; i < 22; i++) {
+    const cx = Math.random() * size
+    const cy = size * 0.7 + Math.random() * size * 0.3
+    cCtx.fillStyle = `rgba(200,195,180,${0.35 + Math.random() * 0.4})`
+    cCtx.beginPath()
+    cCtx.ellipse(cx, cy, 6 + Math.random() * 18, 3 + Math.random() * 8, 0, 0, Math.PI * 2)
+    cCtx.fill()
+  }
+
+  const albedo = new THREE.CanvasTexture(aCanvas)
+  albedo.colorSpace = THREE.SRGBColorSpace
+  albedo.wrapS = albedo.wrapT = THREE.RepeatWrapping
+  albedo.repeat.set(2.4, 1.05)
+  albedo.anisotropy = 8
+  albedo.needsUpdate = true
+
+  const roughness = new THREE.CanvasTexture(rCanvas)
+  roughness.wrapS = roughness.wrapT = THREE.RepeatWrapping
+  roughness.repeat.set(2.4, 1.05)
+  roughness.anisotropy = 4
+  roughness.needsUpdate = true
+
+  const clearcoatRough = new THREE.CanvasTexture(cCanvas)
+  clearcoatRough.wrapS = clearcoatRough.wrapT = THREE.RepeatWrapping
+  clearcoatRough.repeat.set(2.4, 1.05)
+  clearcoatRough.anisotropy = 2
+  clearcoatRough.needsUpdate = true
+
+  return { albedo, roughness, clearcoatRough }
+}
+
+/**
  * Kevin's Ramen & Boba — complete night-market kiosk silhouette
  * (jesse-zhou typology: roof volume, front face, side walls, ground contact).
  */
@@ -1150,145 +1574,333 @@ export function ShopShell() {
 
   const wood = '#6a4530'
   const woodDark = '#3a2618'
-  const counterTop = '#2e2218'
+  // Dedicated UV tiles: apron grain + residual #3 counter surfaces (grain/varnish/wear)
+  const { woodApron, woodCounter, varnishRough, clearcoatRough, counterAlbedo } = useMemo(() => {
+    const apron = woodMap.clone()
+    apron.repeat.set(3.4, 1.2)
+    apron.wrapS = apron.wrapT = THREE.RepeatWrapping
+    apron.colorSpace = THREE.SRGBColorSpace
+    apron.anisotropy = 8
+    // Fallback photo tile (underlayer / dark rails)
+    const counter = woodMap.clone()
+    counter.repeat.set(3.6, 1.35)
+    counter.wrapS = counter.wrapT = THREE.RepeatWrapping
+    counter.colorSpace = THREE.SRGBColorSpace
+    counter.anisotropy = 8
+    const surfaces = makeCounterSurfaceMaps(woodMap)
+    return {
+      woodApron: apron,
+      woodCounter: counter,
+      counterAlbedo: surfaces.albedo,
+      varnishRough: surfaces.roughness,
+      clearcoatRough: surfaces.clearcoatRough,
+    }
+  }, [woodMap])
+
+  // Noren fabric weave maps (residual #1) — once per shell, not per render
+  const norenFabrics = useMemo(() => {
+    const pink = makeFabricMaps([210, 48, 110])
+    pink.albedo.repeat.set(1.2, 2.8)
+    pink.roughness.repeat.set(1.2, 2.8)
+    const indigo = makeFabricMaps([48, 32, 90])
+    indigo.albedo.repeat.set(1.2, 2.8)
+    indigo.roughness.repeat.set(1.2, 2.8)
+    return { pink, indigo }
+  }, [])
 
   return (
     <group name="ShopShell">
       {/* ═══ GROUND CONTACT FOOTPRINT ═══ */}
       <mesh position={[0, -0.02, -0.45]} receiveShadow>
-        <boxGeometry args={[5.4, 0.06, 3.9]} />
-        <meshStandardMaterial map={woodMap} color="#14100e" roughness={0.85} />
+        <boxGeometry args={[5.55, 0.08, 4.05]} />
+        <meshStandardMaterial map={woodMap} color="#14100e" roughness={0.88} />
       </mesh>
-      {/* Raised plinth / platform edge */}
-      <mesh position={[0, 0.04, -0.45]} receiveShadow castShadow>
-        <boxGeometry args={[5.15, 0.1, 3.65]} />
-        <meshStandardMaterial map={woodMap} color="#1e1612" roughness={0.75} />
+      {/* Raised plinth / platform edge — thick mass so kiosk sits on a pad */}
+      <mesh position={[0, 0.05, -0.45]} receiveShadow castShadow>
+        <boxGeometry args={[5.25, 0.14, 3.75]} />
+        <meshStandardMaterial map={woodMap} color="#1e1612" roughness={0.72} />
+      </mesh>
+      {/* Plinth nosing (front lip catch) */}
+      <mesh position={[0, 0.12, 1.38]} castShadow>
+        <boxGeometry args={[5.28, 0.04, 0.08]} />
+        <meshStandardMaterial map={woodMap} color="#2a1c14" roughness={0.55} metalness={0.06} />
       </mesh>
 
-      {/* ═══ BACK WALL (full height to roof) ═══ */}
-      <mesh position={[0, 1.55, -1.95]} receiveShadow castShadow>
-        <boxGeometry args={[4.9, 3.1, 0.16]} />
-        <meshStandardMaterial map={wallMap} color="#2a1c28" roughness={0.82} />
+      {/* ═══ BACK WALL (thick masonry + cladding) ═══ */}
+      <mesh position={[0, 1.55, -1.98]} receiveShadow castShadow>
+        <boxGeometry args={[5.0, 3.15, 0.28]} />
+        <meshStandardMaterial map={wallMap} color="#2a1c28" roughness={0.84} />
       </mesh>
       {/* Inner back panel (slightly lighter for depth) */}
-      <mesh position={[0, 1.35, -1.86]}>
-        <boxGeometry args={[4.5, 2.4, 0.04]} />
+      <mesh position={[0, 1.35, -1.82]}>
+        <boxGeometry args={[4.55, 2.45, 0.08]} />
         <meshStandardMaterial map={wallMap} color="#3a2438" roughness={0.78} />
       </mesh>
-
-      {/* ═══ SIDE WALLS (full volume, open front) ═══ */}
-      <mesh position={[-2.42, 1.55, -0.65]} receiveShadow castShadow>
-        <boxGeometry args={[0.16, 3.1, 2.7]} />
-        <meshStandardMaterial map={wallMap} color="#241820" roughness={0.85} />
+      {/* Baseboard + crown on back wall (enclosure trim) */}
+      <mesh position={[0, 0.12, -1.78]} castShadow>
+        <boxGeometry args={[4.7, 0.14, 0.1]} />
+        <meshStandardMaterial map={woodMap} color={woodDark} roughness={0.6} />
       </mesh>
-      <mesh position={[2.42, 1.55, -0.65]} receiveShadow castShadow>
-        <boxGeometry args={[0.16, 3.1, 2.7]} />
-        <meshStandardMaterial map={wallMap} color="#241820" roughness={0.85} />
-      </mesh>
-      {/* Front corner posts (silhouette edges) */}
-      <mesh position={[-2.35, 1.35, 0.62]} castShadow>
-        <boxGeometry args={[0.14, 2.7, 0.14]} />
-        <meshStandardMaterial color="#1a1018" roughness={0.7} metalness={0.15} />
-      </mesh>
-      <mesh position={[2.35, 1.35, 0.62]} castShadow>
-        <boxGeometry args={[0.14, 2.7, 0.14]} />
-        <meshStandardMaterial color="#1a1018" roughness={0.7} metalness={0.15} />
+      <mesh position={[0, 2.72, -1.78]} castShadow>
+        <boxGeometry args={[4.7, 0.1, 0.1]} />
+        <meshStandardMaterial map={woodMap} color="#2a1814" roughness={0.55} />
       </mesh>
 
-      {/* ═══ ROOF VOLUME (thick box, not a thin slab) ═══ */}
-      <mesh position={[0, 3.15, -0.7]} castShadow receiveShadow>
-        <boxGeometry args={[5.2, 0.28, 3.0]} />
+      {/* ═══ SIDE WALLS (full volume, thick mass, open front) ═══ */}
+      <mesh position={[-2.45, 1.55, -0.65]} receiveShadow castShadow>
+        <boxGeometry args={[0.28, 3.15, 2.85]} />
+        <meshStandardMaterial map={wallMap} color="#241820" roughness={0.86} />
+      </mesh>
+      <mesh position={[2.45, 1.55, -0.65]} receiveShadow castShadow>
+        <boxGeometry args={[0.28, 3.15, 2.85]} />
+        <meshStandardMaterial map={wallMap} color="#241820" roughness={0.86} />
+      </mesh>
+      {/* Inner side cladding (thickness read from interior) */}
+      <mesh position={[-2.28, 1.3, -0.7]}>
+        <boxGeometry args={[0.06, 2.5, 2.5]} />
+        <meshStandardMaterial map={wallMap} color="#322028" roughness={0.8} />
+      </mesh>
+      <mesh position={[2.28, 1.3, -0.7]}>
+        <boxGeometry args={[0.06, 2.5, 2.5]} />
+        <meshStandardMaterial map={wallMap} color="#322028" roughness={0.8} />
+      </mesh>
+      {/* Front corner posts (heavy timber silhouette — enclosure mass) */}
+      <mesh position={[-2.35, 1.35, 0.68]} castShadow>
+        <boxGeometry args={[0.24, 2.75, 0.24]} />
+        <meshStandardMaterial map={woodMap} color="#1a1018" roughness={0.62} metalness={0.1} />
+      </mesh>
+      <mesh position={[2.35, 1.35, 0.68]} castShadow>
+        <boxGeometry args={[0.24, 2.75, 0.24]} />
+        <meshStandardMaterial map={woodMap} color="#1a1018" roughness={0.62} metalness={0.1} />
+      </mesh>
+      {/* Post cap blocks (thickness at roof junction) */}
+      <mesh position={[-2.35, 2.72, 0.68]} castShadow>
+        <boxGeometry args={[0.3, 0.12, 0.3]} />
+        <meshStandardMaterial map={woodMap} color="#221418" roughness={0.55} />
+      </mesh>
+      <mesh position={[2.35, 2.72, 0.68]} castShadow>
+        <boxGeometry args={[0.3, 0.12, 0.3]} />
+        <meshStandardMaterial map={woodMap} color="#221418" roughness={0.55} />
+      </mesh>
+      {/* Front header beam (closes upper volume, anchors awning/sign) */}
+      <mesh position={[0, 2.55, 0.62]} castShadow>
+        <boxGeometry args={[4.75, 0.22, 0.26]} />
+        <meshStandardMaterial map={woodMap} color="#1e1218" roughness={0.55} metalness={0.1} />
+      </mesh>
+
+      {/* ═══ ROOF VOLUME (thick box + underside ceiling panel) ═══ */}
+      <mesh position={[0, 3.18, -0.7]} castShadow receiveShadow>
+        <boxGeometry args={[5.3, 0.36, 3.1]} />
         <meshStandardMaterial color="#120c14" roughness={0.7} metalness={0.1} />
       </mesh>
+      {/* Ceiling underside (closes room from above) */}
+      <mesh position={[0, 2.98, -0.75]} receiveShadow>
+        <boxGeometry args={[4.85, 0.06, 2.7]} />
+        <meshStandardMaterial map={woodMap} color="#1a1014" roughness={0.75} />
+      </mesh>
       {/* Roof fascia / front lip */}
-      <mesh position={[0, 2.95, 0.72]} castShadow>
-        <boxGeometry args={[5.25, 0.18, 0.14]} />
-        <meshStandardMaterial color="#1a0e18" roughness={0.6} metalness={0.2} />
+      <mesh position={[0, 2.95, 0.78]} castShadow>
+        <boxGeometry args={[5.35, 0.22, 0.18]} />
+        <meshStandardMaterial color="#1a0e18" roughness={0.58} metalness={0.22} />
       </mesh>
       {/* Roof side lips */}
-      <mesh position={[-2.55, 3.05, -0.7]} castShadow>
-        <boxGeometry args={[0.12, 0.22, 3.0]} />
+      <mesh position={[-2.6, 3.08, -0.7]} castShadow>
+        <boxGeometry args={[0.16, 0.28, 3.1]} />
         <meshStandardMaterial color="#160e16" roughness={0.65} />
       </mesh>
-      <mesh position={[2.55, 3.05, -0.7]} castShadow>
-        <boxGeometry args={[0.12, 0.22, 3.0]} />
+      <mesh position={[2.6, 3.08, -0.7]} castShadow>
+        <boxGeometry args={[0.16, 0.28, 3.1]} />
         <meshStandardMaterial color="#160e16" roughness={0.65} />
       </mesh>
 
       {/* Thick scalloped fabric awning */}
       <ScallopedAwning />
 
-      {/* ═══ COUNTER (wood grain + varnish edge + contact darkening) ═══ */}
-      <mesh position={[0, 0.5, -0.5]} castShadow receiveShadow>
-        <boxGeometry args={[4.15, 0.92, 0.92]} />
-        <meshStandardMaterial map={woodMap} color={wood} roughness={0.62} metalness={0.04} />
+      {/* ═══ COUNTER (thick timber + residual #3 UV grain / varnish / edge wear) ═══ */}
+      {/* Body carcass — thicker mass for enclosure density */}
+      <mesh position={[0, 0.48, -0.5]} castShadow receiveShadow>
+        <boxGeometry args={[4.25, 0.9, 1.02]} />
+        <meshStandardMaterial map={woodMap} color={wood} roughness={0.58} metalness={0.04} />
       </mesh>
-      {/* Counter front apron panels */}
-      <mesh position={[0, 0.42, -0.02]} castShadow>
-        <boxGeometry args={[4.05, 0.72, 0.04]} />
-        <meshStandardMaterial map={woodMap} color="#4a3020" roughness={0.58} />
+      {/* Counter front apron — thick panel + raised stile rails (grain density) */}
+      <mesh position={[0, 0.44, 0.04]} castShadow>
+        <boxGeometry args={[4.14, 0.8, 0.12]} />
+        <meshStandardMaterial map={woodApron} color="#4a3020" roughness={0.5} metalness={0.05} />
       </mesh>
-      {/* Polished counter top — clearcoat varnish (residual #3) */}
-      <mesh position={[0, 0.98, -0.5]} castShadow receiveShadow>
-        <boxGeometry args={[4.28, 0.08, 1.05]} />
+      {/* Vertical stile divisions on apron */}
+      {[-1.55, -0.52, 0.52, 1.55].map((x, i) => (
+        <mesh key={i} position={[x, 0.44, 0.11]} castShadow>
+          <boxGeometry args={[0.065, 0.76, 0.04]} />
+          <meshStandardMaterial map={woodApron} color="#3a2418" roughness={0.46} />
+        </mesh>
+      ))}
+      {/* Mid rail on apron */}
+      <mesh position={[0, 0.55, 0.11]}>
+        <boxGeometry args={[4.08, 0.045, 0.035]} />
+        <meshStandardMaterial map={woodApron} color="#5a3824" roughness={0.42} />
+      </mesh>
+      {/* Bottom apron rail (extra timber density) */}
+      <mesh position={[0, 0.12, 0.11]}>
+        <boxGeometry args={[4.08, 0.05, 0.035]} />
+        <meshStandardMaterial map={woodApron} color="#2a1810" roughness={0.55} />
+      </mesh>
+      {/* Polished oak counter top — contrast grain albedo + varnish maps (not tinted plane) */}
+      <mesh position={[0, 1.02, -0.5]} castShadow receiveShadow>
+        <boxGeometry args={[4.42, 0.18, 1.18]} />
         <meshPhysicalMaterial
-          map={woodMap}
-          color={counterTop}
-          roughness={0.22}
-          clearcoat={0.85}
-          clearcoatRoughness={0.14}
-          metalness={0.06}
-          envMapIntensity={0.9}
-        />
-      </mesh>
-      {/* Front edge varnish strip (light catch on bullnose) */}
-      <mesh position={[0, 0.995, 0.04]} castShadow>
-        <boxGeometry args={[4.26, 0.018, 0.04]} />
-        <meshPhysicalMaterial
-          map={woodMap}
-          color="#5a4030"
-          roughness={0.12}
+          map={counterAlbedo}
+          roughnessMap={varnishRough}
+          clearcoatRoughnessMap={clearcoatRough}
+          color="#a87848"
+          roughness={0.18}
           clearcoat={1}
           clearcoatRoughness={0.08}
-          metalness={0.08}
+          metalness={0.04}
+          envMapIntensity={1.55}
+          sheen={0.22}
+          sheenRoughness={0.35}
+          sheenColor="#e8c090"
         />
       </mesh>
-      {/* Contact darkening under props (center of top surface) */}
-      <mesh position={[0, 1.025, -0.5]} rotation={[-Math.PI / 2, 0, 0]}>
-        <planeGeometry args={[3.6, 0.75]} />
-        <meshBasicMaterial color="#0a0604" transparent opacity={0.18} depthWrite={false} />
+      {/* Dark plywood underlayer reveal (thickness read from front) */}
+      <mesh position={[0, 0.92, 0.1]} castShadow>
+        <boxGeometry args={[4.38, 0.055, 0.06]} />
+        <meshStandardMaterial map={woodCounter} color="#1a1008" roughness={0.74} />
       </mesh>
-      {/* Counter face cyan glow strip */}
-      <mesh position={[0, 0.28, 0.0]}>
-        <boxGeometry args={[4.0, 0.045, 0.025]} />
+      {/* Front edge bullnose — worn amber oak (hand-wear, not perfect plastic strip) */}
+      <mesh position={[0, 1.055, 0.12]} castShadow>
+        <boxGeometry args={[4.38, 0.055, 0.085]} />
+        <meshPhysicalMaterial
+          map={counterAlbedo}
+          roughnessMap={varnishRough}
+          color="#8a5a30"
+          roughness={0.32}
+          clearcoat={0.7}
+          clearcoatRoughness={0.28}
+          metalness={0.08}
+          envMapIntensity={1.25}
+        />
+      </mesh>
+      {/* Front lip micro-chamfer (dark edge wear line) */}
+      <mesh position={[0, 1.028, 0.155]} castShadow>
+        <boxGeometry args={[4.36, 0.018, 0.022]} />
+        <meshStandardMaterial map={counterAlbedo} color="#3a2210" roughness={0.78} />
+      </mesh>
+      {/* Side bullnoses — thicker timber edge */}
+      <mesh position={[-2.22, 1.055, -0.5]} castShadow>
+        <boxGeometry args={[0.06, 0.055, 1.16]} />
+        <meshPhysicalMaterial
+          map={counterAlbedo}
+          roughnessMap={varnishRough}
+          color="#7a4e28"
+          roughness={0.28}
+          clearcoat={0.85}
+          clearcoatRoughness={0.18}
+          envMapIntensity={1.2}
+        />
+      </mesh>
+      <mesh position={[2.22, 1.055, -0.5]} castShadow>
+        <boxGeometry args={[0.06, 0.055, 1.16]} />
+        <meshPhysicalMaterial
+          map={counterAlbedo}
+          roughnessMap={varnishRough}
+          color="#7a4e28"
+          roughness={0.28}
+          clearcoat={0.85}
+          clearcoatRoughness={0.18}
+          envMapIntensity={1.2}
+        />
+      </mesh>
+      {/* Rear counter rail (booth density / thickness at back of slab) */}
+      <mesh position={[0, 1.08, -1.02]} castShadow>
+        <boxGeometry args={[4.3, 0.07, 0.08]} />
+        <meshPhysicalMaterial
+          map={counterAlbedo}
+          color="#6a4228"
+          roughness={0.4}
+          clearcoat={0.55}
+          clearcoatRoughness={0.25}
+        />
+      </mesh>
+      {/* Contact darkening under props — soft ovals (low opacity so oak grain stays visible) */}
+      {(
+        [
+          [-0.85, -0.4, 0.55, 0.38, 0.18],
+          [0.55, -0.42, 0.42, 0.32, 0.15],
+          [1.55, -0.55, 0.38, 0.3, 0.13],
+          [-1.65, -0.35, 0.28, 0.22, 0.11],
+          [0, -0.7, 1.6, 0.28, 0.09],
+        ] as const
+      ).map(([x, z, w, d, op], i) => (
+        <mesh key={i} position={[x, 1.115, z]} rotation={[-Math.PI / 2, 0, i * 0.15]}>
+          <circleGeometry args={[Math.max(w, d) * 0.55, 20]} />
+          <meshBasicMaterial color="#1a0e06" transparent opacity={op} depthWrite={false} />
+        </mesh>
+      ))}
+      {/* Micro-wear scuffs (rougher matte chips near front lip — residual #3 edge wear) */}
+      {[-1.6, -0.85, -0.15, 0.55, 1.15, 1.7].map((x, i) => (
+        <mesh key={i} position={[x, 1.116, 0.04]} rotation={[-Math.PI / 2, 0, 0.18 * (i - 2.5)]}>
+          <planeGeometry args={[0.18 + (i % 3) * 0.07, 0.05 + (i % 2) * 0.025]} />
+          <meshStandardMaterial
+            map={counterAlbedo}
+            color="#5a3a22"
+            roughness={0.95}
+            metalness={0}
+            transparent
+            opacity={0.34}
+            depthWrite={false}
+          />
+        </mesh>
+      ))}
+      {/* Under-counter shelf (density + thickness) */}
+      <mesh position={[0, 0.22, -0.42]} castShadow receiveShadow>
+        <boxGeometry args={[3.98, 0.07, 0.76]} />
+        <meshStandardMaterial map={woodMap} color={woodDark} roughness={0.62} />
+      </mesh>
+      {/* Counter face cyan glow strip — recessed channel neon readability */}
+      <mesh position={[0, 0.26, 0.12]}>
+        <boxGeometry args={[3.95, 0.055, 0.04]} />
         <meshStandardMaterial
-          color="#66f0ff"
-          emissive="#22d0ff"
-          emissiveIntensity={1.5}
+          color="#88f8ff"
+          emissive="#33e0ff"
+          emissiveIntensity={2.1}
           toneMapped={false}
         />
       </mesh>
+      {/* Soft additive bloom plane on cyan tube (readability under counter) */}
+      <mesh position={[0, 0.26, 0.14]}>
+        <planeGeometry args={[3.9, 0.12]} />
+        <meshBasicMaterial
+          color="#44e8ff"
+          transparent
+          opacity={0.22}
+          depthWrite={false}
+          toneMapped={false}
+          blending={THREE.AdditiveBlending}
+        />
+      </mesh>
       {/* Toe kick */}
-      <mesh position={[0, 0.04, -0.08]}>
-        <boxGeometry args={[4.05, 0.08, 0.08]} />
-        <meshStandardMaterial color="#120e0c" roughness={0.9} />
+      <mesh position={[0, 0.04, -0.05]}>
+        <boxGeometry args={[4.12, 0.09, 0.1]} />
+        <meshStandardMaterial color="#120e0c" roughness={0.92} />
       </mesh>
 
-      {/* Stools */}
-      <Stool position={[-1.15, 0.05, 0.45]} woodMap={woodMap} />
-      <Stool position={[0, 0.05, 0.45]} woodMap={woodMap} />
-      <Stool position={[1.15, 0.05, 0.45]} woodMap={woodMap} />
+      {/* Stools — four for denser counter front */}
+      <Stool position={[-1.45, 0.05, 0.5]} woodMap={woodMap} />
+      <Stool position={[-0.48, 0.05, 0.5]} woodMap={woodMap} />
+      <Stool position={[0.48, 0.05, 0.5]} woodMap={woodMap} />
+      <Stool position={[1.45, 0.05, 0.5]} woodMap={woodMap} />
 
       {/* ═══ NEON BRAND ON BUILDING (fascia marquee + roof glyph) ═══ */}
       <NeonBrandSign />
       {/* Single 3D tube glyph above-right — jesse silhouette parity (plate already has bowl art) */}
       <NeonRamenGlyph position={[1.72, 3.58, 0.52]} scale={1.05} />
 
-      {/* Accent neon tubes on front corners / roof line */}
-      <NeonTube position={[-2.28, 1.7, 0.55]} args={[0.045, 1.6, 0.045]} color="#ff2d6a" intensity={1.5} />
-      <NeonTube position={[2.28, 1.7, 0.55]} args={[0.045, 1.6, 0.045]} color="#2db0ff" intensity={1.5} />
-      <NeonTube position={[0, 3.05, 0.78]} args={[4.6, 0.035, 0.035]} color="#b044ff" intensity={1.15} />
-      <NeonTube position={[-2.28, 2.9, -0.6]} rotation={[0, 0, Math.PI / 2]} args={[0.03, 1.8, 0.03]} color="#ff2d9a" intensity={0.7} />
+      {/* Accent neon tubes on front corners / roof line — thicker + hotter for readability */}
+      <NeonTube position={[-2.28, 1.7, 0.55]} args={[0.052, 1.65, 0.052]} color="#ff2d6a" intensity={1.85} />
+      <NeonTube position={[2.28, 1.7, 0.55]} args={[0.052, 1.65, 0.052]} color="#2db0ff" intensity={1.85} />
+      <NeonTube position={[0, 3.05, 0.78]} args={[4.65, 0.042, 0.042]} color="#b044ff" intensity={1.45} />
+      <NeonTube position={[-2.28, 2.9, -0.6]} rotation={[0, 0, Math.PI / 2]} args={[0.036, 1.85, 0.036]} color="#ff2d9a" intensity={0.95} />
 
       {/* Paper lanterns under awning */}
       <PaperLantern position={[-1.35, 2.15, 0.15]} hue="#ff7a4a" scale={0.95} />
@@ -1327,21 +1939,45 @@ export function ShopShell() {
         ))}
       </group>
 
-      {/* Menu board on back wall */}
-      <group position={[-1.35, 1.75, -1.84]}>
+      {/* Menu board on back wall — thick wood frame + chalkboard mass */}
+      <group position={[-1.35, 1.75, -1.78]}>
+        {/* Wood housing (depth) */}
         <mesh castShadow>
-          <boxGeometry args={[1.35, 0.95, 0.06]} />
-          <meshStandardMaterial map={woodMap} color="#1a1410" roughness={0.8} />
+          <boxGeometry args={[1.42, 1.02, 0.1]} />
+          <meshStandardMaterial map={woodMap} color="#1a1410" roughness={0.72} />
         </mesh>
-        <mesh position={[0, 0, 0.04]}>
+        {/* Frame rails */}
+        <mesh position={[0, 0.48, 0.04]}>
+          <boxGeometry args={[1.42, 0.06, 0.06]} />
+          <meshStandardMaterial map={woodMap} color="#3a2818" roughness={0.55} />
+        </mesh>
+        <mesh position={[0, -0.48, 0.04]}>
+          <boxGeometry args={[1.42, 0.06, 0.06]} />
+          <meshStandardMaterial map={woodMap} color="#3a2818" roughness={0.55} />
+        </mesh>
+        <mesh position={[-0.68, 0, 0.04]}>
+          <boxGeometry args={[0.06, 0.96, 0.06]} />
+          <meshStandardMaterial map={woodMap} color="#3a2818" roughness={0.55} />
+        </mesh>
+        <mesh position={[0.68, 0, 0.04]}>
+          <boxGeometry args={[0.06, 0.96, 0.06]} />
+          <meshStandardMaterial map={woodMap} color="#3a2818" roughness={0.55} />
+        </mesh>
+        {/* Chalk face slab (not a paper-thin plane) */}
+        <mesh position={[0, 0, 0.06]} castShadow>
+          <boxGeometry args={[1.22, 0.84, 0.03]} />
+          <meshStandardMaterial color="#121c18" roughness={0.96} metalness={0.02} />
+        </mesh>
+        {/* Soft chalk grain wash */}
+        <mesh position={[0, 0, 0.078]}>
           <planeGeometry args={[1.18, 0.8]} />
-          <meshStandardMaterial color="#121c18" roughness={0.95} />
+          <meshStandardMaterial color="#1a2820" roughness={0.98} transparent opacity={0.55} />
         </mesh>
-        <Text position={[0, 0.28, 0.05]} fontSize={0.075} color="#f0e6d0" anchorX="center">
+        <Text position={[0, 0.28, 0.09]} fontSize={0.075} color="#f0e6d0" anchorX="center">
           SPECIALS
         </Text>
         <Text
-          position={[0, -0.02, 0.05]}
+          position={[0, -0.02, 0.09]}
           fontSize={0.048}
           color="#b8e0b0"
           anchorX="center"
@@ -1352,51 +1988,99 @@ export function ShopShell() {
         </Text>
       </group>
 
-      {/* Noren curtains — multi-strip fabric with folds (residual #6), not flat emissive quads */}
+      {/* Noren curtains — residual #1: thick fabric strips + weave maps, not plastic plates */}
       {[-1.05, 0, 1.05].map((x, panelI) => {
-        const baseHue = panelI === 1 ? '#e02868' : '#2a1848'
-        const emitHue = panelI === 1 ? '#ff2d6a' : '#5030a8'
+        const maps = panelI === 1 ? norenFabrics.pink : norenFabrics.indigo
+        const baseHue = panelI === 1 ? '#e83878' : '#3a2860'
+        const emitHue = panelI === 1 ? '#ff2d6a' : '#6040b0'
         const strips = 5
-        const stripW = 0.11
-        const gap = 0.014
+        const stripW = 0.12
+        const gap = 0.012
         const totalW = strips * stripW + (strips - 1) * gap
         return (
           <group key={panelI} position={[x, 1.92, 0.22]}>
-            {/* Rod (horizontal) */}
+            {/* Rod (horizontal wood/metal) */}
             <mesh position={[0, 0.38, 0]} rotation={[0, 0, Math.PI / 2]} castShadow>
-              <cylinderGeometry args={[0.012, 0.012, totalW + 0.06, 8]} />
-              <meshStandardMaterial color="#2a1c14" roughness={0.7} metalness={0.15} />
+              <cylinderGeometry args={[0.014, 0.014, totalW + 0.08, 10]} />
+              <meshStandardMaterial color="#2a1c14" roughness={0.65} metalness={0.2} />
             </mesh>
+            {/* Rod end caps */}
+            {[-1, 1].map((side) => (
+              <mesh key={side} position={[(totalW / 2 + 0.02) * side, 0.38, 0]}>
+                <sphereGeometry args={[0.018, 8, 8]} />
+                <meshStandardMaterial color="#1a100c" roughness={0.55} metalness={0.25} />
+              </mesh>
+            ))}
             {Array.from({ length: strips }, (_, s) => {
               const sx = -totalW / 2 + stripW / 2 + s * (stripW + gap)
-              const fold = Math.sin(s * 1.7 + panelI) * 0.025
-              const len = 0.68 + (s % 3) * 0.02
+              const fold = Math.sin(s * 1.7 + panelI) * 0.03
+              const len = 0.72 + (s % 3) * 0.025
+              const sway = 0.03 * (s - 2)
               return (
-                <group key={s} position={[sx, 0.02, fold]} rotation={[0.02 * (s - 2), 0, fold * 0.8]}>
-                  <mesh castShadow>
-                    <boxGeometry args={[stripW * 0.95, len, 0.012]} />
+                <group
+                  key={s}
+                  position={[sx, 0.0, fold]}
+                  rotation={[0.04 * (s - 2), sway * 0.15, fold * 0.6]}
+                >
+                  {/* Main cloth body — thick mass, weave albedo */}
+                  <mesh castShadow receiveShadow>
+                    <boxGeometry args={[stripW * 0.96, len, 0.028]} />
                     <meshPhysicalMaterial
+                      map={maps.albedo}
+                      roughnessMap={maps.roughness}
                       color={baseHue}
                       emissive={emitHue}
-                      emissiveIntensity={0.08}
-                      roughness={0.88}
+                      emissiveIntensity={0.04}
+                      roughness={0.82}
                       metalness={0}
-                      sheen={0.35}
-                      sheenRoughness={0.7}
-                      sheenColor={panelI === 1 ? '#ff80a8' : '#8060c0'}
-                      transparent
-                      opacity={0.9}
+                      sheen={0.55}
+                      sheenRoughness={0.68}
+                      sheenColor={panelI === 1 ? '#ff90b8' : '#9070d0'}
+                      side={THREE.DoubleSide}
                     />
                   </mesh>
-                  {/* Fold highlight strip */}
-                  <mesh position={[stripW * 0.28, 0, 0.004]}>
-                    <boxGeometry args={[0.012, len * 0.95, 0.004]} />
+                  {/* Back lining (thickness / two-sided cloth read) */}
+                  <mesh position={[0, 0, -0.016]}>
+                    <boxGeometry args={[stripW * 0.9, len * 0.98, 0.008]} />
                     <meshStandardMaterial
-                      color={panelI === 1 ? '#ff6090' : '#4a3080'}
-                      roughness={0.75}
-                      transparent
-                      opacity={0.45}
+                      color={panelI === 1 ? '#701030' : '#1a1030'}
+                      roughness={0.92}
                     />
+                  </mesh>
+                  {/* Vertical fold ridge (highlight + shadow pair) */}
+                  <mesh position={[stripW * 0.22, 0, 0.015]}>
+                    <boxGeometry args={[0.014, len * 0.96, 0.006]} />
+                    <meshStandardMaterial
+                      color={panelI === 1 ? '#ff70a0' : '#6050a0'}
+                      roughness={0.72}
+                      transparent
+                      opacity={0.5}
+                    />
+                  </mesh>
+                  <mesh position={[-stripW * 0.25, 0, 0.012]}>
+                    <boxGeometry args={[0.01, len * 0.94, 0.005]} />
+                    <meshStandardMaterial
+                      color={panelI === 1 ? '#801040' : '#201838'}
+                      roughness={0.88}
+                      transparent
+                      opacity={0.55}
+                    />
+                  </mesh>
+                  {/* Hem weight bar (bottom cloth mass) */}
+                  <mesh position={[0, -len * 0.48, 0.004]} castShadow>
+                    <boxGeometry args={[stripW * 0.92, 0.022, 0.02]} />
+                    <meshPhysicalMaterial
+                      map={maps.albedo}
+                      color={panelI === 1 ? '#a01848' : '#281840'}
+                      roughness={0.78}
+                      sheen={0.35}
+                      sheenColor={panelI === 1 ? '#e05080' : '#7050b0'}
+                    />
+                  </mesh>
+                  {/* Hang loop at rod */}
+                  <mesh position={[0, len * 0.5 + 0.02, 0]}>
+                    <torusGeometry args={[0.012, 0.004, 6, 10]} />
+                    <meshStandardMaterial color="#2a1c14" metalness={0.3} roughness={0.5} />
                   </mesh>
                 </group>
               )
@@ -1419,23 +2103,88 @@ export function ShopShell() {
         </mesh>
       ))}
 
-      {/* Booth nook left */}
-      <group position={[-1.7, 0.05, 0.95]}>
-        <mesh position={[0, 0.28, 0]} castShadow receiveShadow>
-          <boxGeometry args={[1.15, 0.55, 0.95]} />
-          <meshStandardMaterial map={woodMap} color="#3a2228" roughness={0.7} />
+      {/* Booth nook left — thick timber base + cushion + back + side rail + table */}
+      <group position={[-1.7, 0.05, 0.98]}>
+        {/* Plinth base */}
+        <mesh position={[0, 0.12, 0]} castShadow receiveShadow>
+          <boxGeometry args={[1.28, 0.24, 1.05]} />
+          <meshStandardMaterial map={woodMap} color="#2a1818" roughness={0.72} />
         </mesh>
-        <mesh position={[0, 0.58, 0]} castShadow>
-          <boxGeometry args={[1.1, 0.1, 0.9]} />
-          <meshPhysicalMaterial color="#6a2a40" roughness={0.8} sheen={0.4} sheenColor="#a04060" />
+        {/* Seat box */}
+        <mesh position={[0, 0.34, -0.05]} castShadow receiveShadow>
+          <boxGeometry args={[1.2, 0.28, 0.92]} />
+          <meshStandardMaterial map={woodMap} color="#3a2228" roughness={0.65} />
         </mesh>
-        <mesh position={[0, 0.95, -0.38]} castShadow>
-          <boxGeometry args={[1.1, 0.75, 0.12]} />
-          <meshPhysicalMaterial color="#5a2438" roughness={0.75} sheen={0.3} />
+        {/* Cushion top (thick upholstery mass) */}
+        <mesh position={[0, 0.52, -0.05]} castShadow>
+          <boxGeometry args={[1.14, 0.12, 0.86]} />
+          <meshPhysicalMaterial
+            color="#6a2a40"
+            roughness={0.78}
+            sheen={0.45}
+            sheenRoughness={0.55}
+            sheenColor="#a04060"
+          />
         </mesh>
-        <mesh position={[0.12, 0.72, 0.12]} castShadow receiveShadow>
-          <boxGeometry args={[0.58, 0.045, 0.58]} />
-          <meshPhysicalMaterial map={woodMap} color={woodDark} roughness={0.35} clearcoat={0.35} />
+        {/* Cushion edge welt */}
+        <mesh position={[0, 0.47, 0.38]}>
+          <boxGeometry args={[1.12, 0.04, 0.04]} />
+          <meshStandardMaterial color="#4a1830" roughness={0.7} />
+        </mesh>
+        {/* Back rest pad */}
+        <mesh position={[0, 0.95, -0.42]} castShadow>
+          <boxGeometry args={[1.16, 0.78, 0.14]} />
+          <meshPhysicalMaterial color="#5a2438" roughness={0.72} sheen={0.35} sheenColor="#903050" />
+        </mesh>
+        {/* Wood back rail + top cap */}
+        <mesh position={[0, 1.35, -0.42]} castShadow>
+          <boxGeometry args={[1.22, 0.08, 0.16]} />
+          <meshStandardMaterial map={woodMap} color={woodDark} roughness={0.5} />
+        </mesh>
+        {/* Side arm rails */}
+        <mesh position={[-0.58, 0.78, 0.05]} castShadow>
+          <boxGeometry args={[0.08, 0.55, 0.85]} />
+          <meshStandardMaterial map={woodMap} color="#3a221c" roughness={0.58} />
+        </mesh>
+        <mesh position={[0.58, 0.78, 0.05]} castShadow>
+          <boxGeometry args={[0.08, 0.55, 0.85]} />
+          <meshStandardMaterial map={woodMap} color="#3a221c" roughness={0.58} />
+        </mesh>
+        {/* Booth table — thick oak + residual #3 grain/varnish language */}
+        <mesh position={[0.15, 0.71, 0.18]} castShadow receiveShadow>
+          <boxGeometry args={[0.68, 0.1, 0.68]} />
+          <meshPhysicalMaterial
+            map={counterAlbedo}
+            roughnessMap={varnishRough}
+            clearcoatRoughnessMap={clearcoatRough}
+            color="#a07040"
+            roughness={0.18}
+            clearcoat={0.95}
+            clearcoatRoughness={0.1}
+            metalness={0.03}
+            envMapIntensity={1.35}
+            sheen={0.15}
+            sheenColor="#e0b888"
+          />
+        </mesh>
+        {/* Table edge thickness reveal + edge wear */}
+        <mesh position={[0.15, 0.65, 0.18]} castShadow>
+          <boxGeometry args={[0.7, 0.028, 0.7]} />
+          <meshStandardMaterial map={counterAlbedo} color="#3a2210" roughness={0.62} />
+        </mesh>
+        {/* Front lip wear on booth table */}
+        <mesh position={[0.15, 0.765, 0.5]} castShadow>
+          <boxGeometry args={[0.66, 0.012, 0.03]} />
+          <meshStandardMaterial map={counterAlbedo} color="#5a3a20" roughness={0.85} />
+        </mesh>
+        <mesh position={[0.15, 0.48, 0.18]} castShadow>
+          <cylinderGeometry args={[0.07, 0.09, 0.38, 12]} />
+          <meshStandardMaterial map={woodMap} color="#2a1c14" roughness={0.6} />
+        </mesh>
+        {/* Small under-seat foot rail */}
+        <mesh position={[0, 0.18, 0.42]}>
+          <boxGeometry args={[1.05, 0.03, 0.04]} />
+          <meshStandardMaterial color="#1a1010" metalness={0.4} roughness={0.45} />
         </mesh>
       </group>
 

@@ -55,14 +55,16 @@ let capture_schema = #{
 };
 
 // --- args ---
-let max_rounds = 6;
+// Default high: gate-open must keep looping (critics NO ⇒ more rounds, not soft-stop).
+// Override with {"rounds":N,"start_round":M}. Cap 16 so one run can keep pushing materials.
+let max_rounds = 12;
 let start_round = 1;
 if args != () {
     if args.rounds != () { max_rounds = args.rounds; }
     if args.start_round != () { start_round = args.start_round; }
 }
 if max_rounds < 1 { max_rounds = 1; }
-if max_rounds > 12 { max_rounds = 12; }
+if max_rounds > 16 { max_rounds = 16; }
 
 // Shared hard constraints injected into every implementer (token-cheap, no stack rewrite)
 let stack_law = "";
@@ -299,13 +301,15 @@ report += "- stack: existing demos/room R3F (continued)\n";
 report += "- concurrency: parallel shell|lighting|ramen|boba + parallel 3 critics\n";
 report += "- gitnexus: required in implementer prompts\n";
 if !any_ship {
-    report += "\nGate OPEN. Resume with more rounds / higher agent_budget.\n";
+    report += "\nGate OPEN — NOT done. Orchestrator must relaunch:\n";
+    report += "  /workflow ramen-boba-loop {\"start_round\":N,\"rounds\":16} with agent_budget>=384\n";
+    report += "where N = last round + 1. Critics NO must never soft-stop the project.\n";
 }
 let path = write_scratch_file("ramen-boba-loop-report.md", report);
 
 agent(
     "TOKEN-MIN. Final PROMPT-TRUTH.md update: ship_gate_met=" + any_ship.to_string()
-        + " last=" + last_label + ". Never invent YES.",
+        + " last=" + last_label + ". Never invent YES. If gate OPEN, state CONTINUE LOOP.",
     #{
         label: "final-truth",
         capability_mode: "read-write",
@@ -313,10 +317,13 @@ agent(
     }
 );
 
+// Note: Rhai workflows end at complete() — host does not auto-chain runs.
+// When ship=false the main session / user must immediately relaunch with start_round+1.
 complete(#{
-    summary: if any_ship { "Ship gate MET" } else { "Ship gate OPEN — continue loop" },
+    summary: if any_ship { "Ship gate MET" } else { "Ship gate OPEN — RELAUNCH required (do not soft-stop)" },
     ship: any_ship,
     report_path: path,
     rounds: max_rounds,
     last_label: last_label,
+    continue_required: !any_ship,
 });
