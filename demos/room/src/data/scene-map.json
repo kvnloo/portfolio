@@ -1,0 +1,72 @@
+{
+  "_comment": "Maps boplog project ids (repo slugs) → Kevin's Ramen & Boba scene props. Same information as boplog rows; visual placement only. Keep ids aligned with boplog data/*/projects-*.json.",
+  "shop": {
+    "shopName": "Kevin's Ramen & Boba",
+    "tagline": "Interactive shop · projects on the menu",
+    "attribution": "Interactive shop portfolio — same public build data as boplog (kvnloo.github.io/boplog), presented as a 3D scene",
+    "contact": {
+      "github": "https://github.com/kvnloo",
+      "linkedin": "https://linkedin.com/in/kevinsrajan",
+      "email": "mailto:kevinsrajan@gmail.com"
+    },
+    "boplogUrl": "https://kvnloo.github.io/boplog/",
+    "boplogRepo": "https://github.com/kvnloo/boplog",
+    "interactiveUrl": "https://kvnloo.github.io/portfolio/demos/room/"
+  },
+  "artifacts": [
+    {
+      "boplogId": "evolve",
+      "shopId": "evolve",
+      "menuName": "Miso Multi-Agent Ramen",
+      "zone": "ramen",
+      "accent": "#e8a54b",
+      "plate": "assets/ramen.jpg",
+      "role": "counter-hero-ramen"
+    },
+    {
+      "boplogId": "ace",
+      "shopId": "ace",
+      "menuName": "Brown Sugar Boba",
+      "zone": "boba",
+      "accent": "#c47a3a",
+      "plate": "assets/boba.jpg",
+      "role": "counter-hero-boba"
+    },
+    {
+      "boplogId": "files",
+      "shopId": "files",
+      "menuName": "Laptop Lunch Set",
+      "zone": "booth",
+      "accent": "#6ec6ff",
+      "plate": "assets/booth.jpg",
+      "role": "booth-laptop"
+    },
+    {
+      "boplogId": "tmux-agent-fleet",
+      "shopId": "fleet",
+      "menuName": "Side of Terminal Pickles",
+      "zone": "booth",
+      "accent": "#7ddea2",
+      "plate": "assets/booth.jpg",
+      "role": "booth-side"
+    },
+    {
+      "boplogId": "audioengine",
+      "shopId": "audio",
+      "menuName": "Noise-Meter Nitro",
+      "zone": "audio",
+      "accent": "#b794f6",
+      "plate": "assets/ramen.jpg",
+      "role": "audio-shelf"
+    },
+    {
+      "boplogId": "monument",
+      "shopId": "monument",
+      "menuName": "Taro Monument Float",
+      "zone": "boba",
+      "accent": "#f0a0c0",
+      "plate": "assets/boba.jpg",
+      "role": "counter-secondary-boba"
+    }
+  ]
+}

@@ -1,0 +1,156 @@
+{
+  "shopName": "Kevin's Ramen & Boba",
+  "tagline": "Interactive shop · projects on the menu",
+  "attribution": "Interactive shop portfolio — same public build data as boplog (kvnloo.github.io/boplog), presented as a 3D scene",
+  "contact": {
+    "github": "https://github.com/kvnloo",
+    "linkedin": "https://linkedin.com/in/kevinsrajan",
+    "email": "mailto:kevinsrajan@gmail.com"
+  },
+  "boplogUrl": "https://kvnloo.github.io/boplog/",
+  "projects": [
+    {
+      "id": "evolve",
+      "title": "evolve",
+      "menuName": "Miso Multi-Agent Ramen",
+      "zone": "ramen",
+      "blurb": "Open-source multi-agent framework for autonomous software development (AI SDLC): agent-swarm orchestration toolkit with Claude Code agents, evidence-based shipping loops, docs, and examples.",
+      "tags": [
+        "dev",
+        "sh",
+        "product"
+      ],
+      "demoUrl": "https://kvnloo.github.io/evolve/",
+      "repoUrl": "https://github.com/kvnloo/evolve",
+      "accent": "#e8a54b",
+      "boplogId": "evolve",
+      "date": "2025-12-02",
+      "company": "zer0",
+      "portfolio": "product",
+      "portfolioName": "product",
+      "product": "evolve",
+      "productName": "evolve",
+      "featured": true,
+      "featuredRank": 4
+    },
+    {
+      "id": "ace",
+      "title": "ace",
+      "menuName": "Brown Sugar Boba",
+      "zone": "boba",
+      "blurb": "Public digital twin demo for Ace Sports: autonomous multi-floor racket sports facility twin with interactive 3D operational model.",
+      "tags": [
+        "dev",
+        "ts",
+        "product"
+      ],
+      "demoUrl": "https://kvnloo.github.io/ace/",
+      "repoUrl": "https://github.com/kvnloo/ace",
+      "accent": "#c47a3a",
+      "boplogId": "ace",
+      "date": "2025-11-21",
+      "company": "zer0",
+      "portfolio": "product",
+      "portfolioName": "product",
+      "product": "world-sim",
+      "productName": "world sim",
+      "featured": true,
+      "featuredRank": 3
+    },
+    {
+      "id": "files",
+      "title": ".files",
+      "menuName": "Laptop Lunch Set",
+      "zone": "booth",
+      "blurb": "stay in flow while u code",
+      "tags": [
+        "dev",
+        "sh",
+        "professional"
+      ],
+      "demoUrl": "https://kvnloo.github.io/.files/",
+      "repoUrl": "https://github.com/kvnloo/.files",
+      "accent": "#6ec6ff",
+      "boplogId": "files",
+      "date": "2026-07-28",
+      "company": "zer0",
+      "portfolio": "professional",
+      "portfolioName": "professional",
+      "product": "dotfiles",
+      "productName": "dotfiles",
+      "featured": true,
+      "featuredRank": 2
+    },
+    {
+      "id": "fleet",
+      "title": "tmux-agent-fleet",
+      "menuName": "Side of Terminal Pickles",
+      "zone": "booth",
+      "blurb": "Zero-daemon, harness-neutral command palette for coding agents across tmux panes.",
+      "tags": [
+        "dev",
+        "sh",
+        "product"
+      ],
+      "demoUrl": "https://github.com/kvnloo/tmux-agent-fleet",
+      "repoUrl": "https://github.com/kvnloo/tmux-agent-fleet",
+      "accent": "#7ddea2",
+      "boplogId": "tmux-agent-fleet",
+      "date": "2026-07-14",
+      "company": "zer0",
+      "portfolio": "product",
+      "portfolioName": "product",
+      "product": "agent-tooling",
+      "productName": "agent tooling",
+      "featured": true,
+      "featuredRank": 6
+    },
+    {
+      "id": "audio",
+      "title": "AudioEngine",
+      "menuName": "Noise-Meter Nitro",
+      "zone": "audio",
+      "blurb": "Old iOS project (2017): real-time noise meter and 14-band dual-channel EQ (JubiAudio Phase I wireframe). Last real work ~2017-06-06; 2025 commits were docs cleanup only.",
+      "tags": [
+        "dev",
+        "makefile",
+        "professional"
+      ],
+      "demoUrl": "https://kvnloo.github.io/AudioEngine/",
+      "repoUrl": "https://github.com/kvnloo/AudioEngine",
+      "accent": "#b794f6",
+      "boplogId": "audioengine",
+      "date": "2017-06-06",
+      "company": "zer0",
+      "portfolio": "professional",
+      "portfolioName": "professional",
+      "product": "audioengine",
+      "productName": "audioengine",
+      "featured": true,
+      "featuredRank": 1
+    },
+    {
+      "id": "monument",
+      "title": "monument",
+      "menuName": "Taro Monument Float",
+      "zone": "boba",
+      "blurb": "AI Studio web app experiment (monument concept UI).",
+      "tags": [
+        "dev",
+        "ts",
+        "experiment"
+      ],
+      "demoUrl": "https://kvnloo.github.io/monument/",
+      "repoUrl": "https://github.com/kvnloo/monument",
+      "accent": "#f0a0c0",
+      "boplogId": "monument",
+      "date": "2025-11-20",
+      "company": "zer0",
+      "portfolio": "experiment",
+      "portfolioName": "experiment",
+      "product": "",
+      "productName": "",
+      "featured": false
+    }
+  ]
+}

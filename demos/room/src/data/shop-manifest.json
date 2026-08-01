@@ -1,0 +1,278 @@
+{
+  "generatedAt": "2026-08-01T09:05:28Z",
+  "source": "local:/workspace/boplog/data",
+  "boplogGeneratedAt": "2026-08-01T01:14:56Z",
+  "user": "kvnloo",
+  "surface": "interactive-portfolio",
+  "surfaceLabel": "Kevin's Ramen & Boba",
+  "surfaceUrl": "https://kvnloo.github.io/portfolio/demos/room/",
+  "parallelTo": {
+    "kind": "boplog",
+    "manifestUrl": "https://kvnloo.github.io/boplog/data/manifest.json",
+    "siteUrl": "https://kvnloo.github.io/boplog/",
+    "repo": "https://github.com/kvnloo/boplog",
+    "note": "Same public project information as boplog; this file is the 3D shop artifact index."
+  },
+  "shop": {
+    "name": "Kevin's Ramen & Boba",
+    "tagline": "Interactive shop · projects on the menu",
+    "projectsFile": "projects.json"
+  },
+  "artifactCount": 6,
+  "artifacts": [
+    {
+      "shopId": "evolve",
+      "boplogId": "evolve",
+      "role": "counter-hero-ramen",
+      "zone": "ramen",
+      "menuName": "Miso Multi-Agent Ramen",
+      "plate": "assets/ramen.jpg",
+      "accent": "#e8a54b",
+      "project": {
+        "id": "evolve",
+        "name": "evolve",
+        "description": "Open-source multi-agent framework for autonomous software development (AI SDLC): agent-swarm orchestration toolkit with Claude Code agents, evidence-based shipping loops, docs, and examples.",
+        "date": "2025-12-02",
+        "url": "https://kvnloo.github.io/evolve/",
+        "types": [
+          "public",
+          "sh"
+        ],
+        "formats": [],
+        "categories": [
+          "dev"
+        ],
+        "links": [
+          {
+            "label": "docs",
+            "url": "https://kvnloo.github.io/evolve/"
+          },
+          {
+            "label": "github",
+            "url": "https://github.com/kvnloo/evolve"
+          }
+        ],
+        "company": "zer0",
+        "companyName": "zer0",
+        "portfolio": "product",
+        "portfolioName": "product",
+        "product": "evolve",
+        "productName": "evolve",
+        "featured": true,
+        "featuredRank": 4
+      }
+    },
+    {
+      "shopId": "ace",
+      "boplogId": "ace",
+      "role": "counter-hero-boba",
+      "zone": "boba",
+      "menuName": "Brown Sugar Boba",
+      "plate": "assets/boba.jpg",
+      "accent": "#c47a3a",
+      "project": {
+        "id": "ace",
+        "name": "ace",
+        "description": "Public digital twin demo for Ace Sports: autonomous multi-floor racket sports facility twin with interactive 3D operational model.",
+        "date": "2025-11-21",
+        "url": "https://kvnloo.github.io/ace/",
+        "types": [
+          "public",
+          "ts"
+        ],
+        "formats": [],
+        "categories": [
+          "dev"
+        ],
+        "links": [
+          {
+            "label": "docs",
+            "url": "https://kvnloo.github.io/ace/"
+          },
+          {
+            "label": "github",
+            "url": "https://github.com/kvnloo/ace"
+          }
+        ],
+        "company": "zer0",
+        "companyName": "zer0",
+        "portfolio": "product",
+        "portfolioName": "product",
+        "product": "world-sim",
+        "productName": "world sim",
+        "featured": true,
+        "featuredRank": 3
+      }
+    },
+    {
+      "shopId": "files",
+      "boplogId": "files",
+      "role": "booth-laptop",
+      "zone": "booth",
+      "menuName": "Laptop Lunch Set",
+      "plate": "assets/booth.jpg",
+      "accent": "#6ec6ff",
+      "project": {
+        "id": "files",
+        "name": ".files",
+        "description": "stay in flow while u code",
+        "date": "2026-07-28",
+        "url": "https://kvnloo.github.io/.files/",
+        "types": [
+          "public",
+          "sh"
+        ],
+        "formats": [],
+        "categories": [
+          "dev"
+        ],
+        "links": [
+          {
+            "label": "docs",
+            "url": "https://kvnloo.github.io/.files/"
+          },
+          {
+            "label": "github",
+            "url": "https://github.com/kvnloo/.files"
+          }
+        ],
+        "company": "zer0",
+        "companyName": "zer0",
+        "portfolio": "professional",
+        "portfolioName": "professional",
+        "product": "dotfiles",
+        "productName": "dotfiles",
+        "featured": true,
+        "featuredRank": 2
+      }
+    },
+    {
+      "shopId": "fleet",
+      "boplogId": "tmux-agent-fleet",
+      "role": "booth-side",
+      "zone": "booth",
+      "menuName": "Side of Terminal Pickles",
+      "plate": "assets/booth.jpg",
+      "accent": "#7ddea2",
+      "project": {
+        "id": "tmux-agent-fleet",
+        "name": "tmux-agent-fleet",
+        "description": "Zero-daemon, harness-neutral command palette for coding agents across tmux panes.",
+        "date": "2026-07-14",
+        "url": "https://github.com/kvnloo/tmux-agent-fleet",
+        "types": [
+          "public",
+          "sh"
+        ],
+        "formats": [],
+        "categories": [
+          "dev"
+        ],
+        "links": [
+          {
+            "label": "github",
+            "url": "https://github.com/kvnloo/tmux-agent-fleet"
+          }
+        ],
+        "company": "zer0",
+        "companyName": "zer0",
+        "portfolio": "product",
+        "portfolioName": "product",
+        "product": "agent-tooling",
+        "productName": "agent tooling",
+        "featured": true,
+        "featuredRank": 6
+      }
+    },
+    {
+      "shopId": "audio",
+      "boplogId": "audioengine",
+      "role": "audio-shelf",
+      "zone": "audio",
+      "menuName": "Noise-Meter Nitro",
+      "plate": "assets/ramen.jpg",
+      "accent": "#b794f6",
+      "project": {
+        "id": "audioengine",
+        "name": "AudioEngine",
+        "description": "Old iOS project (2017): real-time noise meter and 14-band dual-channel EQ (JubiAudio Phase I wireframe). Last real work ~2017-06-06; 2025 commits were docs cleanup only.",
+        "date": "2017-06-06",
+        "url": "https://kvnloo.github.io/AudioEngine/",
+        "types": [
+          "public",
+          "makefile"
+        ],
+        "formats": [],
+        "categories": [
+          "dev"
+        ],
+        "links": [
+          {
+            "label": "docs",
+            "url": "https://kvnloo.github.io/AudioEngine/"
+          },
+          {
+            "label": "github",
+            "url": "https://github.com/kvnloo/AudioEngine"
+          }
+        ],
+        "company": "zer0",
+        "companyName": "zer0",
+        "portfolio": "professional",
+        "portfolioName": "professional",
+        "product": "audioengine",
+        "productName": "audioengine",
+        "featured": true,
+        "featuredRank": 1
+      }
+    },
+    {
+      "shopId": "monument",
+      "boplogId": "monument",
+      "role": "counter-secondary-boba",
+      "zone": "boba",
+      "menuName": "Taro Monument Float",
+      "plate": "assets/boba.jpg",
+      "accent": "#f0a0c0",
+      "project": {
+        "id": "monument",
+        "name": "monument",
+        "description": "AI Studio web app experiment (monument concept UI).",
+        "date": "2025-11-20",
+        "url": "https://kvnloo.github.io/monument/",
+        "types": [
+          "public",
+          "ts"
+        ],
+        "formats": [],
+        "categories": [
+          "dev"
+        ],
+        "links": [
+          {
+            "label": "docs",
+            "url": "https://kvnloo.github.io/monument/"
+          },
+          {
+            "label": "github",
+            "url": "https://github.com/kvnloo/monument"
+          }
+        ],
+        "company": "zer0",
+        "companyName": "zer0",
+        "portfolio": "experiment",
+        "portfolioName": "experiment",
+        "product": "",
+        "productName": ""
+      }
+    }
+  ],
+  "hierarchy": {
+    "company": {
+      "id": "zer0",
+      "name": "zer0",
+      "label": "zer0"
+    },
+    "note": "Copied reference from boplog hierarchy.json"
+  }
+}
