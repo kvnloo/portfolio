@@ -5,6 +5,9 @@ on:
     branches:
       - main
       - dev
+  # Refresh baked shop snapshot periodically (runtime also fetches live boplog)
+  schedule:
+    - cron: '7 */6 * * *'
   workflow_dispatch:
 
 permissions:
@@ -36,8 +39,19 @@ jobs:
         with:
           node-version: '22'
 
+      # boplog data/ = SSOT for shop project facts (baked snapshot at build; live fetch at runtime)
+      - name: Checkout boplog data
+        uses: actions/checkout@v4
+        with:
+          repository: kvnloo/boplog
+          sparse-checkout: data
+          sparse-checkout-cone-mode: true
+          path: boplog-src
+
       # Build main branch content to deploy root
       - name: Build main (production)
+        env:
+          BOPLOG_DATA_DIR: ${{ github.workspace }}/boplog-src/data
         run: |
           mkdir -p deploy
 
@@ -57,6 +71,7 @@ jobs:
           [ -f "temp/main/Gemfile" ] && cp temp/main/Gemfile deploy/
 
           # Build interactive demos (Kevin's Ramen & Boba)
+          # prebuild → sync-shop-from-boplog (uses BOPLOG_DATA_DIR); runtime upgrades via live fetch
           if [ -d "temp/main/demos/room" ]; then
             (cd temp/main/demos/room && npm ci && npm run build)
             mkdir -p deploy/demos/room
@@ -84,6 +99,8 @@ jobs:
 
       # Build dev branch content to deploy/dev subdirectory
       - name: Build dev
+        env:
+          BOPLOG_DATA_DIR: ${{ github.workspace }}/boplog-src/data
         run: |
           mkdir -p deploy/dev
 
@@ -102,9 +119,7 @@ jobs:
           [ -f "temp/dev/_config.yml" ] && cp temp/dev/_config.yml deploy/dev/
           [ -f "temp/dev/Gemfile" ] && cp temp/dev/Gemfile deploy/dev/
 
-          # Build demos for dev preview (same bases work under /portfolio/dev/ only if base is adjusted;
-          # room/spline use /portfolio/demos/... so also publish to deploy root demos from whichever branch has them.
-          # Prefer building from dev when present so previews stay current.)
+          # Build demos for dev preview (prefer dev when present so previews stay current)
           if [ -d "temp/dev/demos/room" ]; then
             (cd temp/dev/demos/room && npm ci && npm run build)
             mkdir -p deploy/demos/room deploy/dev/demos/room

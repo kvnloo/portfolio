@@ -8,6 +8,16 @@ export type Project = {
   demoUrl: string
   repoUrl: string
   accent: string
+  /** boplog project id when synced from build-log data */
+  boplogId?: string
+  date?: string
+  company?: string
+  portfolio?: string
+  portfolioName?: string
+  product?: string
+  productName?: string
+  featured?: boolean
+  featuredRank?: number
 }
 
 export type ShopData = {
@@ -19,5 +29,7 @@ export type ShopData = {
     linkedin: string
     email: string
   }
+  /** Parallel archive: same public project data as boplog */
+  boplogUrl?: string
   projects: Project[]
 }

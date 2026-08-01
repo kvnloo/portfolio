@@ -2,10 +2,10 @@
 
 ```
 ship_gate_met=false
-last=loop-r6
+last=loop-r32
 capture_ok=true
-ship_votes=0/3
-prefer_votes=0/3
+ship_votes=0/6
+prefer_votes=0/6
 verdict=DO_NOT_SHIP
 gate=OPEN
 ```
@@ -28,45 +28,75 @@ gate=OPEN
 | loop-r4 | **≪8** (fail hard) | **NO** (0/3 ship, 0/3 prefer) | **DO NOT SHIP** — gate **OPEN**; `capture_ok=true`; see `CRITIC-PASS-loop-r4.md` |
 | loop-r5 | **≪8** (fail hard) | **NO** (0/3 ship, 0/3 prefer) | **DO NOT SHIP** — gate **OPEN**; `capture_ok=true`; see `CRITIC-PASS-loop-r5.md` |
 | loop-r6 | **≪8** (fail hard) | **NO** (0/3 ship, 0/3 prefer) | **DO NOT SHIP** — gate **OPEN**; `capture_ok=true`; see `CRITIC-PASS-loop-r6.md` |
+| loop-r7 | **≪8** (fail hard) | **NO** (0/3 ship, 0/3 prefer) | **DO NOT SHIP** — gate **OPEN**; `capture_ok=true`; see `CRITIC-PASS-loop-r7.md` |
+| loop-r8 | **≪8** (fail hard) | **NO** (0/3 ship, 0/3 prefer) | **DO NOT SHIP** — gate **OPEN**; `capture_ok=true`; see `CRITIC-PASS-loop-r8.md` |
+| loop-r9 | **≪8** (fail hard) | **NO** (0/3 ship, 0/3 prefer) | **DO NOT SHIP** — gate **OPEN**; `capture_ok=true`; see `CRITIC-PASS-loop-r9.md` |
+| loop-r10 | **≪8** (fail hard) | **NO** (0/3 ship, 0/3 prefer) | **DO NOT SHIP** — gate **OPEN**; `capture_ok=true`; see `CRITIC-PASS-loop-r10.md` |
+| loop-r11 | **≪8** (fail hard) | **NO** (0/3 ship, 0/3 prefer) | **DO NOT SHIP** — gate **OPEN**; `capture_ok=true`; see `CRITIC-PASS-loop-r11.md` |
+| loop-r12 | **≪8** (fail hard) | **NO** (0/3 ship, 0/3 prefer) | **DO NOT SHIP** — gate **OPEN**; `capture_ok=true`; see `CRITIC-PASS-loop-r12.md` |
+| loop-r13 | **≪8** (fail hard) | **NO** (0/3 ship, 0/3 prefer) | **DO NOT SHIP** — gate **OPEN**; `capture_ok=true`; see `CRITIC-PASS-loop-r13.md` |
+| loop-r14 | **≪8** (fail hard) | **NO** (0/3 ship, 0/3 prefer) | **DO NOT SHIP** — gate **OPEN**; `capture_ok=true`; see `CRITIC-PASS-loop-r14.md` |
+| loop-r15 | **≪8** (fail hard) | **NO** (0/3 ship, 0/3 prefer) | **DO NOT SHIP** — gate **OPEN**; `capture_ok=true`; see `CRITIC-PASS-loop-r15.md` |
+| loop-r16 | **≪8** (fail hard) | **NO** (0/3 ship, 0/3 prefer) | **DO NOT SHIP** — gate **OPEN**; `capture_ok=true`; see `CRITIC-PASS-loop-r16.md` |
+| loop-r17 | **≪8** (fail hard) | **NO** (0/6 ship, 0/6 prefer) | **DO NOT SHIP** — gate **OPEN**; `capture_ok=true`; product pack beauty+placement+chrome; see `CRITIC-PASS-loop-r17.md` |
+| loop-r18 | **≪8** (fail hard) | **NO** (0/6 ship, 0/6 prefer) | **DO NOT SHIP** — gate **OPEN**; `capture_ok=true`; product pack beauty+placement+chrome; see `CRITIC-PASS-loop-r18.md` |
+| loop-r19 | **≪8** (fail hard) | **NO** (0/6 ship, 0/6 prefer) | **DO NOT SHIP** — gate **OPEN**; `capture_ok=true`; product pack beauty+placement+chrome; see `CRITIC-PASS-loop-r19.md` |
+| loop-r20 | **≪8** (fail hard) | **NO** (0/6 ship, 0/6 prefer) | **DO NOT SHIP** — gate **OPEN**; `capture_ok=true`; product pack beauty+placement+chrome; see `CRITIC-PASS-loop-r20.md` |
+| loop-r21 | **≪8** (fail hard) | **NO** (0/6 ship, 0/6 prefer) | **DO NOT SHIP** — gate **OPEN**; `capture_ok=true`; product pack beauty+placement+chrome; see `CRITIC-PASS-loop-r21.md` |
+| loop-r22 | **≪8** (fail hard) | **NO** (0/6 ship, 0/6 prefer) | **DO NOT SHIP** — gate **OPEN**; `capture_ok=true`; product pack beauty+placement+chrome; see `CRITIC-PASS-loop-r22.md` |
+| loop-r23 | **≪8** (fail hard) | **NO** (0/6 ship, 0/6 prefer) | **DO NOT SHIP** — gate **OPEN**; `capture_ok=true`; product pack beauty+placement+chrome; see `CRITIC-PASS-loop-r23.md` |
+| loop-r24 | **≪8** (fail hard) | **NO** (0/6 ship, 0/6 prefer) | **DO NOT SHIP** — gate **OPEN**; `capture_ok=true`; product pack beauty+placement+chrome; see `CRITIC-PASS-loop-r24.md` |
+| loop-r25 | **≪8** (fail hard) | **NO** (0/6 ship, 0/6 prefer) | **DO NOT SHIP** — gate **OPEN**; `capture_ok=true`; product pack beauty+placement+chrome; see `CRITIC-PASS-loop-r25.md` |
+| loop-r26 | **≪8** (fail hard) | **NO** (0/6 ship, 0/6 prefer) | **DO NOT SHIP** — gate **OPEN**; `capture_ok=true`; product pack beauty+placement+chrome; see `CRITIC-PASS-loop-r26.md` |
+| loop-r27 | **≪8** (fail hard) | **NO** (0/6 ship, 0/6 prefer) | **DO NOT SHIP** — gate **OPEN**; `capture_ok=true`; product pack beauty+placement+chrome; see `CRITIC-PASS-loop-r27.md` |
+| loop-r28 | **≪8** (fail hard) | **NO** (0/6 ship, 0/6 prefer) | **DO NOT SHIP** — gate **OPEN**; `capture_ok=true`; product pack beauty+placement+chrome; see `CRITIC-PASS-loop-r28.md` |
+| loop-r29 | **≪8** (fail hard) | **NO** (0/6 ship, 0/6 prefer) | **DO NOT SHIP** — gate **OPEN**; `capture_ok=true`; product pack beauty+placement+chrome; see `CRITIC-PASS-loop-r29.md` |
+| loop-r30 | **≪8** (fail hard) | **NO** (0/6 ship, 0/6 prefer) | **DO NOT SHIP** — gate **OPEN**; `capture_ok=true`; product pack beauty+placement+chrome; see `CRITIC-PASS-loop-r30.md` |
+| loop-r31 | **≪8** (fail hard) | **NO** (0/6 ship, 0/6 prefer) | **DO NOT SHIP** — gate **OPEN**; `capture_ok=true`; product pack beauty+placement+chrome; see `CRITIC-PASS-loop-r31.md` |
+| loop-r32 | **≪8** (fail hard) | **NO** (0/6 ship, 0/6 prefer) | **DO NOT SHIP** — gate **OPEN**; `capture_ok=true`; product pack beauty+placement+chrome; see `CRITIC-PASS-loop-r32.md` |
 
 prompt.md: *“Don’t stop until each sub-agent is utterly wowed… prefer ours blind.”*  
 **That gate has not been met.** No ship claim without unanimous harsh-critic YES.
 
 ### Did we follow the instructions in prompt.md?
-**Partially (~55–60%).** Stack and capture loop exist; craft still below jesse on materials (ramen, boba, fabric/menu, shell primitives, metals). Counter wood alone is closer to bar.
+**Partially (~55–60%).** Stack and capture loop exist (beauty + placement + **chrome** on loop-r32); craft still below jesse — boba condensation white spheres not film/beads; ceramic/liquid lack wet clearcoat + translucency under key; noren/metal flat; neon emissive mesh not glass; weak contact under oversized floating ramen; wood textured but no varnish multi-lobe/edge wear; chrome panel still dark SaaS vs ticket/shop craft; blue ground plane + fog mush (not night-street midtones); faceted pink lantern balls + green trees = toy/mystical env. Gate remains **OPEN**.
 
 | Requirement | Status |
 |-------------|--------|
 | jesse-zhou as hard bar | Acknowledged; not reached |
 | Imagine plates | PARTIAL (neon-sign plate on fascia; food refs exist) |
-| img2threejs | PARTIAL (form factories; ramen = no glaze ring / soft plastic food; boba = weak pearls, no condensate, generic transmission) |
-| Fan-out per system with critics | PARTIAL (late fan-out; not every system cleared) |
-| Harsh critic loop until wowed | **NOT DONE** — loop continues; ship_votes 0/3 (loop-r6) |
-| Side-by-side blind compare | DONE (loop-r6: 3 critics) — **jesse wins**; 0 prefer ours |
+| img2threejs | PARTIAL (form factories; boba condensation white spheres; ceramic/liquid dry under key; materials below bar) |
+| Fan-out per system with critics | PARTIAL (6-dim table materials/lighting/read/placement/chrome/camux; none cleared) |
+| Harsh critic loop until wowed | **NOT DONE** — loop continues; ship_votes 0/6 (loop-r32) |
+| Side-by-side blind compare | DONE (loop-r32: 6 critics) — **jesse wins**; 0 prefer ours |
 | Three.js / R3F | DONE |
 | Project portals to real work | DONE |
-| capture harness | DONE (`--beauty` multi-angle OK on loop-r6 — `capture_ok=true`) |
-| No hobby WebGL | **FAIL** — ramen ceramic lacks clearcoat/glaze ring, broth+noodles soft/plastic; boba weak pearl volume, no condensation, generic cylinder transmission; noren/menu flat slabs; floor/stool legs/shell walls matte plastic primitives; faucet/sink/metal rail missing metalness/anisotropy/chrome; only counter wood approaches bar |
+| capture harness | DONE (`capture:product` beauty+placement+chrome OK on loop-r32 — `capture_ok=true`) |
+| No hobby WebGL | **FAIL** — boba condensation white spheres not film/beads; ceramic/liquid lack wet clearcoat + translucency; noren/metal flat; neon emissive mesh not glass; floating oversized ramen weak contact; wood no multi-lobe/edge wear; blue ground + fog mush; pink lanterns + green trees toy/mystical; chrome dark SaaS not ticket craft |
 
 ### Completion status
 **Not complete** under prompt.md. Gate still **OPEN** (not unanimous ship).  
-**Final snapshot:** `ship_gate_met=false` · `last=loop-r6` · never invent YES.
+**Final snapshot:** `ship_gate_met=false` · `last=loop-r32` · never invent YES.
 
-**Best beauty still (this round):** `shots/loop-r6/01-beauty-hero.png`  
-Prior: `shots/loop-r5/01-beauty-hero.png`, `shots/loop-r4/01-beauty-hero.png`, `shots/loop-r3/01-beauty-hero.png`, `shots/loop-r2/01-beauty-hero.png`, `shots/loop-r1/01-beauty-hero.png`, `shots/critic-v3/01-beauty-hero.png`
+**Best beauty still (this round):** `shots/loop-r32/01-beauty-hero.png`  
+Prior: `shots/loop-r31/01-beauty-hero.png`, `shots/loop-r30/01-beauty-hero.png`, `shots/loop-r29/01-beauty-hero.png`, `shots/loop-r28/01-beauty-hero.png`, `shots/loop-r27/01-beauty-hero.png`, `shots/loop-r26/01-beauty-hero.png`, `shots/loop-r25/01-beauty-hero.png`, `shots/loop-r24/01-beauty-hero.png`, `shots/loop-r23/01-beauty-hero.png`, `shots/loop-r22/01-beauty-hero.png`, `shots/loop-r21/01-beauty-hero.png`, `shots/loop-r20/01-beauty-hero.png`, `shots/loop-r19/01-beauty-hero.png`, `shots/loop-r18/01-beauty-hero.png`, `shots/loop-r17/01-beauty-hero.png`, `shots/loop-r16/01-beauty-hero.png`, `shots/loop-r15/01-beauty-hero.png`, `shots/loop-r14/01-beauty-hero.png`, `shots/loop-r13/01-beauty-hero.png`, `shots/loop-r12/01-beauty-hero.png`, `shots/loop-r11/01-beauty-hero.png`, `shots/loop-r10/01-beauty-hero.png`, `shots/loop-r9/01-beauty-hero.png`, `shots/loop-r8/01-beauty-hero.png`, `shots/loop-r7/01-beauty-hero.png`, `shots/loop-r6/01-beauty-hero.png`, `shots/loop-r5/01-beauty-hero.png`, `shots/loop-r4/01-beauty-hero.png`, `shots/loop-r3/01-beauty-hero.png`, `shots/loop-r2/01-beauty-hero.png`, `shots/loop-r1/01-beauty-hero.png`, `shots/critic-v3/01-beauty-hero.png`
 
-### What loop-r6 critic actually said (residuals)
-1. Ramen bowl ceramic lacks clearcoat/glaze ring; broth + noodles read soft/plastic, not liquid/food surface  
-2. Boba cups: weak pearl volume, no condensation, generic cylinder transmission vs premium plastic/glass  
-3. Noren/menu tiles are flat color slabs — no fabric weave, chalk, or micro-roughness  
-4. Floor, stool legs, shell walls still default matte plastic primitives  
-5. Faucet/sink/metal rail lack metalness/anisotropy; chrome is missing  
-6. Counter wood grain/varnish is the only surface that approaches bar — props do not match it  
+### What loop-r32 critic actually said (residuals)
+1. Boba condensation = white spheres, not film/beads  
+2. Ceramic/liquid lack wet clearcoat + translucency under key  
+3. Noren/metal flat; neon emissive mesh not glass  
+4. Weak contact under oversized floating ramen  
+5. Wood textured but no varnish multi-lobe/edge wear  
+6. Chrome panel still dark SaaS vs ticket/shop craft  
+7. Blue ground plane + fog mush (not night-street midtones)  
+8. Faceted pink lantern balls + green trees = toy/mystical env  
 
-Full backlog: `docs/LOOP-RESIDUALS.md`. Critic table: `docs/CRITIC-PASS-loop-r6.md`.
+Full backlog: `docs/LOOP-RESIDUALS.md`. Critic table: `docs/CRITIC-PASS-loop-r32.md`.
 
 ### What must continue
-1. Materials pass on residuals #1–#5 (ramen glaze/food, boba pearls/condensate/transmission, noren/menu, shell primitives, chrome metals)  
-2. Material parity — lift props to counter wood craft level (#6)  
-3. Re-capture → independent critic → only ship on **unanimous** YES + prefer-ours  
-4. Capture reliability: loop-r6 beauty multi-angle OK (`capture_ok=true`)
+1. Lighting/style: kill blue ground plane + fog mush (night-street midtones); cull faceted pink lantern balls + green trees (toy/mystical not kiosk); fix noren/metal flat + neon glass-tube **(A)** · **(E)**  
+2. Materials: boba film/bead condensate (not white spheres); ceramic/liquid wet clearcoat + translucency under key; wood varnish multi-lobe/edge wear **(C)**  
+3. Placement: ground oversized floating ramen with contact; env clutter after cull **(B)**  
+4. Chrome ticket/shop craft (not dark SaaS panels) **(D)** · **(E)**  
+5. Re-capture product pack → independent 6-dim critic → only ship on **unanimous** YES + prefer-ours  
+6. Capture reliability: loop-r32 beauty+placement+chrome OK (`capture_ok=true`)

@@ -5,10 +5,19 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "prebuild": "node ../../scripts/sync-shop-from-boplog.mjs || echo '[prebuild] boplog sync skipped — using committed snapshot'",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
     "capture": "node tools/capture.mjs",
-    "verify": "npm run build && node tools/capture.mjs --label verify",
+    "capture:placement": "node tools/capture.mjs --placement",
+    "capture:chrome": "node tools/capture.mjs --chrome",
+    "capture:full": "node tools/capture.mjs --beauty --placement",
+    "capture:product": "node tools/capture.mjs --beauty --placement --chrome",
+    "capture:behance": "node tools/capture-behance.mjs --build",
+    "capture:photosphere": "node tools/capture-photosphere.mjs --build --label ramen-hq --size 1024",
+    "capture:photosphere:4d": "node tools/capture-photosphere.mjs --build --label ramen-hq --size 1024 --frames 12 --fps 24",
+    "sync:boplog": "node ../../scripts/sync-shop-from-boplog.mjs",
+    "verify": "npm run sync:boplog && npm run build && node tools/capture.mjs --label verify --beauty --placement",
     "img2threejs:probe": "python3 ../../../../img2threejs/forge/stage1_intake/probe_image.py public/assets/ramen.jpg"
   },
   "dependencies": {
