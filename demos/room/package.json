@@ -15,10 +15,11 @@
     "capture:product": "node tools/capture.mjs --beauty --placement --chrome",
     "capture:behance": "node tools/capture-behance.mjs --build",
     "capture:photosphere": "node tools/capture-photosphere.mjs --build --label ramen-hq --size 1024",
-    "capture:photosphere:4d": "node tools/capture-photosphere.mjs --build --label ramen-hq --size 1024 --frames 12 --fps 24",
+    "capture:photosphere:4d": "node tools/capture-photosphere.mjs --build --label ramen-hq --size 1024 --dpr 2 --orbit live --frames 32 --settle-ms 600 --fps 8",
     "sync:boplog": "node ../../scripts/sync-shop-from-boplog.mjs",
     "verify": "npm run sync:boplog && npm run build && node tools/capture.mjs --label verify --beauty --placement",
-    "img2threejs:probe": "python3 ../../../../img2threejs/forge/stage1_intake/probe_image.py public/assets/ramen.jpg"
+    "img2threejs:probe": "python3 ../../../../img2threejs/forge/stage1_intake/probe_image.py public/assets/ramen.jpg",
+    "capture:drone": "node tools/capture-drone.mjs --build --label ramen-hq --kind orbit --frames 24 --fps 12"
   },
   "dependencies": {
     "@react-three/drei": "^10.0.6",

@@ -62,7 +62,10 @@ function dirToCubeUV(dx, dy, dz) {
   }
   const s = 1 / az
   if (dz > 0) return { name: 'pz', u: (-dx * s + 1) / 2, v: (-dy * s + 1) / 2 }
-  return { name: 'nz', u: (dx * s + 1) / 2, v: (-dy * s + 1) / 2 }
+  // −Z kiosk: camera.lookAt(-Z) has right=+X in GL, but canvas screenshot
+    // is stored with image-x matching screen left→right. Equirect brand LTR needs
+    // u flipped vs raw dx so neon reads correctly (not mirrored).
+    return { name: 'nz', u: (-dx * s + 1) / 2, v: (-dy * s + 1) / 2 }
 }
 
 /**

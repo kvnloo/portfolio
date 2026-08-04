@@ -73,22 +73,56 @@ function SteamField({
     const g = group.current
     if (!g) return
     const t = clock.elapsedTime
+    // HQ / live-4D capture: stronger, faster steam so fixed-eye MAD is user-visible.
+    // Interactive runtime stays restrained (chalk SPECIALS + wood midtones).
+    let captureBoost = false
+    try {
+      captureBoost =
+        typeof window !== 'undefined' &&
+        (Boolean((window as unknown as { __shopCaptureActive?: boolean }).__shopCaptureActive) ||
+          new URLSearchParams(window.location.search).get('capture') === '1')
+    } catch {
+      captureBoost = false
+    }
+    // Capture: large additive plumes so fixed-eye MAD is LOCAL (kiosk bowls), not exposure.
+    // Interactive stays restrained so SPECIALS + wood midtones survive.
+    const speedMul = captureBoost ? 4.2 : 1
+    const riseMul = captureBoost ? 3.4 : 1
+    const opMul = captureBoost ? 1.0 : 0.085
+    const scaleMul = captureBoost ? 9.5 : 1
+    const driftMul = captureBoost ? 2.4 : 1
     g.children.forEach((child, i) => {
       const s = seeds[i]
       if (!s || !(child instanceof THREE.Mesh)) return
-      const cycle = ((t * s.speed + s.phase) % 1.8) / 1.8
+      const cycle = ((t * s.speed * speedMul + s.phase) % 1.8) / 1.8
       child.position.set(
-        s.x + Math.sin(t * 0.7 + s.phase) * s.drift,
-        cycle * 0.82,
-        s.z + Math.cos(t * 0.55 + s.phase) * s.drift * 0.8,
+        s.x + Math.sin(t * 0.7 + s.phase) * s.drift * driftMul,
+        cycle * 0.82 * riseMul,
+        s.z + Math.cos(t * 0.55 + s.phase) * s.drift * 0.8 * driftMul,
       )
       // Soft sine envelope — peels in/out without hard disc edges
       // loop-r20 residual #2/#3 (A): further restrain steam so chalk SPECIALS + wood midtones survive
       const envelope = Math.sin(cycle * Math.PI)
       const mat = child.material as THREE.MeshBasicMaterial
-      mat.opacity = envelope * 0.085
-      const sc = s.scale * (0.42 + cycle * 1.15)
-      child.scale.set(sc * (1 + cycle * 0.28), sc * (1.05 + cycle * 0.75), sc)
+      // Capture: hard opacity floor so troughs still read as white plumes at plaza eye.
+      mat.opacity = captureBoost
+        ? Math.min(1, Math.max(0.55, envelope * opMul + 0.35))
+        : envelope * opMul
+      if (captureBoost) {
+        mat.depthTest = false
+        mat.depthWrite = false
+        mat.transparent = true
+        mat.toneMapped = false
+        mat.blending = THREE.AdditiveBlending
+        mat.color.setRGB(1, 0.97, 0.9)
+        mat.needsUpdate = true
+        // Tag for ShopCanvas re-boost (only steam, not other transparent meshes)
+        ;(mat as THREE.Material & { userData: Record<string, unknown> }).userData.steamCapture = true
+      }
+      const sc = s.scale * scaleMul * (0.42 + cycle * 1.15)
+      // Capture: taller vertical plumes so nz kiosk ROI moves across many pixels
+      const yStretch = captureBoost ? 1.85 : 1
+      child.scale.set(sc * (1 + cycle * 0.28), sc * (1.05 + cycle * 0.75) * yStretch, sc)
       // Billboard toward camera (sprite-like soft puffs)
       child.quaternion.copy(camera.quaternion)
     })
@@ -4802,8 +4836,9 @@ export function ShopShell() {
       </mesh>
 
       {/* Steam — tight rear bowls only so SPECIALS + counter grain survive (loop-r20 #2/#3) */}
-      <SteamField position={[-0.85, 1.14, -0.52]} count={5} spread={0.1} />
-      <SteamField position={[0.55, 1.16, -0.55]} count={4} spread={0.08} />
+      <SteamField position={[-0.85, 1.14, -0.52]} count={10} spread={0.16} />
+      <SteamField position={[0.55, 1.16, -0.55]} count={9} spread={0.14} />
+      <SteamField position={[-0.15, 1.12, -0.48]} count={8} spread={0.12} />
 
       {/* ═══ LIGHTING RIG — residual #1+#2 loop-r21: exterior fill + break warm underglow strip ═══ */}
       {/* Soft base lift — cool ground + warm sky split (loop-r26 #2 A: not magenta flood) */}

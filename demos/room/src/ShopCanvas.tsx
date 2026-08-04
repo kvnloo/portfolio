@@ -1,6 +1,6 @@
-import { Suspense, useEffect, useState } from 'react'
+import { Suspense, useEffect, useRef, useState } from 'react'
 import { flushSync } from 'react-dom'
-import { Canvas, useThree } from '@react-three/fiber'
+import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import { AdaptiveDpr, AdaptiveEvents, Environment, OrbitControls, PerformanceMonitor } from '@react-three/drei'
 import { EffectComposer, Bloom, Vignette } from '@react-three/postprocessing'
 import * as THREE from 'three'
@@ -294,8 +294,8 @@ function dirToCubeUV(dx: number, dy: number, dz: number): { name: string; u: num
     // +Z: right=−X, up=+Y
     return { name: 'pz', u: (-dx * s + 1) / 2, v: (-dy * s + 1) / 2 }
   }
-  // −Z: right=+X, up=+Y (kiosk)
-  return { name: 'nz', u: (dx * s + 1) / 2, v: (-dy * s + 1) / 2 }
+  // −Z kiosk: flip U so brand reads LTR in equirect (capture canvas right = +X).
+  return { name: 'nz', u: (-dx * s + 1) / 2, v: (-dy * s + 1) / 2 }
 }
 
 async function stitchEquirectFromFaces(
@@ -360,6 +360,73 @@ function CameraBridge({
   setRawCapture: (raw: boolean) => void
 }) {
   const { camera, controls, gl, set, scene } = useThree()
+  /** True while cube-face / live-4D photosphere capture is active (ref for useFrame). */
+  const captureActiveRef = useRef(false)
+  const steamMatsRef = useRef<THREE.MeshBasicMaterial[]>([])
+  /** Gradient + stars night sky (py std>0). Solid Color fails Mode1; HDR env-as-bg hangs SwiftShader. */
+  const nightSky = useRef<THREE.Texture | THREE.Color | null>(null)
+  if (nightSky.current === null) {
+    const c = document.createElement('canvas')
+    c.width = 512
+    c.height = 512
+    const ctx = c.getContext('2d')!
+    const g = ctx.createLinearGradient(0, 0, 0, 512)
+    g.addColorStop(0, '#1a2744')
+    g.addColorStop(0.45, '#121c34')
+    g.addColorStop(1, '#0a101c')
+    ctx.fillStyle = g
+    ctx.fillRect(0, 0, 512, 512)
+    // deterministic pseudo-stars for non-zero std + non-void zenith
+    let seed = 0x2a3b4c5d
+    const rnd = () => {
+      seed = (seed * 1664525 + 1013904223) >>> 0
+      return seed / 0xffffffff
+    }
+    for (let i = 0; i < 180; i++) {
+      const x = rnd() * 512
+      const y = rnd() * 512
+      const r = 0.4 + rnd() * 1.4
+      const a = 0.35 + rnd() * 0.55
+      ctx.fillStyle = `rgba(220,230,255,${a})`
+      ctx.beginPath()
+      ctx.arc(x, y, r, 0, Math.PI * 2)
+      ctx.fill()
+    }
+    const tex = new THREE.CanvasTexture(c)
+    tex.colorSpace = THREE.SRGBColorSpace
+    tex.needsUpdate = true
+    nightSky.current = tex
+  }
+
+  // Reassert sky; re-boost steam AFTER SteamField (prio 1).
+  // NO global toneMappingExposure flicker — that pumps full-frame MAD while bowl steam stays invisible.
+  useFrame(() => {
+    if (!captureActiveRef.current) return
+    if (nightSky.current) scene.background = nightSky.current
+    if ('backgroundIntensity' in scene) {
+      ;(scene as THREE.Scene & { backgroundIntensity?: number }).backgroundIntensity = 1
+    }
+    // Stable capture exposure (readable neon; motion comes from SteamField only).
+    gl.toneMappingExposure = 1.72
+    // HQ capture: keep steam plumes user-visible at plaza eye (local kiosk ROI MAD).
+    for (const mat of steamMatsRef.current) {
+      if (!mat) continue
+      if (typeof mat.opacity === 'number') {
+        const base = mat.opacity > 0.001 ? mat.opacity : 0.55
+        mat.opacity = Math.min(1.0, Math.max(0.62, base * 1.15))
+        mat.depthTest = false
+        mat.depthWrite = false
+        mat.transparent = true
+        mat.toneMapped = false
+        mat.blending = THREE.AdditiveBlending
+        mat.needsUpdate = true
+      }
+      if ('color' in mat && mat.color) {
+        mat.color.setRGB(1, 0.98, 0.94)
+      }
+    }
+  }, 1)
+
   useEffect(() => {
     window.__shopCameraPresets = CAMERA_PRESETS
     window.__shopSetCamera = (preset) => {
@@ -442,6 +509,8 @@ function CameraBridge({
           damping: c?.enableDamping,
         }
         captureActive = true
+        captureActiveRef.current = true
+        ;(window as unknown as { __shopCaptureActive?: boolean }).__shopCaptureActive = true
       }
 
       // Disable OrbitControls completely — drei only calls update() when enabled.
@@ -471,15 +540,33 @@ function CameraBridge({
       persp.updateProjectionMatrix()
       // Re-assert ACES after composer unmount cleanup
       gl.toneMapping = THREE.ACESFilmicToneMapping
-      // +Y sky: solid night Color (not HDR env-as-background).
-      // Env-map background hangs SwiftShader on pure-sky faces; Color is instant + non-void.
-      // Slight blue-ink night so mean≈0.04–0.08 (passes H8 mean≥0.01 / non-flat).
-      await waitFrames(1)
-      scene.background = new THREE.Color(0x0e1428)
+      // +Y sky: canvas gradient+stars (not HDR env-as-background — hangs SwiftShader).
+      if (nightSky.current) scene.background = nightSky.current
       if ('backgroundIntensity' in scene) {
         ;(scene as THREE.Scene & { backgroundIntensity?: number }).backgroundIntensity = 1
       }
-      await waitFrames(3)
+      // Cache steam sprite materials once (prefer userData.steamCapture tags).
+      if (steamMatsRef.current.length === 0) {
+        const tagged: THREE.MeshBasicMaterial[] = []
+        const fallback: THREE.MeshBasicMaterial[] = []
+        scene.traverse((obj) => {
+          if (!(obj instanceof THREE.Mesh)) return
+          const mats = Array.isArray(obj.material) ? obj.material : [obj.material]
+          for (const m of mats) {
+            if (!m || !(m as THREE.Material).transparent) continue
+            const mat = m as THREE.MeshBasicMaterial
+            if (mat.userData?.steamCapture) {
+              tagged.push(mat)
+              continue
+            }
+            if (mat.depthWrite === false && mat.map && typeof mat.opacity === 'number') {
+              fallback.push(mat)
+            }
+          }
+        })
+        steamMatsRef.current = tagged.length > 0 ? tagged : fallback
+      }
+      await waitFrames(2)
     }
 
     const exitCapture = async () => {
@@ -509,6 +596,9 @@ function CameraBridge({
       flushSync(() => setRawCapture(false))
       set({ frameloop: 'always' })
       captureActive = false
+      captureActiveRef.current = false
+      ;(window as unknown as { __shopCaptureActive?: boolean }).__shopCaptureActive = false
+      steamMatsRef.current = []
       prevCapture = null
       await waitFrames(2)
     }
@@ -527,6 +617,8 @@ function CameraBridge({
       // Sync target only — never controls.update() (would re-clamp)
       const c = getOrbit()
       if (c?.target) c.target.copy(target)
+      // Immediate draw so toDataURL / CDP never read a cleared buffer (SwiftShader).
+      gl.render(scene, camera)
     }
 
     const snapFaceDataUrl = (size: number) => {
@@ -559,7 +651,9 @@ function CameraBridge({
       }
       await enterCapture(size, dpr)
       aimFace(opts.face, origin, yaw)
-      await waitFrames(5)
+      // Extra rAFs so materials/env + steam boost (useFrame prio 1) commit before snap
+      await waitFrames(4)
+      gl.render(scene, camera)
       return true
     }
 
@@ -589,7 +683,8 @@ function CameraBridge({
         await enterCapture(size, dpr)
         for (const face of CUBE_FACES) {
           aimFace(face.name, origin, yaw)
-          await waitFrames(5)
+          await waitFrames(4)
+          gl.render(scene, camera)
           const dataUrl = snapFaceDataUrl(size)
           const st = await dataUrlLumaStats(dataUrl)
           stats[face.name] = st
@@ -663,6 +758,7 @@ function Scene({
         <Environment
           files={NIGHT_HDR}
           environmentIntensity={0.46}
+          /* background=true on SwiftShader can blank/hang faces; CameraBridge sets star canvas. */
           background={false}
         />
       </Suspense>
@@ -766,8 +862,9 @@ export function ShopCanvas(props: Props) {
           }
         }}
       >
-        {/* Deep night void — residual (A) pure street night, not gray stage cyclorama */}
-        <color attach="background" args={['#000104']} />
+        {/* Deep night void — residual (A). During cube photosphere rawCapture use ink-blue
+            sky so +Y is non-void (H8); pure #000104 was flat black zenith / py void. */}
+        <color attach="background" args={[rawCapture ? '#0e1428' : '#000104']} />
         {/*
           Residual (A) atmosphere loop-r32 — cool night air but fog later + darker so near
           apron midtones read warm night-market (not blue-gray pad / early fog mush).
