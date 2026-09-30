@@ -25,7 +25,7 @@
 
   function renderFigmaRoute(document, route, rememberedEmployer) {
     document.documentElement.dataset.page = route.page;
-    document.documentElement.dataset.employer = route.employer || 'overview';
+    document.documentElement.dataset.selectedEmployer = route.employer || 'overview';
     document.querySelectorAll('[data-screen]').forEach((screen) => { screen.hidden = screen.dataset.screen !== route.page; });
     document.querySelectorAll('.primary-nav [data-page]').forEach((link) => {
       if (link.dataset.page === route.page) link.setAttribute('aria-current', 'page');

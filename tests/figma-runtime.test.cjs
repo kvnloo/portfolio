@@ -179,3 +179,19 @@ test('all recovered static SVGs retain exact bytes and intrinsic dimensions at t
   assert.deepEqual(manifest.missing.map((asset) => asset.node), ['319:65', '326:99']);
   dom.window.close();
 });
+
+test('employer state never turns the document root into a tab or focus target', () => {
+  const dom = app('#/experience/amazon'); const doc = dom.window.document;
+  assert.equal(doc.documentElement.hasAttribute('data-employer'), false);
+  assert.equal(doc.documentElement.hasAttribute('aria-selected'), false);
+  assert.equal(doc.querySelectorAll('[data-employer="amazon"]').length, 1);
+  doc.querySelector('[data-employer="amazon"]').focus();
+  doc.activeElement.dispatchEvent(new dom.window.KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true, cancelable: true }));
+  assert.equal(doc.activeElement.getAttribute('role'), 'tab');
+  assert.equal(doc.activeElement.dataset.employer, 'bcbs');
+  doc.querySelector('#main').focus();
+  doc.activeElement.dispatchEvent(new dom.window.KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true, cancelable: true }));
+  assert.equal(dom.window.location.hash, '#/experience/bcbs');
+  assert.equal(doc.activeElement.id, 'main');
+  dom.window.close();
+});

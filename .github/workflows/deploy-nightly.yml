@@ -1,0 +1,137 @@
+name: Deploy isolated Figma nightly
+
+on:
+  push:
+    branches: [nightly/figma-2026-09-30]
+
+# Serialize against the existing production/development Pages workflow.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          sparse-checkout: |
+            figma
+            work
+            lab
+            oss
+            shared
+            tests
+            scripts
+            .github
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npm run check
+      - run: node --test tests/nightly-overlay.test.mjs tests/nightly-base.test.mjs tests/nightly-pages.test.mjs
+      - run: python3 tests/nightly-archive.test.py
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:figma:e2e
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: nightly-browser-evidence
+          path: |
+            receipts/figma/test-results
+            receipts/figma/playwright-report
+          if-no-files-found: ignore
+          retention-days: 1
+
+  deploy:
+    needs: validate
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      # Read only this repository's prior deployed Pages artifact.
+      actions: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}nightly/
+    env:
+      BASE_RUN_ID: '36654880155'
+      BASE_ARTIFACT_ID: '11071664223'
+      BASE_ATTEMPT: '1'
+      BASE_DEPLOYMENT_ID: '6749241546'
+      BASE_STATUS_ID: '19033638291'
+      BASE_UPDATED_AT: '2026-09-30T01:25:15Z'
+      BASE_HEAD_SHA: '7f95ed0bab1943feea211eba354ab378313492d5'
+      BASE_DIGEST: 'sha256:a013bd3c9fd5a3e940a290f222d506d7960b977a755717cc744531043d8fb3e3'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: source
+          persist-credentials: false
+          sparse-checkout: |
+            figma
+            work
+            lab
+            oss
+            shared
+            scripts
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Confirm the preserved artifact is still the latest successful deployment
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api --paginate --slurp "repos/$GITHUB_REPOSITORY/actions/runs?per_page=100" > latest-runs-pages.json
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$BASE_RUN_ID" > base-run.json
+          gh api "repos/$GITHUB_REPOSITORY/actions/artifacts/$BASE_ARTIFACT_ID" > base-artifact.json
+          node source/scripts/check-nightly-base.mjs latest-runs-pages.json base-run.json base-artifact.json
+      - name: Match the authoritative successful Pages deployment generation
+        run: node source/scripts/check-pages-deployment.mjs > pages-generation.json
+      - uses: actions/download-artifact@v8
+        with:
+          artifact-ids: ${{ env.BASE_ARTIFACT_ID }}
+          path: previous-artifact
+          repository: ${{ github.repository }}
+          run-id: ${{ env.BASE_RUN_ID }}
+          github-token: ${{ github.token }}
+          digest-mismatch: error
+      - name: Extract the existing deployment without rebuilding it
+        run: python3 source/scripts/extract-pages.py previous-artifact/artifact.tar site
+      - name: Overlay nightly and prove all other file bytes are preserved
+        run: node source/scripts/stage-nightly.mjs site source "$GITHUB_SHA" "$BASE_RUN_ID" nightly-preservation.json
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+          retention-days: 1
+      - name: Deploy preserved site plus isolated nightly
+        id: deployment
+        uses: actions/deploy-pages@v4
+      - name: Verify the hosted preview points at this exact commit
+        run: |
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent --show-error "https://kvnloo.github.io/portfolio/nightly/version.json?revision=$GITHUB_SHA" -o hosted-version.json && node -e "if(require('./hosted-version.json').sourceCommit !== process.env.GITHUB_SHA) process.exit(1)"; then
+              echo "Verified https://kvnloo.github.io/portfolio/nightly/ at $GITHUB_SHA"
+              exit 0
+            fi
+            sleep 10
+          done
+          exit 1
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: nightly-preservation-evidence
+          path: |
+            nightly-preservation.json
+            pages-generation.json
+            hosted-version.json
+          if-no-files-found: ignore
+          retention-days: 1
