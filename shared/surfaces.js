@@ -1,5 +1,11 @@
-const MANIFEST_URL = '/boplog/data/portfolio-manifest.json';
+const MANIFEST_URLS = [
+  '/boplog/data/portfolio-manifest.json',
+  new URL('../shared/portfolio-manifest.preview.json', window.location.href).href,
+];
 const OSS_URL = '/boplog/data/oss-contributions.json';
+const PORTFOLIO_BASE = window.location.pathname.startsWith('/portfolio/dev/')
+  ? '/portfolio/dev'
+  : '/portfolio';
 
 const $ = (selector) => document.querySelector(selector);
 
@@ -24,6 +30,18 @@ async function json(url) {
   const response = await fetch(url, { cache: 'no-store' });
   if (!response.ok) throw new Error(`${url} returned ${response.status}`);
   return response.json();
+}
+
+async function firstJson(urls) {
+  let lastError = null;
+  for (const url of urls) {
+    try {
+      return await json(url);
+    } catch (error) {
+      lastError = error;
+    }
+  }
+  throw lastError || new Error('No evidence source available');
 }
 
 function surfaceProjects(manifest, surface) {
@@ -63,12 +81,12 @@ function renderProject(project, index) {
   const links = node('div', 'links');
   links.append(link('GitHub', project.repo.url));
   if (project.id === 'quackles') {
-    links.append(link('Case study', '/portfolio/work/quackles/'));
+    links.append(link('Case study', `${PORTFOLIO_BASE}/work/quackles/`));
     links.append(link('Live', 'https://kvnloo.github.io/quackles/'));
   }
-  if (project.id === 'zer0') links.append(link('Case study', '/portfolio/lab/zer0/'));
+  if (project.id === 'zer0') links.append(link('Case study', `${PORTFOLIO_BASE}/lab/zer0/`));
   if (project.id === 'z0evals') links.append(link('Evals', 'https://kvnloo.github.io/z0evals/'));
-  if (project.id === 'verified-oss-loop') links.append(link('Case study', '/portfolio/oss/verified-loop/'));
+  if (project.id === 'verified-oss-loop') links.append(link('Case study', `${PORTFOLIO_BASE}/oss/verified-loop/`));
   if (project.id === 'aodl') links.append(link('AODL catalog', 'https://kvnloo.github.io/aodl/'));
   card.append(links);
   return card;
@@ -135,7 +153,7 @@ function renderOss(dataset) {
 async function boot() {
   const surface = document.body.dataset.surface || 'work';
   try {
-    const manifest = await json(MANIFEST_URL);
+    const manifest = await firstJson(MANIFEST_URLS);
     renderMeta(manifest);
     renderProjects(manifest, surface);
 
