@@ -186,3 +186,19 @@ test('opening another story after scrolling returns to its heading', async ({ pa
   await expect.poll(() => page.evaluate(() => scrollY)).toBe(0);
   await expect(page.locator('#main')).toBeFocused();
 });
+
+test('BCBS model labels never overlap the central concept', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto('./#/experience/bcbs');
+  await page.evaluate(() => document.fonts.ready);
+  for (const focus of ['0', '1']) {
+    await page.locator(`#panel-bcbs button[data-focus="${focus}"]`).click();
+    const core = await page.locator('.landscape-core').boundingBox();
+    for (const node of await page.locator('.landscape-node').all()) {
+      const box = await node.boundingBox();
+      const overlapX = Math.min(box.x + box.width, core.x + core.width) - Math.max(box.x, core.x);
+      const overlapY = Math.min(box.y + box.height, core.y + core.height) - Math.max(box.y, core.y);
+      expect(overlapX <= 0 || overlapY <= 0, `${await node.innerText()} must not overlap the central concept`).toBe(true);
+    }
+  }
+});
