@@ -28,7 +28,7 @@ async function json(url) {
 
 function surfaceProjects(manifest, surface) {
   return manifest.projects
-    .filter((project) => project.surfaces?.[surface])
+    .filter((project) => project.surfaces?.[surface] && project.promotion !== 'discovered')
     .sort((a, b) => (a.surfaces[surface].priority ?? 999) - (b.surfaces[surface].priority ?? 999));
 }
 
