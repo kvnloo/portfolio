@@ -68,6 +68,7 @@ function renderProject(project, index) {
   }
   if (project.id === 'zer0') links.append(link('Case study', '/portfolio/lab/zer0/'));
   if (project.id === 'z0evals') links.append(link('Evals', 'https://kvnloo.github.io/z0evals/'));
+  if (project.id === 'verified-oss-loop') links.append(link('Case study', '/portfolio/oss/verified-loop/'));
   if (project.id === 'aodl') links.append(link('AODL catalog', 'https://kvnloo.github.io/aodl/'));
   card.append(links);
   return card;
