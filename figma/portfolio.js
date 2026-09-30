@@ -10,10 +10,10 @@
   }
 })(typeof window !== 'undefined' ? window : null, function () {
   'use strict';
-  const pages = ['about', 'contact', 'experience', 'services', 'resources'];
-  const employers = ['synchrony', 'amazon', 'bcbs'];
-  const titles = { about: 'About', contact: 'Contact', experience: 'Professional Experience', services: 'Services', resources: 'Resources' };
-  const names = { synchrony: 'Synchrony Financial', amazon: 'Amazon Web Services', bcbs: 'BlueCross BlueShield' };
+  const pages = ['about', 'contact', 'experience', 'services', 'resources', 'community'];
+  const employers = ['zero', 'outlier', 'sabbatical', 'slalom', 'synchrony', 'amazon', 'bcbs', 'prenosis', 'wipro', 'bytebros'];
+  const titles = { about: 'About', contact: 'Contact', experience: 'Professional Experience', services: 'Services', resources: 'Resources', community: 'Projects & Community' };
+  const names = { zero: 'zero, LLC', outlier: 'Outlier / Scale AI', sabbatical: 'Sabbatical', slalom: 'Slalom Consulting', synchrony: 'Synchrony Financial', amazon: 'Amazon Web Services', bcbs: 'BlueCross BlueShield / HCSC', prenosis: 'Prenosis', wipro: 'Wipro Consulting', bytebros: 'ByteBros' };
 
   function parseFigmaRoute(hash) {
     const parts = String(hash || '').replace(/^#\//, '').split('/');
@@ -28,10 +28,11 @@
     document.documentElement.dataset.selectedEmployer = route.employer || 'overview';
     document.querySelectorAll('[data-screen]').forEach((screen) => { screen.hidden = screen.dataset.screen !== route.page; });
     document.querySelectorAll('.primary-nav [data-page]').forEach((link) => {
-      if (link.dataset.page === route.page) link.setAttribute('aria-current', 'page');
+      if (link.dataset.page === (route.page === 'community' ? 'experience' : route.page)) link.setAttribute('aria-current', 'page');
       else link.removeAttribute('aria-current');
     });
-    document.querySelector('[data-rail]').hidden = route.page !== 'experience';
+    document.querySelector('[data-rail]').hidden = route.page !== 'experience' || !route.employer;
+    document.querySelector('[data-career-select]').value = route.employer || rememberedEmployer || employers[0];
     document.querySelector('[data-overview]').hidden = Boolean(route.employer);
     document.querySelector('[data-role-view]').hidden = !route.employer;
     document.querySelectorAll('[data-employer-panel]').forEach((panel) => { panel.hidden = panel.dataset.employerPanel !== route.employer; });
@@ -60,6 +61,7 @@
       renderFigmaRoute(document, route, rememberedEmployer);
       if (focus) document.querySelector(focus)?.focus({ preventScroll: true });
       if (focus === '#main') window.scrollTo?.({ top: 0, left: 0, behavior: 'instant' });
+      if (focus?.startsWith('[data-story=')) document.querySelector(focus)?.scrollIntoView?.({ block: 'center', behavior: 'instant' });
     }
     function restoreHistory() {
       const next = parseFigmaRoute(window.location.hash);
@@ -73,6 +75,10 @@
     }
     window.addEventListener('popstate', restoreHistory);
     window.addEventListener('hashchange', restoreHistory);
+
+    document.addEventListener('change', (event) => {
+      if (event.target.matches('[data-career-select]') && employers.includes(event.target.value)) navigate({ page: 'experience', employer: event.target.value }, '#main');
+    });
 
     document.addEventListener('click', (event) => {
       if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
@@ -100,7 +106,7 @@
         navigate(route, anchor.hasAttribute('data-employer') ? null : '#main');
         return;
       }
-      if (event.target.closest('[data-show-overview]')) navigate({ page: 'experience', employer: null }, `[data-employer="${rememberedEmployer}"]`);
+      if (event.target.closest('[data-show-overview]')) navigate({ page: 'experience', employer: null }, `[data-story="${rememberedEmployer}"]`);
       if (event.target.closest('[data-next-employer]')) {
         const index = employers.indexOf(currentRoute.employer);
         const employer = employers[(index + 1) % employers.length];
@@ -111,7 +117,7 @@
       const tab = event.target.closest('[data-employer]');
       if (event.key === 'Escape' && currentRoute.page === 'experience' && currentRoute.employer) {
         event.preventDefault();
-        navigate({ page: 'experience', employer: null }, `[data-employer="${rememberedEmployer}"]`);
+        navigate({ page: 'experience', employer: null }, `[data-story="${rememberedEmployer}"]`);
         return;
       }
       if (!tab) return;
@@ -127,10 +133,7 @@
         navigate({ page: 'experience', employer: employers[next] }, `[data-employer="${employers[next]}"]`);
       }
     });
-    const mobile = window.matchMedia?.('(max-width: 700px)');
-    function updateOrientation() { document.querySelector('[role="tablist"]').setAttribute('aria-orientation', mobile?.matches ? 'horizontal' : 'vertical'); }
-    updateOrientation();
-    mobile?.addEventListener('change', updateOrientation);
+
   }
   return { parseFigmaRoute, renderFigmaRoute, initFigmaPortfolio };
 });

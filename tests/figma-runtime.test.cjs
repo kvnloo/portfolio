@@ -76,9 +76,9 @@ test('arrows wrap through employer tabs, Home/End jump, Escape restores overview
   doc.querySelector('[data-employer="synchrony"]').focus(); key('ArrowDown');
   assert.equal(doc.activeElement.dataset.employer, 'amazon');
   assert.equal(dom.window.location.hash, '#/experience/amazon');
-  key('End'); assert.equal(doc.activeElement.dataset.employer, 'bcbs');
-  key('ArrowRight'); assert.equal(doc.activeElement.dataset.employer, 'synchrony');
-  key('Home'); assert.equal(doc.activeElement.dataset.employer, 'synchrony');
+  key('End'); assert.equal(doc.activeElement.dataset.employer, 'bytebros');
+  key('ArrowRight'); assert.equal(doc.activeElement.dataset.employer, 'zero');
+  key('Home'); assert.equal(doc.activeElement.dataset.employer, 'zero');
   key('Escape'); assert.equal(dom.window.location.hash, '#/experience');
   assert.equal(doc.querySelector('[data-overview]').hidden, false);
   assert.equal(doc.querySelectorAll('[data-employer][tabindex="0"]').length, 1);
@@ -87,23 +87,23 @@ test('arrows wrap through employer tabs, Home/End jump, Escape restores overview
 test('close restores overview and focus without resetting subsequent navigation', () => {
   const dom = app('#/experience/amazon'); click(dom, '[data-show-overview]');
   assert.equal(dom.window.location.hash, '#/experience');
-  assert.equal(dom.window.document.activeElement.dataset.employer, 'amazon');
+  assert.equal(dom.window.document.activeElement.dataset.story, 'amazon');
   click(dom, 'a[data-page="about"]'); assert.equal(current(dom), 'about');
   click(dom, 'a[data-page="experience"]'); assert.equal(current(dom), 'experience');
   dom.window.close();
 });
-test('advance control cycles through the three verified employers and returns to first', () => {
+test('advance control cycles through every career chapter and returns to first', () => {
   const dom = app();
-  for (const employer of ['synchrony', 'amazon', 'bcbs', 'synchrony']) {
+  for (const employer of ['zero', 'outlier', 'sabbatical', 'slalom', 'synchrony', 'amazon', 'bcbs', 'prenosis', 'wipro', 'bytebros', 'zero']) {
     click(dom, '[data-next-employer]');
     assert.equal(dom.window.location.hash, `#/experience/${employer}`);
   }
   dom.window.close();
 });
-test('draft source boundaries retain dates and omit disputed current roles, private contacts, and metrics', () => {
+test('source boundaries retain corroborated dates and omit private contacts and unverified metrics', () => {
   const html = load('figma/index.html');
   for (const period of ['May 2019', 'Aug 2019', 'Aug 2018', 'Jan 2019', 'Jun 2018']) assert.ok(html.includes(period));
-  assert.doesNotMatch(html, /Present|\+?1?\s*\(331\)|@gmail\.com|84\.8%|500\+|200\+/);
+  assert.doesNotMatch(html, /\+?1?\s*\(331\)|@gmail\.com|84\.8%|500\+|200\+/);
   assert.match(html, /noindex, nofollow/);
   assert.ok(!/fetch\(/.test(script()), 'private career draft must not request third-party data');
 });
@@ -122,7 +122,7 @@ test('all linked local assets and resource targets exist, with no temporary Figm
   assert.doesNotMatch(load('figma/index.html') + load('figma/portfolio.css') + script(), /figma\.com\/api\/mcp\/asset/);
   for (const anchor of doc.querySelectorAll('[data-screen="resources"] a[href]')) {
     const href = anchor.getAttribute('href');
-    if (!href.startsWith('http')) assert.ok(fs.existsSync(path.resolve(root, 'figma', href)), href);
+    if (!href.startsWith('http') && !href.startsWith('#/')) assert.ok(fs.existsSync(path.resolve(root, 'figma', href)), href);
   }
   dom.window.close();
 });
@@ -166,7 +166,7 @@ test('all recovered static SVGs retain exact bytes and intrinsic dimensions at t
     assert.equal(bytes.length, asset.bytes);
     assert.equal(createHash('sha256').update(bytes).digest('hex'), asset.sha256);
     const images = doc.querySelectorAll(`img[src="./assets/${asset.file}"]`);
-    assert.equal(images.length, ['unidentified-tile.svg', 'dot-unidentified.svg'].includes(asset.file) ? 0 : 1, asset.file);
+    assert.equal(images.length, ['unidentified-tile.svg', 'dot-unidentified.svg', 'dot-synchrony.svg', 'dot-amazon.svg', 'dot-bcbs.svg'].includes(asset.file) ? 0 : 1, asset.file);
     for (const image of images) {
       assert.equal(image.getAttribute('width'), String(asset.width));
       assert.equal(image.getAttribute('height'), String(asset.height));
@@ -260,10 +260,10 @@ test('content and accent colors retain AA contrast on the editorial canvas', () 
     }
   }
 });
-test('further experience uses specific work without disputed dates or ranks', () => {
-  const dom = app('#/about'); const copy = dom.window.document.querySelector('.further-experience').textContent;
-  for (const fact of ['Slalom', 'Windows', 'RHEL', 'EC2', 'Terraform', 'Jenkins', 'zer0', 'Outlier']) assert.ok(copy.includes(fact));
-  assert.doesNotMatch(copy, /Present|Senior Consultant|\d{4}|500|12 teams|DNA|blood/i);
+test('Slalom has substantive primary Experience detail without unsupported metrics', () => {
+  const dom = app('#/experience/slalom'); const copy = dom.window.document.querySelector('#panel-slalom').textContent;
+  for (const fact of ['Slalom', 'Windows', 'RHEL', 'EC2', 'Terraform', 'Jenkins']) assert.ok(copy.includes(fact));
+  assert.doesNotMatch(copy, /500|12 teams|DNA|blood/i);
   dom.window.close();
 });
 
@@ -274,5 +274,65 @@ test('a new top-level story opens at its beginning, without smooth-scroll races'
   assert.equal(calls.length, 1);
   assert.equal(calls[0].top, 0);
   assert.equal(calls[0].behavior, 'instant');
+  dom.window.close();
+});
+
+test('the career index covers all ten entries in the supplied resume', () => {
+  const dom = app(); const doc = dom.window.document;
+  const ids = ['zero','outlier','sabbatical','slalom','synchrony','amazon','bcbs','prenosis','wipro','bytebros'];
+  assert.deepEqual([...doc.querySelectorAll('[data-overview] [data-story]')].map(el => el.dataset.story), ids);
+  for (const id of ids) {
+    click(dom, `[data-story="${id}"]`);
+    assert.equal(dom.window.location.hash, `#/experience/${id}`);
+    const panel = doc.querySelector(`[data-employer-panel="${id}"]`);
+    assert.ok(panel && !panel.hidden, id);
+    assert.ok(panel.textContent.trim().length > 200, id);
+  }
+  dom.window.close();
+});
+test('fresh resume dates and titles replace the earlier disputed-source fallback', () => {
+  const dom = app(); const doc = dom.window.document;
+  const expected = {
+    zero: ['Founder & CEO','Jun 2024','Present'],
+    outlier: ['LLM Training Specialist','Jan 2025','Present'],
+    sabbatical: ['Ultralearning','Jul 2023','Jun 2024'],
+    slalom: ['Senior Consultant','Jun 2021','Jul 2023'],
+    prenosis: ['Jul 2017','Feb 2018'], wipro: ['May 2016','Jul 2016'], bytebros: ['Jan 2016','Jul 2016']
+  };
+  for (const [id, facts] of Object.entries(expected)) {
+    const copy = doc.querySelector(`#panel-${id}`)?.textContent || '';
+    for (const fact of facts) assert.ok(copy.includes(fact), `${id}: ${fact}`);
+  }
+  assert.equal(doc.querySelector('#panel-sabbatical').dataset.careerKind, 'independent-study');
+  dom.window.close();
+});
+test('mobile career selector switches every entry and Back restores the selected value', async () => {
+  const dom = app('#/experience/zero'); const doc = dom.window.document;
+  const select = doc.querySelector('[data-career-select]'); assert.ok(select);
+  select.value = 'outlier'; select.dispatchEvent(new dom.window.Event('change', { bubbles: true }));
+  assert.equal(dom.window.location.hash, '#/experience/outlier');
+  assert.equal(doc.querySelector('#panel-outlier').hidden, false);
+  const done = new Promise(resolve => dom.window.addEventListener('popstate', () => setTimeout(resolve, 0), { once: true }));
+  dom.window.history.back(); await done;
+  assert.equal(select.value, 'zero');
+  assert.equal(doc.querySelector('#panel-zero').hidden, false);
+  dom.window.close();
+});
+test('Evolve and HackIllinois are reachable from the active portfolio', () => {
+  const dom = app(); const doc = dom.window.document;
+  assert.ok(doc.querySelector('[data-overview] a[href="#/community"]'));
+  click(dom, '[data-overview] a[href="#/community"]');
+  assert.equal(current(dom), 'community');
+  const copy = doc.querySelector('[data-screen="community"]').textContent;
+  for (const fact of ['Evolve','Claude Code','HackIllinois','Git worktrees','check-in','open-source']) assert.ok(copy.includes(fact), fact);
+  dom.window.close();
+});
+
+test('returning from a later role brings its focused index row into view', () => {
+  const dom = app('#/experience/bytebros'); const doc = dom.window.document; const viewed = [];
+  doc.querySelector('[data-story="bytebros"]').scrollIntoView = options => viewed.push(options);
+  click(dom, '[data-show-overview]');
+  assert.equal(doc.activeElement.dataset.story, 'bytebros');
+  assert.equal(viewed.length, 1); assert.equal(viewed[0].behavior, 'instant');
   dom.window.close();
 });

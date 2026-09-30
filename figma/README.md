@@ -14,11 +14,16 @@ Open `http://127.0.0.1:4178/portfolio/dev/figma/`.
 ## Design and behavior
 
 - Inter with a restrained system-serif contrast, ruled story index, and original employer artwork
-- Three historical internship stories: Synchrony Financial, AWS/Fargate, and BlueCross BlueShield
+- Complete career index: nine employers plus a clearly labeled Sabbatical / Ultralearning chapter, each with a direct route
+- Detailed current roles at zero, LLC, Outlier / Scale AI, and Slalom Consulting, using the supplied resume’s titles and date ranges
+- Earlier roles at Synchrony Financial, AWS/Fargate, BlueCross BlueShield / HCSC, Prenosis, Wipro Consulting, and ByteBros
+- Three illustrated case studies retain their source-backed interaction models
 - Contribution controls synchronously update a source-backed explanation and an explicitly illustrative model of the work
 - Six distinct model states: promotional programs/preferences, operational visibility/capacity response, and employee journeys/technology landscape
-- Date-neutral further experience at Slalom, zer0, and Outlier; no disputed current-employment or performance claims
-- Keyboard employer navigation, direct routes, Back/Forward, skip link, useful focus restoration, and reduced-motion alternatives
+- Active Evolve and HackIllinois coverage, plus separately labeled historical ACM and CodePath leadership
+- The supplied current resume resolves recent title/date conflicts; corroborated individual dates are retained for earlier roles rather than applying its aggregate prior-experience heading
+- Compact named desktop career navigation and a labeled native mobile selector
+- Keyboard navigation, direct routes, Back/Forward, skip link, index-row focus/scroll restoration, and reduced-motion alternatives
 - No runtime framework, third-party requests, continuous animation, fabricated product screenshots, or raw resume downloads
 
 The BCBS mark is a typographic label, not a claimed logo reconstruction. The unidentified fourth source mark is preserved as an asset but omitted from navigation. Resources is intentionally typographic. The models explain responsibilities and do not reproduce employer interfaces or report measured production values.

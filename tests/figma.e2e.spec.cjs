@@ -1,6 +1,13 @@
 const { test, expect } = require('@playwright/test');
 const sections = ['about', 'contact', 'experience', 'services', 'resources'];
-const employers = ['synchrony', 'amazon', 'bcbs'];
+const employers = ['zero', 'outlier', 'sabbatical', 'slalom', 'synchrony', 'amazon', 'bcbs', 'prenosis', 'wipro', 'bytebros'];
+const illustrated = ['synchrony', 'amazon', 'bcbs'];
+async function chooseEmployer(page, employer) {
+  const picker = page.locator('[data-career-select]');
+  if (await picker.isVisible()) await picker.selectOption(employer);
+  else if (await page.locator('[data-overview]').isVisible()) await page.locator(`[data-story="${employer}"]`).click();
+  else await page.locator(`[data-employer="${employer}"]`).click();
+}
 
 test('every section fits the viewport and loads all local assets without errors', async ({ page }) => {
   const errors = []; page.on('pageerror', (error) => errors.push(error.message));
@@ -16,18 +23,18 @@ test('every section fits the viewport and loads all local assets without errors'
 });
 test('employer clicks, repeated selection, Close, Back, and Forward preserve route state', async ({ page }) => {
   await page.goto('./');
-  await page.locator('[data-employer="synchrony"]').click();
+  await chooseEmployer(page, 'synchrony');
   await expect(page.locator('#panel-synchrony')).toBeVisible();
   const count = await page.evaluate(() => history.length);
-  await page.locator('[data-employer="synchrony"]').click();
+  await chooseEmployer(page, 'synchrony');
   expect(await page.evaluate(() => history.length)).toBe(count);
-  await page.locator('[data-employer="amazon"]').click();
+  await chooseEmployer(page, 'amazon');
   await expect(page.locator('#panel-amazon')).toBeVisible();
   await page.goBack(); await expect(page.locator('#panel-synchrony')).toBeVisible();
   await page.goForward(); await expect(page.locator('#panel-amazon')).toBeVisible();
   await page.locator('[data-show-overview]').click();
   await expect(page.locator('[data-overview]')).toBeVisible();
-  await expect(page.locator('[data-employer="amazon"]')).toBeFocused();
+  await expect(page.locator('[data-story="amazon"]')).toBeFocused();
   await page.locator('[data-page="contact"]').click();
   await page.goBack(); await expect(page.locator('[data-overview]')).toBeVisible();
 });
@@ -41,59 +48,56 @@ test('deep links and reload restore each employer panel', async ({ page }) => {
   await expect(page).toHaveURL(/#\/experience$/);
   await expect(page.locator('[data-overview]')).toBeVisible();
 });
-test('employer rail is keyboard-operable with an unambiguous focus target', async ({ page }) => {
-  await page.goto('./');
+test('desktop career navigation is keyboard-operable with an unambiguous focus target', async ({ page }, info) => {
+  test.skip(info.project.name !== 'figma-desktop', 'Mobile uses a native labeled select');
+  await page.goto('./#/experience/synchrony');
   await page.locator('[data-employer="synchrony"]').focus();
   await page.keyboard.press('ArrowDown');
   await expect(page.locator('[data-employer="amazon"]')).toBeFocused();
   await expect(page.locator('#panel-amazon')).toBeVisible();
-  await page.keyboard.press('End'); await expect(page.locator('[data-employer="bcbs"]')).toBeFocused();
-  await page.keyboard.press('ArrowRight'); await expect(page.locator('[data-employer="synchrony"]')).toBeFocused();
+  await page.keyboard.press('End'); await expect(page.locator('[data-employer="bytebros"]')).toBeFocused();
+  await page.keyboard.press('ArrowRight'); await expect(page.locator('[data-employer="zero"]')).toBeFocused();
   await page.keyboard.press('Escape'); await expect(page.locator('[data-overview]')).toBeVisible();
-  await page.keyboard.press('Space'); await expect(page.locator('#panel-synchrony')).toBeVisible();
+  await page.keyboard.press('Enter'); await expect(page.locator('#panel-zero')).toBeVisible();
 });
-test('editorial overview has three legible stories and preserves original asset dimensions', async ({ page }, info) => {
+test('career overview visibly lists all ten entries with dates and project coverage', async ({ page }) => {
   await page.goto('./'); await page.evaluate(() => document.fonts.ready);
-  await expect(page.locator('.role-index-link')).toHaveCount(3);
-  await expect(page.locator('.wordmark')).toContainText('Kevin Rajan');
-  for (const selector of ['.synchrony-mark', '.synchrony-outline', '.employer--amazon .employer-art']) {
-    const image = page.locator(selector);
-    if (info.project.name === 'figma-desktop') {
-      const size = await image.boundingBox();
-      expect(size.width).toBe(Number(await image.getAttribute('width')));
-      expect(size.height).toBe(Number(await image.getAttribute('height')));
-    }
+  await expect(page.locator('.role-index-link')).toHaveCount(10);
+  for (const employer of employers) {
+    await expect(page.locator(`[data-story="${employer}"]`)).toBeVisible();
+    await expect(page.locator(`[data-story="${employer}"] .index-date`)).toBeVisible();
   }
-  if (info.project.name === 'figma-desktop') {
-    const last = await page.locator('.role-index-link').last().boundingBox();
-    expect(last.y + last.height).toBeLessThan(900);
-  }
+  await expect(page.locator('.career-community')).toContainText('Evolve');
+  await expect(page.locator('.career-community')).toContainText('HackIllinois');
 });
-test('small screens retain usable touch targets and avoid overlapping rail hit regions', async ({ page }, info) => {
-  await page.goto('./#/experience/synchrony');
-  const boxes = await page.locator('[data-employer]').evaluateAll((nodes) => nodes.map((node) => {
-    const b = node.getBoundingClientRect(); return { left: b.left, right: b.right, top: b.top, bottom: b.bottom, width: b.width, height: b.height };
-  }));
-  for (const box of boxes) { expect(box.width).toBeGreaterThanOrEqual(44); expect(box.height).toBeGreaterThanOrEqual(44); }
-  for (let i = 0; i < boxes.length - 1; i++) {
-    if (info.project.name === 'figma-desktop') expect(boxes[i].bottom).toBeLessThanOrEqual(boxes[i + 1].top);
-    else expect(boxes[i].right).toBeLessThanOrEqual(boxes[i + 1].left);
+test('career controls retain useful hit targets across desktop and mobile', async ({ page }, info) => {
+  await page.goto('./#/experience/zero');
+  if (info.project.name === 'figma-desktop') {
+    const boxes = await page.locator('[data-employer]').evaluateAll(nodes => nodes.map(node => { const r = node.getBoundingClientRect(); return { top:r.top,bottom:r.bottom,width:r.width,height:r.height }; }));
+    for (const box of boxes) { expect(box.width).toBeGreaterThanOrEqual(44); expect(box.height).toBeGreaterThanOrEqual(44); }
+    for (let i = 0; i < boxes.length-1; i++) expect(boxes[i].bottom).toBeLessThanOrEqual(boxes[i+1].top);
+  } else {
+    const picker = page.getByLabel('Choose experience');
+    await expect(picker).toBeVisible();
+    expect((await picker.boundingBox()).height).toBeGreaterThanOrEqual(44);
+    for (const employer of employers) { await picker.selectOption(employer); await expect(page.locator(`#panel-${employer}`)).toBeVisible(); }
+    await page.goBack(); await expect(picker).toHaveValue('wipro');
   }
-  await expect(page.getByRole('tablist')).toHaveAttribute('aria-orientation', info.project.name === 'figma-desktop' ? 'vertical' : 'horizontal');
 });
 test('reduced motion disables rail transitions', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' }); await page.goto('./');
   expect(await page.locator('[data-employer="amazon"]').evaluate((el) => getComputedStyle(el).transitionDuration)).toBe('0s');
 });
 test('all reference states produce inspectable review screenshots', async ({ page }, info) => {
+  test.setTimeout(60000);
   await page.emulateMedia({ reducedMotion: 'reduce' });
-  for (const route of ['experience', 'experience/synchrony', 'experience/amazon', 'experience/bcbs', 'about', 'resources']) {
+  for (const route of ['experience', ...employers.map(id => `experience/${id}`), 'community', 'about', 'resources']) {
     await page.goto(`./#/${route}`); await page.evaluate(() => document.fonts.ready);
     const [section, employer] = route.split('/');
     await expect(page.locator(`[data-screen="${section}"]`)).toBeVisible();
     if (employer) await expect(page.locator(`[data-employer="${employer}"]`)).toHaveAttribute('aria-selected', 'true');
     await page.screenshot({ path: info.outputPath(`${route.replaceAll('/', '-')}.png`), fullPage: true, animations: 'disabled' });
-    if (employer) {
+    if (illustrated.includes(employer)) {
       await page.locator(`#panel-${employer} [data-focus="1"]`).click();
       await expect(page.locator(`#panel-${employer}`)).toHaveAttribute('data-focus', '1');
       await page.screenshot({ path: info.outputPath(`${route.replaceAll('/', '-')}-second-focus.png`), fullPage: true, animations: 'disabled' });
@@ -106,7 +110,7 @@ test('skip link preserves the route and history restores focus out of hidden pan
   await page.locator('.skip-link').focus(); await page.keyboard.press('Enter');
   await expect(page).toHaveURL(/#\/experience\/amazon$/);
   await expect(page.locator('#main')).toBeFocused();
-  await page.locator('[data-employer="synchrony"]').click();
+  await chooseEmployer(page, 'synchrony');
   await page.locator('#panel-synchrony').focus(); await page.goBack();
   await expect(page.locator('#panel-amazon')).toBeVisible();
   await expect(page.locator('#main')).toBeFocused();
@@ -142,7 +146,7 @@ test('contribution controls are immediate, reversible and stable through rapid i
   await expect(panel.locator('[data-contribution="1"]')).toBeHidden();
   await second.focus(); await page.keyboard.press('Enter');
   await expect(panel).toHaveAttribute('data-focus', '1');
-  await page.locator('[data-employer="synchrony"]').click();
+  await chooseEmployer(page, 'synchrony');
   await page.goBack();
   await expect(panel).toBeVisible();
   await expect(panel).toHaveAttribute('data-focus', '1');
@@ -151,7 +155,7 @@ test('contribution controls are immediate, reversible and stable through rapid i
 
 test('illustrations remain semantic and stable with reduced motion', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
-  for (const employer of employers) {
+  for (const employer of illustrated) {
     await page.goto(`./#/experience/${employer}`);
     await page.evaluate(() => document.fonts.ready);
     const panel = page.locator(`#panel-${employer}`);
@@ -181,7 +185,7 @@ test('runtime is local-only and keeps a small script and style budget', async ({
 
 test('opening another story after scrolling returns to its heading', async ({ page }) => {
   await page.goto('./#/experience/amazon');
-  await page.locator('#panel-amazon .case-end a').click();
+  await page.locator('#panel-amazon .case-end a').last().click();
   await expect(page.locator('#panel-bcbs')).toBeVisible();
   await expect.poll(() => page.evaluate(() => scrollY)).toBe(0);
   await expect(page.locator('#main')).toBeFocused();
@@ -201,4 +205,27 @@ test('BCBS model labels never overlap the central concept', async ({ page }) => 
       expect(overlapX <= 0 || overlapY <= 0, `${await node.innerText()} must not overlap the central concept`).toBe(true);
     }
   }
+});
+
+
+test('all newly restored roles and projects remain within the viewport', async ({ page }) => {
+  for (const route of [...employers.map(id => `experience/${id}`), 'community']) {
+    await page.goto(`./#/${route}`); await page.evaluate(() => document.fonts.ready);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), route).toBe(true);
+  }
+  await page.goto('./#/resources');
+  await page.locator('.resource-list a[href="#/community"]').click();
+  await expect(page.locator('#project-evolve')).toBeVisible();
+  await expect(page.locator('#project-hackillinois')).toBeVisible();
+});
+
+
+test('returning from the last career chapter reveals its focused index row', async ({ page }) => {
+  await page.goto('./#/experience/bytebros');
+  await page.locator('[data-show-overview]').click();
+  const row = page.locator('[data-story="bytebros"]');
+  await expect(row).toBeFocused();
+  await expect(row).toBeInViewport();
+  await expect(page).toHaveURL(/#\/experience$/);
+  await page.goBack(); await expect(page.locator('#panel-bytebros')).toBeVisible();
 });
