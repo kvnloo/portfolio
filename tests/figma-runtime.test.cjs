@@ -195,3 +195,14 @@ test('employer state never turns the document root into a tab or focus target', 
   assert.equal(doc.activeElement.id, 'main');
   dom.window.close();
 });
+
+test('invalid same-document hash navigation canonicalizes the fallback without extra history', async () => {
+  const dom = app('#/experience/amazon');
+  const done = new Promise(resolve => dom.window.addEventListener('hashchange', () => setTimeout(resolve, 0), { once: true }));
+  const before = dom.window.history.length;
+  dom.window.location.hash = '#/experience/not-real'; await done;
+  assert.equal(dom.window.location.hash, '#/experience');
+  assert.equal(dom.window.history.length, before + 1);
+  assert.equal(dom.window.document.querySelector('[data-overview]').hidden, false);
+  dom.window.close();
+});

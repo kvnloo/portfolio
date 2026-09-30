@@ -41,3 +41,26 @@ test('expired and foreign-run artifacts are refused', () => {
   const expired = fixture(); expired.artifact.expired = true; assert.throws(() => verifyNightlyBase(expired), /artifact/i);
   const foreign = fixture(); foreign.artifact.workflow_run.id = 50; assert.throws(() => verifyNightlyBase(foreign), /artifact/i);
 });
+
+test('permits a specifically pinned failed validation only with complete skipped-deployment proof', () => {
+  const f = fixture();
+  const run = { id: 250, head_sha: 'c'.repeat(40), run_attempt: 1, updated_at: '2026-09-30T08:00:00Z', status: 'completed', conclusion: 'failure', path: '.github/workflows/deploy-nightly.yml' };
+  f.pages[0].workflow_runs.push(run); f.pages[0].total_count++;
+  const proof = { runId: '250', headSha: run.head_sha, attempt: 1, updatedAt: run.updated_at, deployJobId: '400', jobsPages: [{ total_count: 2, jobs: [{ id: 399, run_id: 250, name: 'validate', status: 'completed', conclusion: 'failure' }, { id: 400, run_id: 250, name: 'deploy', status: 'completed', conclusion: 'skipped', steps: [] }] }] };
+  f.nonDeploying = [proof];
+  assert.equal(verifyNightlyBase(f).baseRun, '100');
+  proof.jobsPages[0].jobs[1].steps = null;
+  assert.throws(() => verifyNightlyBase(f), /non-deploying proof/i);
+  delete proof.jobsPages[0].jobs[1].steps;
+  assert.throws(() => verifyNightlyBase(f), /non-deploying proof/i);
+  proof.jobsPages[0].jobs[1].steps = [];
+  proof.jobsPages[0].jobs[1].conclusion = 'failure';
+  assert.throws(() => verifyNightlyBase(f), /non-deploying proof/i);
+});
+test('exception proof cannot survive a rerun or incomplete job listing', () => {
+  const f = fixture();
+  const run = { id: 250, head_sha: 'c'.repeat(40), run_attempt: 2, updated_at: '2026-09-30T08:00:00Z', status: 'completed', conclusion: 'failure', path: '.github/workflows/deploy-nightly.yml' };
+  f.pages[0].workflow_runs.push(run); f.pages[0].total_count++;
+  f.nonDeploying = [{ runId: '250', headSha: run.head_sha, attempt: 1, updatedAt: run.updated_at, deployJobId: '400', jobsPages: [] }];
+  assert.throws(() => verifyNightlyBase(f), /non-deploying proof/i);
+});

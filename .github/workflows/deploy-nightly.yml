@@ -93,7 +93,8 @@ jobs:
           gh api --paginate --slurp "repos/$GITHUB_REPOSITORY/actions/runs?per_page=100" > latest-runs-pages.json
           gh api "repos/$GITHUB_REPOSITORY/actions/runs/$BASE_RUN_ID" > base-run.json
           gh api "repos/$GITHUB_REPOSITORY/actions/artifacts/$BASE_ARTIFACT_ID" > base-artifact.json
-          node source/scripts/check-nightly-base.mjs latest-runs-pages.json base-run.json base-artifact.json
+          gh api --paginate --slurp "repos/$GITHUB_REPOSITORY/actions/runs/36689748752/jobs?per_page=100" > skipped-deployment-jobs.json
+          node source/scripts/check-nightly-base.mjs latest-runs-pages.json base-run.json base-artifact.json skipped-deployment-jobs.json
       - name: Match the authoritative successful Pages deployment generation
         run: node source/scripts/check-pages-deployment.mjs > pages-generation.json
       - uses: actions/download-artifact@v8

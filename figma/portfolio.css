@@ -131,7 +131,7 @@ html[data-selected-employer='unassigned'] .employer--unassigned { top: 372px; }
   :root { --content-left: 24px; }
   .canvas { min-height: 100svh; }
   .site-header { height: auto; padding: 27px 24px 0; }
-  .primary-nav { position: static; width: auto; margin: 0; display: flex; flex-wrap: wrap; justify-content: flex-start; gap: 24px 26px; }
+  .primary-nav { position: static; width: auto; margin: 0; display: grid; grid-template-columns: 36px 48px minmax(0, 1fr); gap: 24px 20px; }
   .primary-nav a { font-size: 11px; line-height: 16px; }
   .primary-nav a::before { inset: -10px -4px; }
   .main-content { margin: 0 24px; padding-top: 66px; padding-bottom: 42px; }

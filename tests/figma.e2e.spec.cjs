@@ -94,9 +94,13 @@ test('reduced motion disables rail transitions', async ({ page }) => {
   expect(await page.locator('[data-employer="amazon"]').evaluate((el) => getComputedStyle(el).transitionDuration)).toBe('0s');
 });
 test('all reference states produce inspectable review screenshots', async ({ page }, info) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
   for (const route of ['experience', 'experience/synchrony', 'experience/amazon', 'resources']) {
     await page.goto(`./#/${route}`); await page.evaluate(() => document.fonts.ready);
-    await page.screenshot({ path: info.outputPath(`${route.replaceAll('/', '-')}.png`), fullPage: true });
+    const [section, employer] = route.split('/');
+    await expect(page.locator(`[data-screen="${section}"]`)).toBeVisible();
+    if (employer) await expect(page.locator(`[data-employer="${employer}"]`)).toHaveAttribute('aria-selected', 'true');
+    await page.screenshot({ path: info.outputPath(`${route.replaceAll('/', '-')}.png`), fullPage: true, animations: 'disabled' });
   }
 });
 
@@ -109,4 +113,14 @@ test('skip link preserves the route and history restores focus out of hidden pan
   await page.locator('#panel-synchrony').focus(); await page.goBack();
   await expect(page.locator('#panel-amazon')).toBeVisible();
   await expect(page.locator('#main')).toBeFocused();
+});
+
+test('navigation target positions stay stable when the active label changes', async ({ page }) => {
+  await page.goto('./'); await page.evaluate(() => document.fonts.ready);
+  const positions = () => page.locator('.primary-nav a').evaluateAll(links => links.map(link => { const r = link.getBoundingClientRect(); return { x: r.x, y: r.y }; }));
+  const before = await positions();
+  for (const section of ['about', 'resources', 'services', 'experience']) {
+    await page.locator(`.primary-nav [data-page="${section}"]`).click();
+    expect(await positions()).toEqual(before);
+  }
 });

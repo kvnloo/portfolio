@@ -62,6 +62,7 @@
     }
     function restoreHistory() {
       const next = parseFigmaRoute(window.location.hash);
+      if (window.location.hash !== routeHash(next)) window.history.replaceState(null, '', routeHash(next));
       if (next.employer) rememberedEmployer = next.employer;
       const focusedElement = document.activeElement;
       const identical = routeHash(next) === routeHash(currentRoute);
