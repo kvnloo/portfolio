@@ -336,3 +336,10 @@ test('returning from a later role brings its focused index row into view', () =>
   assert.equal(viewed.length, 1); assert.equal(viewed[0].behavior, 'instant');
   dom.window.close();
 });
+
+test('the compact career picker names the chapter without duplicating long titles', () => {
+  const dom = app(); const doc = dom.window.document;
+  assert.equal(doc.querySelector('[data-career-select] option[value="slalom"]').textContent, 'Slalom Consulting');
+  assert.equal(doc.querySelector('[data-career-select] option[value="sabbatical"]').textContent, 'Sabbatical · Ultralearning');
+  dom.window.close();
+});
