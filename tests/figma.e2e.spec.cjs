@@ -128,11 +128,14 @@ test('contribution controls are immediate, reversible and stable through rapid i
   const panel = page.locator('#panel-amazon');
   const first = panel.locator('button[data-focus="0"]');
   const second = panel.locator('button[data-focus="1"]');
-  const before = await second.boundingBox();
+  await page.evaluate(async () => { await document.fonts.ready; await Promise.all(document.getAnimations().map(animation => animation.finished.catch(() => {}))); });
+  await second.scrollIntoViewIfNeeded();
+  const geometry = locator => locator.evaluate(el => { const r = el.getBoundingClientRect(); return { x: r.x + scrollX, y: r.y + scrollY, width: r.width, height: r.height }; });
+  const before = await geometry(second);
   await second.click();
   await expect(second).toHaveAttribute('aria-pressed', 'true');
   await expect(panel.locator('[data-contribution="1"]')).toBeVisible();
-  expect(await second.boundingBox()).toEqual(before);
+  expect(await geometry(second)).toEqual(before);
   await first.click(); await second.click(); await first.click();
   await expect(panel).toHaveAttribute('data-focus', '0');
   await expect(panel.locator('[data-contribution="0"]')).toBeVisible();
@@ -150,14 +153,16 @@ test('illustrations remain semantic and stable with reduced motion', async ({ pa
   await page.emulateMedia({ reducedMotion: 'reduce' });
   for (const employer of employers) {
     await page.goto(`./#/experience/${employer}`);
+    await page.evaluate(() => document.fonts.ready);
     const panel = page.locator(`#panel-${employer}`);
     await expect(panel.locator('figcaption')).toContainText('Illustrative model');
     await panel.locator('button[data-focus="1"]').click();
     await expect(panel.locator('[data-contribution="1"]')).toBeVisible();
     expect(await panel.locator('[data-contribution="1"]').evaluate(el => getComputedStyle(el).animationName)).toBe('none');
-    const figure = await panel.locator('figure').boundingBox();
+    const geometry = () => panel.locator('figure').evaluate(el => { const r = el.getBoundingClientRect(); return { x: r.x + scrollX, y: r.y + scrollY, width: r.width, height: r.height }; });
+    const figure = await geometry();
     await panel.locator('button[data-focus="0"]').click();
-    expect(await panel.locator('figure').boundingBox()).toEqual(figure);
+    expect(await geometry()).toEqual(figure);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1)).toBe(true);
   }
 });
@@ -171,4 +176,13 @@ test('runtime is local-only and keeps a small script and style budget', async ({
   const resources = await page.evaluate(() => performance.getEntriesByType('resource').filter(e => /portfolio\.(js|css)/.test(e.name)).map(e => ({ name: e.name, size: e.decodedBodySize })));
   expect(resources).toHaveLength(2);
   for (const resource of resources) expect(resource.size).toBeLessThan(resource.name.endsWith('.js') ? 12000 : 32000);
+});
+
+
+test('opening another story after scrolling returns to its heading', async ({ page }) => {
+  await page.goto('./#/experience/amazon');
+  await page.locator('#panel-amazon .case-end a').click();
+  await expect(page.locator('#panel-bcbs')).toBeVisible();
+  await expect.poll(() => page.evaluate(() => scrollY)).toBe(0);
+  await expect(page.locator('#main')).toBeFocused();
 });

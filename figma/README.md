@@ -1,33 +1,37 @@
-# Figma portfolio version
+# Figma portfolio, refined
 
-A separate version of the portfolio based on the original white-canvas Figma design. Open `figma/index.html`, or serve the checkout locally:
+An editorial evolution of the original white-canvas and hexagonal-employer design. The original implementation remains in commit `1dc001c3933a27f2c62f8cc21dbb255af9d676d8`; this version deliberately improves its hierarchy, mobile layout, and interaction design.
+
+## Run
 
 ```sh
 npm ci
 node tests/figma-server.cjs
 ```
 
-Then visit `http://127.0.0.1:4178/portfolio/dev/figma/`.
+Open `http://127.0.0.1:4178/portfolio/dev/figma/`.
 
-## Included
+## Design and behavior
 
-- Original desktop navigation, Inter typography, source-exported employer artwork, and selected-employer states
-- About, Contact, Professional Experience, Services, and Resources sections
-- Historical experience at Synchrony Financial, AWS/Fargate, and BlueCross BlueShield
-- Direct hash links, Back/Forward restoration, keyboard navigation, reduced motion, and mobile layouts
-- Existing Work/Lab/OSS companion pages and their source-backed project snapshot
+- Inter with a restrained system-serif contrast, ruled story index, and original employer artwork
+- Three historical internship stories: Synchrony Financial, AWS/Fargate, and BlueCross BlueShield
+- Contribution controls synchronously update a source-backed explanation and an explicitly illustrative model of the work
+- Six distinct model states: promotional programs/preferences, operational visibility/capacity response, and employee journeys/technology landscape
+- Date-neutral further experience at Slalom, zer0, and Outlier; no disputed current-employment or performance claims
+- Keyboard employer navigation, direct routes, Back/Forward, skip link, useful focus restoration, and reduced-motion alternatives
+- No runtime framework, third-party requests, continuous animation, fabricated product screenshots, or raw resume downloads
 
-The original Figma body panels were blank. Body copy/layouts and mobile behavior are new implementation decisions. The fourth employer mark is preserved without guessing its identity.
+The BCBS mark is a typographic label, not a claimed logo reconstruction. The unidentified fourth source mark is preserved as an asset but omitted from navigation. Resources is intentionally typographic. The models explain responsibilities and do not reproduce employer interfaces or report measured production values.
 
-## Remaining design gaps
-
-The original BCBS logo and Resources artwork exports are unavailable, and their slots are explicitly marked pending. The fourth mark's identity needs confirmation. Historical career summaries are selected experience, not a complete current career history.
-
-Source/functional checks pass, but browser rendering and visual comparison could not execute in the build environment. The desktop/mobile/narrow Playwright cases are provided for a browser-capable environment; no pixel-perfect claim is made.
+## Validate
 
 ```sh
 npm run check
 npm run test:figma:e2e
+node --test tests/nightly-overlay.test.mjs tests/nightly-base.test.mjs tests/nightly-pages.test.mjs
+python3 tests/nightly-archive.test.py
 ```
 
-This feature branch does not trigger the repository's main/dev Pages deployment workflow. It has not been merged or deployed.
+Hosted Chromium runs desktop (1440), mobile (390), and narrow (320) cases, including rapid/repeated selections, history, keyboard operation, reduced motion, viewport bounds, layout stability, and inspectable screenshots. Script and stylesheet budgets are asserted. Source tests cover semantic color contrast, asset integrity, and bounded career claims.
+
+Pushes on the isolated nightly branch run validation only. Deployment requires an explicit workflow input and the GitHub Pages environment's authorization. The site is not live merely because validation passed.

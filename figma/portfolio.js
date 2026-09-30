@@ -59,6 +59,7 @@
       currentRoute = route;
       renderFigmaRoute(document, route, rememberedEmployer);
       if (focus) document.querySelector(focus)?.focus({ preventScroll: true });
+      if (focus === '#main') window.scrollTo?.({ top: 0, left: 0, behavior: 'instant' });
     }
     function restoreHistory() {
       const next = parseFigmaRoute(window.location.hash);

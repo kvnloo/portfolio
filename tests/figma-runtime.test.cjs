@@ -8,6 +8,7 @@ const load = (file) => fs.readFileSync(path.join(root, file), 'utf8');
 const script = () => load('figma/portfolio.js');
 function app(hash = '') {
   const dom = new JSDOM(load('figma/index.html'), { url: `http://localhost/portfolio/dev/figma/${hash}`, runScripts: 'outside-only', pretendToBeVisual: true });
+  dom.window.scrollTo = () => {};
   dom.window.eval(script());
   dom.window.document.dispatchEvent(new dom.window.Event('DOMContentLoaded'));
   return dom;
@@ -243,4 +244,35 @@ test('push runs can validate but never enter the protected deployment environmen
   assert.match(workflow, /workflow_dispatch:/);
   assert.match(workflow, /if: \$\{\{ github.event_name == 'workflow_dispatch' && inputs.deploy == true \}\}/);
   assert.match(workflow, /default: false/);
+});
+
+test('content and accent colors retain AA contrast on the editorial canvas', () => {
+  const luminance = hex => {
+    const channels = hex.match(/.{2}/g).map(v => parseInt(v, 16) / 255).map(v => v <= .04045 ? v / 12.92 : ((v + .055) / 1.055) ** 2.4);
+    return channels.reduce((sum, v, i) => sum + v * [.2126, .7152, .0722][i], 0);
+  };
+  const css = load('figma/portfolio.css');
+  const paper = css.match(/--paper: #([a-f0-9]{6})/)[1];
+  for (const token of ['--ink', '--muted', '--accent']) {
+    for (const match of css.matchAll(new RegExp(`${token}: #([a-f0-9]{6})`, 'g'))) {
+      const [dark, light] = [luminance(match[1]), luminance(paper)].sort((a, b) => a - b);
+      assert.ok((light + .05) / (dark + .05) >= 4.5, `${token} ${match[1]}`);
+    }
+  }
+});
+test('further experience uses specific work without disputed dates or ranks', () => {
+  const dom = app('#/about'); const copy = dom.window.document.querySelector('.further-experience').textContent;
+  for (const fact of ['Slalom', 'Windows', 'RHEL', 'EC2', 'Terraform', 'Jenkins', 'zer0', 'Outlier']) assert.ok(copy.includes(fact));
+  assert.doesNotMatch(copy, /Present|Senior Consultant|\d{4}|500|12 teams|DNA|blood/i);
+  dom.window.close();
+});
+
+test('a new top-level story opens at its beginning, without smooth-scroll races', () => {
+  const dom = app('#/experience/amazon'); const calls = [];
+  dom.window.scrollTo = options => calls.push(options);
+  click(dom, 'a[data-page="about"]');
+  assert.equal(calls.length, 1);
+  assert.equal(calls[0].top, 0);
+  assert.equal(calls[0].behavior, 'instant');
+  dom.window.close();
 });
