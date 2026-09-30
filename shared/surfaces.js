@@ -62,7 +62,10 @@ function renderProject(project, index) {
 
   const links = node('div', 'links');
   links.append(link('GitHub', project.repo.url));
-  if (project.id === 'quackles') links.append(link('Live', 'https://kvnloo.github.io/quackles/'));
+  if (project.id === 'quackles') {
+    links.append(link('Case study', '/portfolio/work/quackles/'));
+    links.append(link('Live', 'https://kvnloo.github.io/quackles/'));
+  }
   if (project.id === 'z0evals') links.append(link('Evals', 'https://kvnloo.github.io/z0evals/'));
   if (project.id === 'aodl') links.append(link('AODL catalog', 'https://kvnloo.github.io/aodl/'));
   card.append(links);
