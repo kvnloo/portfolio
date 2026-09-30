@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "portfolio.source.v1",
+  "canonicalRepository": "https://github.com/kvnloo/boplog",
+  "canonicalPath": "data/portfolio-manifest.json",
+  "sourceRevision": "d5d092369d9a22e62fac788c434d93832a81e322",
+  "sourceHasUncommittedChanges": false,
+  "sha256": "08f2e3928694a9a182b29a34905d8377fcf9e607d2208a1779a3dd2be55ed5e0",
+  "reviewedAt": "2026-09-30",
+  "generatedAt": "2026-09-30T02:22:09.861Z",
+  "channel": "dev-preview"
+}

@@ -3,9 +3,7 @@ const MANIFEST_URLS = [
   new URL('../shared/portfolio-manifest.preview.json', window.location.href).href,
 ];
 const OSS_URL = '/boplog/data/oss-contributions.json';
-const PORTFOLIO_BASE = window.location.pathname.startsWith('/portfolio/dev/')
-  ? '/portfolio/dev'
-  : '/portfolio';
+const PORTFOLIO_BASE = window.location.pathname.replace(/\/(?:work|lab|oss)\/?$/, '').replace(/\/$/, '');
 
 const $ = (selector) => document.querySelector(selector);
 
@@ -18,6 +16,7 @@ function node(tag, className, text) {
 
 function link(label, href) {
   const a = node('a', '', label);
+  if (!safeHref(href)) return node('span', '', label);
   a.href = href;
   if (/^https?:/.test(href)) {
     a.target = '_blank';
@@ -36,7 +35,9 @@ async function firstJson(urls) {
   let lastError = null;
   for (const url of urls) {
     try {
-      return await json(url);
+      const manifest = await json(url);
+      if (manifest?.schemaVersion !== 'portfolio.v1' || !Array.isArray(manifest.projects) || typeof manifest.thesis !== 'string') throw new Error('Invalid portfolio manifest');
+      return { manifest, source: url };
     } catch (error) {
       lastError = error;
     }
@@ -46,18 +47,22 @@ async function firstJson(urls) {
 
 function surfaceProjects(manifest, surface) {
   return manifest.projects
-    .filter((project) => project.surfaces?.[surface] && project.promotion !== 'discovered')
+    .filter((project) => project?.visibility === 'public' && typeof project.repo?.url === 'string' && typeof project.title === 'string' && typeof project.summary === 'string' && project.surfaces?.[surface] && project.promotion !== 'discovered')
     .sort((a, b) => (a.surfaces[surface].priority ?? 999) - (b.surfaces[surface].priority ?? 999));
 }
 
 function renderClaim(claim) {
   const item = node('li', 'claim', claim.text);
+  item.dataset.claimId = claim.id;
   item.dataset.verification = claim.verification;
   const meta = node('small', '', claim.verification);
   if (claim.evidence?.length) {
     meta.append(' · ');
     const evidence = claim.evidence[0];
-    meta.append(link('receipt', evidence.url));
+    const receipt = link('receipt', evidence.url);
+    receipt.setAttribute('aria-label', `Evidence: ${claim.text}`);
+    meta.append(receipt);
+    if (evidence.revision) meta.append(' · ', link(evidence.revision.slice(0, 7), evidence.exactRevisionUrl || evidence.url));
   }
   item.append(meta);
   return item;
@@ -71,7 +76,7 @@ function renderProject(project, index) {
   card.append(top);
   card.append(node('p', 'summary', project.summary));
 
-  const claims = (project.claims || []).filter((claim) => claim.publishability === 'public' && claim.verification !== 'deprecated');
+  const claims = (Array.isArray(project.claims) ? project.claims : []).filter(publishableClaim);
   if (claims.length) {
     const list = node('ul', 'claims');
     for (const claim of claims.slice(0, 3)) list.append(renderClaim(claim));
@@ -88,6 +93,7 @@ function renderProject(project, index) {
   if (project.id === 'z0evals') links.append(link('Evals', 'https://kvnloo.github.io/z0evals/'));
   if (project.id === 'verified-oss-loop') links.append(link('Case study', `${PORTFOLIO_BASE}/oss/verified-loop/`));
   if (project.id === 'aodl') links.append(link('AODL catalog', 'https://kvnloo.github.io/aodl/'));
+  for (const anchor of links.querySelectorAll('a')) anchor.setAttribute('aria-label', `${anchor.textContent}: ${project.title}`);
   card.append(links);
   return card;
 }
@@ -103,9 +109,13 @@ function renderProjects(manifest, surface) {
   projects.forEach((project, index) => grid.append(renderProject(project, index)));
 }
 
-function renderMeta(manifest) {
+function renderMeta(manifest, source) {
   $('#thesis').textContent = manifest.thesis;
-  $('#manifest-date').textContent = `manifest updated ${manifest.updatedAt}`;
+  $('#manifest-date').textContent = `evidence reviewed ${manifest.updatedAt}`;
+  const preview = source !== MANIFEST_URLS[0];
+  setStatus('evidence-status', preview
+    ? 'Preview snapshot · generated from the canonical Boplog manifest. Live publication is pending.'
+    : 'Canonical Boplog evidence · curated claims, with revision-bound receipts.');
 }
 
 function contributionRank(item) {
@@ -123,15 +133,20 @@ function renderOss(dataset) {
 
   summary.replaceChildren();
   const values = [
-    ['merged upstream PRs', dataset.summary?.mergedUpstreamPullRequests ?? 0],
-    ['open ready PRs', dataset.summary?.openReadyUpstreamPullRequests ?? 0],
-    ['upstream communities', dataset.summary?.distinctUpstreamCommunities ?? 0],
+    ['recorded merged upstream PRs', dataset.summary?.mergedUpstreamPullRequests],
+    ['recorded open ready PRs', dataset.summary?.openReadyUpstreamPullRequests],
+    ['recorded upstream communities', dataset.summary?.distinctUpstreamCommunities],
   ];
-  for (const [label, value] of values) summary.append(node('span', 'pill', `${value} ${label}`));
+  for (const [label, value] of values) if (Number.isInteger(value) && value >= 0) summary.append(node('span', 'pill', `${value} ${label}`));
+  const generatedAt = Date.parse(dataset.generatedAt);
+  const stale = !Number.isFinite(generatedAt) || Date.now() - generatedAt > 24 * 60 * 60 * 1000;
+  setStatus('oss-status', stale
+    ? `Stale OSS snapshot · historical statuses as of ${dataset.generatedAt || 'an unknown date'}. Follow each upstream receipt for its current disposition.`
+    : `OSS snapshot as of ${dataset.generatedAt}. Statuses are observed receipts, not live guarantees.`, stale ? 'stale' : 'current');
 
   receipts.replaceChildren();
-  const items = [...(dataset.contributions || [])]
-    .filter((item) => item.relationship === 'canonical_upstream')
+  const items = [...(Array.isArray(dataset.contributions) ? dataset.contributions : [])]
+    .filter((item) => item?.relationship === 'canonical_upstream' && safeHref(item.url))
     .sort((a, b) => {
       const rank = contributionRank(a) - contributionRank(b);
       if (rank) return rank;
@@ -150,22 +165,58 @@ function renderOss(dataset) {
   }
 }
 
+function safeHref(href) {
+  if (typeof href !== 'string') return false;
+  try {
+    const url = new URL(href, window.location.origin);
+    if (url.username || url.password) return false;
+    const explicitHttps = /^https:\/\//i.test(href.trim());
+    const localPath = /^\/(?![\/\\])/.test(href);
+    return (explicitHttps && url.protocol === 'https:') || (localPath && url.origin === window.location.origin && ['http:', 'https:'].includes(url.protocol));
+  } catch { return false; }
+}
+
+function publishableClaim(claim) {
+  if (!claim || !['public', 'sanitized'].includes(claim.publishability) || !['verified', 'reported', 'provisional'].includes(claim.verification)) return false;
+  const evidence = Array.isArray(claim.evidence) ? claim.evidence : [];
+  if (evidence.some(item => item?.visibility !== 'public' || !safeHref(item.url))) return false;
+  return claim.verification !== 'verified' || evidence.some(item => /^[a-f0-9]{40}$/.test(item.revision) && Number.isFinite(Date.parse(item.observedAt)));
+}
+
+function setStatus(id, text, state = 'info') {
+  let target = document.getElementById(id);
+  if (!target) {
+    target = node('p', 'evidence-status');
+    target.id = id;
+    const anchor = id === 'oss-status' ? $('#oss-summary') : $('#manifest-date');
+    anchor?.insertAdjacentElement('afterend', target);
+  }
+  target.textContent = text;
+  target.dataset.state = state;
+  target.setAttribute('role', 'status');
+}
+
 async function boot() {
   const surface = document.body.dataset.surface || 'work';
   try {
-    const manifest = await firstJson(MANIFEST_URLS);
-    renderMeta(manifest);
+    const { manifest, source } = await firstJson(MANIFEST_URLS);
+    renderMeta(manifest, source);
     renderProjects(manifest, surface);
+  } catch (error) {
+    $('#project-grid').replaceChildren(node('div', 'error', `Evidence feed unavailable: ${error.message}`));
+    setStatus('evidence-status', 'Evidence unavailable. No unsupported claims are displayed.', 'unavailable');
+  }
 
-    if (surface === 'oss') {
+  // A broken activity feed must not erase the separately verified project stories.
+  if (surface === 'oss') {
+    try {
       const oss = await json(OSS_URL);
       renderOss(oss);
       const generated = $('#generated-at');
-      if (generated) generated.textContent = `OSS snapshot ${oss.generatedAt}`;
+      if (generated) generated.textContent = `OSS snapshot ${oss.generatedAt || 'date unknown'}`;
+    } catch {
+      setStatus('oss-status', 'OSS activity feed unavailable. Canonical contribution stories and their receipts remain available above.', 'unavailable');
     }
-  } catch (error) {
-    const grid = $('#project-grid');
-    grid.replaceChildren(node('div', 'error', `Evidence feed unavailable: ${error.message}`));
   }
 }
 

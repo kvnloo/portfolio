@@ -60,3 +60,7 @@ venv/
 # Interactive demos
 demos/**/node_modules/
 demos/**/dist/
+
+# Local test dependencies and generated browser evidence
+/node_modules
+receipts/

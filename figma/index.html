@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="A private local portfolio draft for Kevin Rajan, based on the original Figma website design.">
+  <title>Professional Experience · Kevin Rajan</title>
+  <link rel="preload" href="./assets/Inter.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="./portfolio.css">
+  <script src="./portfolio.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="canvas">
+    <header class="site-header">
+      <nav class="primary-nav" aria-label="Main navigation">
+        <a data-page="about" href="#/about">About</a>
+        <a data-page="contact" href="#/contact">Contact</a>
+        <a data-page="experience" href="#/experience" aria-current="page">Professional Experience</a>
+        <a data-page="services" href="#/services">Services</a>
+        <a data-page="resources" href="#/resources">Resources</a>
+      </nav>
+    </header>
+
+    <aside class="employer-rail" data-rail aria-label="Experience navigation">
+      <div class="employer-tabs" role="tablist" aria-label="Employer experience" aria-orientation="vertical">
+        <a class="employer employer--synchrony" id="employer-synchrony" role="tab" aria-selected="false" aria-controls="panel-synchrony" aria-label="Synchrony Financial" data-employer="synchrony" href="#/experience/synchrony" tabindex="0">
+          <span class="employer-art synchrony-art" aria-hidden="true">
+            <img class="synchrony-mark" src="./assets/synchrony-mark.svg" width="54" height="54" alt="">
+            <img class="synchrony-outline" src="./assets/synchrony-outline.svg" width="52" height="60" alt="">
+          </span>
+          <img class="employer-dot" src="./assets/dot-synchrony.svg" width="12" height="12" alt="">
+          <span class="employer-tooltip" aria-hidden="true">Synchrony Financial</span>
+        </a>
+        <a class="employer employer--amazon" id="employer-amazon" role="tab" aria-selected="false" aria-controls="panel-amazon" aria-label="Amazon Web Services" data-employer="amazon" href="#/experience/amazon" tabindex="-1">
+          <img class="employer-art" src="./assets/amazon-tile.svg" width="78" height="78" alt="">
+          <img class="employer-dot" src="./assets/dot-amazon.svg" width="12" height="12" alt="">
+          <span class="employer-tooltip" aria-hidden="true">Amazon Web Services</span>
+        </a>
+        <a class="employer employer--bcbs" id="employer-bcbs" role="tab" aria-selected="false" aria-controls="panel-bcbs" aria-label="BlueCross BlueShield; source logo export pending" data-employer="bcbs" href="#/experience/bcbs" tabindex="-1">
+          <span class="employer-art asset-pending">BCBS<span>logo pending</span></span>
+          <img class="employer-dot" src="./assets/dot-bcbs.svg" width="12" height="12" alt="">
+          <span class="employer-tooltip" aria-hidden="true">BlueCross BlueShield</span>
+        </a>
+        <a class="employer employer--unassigned" id="employer-unassigned" role="tab" aria-selected="false" aria-controls="panel-unassigned" aria-label="Unidentified employer mark; identity to confirm" data-employer="unassigned" href="#/experience/unassigned" tabindex="-1">
+          <img class="employer-art" src="./assets/unidentified-tile.svg" width="78" height="78" alt="">
+          <img class="employer-dot" src="./assets/dot-unidentified.svg" width="12" height="12" alt="">
+          <span class="employer-tooltip" aria-hidden="true">Identity to confirm</span>
+        </a>
+      </div>
+      <button class="next-employer" type="button" data-next-employer aria-label="Next employer">
+        <img src="./assets/scroll-chevron.svg" width="21" height="12" alt="">
+      </button>
+    </aside>
+
+    <main id="main" class="main-content" tabindex="-1">
+      <section data-screen="experience" aria-labelledby="experience-heading">
+        <div data-overview>
+          <p class="eyebrow">Kevin Rajan / Selected experience</p>
+          <h1 id="experience-heading">Professional<br>experience.</h1>
+          <p class="intro">From mobile experiences to cloud infrastructure.<br class="desktop-break"> A selection of the teams I’ve worked with.</p>
+          <div class="role-index" aria-label="Explore experience">
+            <a href="#/experience/synchrony" class="role-index-link"><span><strong>Synchrony Financial</strong><span>Software engineering</span></span><span class="index-date">2019 <span aria-hidden="true">↗</span></span></a>
+            <a href="#/experience/amazon" class="role-index-link"><span><strong>Amazon Web Services</strong><span>Fargate infrastructure</span></span><span class="index-date">2018–2019 <span aria-hidden="true">↗</span></span></a>
+            <a href="#/experience/bcbs" class="role-index-link"><span><strong>BlueCross BlueShield</strong><span>Enterprise architecture</span></span><span class="index-date">2018 <span aria-hidden="true">↗</span></span></a>
+          </div>
+          <p class="caption">Choose an employer to explore the work</p>
+        </div>
+        <div class="role-view" data-role-view hidden>
+          <button class="back-link" type="button" data-show-overview><span aria-hidden="true">←</span> All experience</button>
+          <article id="panel-synchrony" class="role-panel" data-employer-panel="synchrony" role="tabpanel" aria-labelledby="employer-synchrony" tabindex="0" hidden>
+            <p class="eyebrow">01 / Financial services</p>
+            <h1>Synchrony<br>Financial.</h1>
+            <div class="role-meta"><span>Software Engineering Intern</span><span><time datetime="2019-05">May 2019</time> – <time datetime="2019-08">Aug 2019</time></span></div>
+            <p class="intro">Making product programs easier to explore and recommendations easier to use.</p>
+            <div class="work-details">
+              <section><h2>Promotional programs, on iOS</h2><p>Developed an iOS application that presents promotional discount programs across product lines, supporting conversations between consultants and clients.</p></section>
+              <section><h2>A more useful recommendation experience</h2><p>Redesigned the user experience for an outfit recommendation system, accounting for apparel preferences including color and fit.</p></section>
+            </div>
+            <ul class="capabilities" aria-label="Skills used"><li>iOS development</li><li>UX design</li><li>Product discovery</li></ul>
+          </article>
+          <article id="panel-amazon" class="role-panel" data-employer-panel="amazon" role="tabpanel" aria-labelledby="employer-amazon" tabindex="0" hidden>
+            <p class="eyebrow">02 / Cloud infrastructure</p>
+            <h1>Amazon<br>Web Services.</h1>
+            <div class="role-meta"><span>Fargate engineering internship</span><span><time datetime="2018-08">Aug 2018</time> – <time datetime="2019-01">Jan 2019</time></span><span>Seattle, WA</span></div>
+            <p class="intro">Understanding the state of a compute fleet and helping it respond to demand.</p>
+            <div class="work-details">
+              <section><h2>Visibility into the warm pool</h2><p>Integrated warm-pool metrics to help developers visualize Fargate’s operational state and investigate customer issues.</p></section>
+              <section><h2>Capacity that responds to traffic</h2><p>Worked on a Java pool-management system that detects customer traffic spikes and automates changes to compute capacity.</p></section>
+            </div>
+            <ul class="capabilities" aria-label="Skills used"><li>Java</li><li>AWS / Fargate</li><li>Operational metrics</li></ul>
+          </article>
+          <article id="panel-bcbs" class="role-panel" data-employer-panel="bcbs" role="tabpanel" aria-labelledby="employer-bcbs" tabindex="0" hidden>
+            <p class="eyebrow">03 / Enterprise architecture</p>
+            <h1>BlueCross<br>BlueShield.</h1>
+            <div class="role-meta"><span>IT Enterprise Architect Intern</span><span><time datetime="2018-06">Jun 2018</time> – <time datetime="2018-08">Aug 2018</time></span></div>
+            <p class="intro">Making complex systems easier to navigate, for both employees and architects.</p>
+            <div class="work-details">
+              <section><h2>Rethinking the HR portal</h2><p>Coordinated teams around an HR portal redesign, exploring domain-driven solutions with a microservice-based architecture.</p></section>
+              <section><h2>Seeing the technology landscape</h2><p>Designed and developed a technology-radar visualization showing the technologies used by each project, supporting portfolio architects’ restructuring decisions.</p></section>
+            </div>
+            <ul class="capabilities" aria-label="Skills used"><li>Domain-driven design</li><li>Microservices</li><li>Data visualization</li></ul>
+          </article>
+          <article id="panel-unassigned" class="role-panel" data-employer-panel="unassigned" role="tabpanel" aria-labelledby="employer-unassigned" tabindex="0" hidden>
+            <p class="eyebrow">04 / Original design mark</p>
+            <h1>A detail<br>to confirm.</h1>
+            <p class="intro">This mark is preserved from the original Figma design. Its employer identity still needs confirmation.</p>
+            <p class="body-copy">The source file doesn’t name this logo. The corresponding experience will be added once its identity is confirmed.</p>
+          </article>
+        </div>
+      </section>
+
+      <section data-screen="about" aria-labelledby="about-heading" hidden>
+        <p class="eyebrow">About / Kevin Rajan</p>
+        <h1 id="about-heading">Across disciplines.<br>Through software.</h1>
+        <p class="intro">Engineering experience spanning mobile applications, cloud systems, and the interfaces that make them useful.</p>
+        <div class="work-details"><section><h2>Design and implementation</h2><p>My work has included iOS product experiences, compute-pool management, enterprise architecture, and technology visualization.</p></section><section><h2>A foundation in physics</h2><p>BS in Engineering Physics, with a minor in Computer Science, from the University of Illinois Urbana–Champaign. Graduated May 2020.</p></section></div>
+        <a class="text-link" href="#/experience">Explore professional experience <span aria-hidden="true">↗</span></a>
+      </section>
+      <section data-screen="contact" aria-labelledby="contact-heading" hidden>
+        <p class="eyebrow">Contact / Kevin Rajan</p>
+        <h1 id="contact-heading">Start a<br>conversation.</h1>
+        <p class="intro">Find my professional profile and engineering work through the links below.</p>
+        <div class="contact-links"><a href="https://www.linkedin.com/in/kevinsrajan/" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span><span>Professional profile</span></a><a href="https://github.com/kvnloo" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span><span>Code and ongoing projects</span></a></div>
+        <p class="caption">These links open the public profiles. No message is sent from this draft.</p>
+      </section>
+      <section data-screen="services" aria-labelledby="services-heading" hidden>
+        <p class="eyebrow">Services / Areas of work</p>
+        <h1 id="services-heading">From an idea<br>to a working system.</h1>
+        <p class="intro">A few areas shaped by the work in this portfolio.</p>
+        <div class="service-list"><section><span class="service-number">01</span><div><h2>Mobile experiences</h2><p>iOS applications and thoughtful interfaces, connecting product needs to implementation.</p></div></section><section><span class="service-number">02</span><div><h2>Cloud and systems</h2><p>Operational visibility, automation, and infrastructure that supports useful software.</p></div></section><section><span class="service-number">03</span><div><h2>Technical visualization</h2><p>Interfaces that help people make sense of complex information and technology landscapes.</p></div></section></div>
+        <a class="text-link" href="#/contact">Get in touch <span aria-hidden="true">↗</span></a>
+      </section>
+      <section data-screen="resources" aria-labelledby="resources-heading" hidden>
+        <p class="eyebrow">Resources / Further reading</p>
+        <h1 id="resources-heading">A closer look.</h1>
+        <p class="intro">Project notes and engineering work from the existing portfolio.</p>
+        <div class="resource-list"><a href="../work/"><span>Selected work</span><span>Project summaries and source evidence</span><span aria-hidden="true">↗</span></a><a href="../lab/"><span>Lab</span><span>Experiments and exploratory work</span><span aria-hidden="true">↗</span></a><a href="../oss/"><span>Open source</span><span>Contributions and their evidence</span><span aria-hidden="true">↗</span></a></div>
+        <p class="asset-note">Design asset pending: the original Resources artwork hasn’t been exported into this local draft.</p>
+      </section>
+      <noscript><p class="no-script">JavaScript is needed for the original design’s interactive navigation. The experience summary above remains readable. <a href="../work/">Browse the existing portfolio</a></p></noscript>
+    </main>
+    <footer class="draft-footer"><span>Kevin Rajan</span><span>Local design draft · Selected historical experience</span></footer>
+    <p class="visually-hidden" role="status" aria-live="polite" data-route-status></p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,96 @@
+{
+  "fileKey": "fZ4xxz3KZ9Dy48cgMNNnHUkL",
+  "assets": [
+    {
+      "file": "scroll-chevron.svg",
+      "width": "21",
+      "height": "12",
+      "viewBox": "0 0 21 12",
+      "bytes": 227,
+      "sha256": "9835652a89063ba291b7964f2b4710564cb082d1fa0ec86fc7b244aeae552e06"
+    },
+    {
+      "file": "unidentified-tile.svg",
+      "width": "78",
+      "height": "78",
+      "viewBox": "0 0 78 78",
+      "bytes": 1339,
+      "sha256": "975fd5e2df980f501ace506be362d6e6f7401e9d15958e1dc8d5cc403c8ec6ee"
+    },
+    {
+      "file": "synchrony-mark.svg",
+      "width": "54",
+      "height": "54",
+      "viewBox": "0 0 54 54",
+      "bytes": 718,
+      "sha256": "14b001ceb91249a6ab8c86019bb292407c2af24f242deceaf8b0d3ca79374e5f"
+    },
+    {
+      "file": "dot-synchrony.svg",
+      "width": "12",
+      "height": "12",
+      "viewBox": "0 0 12 12",
+      "bytes": 193,
+      "sha256": "256d13c67ede3978bbc32e3250a7951b97b0bc57b64243f184a63ae18e7b5a90"
+    },
+    {
+      "file": "dot-bcbs.svg",
+      "width": "12",
+      "height": "12",
+      "viewBox": "0 0 12 12",
+      "bytes": 193,
+      "sha256": "9bff242d343ae8bae59cefdfb9709abc1adfa3a902fbd47de2a42172faa38f26"
+    },
+    {
+      "file": "dot-unidentified.svg",
+      "width": "12",
+      "height": "12",
+      "viewBox": "0 0 12 12",
+      "bytes": 189,
+      "sha256": "32fff415ad5dddd4e476ae6697a1ee8e4b1280b6053ee800e32be3204466197f"
+    },
+    {
+      "file": "dot-amazon.svg",
+      "width": "12",
+      "height": "12",
+      "viewBox": "0 0 12 12",
+      "bytes": 193,
+      "sha256": "2d342e2d8bd5fe779cd00d28045031a0a7835f5ffd97815b7742426818ec5774"
+    },
+    {
+      "file": "synchrony-outline.svg",
+      "width": "52",
+      "height": "60",
+      "viewBox": "0 0 52 60",
+      "bytes": 251,
+      "sha256": "2c65293fcfdb18e5a94dff068f110536b5637c979ceb19aa339e2a047d092de2"
+    },
+    {
+      "file": "amazon-tile.svg",
+      "width": "78",
+      "height": "78",
+      "viewBox": "0 0 78 78",
+      "bytes": 1669,
+      "sha256": "1aa264fd3ebe793a0f5ecf36c9bd8babfcb58326dda85200cb7a129187789928"
+    }
+  ],
+  "missing": [
+    {
+      "name": "bcbs-tile.svg",
+      "node": "319:65"
+    },
+    {
+      "name": "resources-art.svg",
+      "node": "326:99"
+    }
+  ],
+  "note": "Original vector exports; respect intrinsic root dimensions. Do not use HTTP error HTML as SVG. Figma Starter-plan MCP quota prevented remaining exports.",
+  "font": {
+    "file": "Inter.woff2",
+    "bytes": 344964,
+    "sha256": "d04c232dbb165c373f53ee5a997da11e27939a97b0991a3f135ed5c27778fa24",
+    "family": "Inter Variable",
+    "version": "4.000",
+    "license": "Inter-LICENSE.txt"
+  }
+}

@@ -1,6 +1,6 @@
 {
   "schemaVersion": "portfolio.v1",
-  "updatedAt": "2026-09-29",
+  "updatedAt": "2026-09-30",
   "owner": "kvnloo",
   "thesis": "Build evidence-driven systems: turn hypotheses into software, instrument the result, test it against explicit constraints, and feed what works into the next system or upstream project.",
   "verificationStates": [
@@ -14,6 +14,11 @@
     "verified",
     "featured"
   ],
+  "profile": {
+    "name": "Kevin Rajan",
+    "handle": "kvnloo",
+    "githubUrl": "https://github.com/kvnloo"
+  },
   "surfaces": {
     "card": {
       "audience": "anyone",
@@ -21,19 +26,26 @@
     },
     "work": {
       "audience": "recruiters, founders, engineers",
-      "job": "curated high-signal case studies"
+      "job": "curated high-signal case studies",
+      "href": "https://kvnloo.github.io/portfolio/dev/work/",
+      "channel": "dev-preview"
     },
     "lab": {
       "audience": "researchers and AI/systems builders",
-      "job": "experiments, methods, benchmarks, and negative results"
+      "job": "experiments, methods, benchmarks, and negative results",
+      "href": "https://kvnloo.github.io/portfolio/dev/lab/",
+      "channel": "dev-preview"
     },
     "oss": {
       "audience": "maintainers and technical peers",
-      "job": "upstream contribution trails and evidence"
+      "job": "upstream contribution trails and evidence",
+      "href": "https://kvnloo.github.io/portfolio/dev/oss/",
+      "channel": "dev-preview"
     },
     "log": {
       "audience": "deep investigators and agents",
-      "job": "chronological public activity stream"
+      "job": "chronological public activity stream",
+      "href": "https://kvnloo.github.io/boplog/"
     },
     "resume": {
       "audience": "hiring and application contexts",
@@ -48,12 +60,9 @@
     {
       "id": "quackles",
       "title": "Quackles / Microduck",
-      "repo": {
-        "url": "https://github.com/kvnloo/quackles",
-        "license": null
-      },
+      "visibility": "public",
       "status": "active",
-      "health": "healthy",
+      "health": "unknown",
       "roles": [
         "creator",
         "frontend-engineer",
@@ -62,6 +71,11 @@
       ],
       "summary": "Interaction-heavy Microduck product experience used as a browser performance and visual-verification laboratory.",
       "promotion": "featured",
+      "repo": {
+        "url": "https://github.com/kvnloo/quackles",
+        "license": null,
+        "licenseStatus": "missing-or-undetected"
+      },
       "surfaces": {
         "card": {
           "priority": 1
@@ -75,34 +89,65 @@
         "resume": {
           "variants": [
             "systems",
-            "software"
+            "software",
+            "product"
           ]
         }
       },
       "claims": [
         {
           "id": "blue-dzi-200mp",
-          "text": "Integrated an 11,584 × 17,376 (201.284 MP) source into a progressive 1,055-tile WebP deep-zoom path while retaining a 1,024 px base hero for first paint.",
+          "text": "At the September 21, 2026 PR revision: for Blue p0000000 only, integrated an 11,584 × 17,376 (201.284 MP) source into a progressive 1,055-tile WebP deep-zoom path while retaining a 1,024 px base hero for first paint.",
+          "resumeText": "Built progressive deep-zoom inspection for the Blue p0000000 source, serving a 201.284 MP master through 1,055 WebP tiles while retaining a 1,024 px first-paint hero.",
+          "temporalScope": "historical-revision",
           "verification": "verified",
           "publishability": "public",
+          "limitations": [
+            "Only Blue p0000000 has the 200MP DZI pyramid.",
+            "Does not establish the later desktop/fullscreen or HQ-skinned-runtime redesign.",
+            "Historical implementation and acceptance evidence from September 21, 2026; the current live deployment has not been revalidated for this portfolio."
+          ],
+          "metric": {
+            "value": 201.284,
+            "unit": "megapixels",
+            "context": "11,584 × 17,376 source; 1,055 WebP tiles; only Blue p0000000 has this pyramid. Asset dimensions, not a performance speedup.",
+            "tiles": 1055
+          },
           "evidence": [
             {
               "type": "pull_request",
               "url": "https://github.com/kvnloo/quackles/pull/39",
-              "revision": "0b0735f08d032e11f5e0c607dd4dc3c754e7d9ac"
+              "revision": "0b0735f08d032e11f5e0c607dd4dc3c754e7d9ac",
+              "exactRevisionUrl": "https://github.com/kvnloo/quackles/commit/0b0735f08d032e11f5e0c607dd4dc3c754e7d9ac",
+              "observedAt": "2026-09-30T01:40:00Z",
+              "visibility": "public"
             }
           ]
         },
         {
           "id": "adaptive-mobile-budgets",
-          "text": "Added a zero-fetch viewfinder and adaptive mobile deep-zoom policy with browser acceptance covering at most two concurrent jobs, at most 64 MiB decoded cache, zero tile overscan, and an 8,192 px detail tier.",
+          "text": "At the September 21, 2026 PR revision: added a zero-fetch viewfinder and adaptive mobile deep-zoom policy with browser acceptance covering at most two concurrent jobs, at most 64 MiB decoded cache, zero tile overscan, and an 8,192 px detail tier.",
+          "resumeText": "Added a zero-fetch viewfinder and mobile deep-zoom policies capped at two concurrent jobs, 64 MiB decoded cache and an 8,192 px detail tier.",
+          "temporalScope": "historical-revision",
           "verification": "verified",
           "publishability": "public",
+          "limitations": [
+            "Device memory and network hints are optional; conservative fallback behavior remains necessary.",
+            "Historical implementation and acceptance evidence from September 21, 2026; the current live deployment has not been revalidated for this portfolio."
+          ],
+          "metric": {
+            "context": "Deterministic mobile capability fixture: ≤2 jobs, ≤64 MiB decoded cache, zero overscan and ≤8,192 px detail tier. Policy limits, not a cross-device benchmark.",
+            "maxDecodedMiB": 64,
+            "maxJobs": 2
+          },
           "evidence": [
             {
               "type": "pull_request",
               "url": "https://github.com/kvnloo/quackles/pull/31",
-              "revision": "5269ce9d75c547a39833f29fe91b0545bb306021"
+              "revision": "5269ce9d75c547a39833f29fe91b0545bb306021",
+              "exactRevisionUrl": "https://github.com/kvnloo/quackles/commit/5269ce9d75c547a39833f29fe91b0545bb306021",
+              "observedAt": "2026-09-30T01:40:00Z",
+              "visibility": "public"
             }
           ]
         }
@@ -111,10 +156,7 @@
     {
       "id": "zer0",
       "title": "Zer0 ecosystem",
-      "repo": {
-        "url": "https://github.com/kvnloo/z0",
-        "license": "GPL-3.0"
-      },
+      "visibility": "public",
       "status": "active",
       "health": "healthy",
       "roles": [
@@ -123,6 +165,11 @@
       ],
       "summary": "Architecture map, installer, and contract registry for a multi-repository personal AI and systems ecosystem.",
       "promotion": "featured",
+      "repo": {
+        "url": "https://github.com/kvnloo/z0",
+        "license": "GPL-3.0",
+        "licenseStatus": "source-reported"
+      },
       "surfaces": {
         "work": {
           "priority": 2
@@ -138,15 +185,30 @@
           ]
         }
       },
-      "claims": []
+      "claims": [
+        {
+          "id": "architecture-boundaries",
+          "text": "The Zer0 repository owns the map, installer, contract registry and documentation; it deliberately does not implement the runtime or orchestrator.",
+          "resumeText": "Designed the Zer0 architecture map, installer and contract registry to keep component ownership and runtime implementation boundaries explicit.",
+          "verification": "verified",
+          "publishability": "public",
+          "evidence": [
+            {
+              "type": "repository_documentation",
+              "url": "https://github.com/kvnloo/z0/blob/f7b76fbf283ec1eae1529460e9d5a798d1480fae/README.md",
+              "revision": "f7b76fbf283ec1eae1529460e9d5a798d1480fae",
+              "exactRevisionUrl": "https://github.com/kvnloo/z0/blob/f7b76fbf283ec1eae1529460e9d5a798d1480fae/README.md",
+              "observedAt": "2026-09-30T01:40:00Z",
+              "visibility": "public"
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "z0intelligence",
       "title": "z0intelligence / OpenJev",
-      "repo": {
-        "url": "https://github.com/kvnloo/z0intelligence",
-        "license": "MIT"
-      },
+      "visibility": "public",
       "status": "active",
       "health": "healthy",
       "roles": [
@@ -155,11 +217,14 @@
         "systems-engineer"
       ],
       "summary": "Typed local decision runtime and experimentation surface for fast, bounded model decisions and specialist systems.",
-      "promotion": "featured",
+      "promotion": "verified",
+      "parentProject": "zer0",
+      "repo": {
+        "url": "https://github.com/kvnloo/z0intelligence",
+        "license": "MIT",
+        "licenseStatus": "source-reported"
+      },
       "surfaces": {
-        "work": {
-          "priority": 3
-        },
         "lab": {
           "priority": 1
         },
@@ -172,14 +237,45 @@
       },
       "claims": [
         {
-          "id": "typed-logit-latency",
-          "text": "Repository reports an RTX 3090 experiment with 21 direct typed-logit probability pairs at 1.023 s median versus a 5.332 s compact autoregressive JSON-array baseline.",
-          "verification": "reported",
+          "id": "typed-decision-boundary",
+          "text": "Defines runtime-supplied criteria and typed options with generation-free direct-logit readout and shared-state computation, while keeping calibration and broader semantic capability as explicit non-claims.",
+          "resumeText": "Designed typed decision contracts around runtime-defined options, direct-logit readout and shared-state reuse, with explicit calibration limits.",
+          "verification": "verified",
           "publishability": "public",
           "evidence": [
             {
               "type": "repository_documentation",
-              "url": "https://github.com/kvnloo/z0intelligence"
+              "url": "https://github.com/kvnloo/z0intelligence/blob/c4a4554d8a3874b456c46feef6ea937993af744a/docs/RESULTS.md",
+              "revision": "c4a4554d8a3874b456c46feef6ea937993af744a",
+              "exactRevisionUrl": "https://github.com/kvnloo/z0intelligence/blob/c4a4554d8a3874b456c46feef6ea937993af744a/docs/RESULTS.md",
+              "observedAt": "2026-09-30T01:49:00Z",
+              "visibility": "public"
+            }
+          ]
+        },
+        {
+          "id": "typed-logit-latency",
+          "text": "Repository reports an RTX 3090 experiment with 21 direct typed-logit probability pairs at 1.023 s median versus a 5.332 s compact autoregressive JSON-array baseline.",
+          "verification": "reported",
+          "publishability": "public",
+          "limitations": [
+            "Source-reported, not independently reproduced for this portfolio.",
+            "The two readouts are not semantically equivalent; do not compare directly with advertised Jev service latency."
+          ],
+          "metric": {
+            "context": "One owned state, 21 criteria, same-model direct readout versus compact valid JSON-array output; three baseline runs. Isolates output-path cost, not semantic equivalence.",
+            "hardware": "RTX 3090",
+            "cohort": "21 criteria on one owned state",
+            "baseline": "Compact autoregressive yes/no JSON array; 18/21 argmax agreement"
+          },
+          "evidence": [
+            {
+              "type": "repository_documentation",
+              "url": "https://github.com/kvnloo/z0intelligence/blob/c4a4554d8a3874b456c46feef6ea937993af744a/docs/RESULTS.md",
+              "revision": "c4a4554d8a3874b456c46feef6ea937993af744a",
+              "exactRevisionUrl": "https://github.com/kvnloo/z0intelligence/blob/c4a4554d8a3874b456c46feef6ea937993af744a/docs/RESULTS.md",
+              "observedAt": "2026-09-30T01:40:00Z",
+              "visibility": "public"
             }
           ]
         }
@@ -188,10 +284,7 @@
     {
       "id": "z0evals",
       "title": "z0evals",
-      "repo": {
-        "url": "https://github.com/kvnloo/z0evals",
-        "license": "MIT"
-      },
+      "visibility": "public",
       "status": "active",
       "health": "healthy",
       "roles": [
@@ -199,11 +292,14 @@
         "researcher"
       ],
       "summary": "Frozen evidence and publication layer for reproducible Zer0 experiments.",
-      "promotion": "featured",
+      "promotion": "verified",
+      "parentProject": "zer0",
+      "repo": {
+        "url": "https://github.com/kvnloo/z0evals",
+        "license": "MIT",
+        "licenseStatus": "source-reported"
+      },
       "surfaces": {
-        "work": {
-          "priority": 3
-        },
         "lab": {
           "priority": 1
         },
@@ -218,12 +314,53 @@
         {
           "id": "evidence-contract",
           "text": "Separates reported benchmarks from reproduced measurements and requires published claims to resolve to frozen evidence and provenance.",
+          "resumeText": "Built a frozen-evidence publication layer that separates reported benchmarks from reproduced measurements and ties public claims to inspectable provenance.",
           "verification": "verified",
           "publishability": "public",
           "evidence": [
             {
               "type": "repository_documentation",
-              "url": "https://github.com/kvnloo/z0evals"
+              "url": "https://github.com/kvnloo/z0evals/blob/bb8ad2c0bd7dc7c73c2e66bcbf4ede5a2ced62da/README.md",
+              "revision": "bb8ad2c0bd7dc7c73c2e66bcbf4ede5a2ced62da",
+              "exactRevisionUrl": "https://github.com/kvnloo/z0evals/blob/bb8ad2c0bd7dc7c73c2e66bcbf4ede5a2ced62da/README.md",
+              "observedAt": "2026-09-30T01:40:00Z",
+              "visibility": "public"
+            }
+          ]
+        },
+        {
+          "id": "unified-memory-cohort",
+          "text": "Merged a frozen six-question executable cohort for DSH, Hermes, OMO and OMP, including contradiction and missing-evidence cases. The shared contract does not establish four-harness equivalence.",
+          "resumeText": "Published a six-question executable memory-evaluation cohort shared across DSH, Hermes, OMO and OMP, with contradiction and missing-evidence cases.",
+          "verification": "verified",
+          "publishability": "public",
+          "metric": {
+            "context": "Six named public question fixtures in the unified-memory-v0 cohort; fixture coverage is not measured answer quality."
+          },
+          "evidence": [
+            {
+              "type": "pull_request",
+              "url": "https://github.com/kvnloo/z0evals/pull/59",
+              "revision": "15428ba655ed9e21d2e7d0089e78428387cbbb99",
+              "exactRevisionUrl": "https://github.com/kvnloo/z0evals/commit/15428ba655ed9e21d2e7d0089e78428387cbbb99",
+              "observedAt": "2026-09-30T01:40:00Z",
+              "visibility": "public"
+            }
+          ]
+        },
+        {
+          "id": "unified-memory-status",
+          "text": "The September unified-memory report marks OMP measured, DSH bounded, and Hermes/OMO pending. The OMP result concerns context shaping, not better answers or four-harness equivalence.",
+          "verification": "reported",
+          "publishability": "public",
+          "evidence": [
+            {
+              "type": "study_report",
+              "url": "https://github.com/kvnloo/z0evals/blob/bb8ad2c0bd7dc7c73c2e66bcbf4ede5a2ced62da/posts/unified-memory-v0.md",
+              "revision": "bb8ad2c0bd7dc7c73c2e66bcbf4ede5a2ced62da",
+              "exactRevisionUrl": "https://github.com/kvnloo/z0evals/blob/bb8ad2c0bd7dc7c73c2e66bcbf4ede5a2ced62da/posts/unified-memory-v0.md",
+              "observedAt": "2026-09-30T01:40:00Z",
+              "visibility": "public"
             }
           ]
         }
@@ -232,10 +369,7 @@
     {
       "id": "verified-oss-loop",
       "title": "Verified OSS Loop",
-      "repo": {
-        "url": "https://github.com/kvnloo/verified-oss-loop",
-        "license": "Apache-2.0"
-      },
+      "visibility": "public",
       "status": "active",
       "health": "healthy",
       "roles": [
@@ -244,6 +378,11 @@
       ],
       "summary": "Contribution protocol for human and coding-agent work using claim leases, revision-bound evidence, independent verification, and human merge authority.",
       "promotion": "featured",
+      "repo": {
+        "url": "https://github.com/kvnloo/verified-oss-loop",
+        "license": "Apache-2.0",
+        "licenseStatus": "source-reported"
+      },
       "surfaces": {
         "work": {
           "priority": 4
@@ -263,12 +402,17 @@
         {
           "id": "human-merge-gate",
           "text": "Workers can claim and verify work, but the protocol reserves merge authority for a human maintainer.",
+          "resumeText": "Created an open-source contribution protocol with claim leases, revision-bound evidence, independent verification and human maintainer merge gates.",
           "verification": "verified",
           "publishability": "public",
           "evidence": [
             {
               "type": "repository_documentation",
-              "url": "https://github.com/kvnloo/verified-oss-loop"
+              "url": "https://github.com/kvnloo/verified-oss-loop/blob/7ba2782090bef0a5fe8a8e039a700d76f23ca274/README.md",
+              "revision": "7ba2782090bef0a5fe8a8e039a700d76f23ca274",
+              "exactRevisionUrl": "https://github.com/kvnloo/verified-oss-loop/blob/7ba2782090bef0a5fe8a8e039a700d76f23ca274/README.md",
+              "observedAt": "2026-09-30T01:40:00Z",
+              "visibility": "public"
             }
           ]
         }
@@ -277,10 +421,7 @@
     {
       "id": "aodl",
       "title": "AODL",
-      "repo": {
-        "url": "https://github.com/kvnloo/aodl",
-        "license": "MIT"
-      },
+      "visibility": "public",
       "status": "active",
       "health": "healthy",
       "roles": [
@@ -289,12 +430,15 @@
       ],
       "summary": "Typed orchestration IR with a fail-closed validator and Hermes dry-run compiler; deliberately not a scheduler or runtime.",
       "promotion": "verified",
+      "parentProject": "zer0",
+      "repo": {
+        "url": "https://github.com/kvnloo/aodl",
+        "license": "MIT",
+        "licenseStatus": "source-reported"
+      },
       "surfaces": {
         "lab": {
           "priority": 2
-        },
-        "work": {
-          "priority": 5
         },
         "resume": {
           "variants": [
@@ -305,14 +449,38 @@
       },
       "claims": [
         {
-          "id": "validator-scope",
-          "text": "The pure-Python validator rejects all 18 checked invalid examples while the structural JSON Schema intentionally covers only the subset expressible there.",
+          "id": "typed-orchestration-boundary",
+          "text": "Defines a typed orchestration IR, a fail-closed validator and a read-only Hermes dry-run compiler; deliberately not a scheduler or runtime.",
+          "resumeText": "Designed a typed orchestration IR, fail-closed validator and read-only Hermes dry-run compiler with explicit runtime boundaries.",
           "verification": "verified",
           "publishability": "public",
           "evidence": [
             {
               "type": "repository_documentation",
-              "url": "https://github.com/kvnloo/aodl"
+              "url": "https://github.com/kvnloo/aodl/blob/a848270356225699fc828e80a0cc93d2754f7413/README.md",
+              "revision": "a848270356225699fc828e80a0cc93d2754f7413",
+              "exactRevisionUrl": "https://github.com/kvnloo/aodl/blob/a848270356225699fc828e80a0cc93d2754f7413/README.md",
+              "observedAt": "2026-09-30T01:49:00Z",
+              "visibility": "public"
+            }
+          ]
+        },
+        {
+          "id": "validator-scope",
+          "text": "The pure-Python validator rejects all 18 checked invalid examples while the structural JSON Schema intentionally covers only the subset expressible there.",
+          "verification": "reported",
+          "publishability": "public",
+          "metric": {
+            "context": "Repository invalid-example corpus: pure Python rejects 18/18; JSON Schema rejects 3/18 structural faults. This is corpus coverage, not a general correctness proof."
+          },
+          "evidence": [
+            {
+              "type": "repository_documentation",
+              "url": "https://github.com/kvnloo/aodl/blob/a848270356225699fc828e80a0cc93d2754f7413/README.md",
+              "revision": "a848270356225699fc828e80a0cc93d2754f7413",
+              "exactRevisionUrl": "https://github.com/kvnloo/aodl/blob/a848270356225699fc828e80a0cc93d2754f7413/README.md",
+              "observedAt": "2026-09-30T01:40:00Z",
+              "visibility": "public"
             }
           ]
         }
@@ -321,10 +489,7 @@
     {
       "id": "evolution-lab",
       "title": "Evolution Lab",
-      "repo": {
-        "url": "https://github.com/kvnloo/evolution-lab",
-        "license": "MIT"
-      },
+      "visibility": "public",
       "status": "active",
       "health": "healthy",
       "roles": [
@@ -333,12 +498,15 @@
       ],
       "summary": "Experiment engine for measured specialist-system search using genomes, locked splits, promotion ladders, Pareto selection, and MAP-Elites niches.",
       "promotion": "verified",
+      "parentProject": "zer0",
+      "repo": {
+        "url": "https://github.com/kvnloo/evolution-lab",
+        "license": "MIT",
+        "licenseStatus": "source-reported"
+      },
       "surfaces": {
         "lab": {
           "priority": 2
-        },
-        "work": {
-          "priority": 5
         },
         "resume": {
           "variants": [
@@ -352,10 +520,7 @@
     {
       "id": "boplog",
       "title": "Boplog",
-      "repo": {
-        "url": "https://github.com/kvnloo/boplog",
-        "license": "MIT"
-      },
+      "visibility": "public",
       "status": "active",
       "health": "degraded",
       "roles": [
@@ -364,6 +529,11 @@
       ],
       "summary": "Public build and contribution log intended to be the chronological evidence stream feeding the portfolio system.",
       "promotion": "verified",
+      "repo": {
+        "url": "https://github.com/kvnloo/boplog",
+        "license": "MIT",
+        "licenseStatus": "source-reported"
+      },
       "surfaces": {
         "log": {
           "priority": 1
@@ -377,10 +547,7 @@
     {
       "id": "portfolio",
       "title": "Kevin's Ramen & Boba / Portfolio",
-      "repo": {
-        "url": "https://github.com/kvnloo/portfolio",
-        "license": null
-      },
+      "visibility": "public",
       "status": "active",
       "health": "stale",
       "roles": [
@@ -388,6 +555,11 @@
       ],
       "summary": "Curated interactive portfolio surface; current content needs migration from the late-2025 narrative to manifest-backed case studies.",
       "promotion": "discovered",
+      "repo": {
+        "url": "https://github.com/kvnloo/portfolio",
+        "license": null,
+        "licenseStatus": "missing-or-undetected"
+      },
       "surfaces": {
         "work": {
           "priority": 1
@@ -401,10 +573,7 @@
     {
       "id": "metallic-card",
       "title": "Metallic Card",
-      "repo": {
-        "url": "https://github.com/kvnloo/metallic-card",
-        "license": null
-      },
+      "visibility": "public",
       "status": "active",
       "health": "healthy",
       "roles": [
@@ -412,6 +581,11 @@
       ],
       "summary": "High-polish identity card that should become a maintenance-light router into Work, Lab, OSS, Log, and Resume.",
       "promotion": "verified",
+      "repo": {
+        "url": "https://github.com/kvnloo/metallic-card",
+        "license": null,
+        "licenseStatus": "missing-or-undetected"
+      },
       "surfaces": {
         "card": {
           "priority": 1
@@ -422,10 +596,7 @@
     {
       "id": "cv",
       "title": "CV / Resume Generator",
-      "repo": {
-        "url": "https://github.com/kvnloo/cv",
-        "license": null
-      },
+      "visibility": "public",
       "status": "active",
       "health": "stale",
       "roles": [
@@ -433,12 +604,64 @@
       ],
       "summary": "Role-specific LaTeX resume/CV sources that should consume verified manifest claims instead of maintaining independent facts.",
       "promotion": "discovered",
+      "repo": {
+        "url": "https://github.com/kvnloo/cv",
+        "license": null,
+        "licenseStatus": "missing-or-undetected"
+      },
       "surfaces": {
         "resume": {
           "priority": 1
         }
       },
       "claims": []
+    },
+    {
+      "id": "openmc",
+      "title": "OpenMC contribution",
+      "visibility": "public",
+      "status": "active",
+      "health": "unknown",
+      "roles": [
+        "contributor"
+      ],
+      "summary": "An upstream test-data cleanup proposal using shared canonical weight-window fixtures; open for maintainer review.",
+      "promotion": "verified",
+      "repo": {
+        "url": "https://github.com/openmc-dev/openmc",
+        "license": null,
+        "licenseStatus": "not-reviewed"
+      },
+      "surfaces": {
+        "oss": {
+          "priority": 2
+        },
+        "resume": {
+          "variants": [
+            "software"
+          ]
+        }
+      },
+      "claims": [
+        {
+          "id": "weight-window-fixtures",
+          "text": "Proposed shared canonical weight-window test fixtures in OpenMC, replacing duplicate unit-test aliases. The upstream pull request remains open; this is not a merged contribution.",
+          "resumeText": "Proposed shared canonical weight-window fixtures in OpenMC to remove duplicate unit-test aliases; upstream pull request open for maintainer review.",
+          "verification": "verified",
+          "publishability": "public",
+          "evidence": [
+            {
+              "type": "pull_request",
+              "url": "https://github.com/openmc-dev/openmc/pull/4151",
+              "revision": "3f4a8c6f56b2d0742e4ac7c1e0134d2ebc981944",
+              "exactRevisionUrl": "https://github.com/kvnloo/openmc/commit/3f4a8c6f56b2d0742e4ac7c1e0134d2ebc981944",
+              "observedAt": "2026-09-30T01:43:00Z",
+              "visibility": "public",
+              "status": "open"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

@@ -1,102 +1,236 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="color-scheme" content="dark">
-  <title>Quackles case study — Kevin Rajan</title>
-  <meta name="description" content="How Quackles turned a 201.284 MP product source into bounded, progressive browser inspection with exact-head verification.">
-  <link rel="stylesheet" href="../../shared/surfaces.css">
-  <style>
-    .case { max-width: 860px; }
-    .case h2 { margin: 56px 0 12px; font-size: 28px; letter-spacing: -.035em; }
-    .case h3 { margin: 30px 0 8px; font-size: 19px; }
-    .case p, .case li { color: #c7ccd6; font-size: 16px; }
-    .case ul { padding-left: 22px; }
-    .case blockquote { margin: 24px 0; padding: 18px 20px; border-left: 2px solid var(--accent); background: rgba(255,255,255,.025); color: #e8ebf1; }
-    .metric-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin:26px 0; }
-    .metric { border:1px solid var(--line); border-radius:14px; padding:16px; background:rgba(255,255,255,.02); }
-    .metric strong { display:block; font-size:22px; letter-spacing:-.03em; }
-    .metric span { color:var(--muted); font-size:12px; }
-    @media(max-width:760px){.metric-grid{grid-template-columns:repeat(2,1fr)}}
-  </style>
-</head>
-<body>
-  <header class="topbar">
-    <nav class="shell nav" aria-label="Portfolio">
-      <a class="brand" href="../../">Kevin Rajan</a>
-      <div class="navlinks">
-        <a href="../" aria-current="page">Work</a>
-        <a href="../../lab/">Lab</a>
-        <a href="../../oss/">OSS</a>
-        <a href="/boplog/">Log</a>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <title>Quackles case study — Kevin Rajan</title>
+    <meta
+      name="description"
+      content="How Quackles turned a 201.284 MP product source into bounded, progressive browser inspection with exact-head verification."
+    />
+    <link rel="stylesheet" href="../../shared/surfaces.css" />
+  </head>
+  <body class="case-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="topbar">
+      <nav class="shell nav" aria-label="Portfolio">
+        <a class="brand" href="../../">Kevin Rajan</a>
+        <div class="navlinks">
+          <a href="../" aria-current="page">Work</a>
+          <a href="../../lab/">Lab</a>
+          <a href="../../oss/">OSS</a>
+          <a href="/boplog/">Log</a>
+        </div>
+      </nav>
+    </header>
+    <main id="main" tabindex="-1" class="shell case">
+      <div class="case-hero">
+        <section class="hero">
+          <div class="eyebrow">Case study · Quackles</div>
+          <h1>Big detail.<br /><em>Bounded demands.</em></h1>
+          <p class="lede">
+            A 201.284 MP source. A mobile browser. A fan-made Microduck
+            experience that treats the distance between them as an engineering
+            problem.
+          </p>
+          <div class="meta">
+            <span class="pill">React Three Fiber / WebGL</span>
+            <span class="pill">Deep zoom</span>
+            <span class="pill">Browser performance</span>
+            <span class="pill">Visual verification</span>
+          </div>
+          <p id="historical-scope" class="evidence-status" role="note">
+            Historical implementation: September 21, 2026, at the exact heads of
+            PR #31 and PR #39 linked below. The current live deployment has not
+            been revalidated for this case study.
+          </p>
+          <a class="text-link" href="https://kvnloo.github.io/quackles/"
+            >Open the live experiment <span aria-hidden="true">↗</span></a
+          >
+        </section>
+
+        <figure class="feature-image">
+          <img
+            src="../../shared/assets/quackles-blue.webp"
+            alt="Microduck in the cobalt-blue Quackles scene, the actual 1,024-pixel base render"
+            width="1024"
+            height="1536"
+            fetchpriority="high"
+          />
+          <figcaption class="image-note">
+            BLUE p0000000 / ORIGINAL BASE RENDER<br />Fan-made project ·
+            independent of Pollen Robotics
+          </figcaption>
+        </figure>
       </div>
-    </nav>
-  </header>
-  <main class="shell case">
-    <section class="hero">
-      <div class="eyebrow">Case study · Quackles</div>
-      <h1>200MP detail without a 200MP browser.</h1>
-      <p class="lede">A fan-made Microduck product experience became a laboratory for progressive imagery, scroll ownership, bounded mobile memory, visual QA, and exact-revision browser acceptance.</p>
-      <div class="meta">
-        <span class="pill">React Three Fiber / WebGL</span>
-        <span class="pill">Deep zoom</span>
-        <span class="pill">Browser performance</span>
-        <span class="pill">Visual verification</span>
+
+      <div class="metric-grid" aria-label="Historical PR measurements and policy limits">
+        <div class="metric">
+          <strong><span data-manifest-value="quackles:blue-dzi-200mp:value">201.284</span> MP</strong>
+          <span>source master</span>
+        </div>
+        <div class="metric">
+          <strong><span data-manifest-value="quackles:blue-dzi-200mp:tiles">1,055</span></strong>
+          <span>published WebP tiles</span>
+        </div>
+        <div class="metric">
+          <strong>≤<span data-manifest-value="quackles:adaptive-mobile-budgets:maxDecodedMiB">64</span> MiB</strong>
+          <span>mobile decoded-cache policy</span>
+        </div>
+        <div class="metric">
+          <strong>≤<span data-manifest-value="quackles:adaptive-mobile-budgets:maxJobs">2</span> jobs</strong>
+          <span>mobile concurrent decode policy</span>
+        </div>
       </div>
-    </section>
 
-    <div class="metric-grid">
-      <div class="metric"><strong>201.284 MP</strong><span>source master</span></div>
-      <div class="metric"><strong>1,055</strong><span>published WebP tiles</span></div>
-      <div class="metric"><strong>≤64 MiB</strong><span>mobile decoded-cache policy</span></div>
-      <div class="metric"><strong>≤2 jobs</strong><span>mobile concurrent decode policy</span></div>
-    </div>
+      <div class="case-layout">
+        <nav class="case-toc" aria-label="Case study contents">
+          <span class="micro-label">IN THIS CASE</span
+          ><a href="#the-constraint">The constraint</a
+          ><a href="#the-first-useful-architecture">Architecture</a
+          ><a href="#visual-qa-found-what-state-tests-missed"
+            >Browser verification</a
+          ><a href="#receipts">Receipts</a
+          ><a href="#non-claims">Scope & limitations</a>
+        </nav>
+        <article class="case-body">
+          <h2 id="the-constraint">The constraint</h2>
+          <p>
+            The product page needed extremely high-resolution inspection while
+            staying mobile-first, statically deployable on GitHub Pages,
+            compatible with native scrolling and pinch behavior, and unwilling
+            to let source resolution dictate browser memory.
+          </p>
+          <blockquote>
+            The existence of a 200MP source should not cause the browser to
+            request 200MP of detail.
+          </blockquote>
 
-    <h2>The constraint</h2>
-    <p>The product page needed extremely high-resolution inspection while staying mobile-first, statically deployable on GitHub Pages, compatible with native scrolling and pinch behavior, and unwilling to let source resolution dictate browser memory.</p>
-    <blockquote>The existence of a 200MP source should not cause the browser to request 200MP of detail.</blockquote>
+          <h2 id="the-first-useful-architecture">
+            The first useful architecture
+          </h2>
+          <p>
+            At those revisions, the inspection path kept a small base hero for immediate display,
+            then treated the high-resolution source as a demand-driven deep-zoom
+            pyramid. Requested detail followed visible pixels × zoom and was
+            capped by a device profile rather than by the maximum source tier.
+          </p>
+          <ul>
+            <li>1,024 px base hero remained the initial surface.</li>
+            <li>
+              The 11,584 × 17,376 master was published as a WebP DZI pyramid.
+            </li>
+            <li>
+              Progressive detail tiers reached 11,584 px only when inspection
+              required them.
+            </li>
+            <li>
+              The tested mobile policy could cap decoded memory, compressed cache, concurrent
+              jobs, zoom, source tier, overscan, and navigator resolution.
+            </li>
+          </ul>
 
-    <h2>The first useful architecture</h2>
-    <p>The inspection path keeps a small base hero for immediate display, then treats the high-resolution source as a demand-driven deep-zoom pyramid. Requested detail follows visible pixels × zoom and is capped by a device profile rather than by the maximum source tier.</p>
-    <ul>
-      <li>1,024 px base hero remains the initial surface.</li>
-      <li>The 11,584 × 17,376 master is published as a WebP DZI pyramid.</li>
-      <li>Progressive detail tiers reach 11,584 px only when inspection requires them.</li>
-      <li>Mobile policy can cap decoded memory, compressed cache, concurrent jobs, zoom, source tier, overscan, and navigator resolution.</li>
-    </ul>
+          <h2 id="a-naive-path-was-intentionally-rejected">
+            A naive path was intentionally rejected
+          </h2>
+          <p>
+            An earlier direction would have used a second image surface for the
+            navigator and kept the full sequence renderer subscribed to every
+            camera spring frame. The PR implementation instead snapshotted the
+            already-rendered base canvas for a zero-fetch viewfinder, moved
+            camera transform ownership into the inspection compositor path, and
+            only woke tile planning when target zoom/focus or inspection
+            boundaries changed.
+          </p>
 
-    <h2>A naive path was intentionally rejected</h2>
-    <p>An earlier direction would have used a second image surface for the navigator and kept the full sequence renderer subscribed to every camera spring frame. The merged implementation instead snapshots the already-rendered base canvas for a zero-fetch viewfinder, moves camera transform ownership into the inspection compositor path, and only wakes tile planning when target zoom/focus or inspection boundaries change.</p>
+          <h2 id="visual-qa-found-what-state-tests-missed">
+            Visual QA found what state tests missed
+          </h2>
+          <p>
+            The first CI screenshot exposed a mobile-only defect: during native
+            pinch, the navigator was technically active but magnified and pushed
+            offscreen with the poster. The fix counter-scaled the navigator and
+            anchored it inside the active visual viewport. Acceptance at that
+            revision checked that its rendered bounds stayed inside the viewport.
+          </p>
 
-    <h2>Visual QA found what state tests missed</h2>
-    <p>The first CI screenshot exposed a mobile-only defect: during native pinch, the navigator was technically active but magnified and pushed offscreen with the poster. The fix counter-scales the navigator and anchors it inside the active visual viewport. Browser acceptance now fails if its rendered bounds escape that viewport.</p>
+          <h2 id="verification-became-part-of-the-design">
+            Verification became part of the design
+          </h2>
+          <p>
+            The two historical PRs record exact-head evidence receipts rather than
+            only implementation notes. At those heads, verification included lint, typecheck,
+            static build, real Chromium inspection behavior, request quiescence,
+            navigator behavior, reversible scroll/inspection ownership, and
+            mobile capability fixtures.
+          </p>
 
-    <h2>Verification became part of the design</h2>
-    <p>The two core changes carry exact-head evidence receipts rather than only implementation notes. Verification includes lint, typecheck, static build, real Chromium inspection behavior, request quiescence, navigator behavior, reversible scroll/inspection ownership, and mobile capability fixtures.</p>
+          <div class="section-head">
+            <h2 id="receipts">Receipts</h2>
+            <p>Primary evidence</p>
+          </div>
+          <div class="receipt-list">
+            <div class="receipt">
+              <div>
+                <a href="https://github.com/kvnloo/quackles/pull/39"
+                  >PR #39 · 200MP Blue DZI integration</a
+                >
+                <div class="repo">
+                  head 0b0735f08d032e11f5e0c607dd4dc3c754e7d9ac
+                </div>
+              </div>
+              <div class="state">merged</div>
+            </div>
+            <div class="receipt">
+              <div>
+                <a href="https://github.com/kvnloo/quackles/pull/31"
+                  >PR #31 · zero-fetch viewfinder + adaptive budgets</a
+                >
+                <div class="repo">
+                  head 5269ce9d75c547a39833f29fe91b0545bb306021
+                </div>
+              </div>
+              <div class="state">merged</div>
+            </div>
+            <div class="receipt">
+              <div>
+                <a href="https://github.com/kvnloo/quackles/">Repository</a>
+                <div class="repo">
+                  current implementation and follow-up work
+                </div>
+              </div>
+              <div class="state">active</div>
+            </div>
+          </div>
 
-    <div class="section-head"><h2>Receipts</h2><p>Primary evidence</p></div>
-    <div class="receipt-list">
-      <div class="receipt">
-        <div><a href="https://github.com/kvnloo/quackles/pull/39">PR #39 · 200MP Blue DZI integration</a><div class="repo">head 0b0735f08d032e11f5e0c607dd4dc3c754e7d9ac</div></div>
-        <div class="state">merged</div>
+          <h2 id="non-claims">Non-claims</h2>
+          <p>
+            The 200MP pyramid in PR #39 is specifically for Blue
+            <code>p0000000</code>; it is not evidence that every product/theme
+            asset has equivalent source detail. That PR also explicitly does not
+            claim to solve the larger desktop/fullscreen and HQ-skinned-runtime
+            redesign. These historical receipts do not certify later image
+            variants, later zoom behavior, or current live-site performance.
+          </p>
+
+          <h2 id="why-this-belongs-in-the-portfolio">
+            Why this belongs in the portfolio
+          </h2>
+          <p>
+            The interesting artifact is not the duck page by itself. It is the
+            loop: ambitious interaction → device constraint → measurable failure
+            → architecture change → browser-level evidence → explicit
+            limitation. That is the same working style the rest of the portfolio
+            system is being rebuilt to expose.
+          </p>
+          <div class="article-end">
+            <a href="../">← Back to Work</a
+            ><span class="micro-label">QUACKLES / CASE STUDY</span>
+          </div>
+        </article>
       </div>
-      <div class="receipt">
-        <div><a href="https://github.com/kvnloo/quackles/pull/31">PR #31 · zero-fetch viewfinder + adaptive budgets</a><div class="repo">head 5269ce9d75c547a39833f29fe91b0545bb306021</div></div>
-        <div class="state">merged</div>
-      </div>
-      <div class="receipt">
-        <div><a href="https://github.com/kvnloo/quackles/">Repository</a><div class="repo">current implementation and follow-up work</div></div>
-        <div class="state">active</div>
-      </div>
-    </div>
-
-    <h2>Non-claims</h2>
-    <p>The 200MP pyramid in PR #39 is specifically for Blue <code>p0000000</code>; it is not evidence that every product/theme asset has equivalent source detail. That PR also explicitly does not claim to solve the larger desktop/fullscreen and HQ-skinned-runtime redesign.</p>
-
-    <h2>Why this belongs in the portfolio</h2>
-    <p>The interesting artifact is not the duck page by itself. It is the loop: ambitious interaction → device constraint → measurable failure → architecture change → browser-level evidence → explicit limitation. That is the same working style the rest of the portfolio system is being rebuilt to expose.</p>
-  </main>
-  <footer class="shell footer">Evidence first; presentation second.</footer>
-</body>
+    </main>
+    <footer class="shell footer">Evidence first; presentation second.</footer>
+  </body>
 </html>

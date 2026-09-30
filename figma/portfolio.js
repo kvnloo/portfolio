@@ -1,0 +1,124 @@
+/* Framework-free companion to the original Figma shell. No network requests. */
+(function (root, factory) {
+  const api = factory();
+  if (typeof module === 'object' && module.exports) module.exports = api;
+  if (root && root.document) {
+    root.FigmaPortfolio = api;
+    if (root.document.readyState === 'loading') {
+      root.document.addEventListener('DOMContentLoaded', () => api.initFigmaPortfolio(root.document, root), { once: true });
+    } else api.initFigmaPortfolio(root.document, root);
+  }
+})(typeof window !== 'undefined' ? window : null, function () {
+  'use strict';
+  const pages = ['about', 'contact', 'experience', 'services', 'resources'];
+  const employers = ['synchrony', 'amazon', 'bcbs', 'unassigned'];
+  const titles = { about: 'About', contact: 'Contact', experience: 'Professional Experience', services: 'Services', resources: 'Resources' };
+  const names = { synchrony: 'Synchrony Financial', amazon: 'Amazon Web Services', bcbs: 'BlueCross BlueShield', unassigned: 'Original design mark' };
+
+  function parseFigmaRoute(hash) {
+    const parts = String(hash || '').replace(/^#\//, '').split('/');
+    if (parts.length === 1 && pages.includes(parts[0])) return { page: parts[0], employer: null };
+    if (parts.length === 2 && parts[0] === 'experience' && employers.includes(parts[1])) return { page: 'experience', employer: parts[1] };
+    return { page: 'experience', employer: null };
+  }
+  function routeHash(route) { return `#/${route.page}${route.employer ? `/${route.employer}` : ''}`; }
+
+  function renderFigmaRoute(document, route, rememberedEmployer) {
+    document.documentElement.dataset.page = route.page;
+    document.documentElement.dataset.employer = route.employer || 'overview';
+    document.querySelectorAll('[data-screen]').forEach((screen) => { screen.hidden = screen.dataset.screen !== route.page; });
+    document.querySelectorAll('.primary-nav [data-page]').forEach((link) => {
+      if (link.dataset.page === route.page) link.setAttribute('aria-current', 'page');
+      else link.removeAttribute('aria-current');
+    });
+    document.querySelector('[data-rail]').hidden = route.page !== 'experience';
+    document.querySelector('[data-overview]').hidden = Boolean(route.employer);
+    document.querySelector('[data-role-view]').hidden = !route.employer;
+    document.querySelectorAll('[data-employer-panel]').forEach((panel) => { panel.hidden = panel.dataset.employerPanel !== route.employer; });
+    document.querySelectorAll('[data-employer]').forEach((tab) => {
+      tab.setAttribute('aria-selected', String(tab.dataset.employer === route.employer));
+      tab.tabIndex = tab.dataset.employer === (route.employer || rememberedEmployer || employers[0]) ? 0 : -1;
+    });
+    const label = route.employer ? `${names[route.employer]} · Professional Experience` : titles[route.page];
+    document.title = `${label} · Kevin Rajan`;
+    document.querySelector('[data-route-status]').textContent = label;
+  }
+
+  function initFigmaPortfolio(document, window) {
+    if (document.documentElement.dataset.figmaReady === 'true') return;
+    document.documentElement.dataset.figmaReady = 'true';
+    let currentRoute = parseFigmaRoute(window.location.hash);
+    let rememberedEmployer = currentRoute.employer || employers[0];
+    if (window.location.hash && window.location.hash !== routeHash(currentRoute)) window.history.replaceState(null, '', routeHash(currentRoute));
+    renderFigmaRoute(document, currentRoute, rememberedEmployer);
+
+    function navigate(route, focus) {
+      const hash = routeHash(route);
+      if (route.employer) rememberedEmployer = route.employer;
+      if (hash !== routeHash(currentRoute)) window.history.pushState(null, '', hash);
+      currentRoute = route;
+      renderFigmaRoute(document, route, rememberedEmployer);
+      if (focus) document.querySelector(focus)?.focus({ preventScroll: true });
+    }
+    function restoreHistory() {
+      const next = parseFigmaRoute(window.location.hash);
+      if (next.employer) rememberedEmployer = next.employer;
+      const focusedElement = document.activeElement;
+      const identical = routeHash(next) === routeHash(currentRoute);
+      currentRoute = next;
+      if (!identical) renderFigmaRoute(document, next, rememberedEmployer);
+      if (focusedElement?.closest('[hidden]')) document.querySelector('#main').focus({ preventScroll: true });
+    }
+    window.addEventListener('popstate', restoreHistory);
+    window.addEventListener('hashchange', restoreHistory);
+
+    document.addEventListener('click', (event) => {
+      if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      if (event.target.closest('.skip-link')) {
+        event.preventDefault();
+        const main = document.querySelector('#main');
+        main.focus({ preventScroll: true });
+        main.scrollIntoView?.({ block: 'start' });
+        return;
+      }
+      const anchor = event.target.closest('a[href^="#/"]');
+      if (anchor) {
+        event.preventDefault();
+        const route = parseFigmaRoute(anchor.getAttribute('href'));
+        navigate(route, anchor.hasAttribute('data-employer') ? null : '#main');
+        return;
+      }
+      if (event.target.closest('[data-show-overview]')) navigate({ page: 'experience', employer: null }, `[data-employer="${rememberedEmployer}"]`);
+      if (event.target.closest('[data-next-employer]')) {
+        const index = employers.indexOf(currentRoute.employer);
+        const employer = employers[(index + 1) % employers.length];
+        navigate({ page: 'experience', employer }, `[data-employer="${employer}"]`);
+      }
+    });
+    document.addEventListener('keydown', (event) => {
+      const tab = event.target.closest('[data-employer]');
+      if (event.key === 'Escape' && currentRoute.page === 'experience' && currentRoute.employer) {
+        event.preventDefault();
+        navigate({ page: 'experience', employer: null }, `[data-employer="${rememberedEmployer}"]`);
+        return;
+      }
+      if (!tab) return;
+      const index = employers.indexOf(tab.dataset.employer);
+      let next;
+      if (event.key === 'ArrowDown' || event.key === 'ArrowRight') next = (index + 1) % employers.length;
+      if (event.key === 'ArrowUp' || event.key === 'ArrowLeft') next = (index + employers.length - 1) % employers.length;
+      if (event.key === 'Home') next = 0;
+      if (event.key === 'End') next = employers.length - 1;
+      if (event.key === ' ') { event.preventDefault(); navigate({ page: 'experience', employer: tab.dataset.employer }); return; }
+      if (next !== undefined) {
+        event.preventDefault();
+        navigate({ page: 'experience', employer: employers[next] }, `[data-employer="${employers[next]}"]`);
+      }
+    });
+    const mobile = window.matchMedia?.('(max-width: 700px)');
+    function updateOrientation() { document.querySelector('[role="tablist"]').setAttribute('aria-orientation', mobile?.matches ? 'horizontal' : 'vertical'); }
+    updateOrientation();
+    mobile?.addEventListener('change', updateOrientation);
+  }
+  return { parseFigmaRoute, renderFigmaRoute, initFigmaPortfolio };
+});

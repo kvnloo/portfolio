@@ -1,0 +1,15 @@
+{
+  "name": "kevin-portfolio-figma-version",
+  "private": true,
+  "scripts": {
+    "test:figma": "node --test tests/figma-runtime.test.cjs",
+    "test:companions": "node --test tests/evidence-runtime.test.mjs tests/evidence-quackles-scope.test.mjs tests/visual-contracts.cjs",
+    "test:figma:e2e": "playwright test --config playwright.figma.config.cjs",
+    "check": "node --check figma/portfolio.js && node --check shared/surfaces.js && node --check tests/figma-server.cjs && npm run test:figma && npm run test:companions",
+    "check:all": "npm run check"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.62.1",
+    "jsdom": "^26.1.0"
+  }
+}
