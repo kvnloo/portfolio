@@ -266,6 +266,7 @@ figcaption > span { opacity: .88; }
   .draft-footer { margin: 0; padding: 21px 0 28px; flex-direction: column; gap: 4px; font-size: 9px; }
 }
 @media (max-width: 360px) {
+  .landscape .node-one, .landscape .node-two { top: 45px; }
   .site-header { min-height: 0; }
   .primary-nav { grid-template-columns: 1fr 1fr 1.4fr; column-gap: 16px; row-gap: 0; }
   .primary-nav a { font-size: 12px; }
