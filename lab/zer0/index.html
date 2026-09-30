@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Zer0 case study — Kevin Rajan</title>
+  <meta name="description" content="Zer0: personal AI infrastructure organized around explicit ownership, bounded local decisions, experiment promotion, and frozen evidence.">
+  <link rel="stylesheet" href="../../shared/surfaces.css">
+  <style>
+    .case{max-width:900px}.case h2{margin:56px 0 12px;font-size:28px;letter-spacing:-.035em}.case h3{margin:30px 0 8px;font-size:19px}
+    .case p,.case li{color:#c7ccd6;font-size:16px}.case ul{padding-left:22px}.case blockquote{margin:24px 0;padding:18px 20px;border-left:2px solid var(--accent);background:rgba(255,255,255,.025);color:#e8ebf1}
+    .stack{display:grid;gap:8px;margin:24px 0}.layer{display:grid;grid-template-columns:150px 1fr;gap:18px;border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:rgba(255,255,255,.02)}.layer strong{color:var(--accent)}
+    @media(max-width:650px){.layer{grid-template-columns:1fr;gap:4px}}
+  </style>
+</head>
+<body>
+  <header class="topbar"><nav class="shell nav" aria-label="Portfolio"><a class="brand" href="../../">Kevin Rajan</a><div class="navlinks"><a href="../../work/">Work</a><a href="../" aria-current="page">Lab</a><a href="../../oss/">OSS</a><a href="/boplog/">Log</a></div></nav></header>
+  <main class="shell case">
+    <section class="hero">
+      <div class="eyebrow">Case study · Zer0 ecosystem</div>
+      <h1>Make frontier models do less.</h1>
+      <p class="lede">Zer0 is less interesting as “another agent framework” than as an attempt to separate architecture, local decisions, experimentation, evidence, and promotion so each layer can be measured and replaced independently.</p>
+      <div class="meta"><span class="pill">personal AI infrastructure</span><span class="pill">typed decisions</span><span class="pill">evaluation</span><span class="pill">promotion gates</span></div>
+    </section>
+
+    <h2>The decomposition is the product</h2>
+    <p>The top-level <strong>z0</strong> repository is deliberately not a runtime. It owns the map, installer, contract registry, and architecture documentation. Runtime behavior, experiments, and publication live elsewhere so an architectural label cannot silently become evidence that a mechanism works.</p>
+
+    <div class="stack">
+      <div class="layer"><strong>z0</strong><span>canonical map, installer, component/harness/mechanism/interface/lifecycle registries, per-repo implementation contracts</span></div>
+      <div class="layer"><strong>z0intelligence</strong><span>typed local decision runtime, direct-logit scoring, trainable scorers, shared-state reuse, specialist promotion surface</span></div>
+      <div class="layer"><strong>Evolution Lab</strong><span>candidate genomes, locked splits, empirical search, promotion ladder, DAgger, Pareto / MAP-Elites selection</span></div>
+      <div class="layer"><strong>z0evals</strong><span>frozen datasets, analysis, figures, public reports, and the rule that published claims resolve to inspectable artifacts</span></div>
+      <div class="layer"><strong>AODL</strong><span>typed orchestration intent / topology representation; complementary contract, not the runtime itself</span></div>
+    </div>
+
+    <h2>Architecture at a revision, not architecture as decoration</h2>
+    <p>A repository can publish a <code>zer0.repo.yaml</code> describing implemented mechanisms, interfaces, representations, ownership boundaries, and evidence locations at that Git ref. The central registry owns canonical identities; implementation manifests cannot redefine them.</p>
+    <blockquote>Implementation docs live with implementations. Architecture and onboarding live in z0.</blockquote>
+
+    <h2>Evaluation is outside the policy being evaluated</h2>
+    <p>z0intelligence separates execution from evaluation. A bounded live policy produces actions and outcomes; replayable state, objective counters, reference semantic readings, and independent outcomes feed Evolution Lab. A candidate earns production traffic through measurement rather than because its generating model also judged it successful.</p>
+
+    <h2>The current implementation is narrower than the roadmap</h2>
+    <p>The public z0intelligence repository explicitly distinguishes what exists today from the longer-term personalization system. Today it contains the OpenJev runtime/benchmark substrate: runtime-defined typed options, generation-free direct-logit scoring, shared-state prefix reuse, trainable one-pass scorers, frozen evaluation bundles, and Evolution Lab integration. Personal-history onboarding and the larger “army of specialists” vision remain staged roadmap work.</p>
+
+    <h2>A representative reported result</h2>
+    <p>The repository currently reports an RTX 3090 benchmark where direct typed logits returned 21 probability pairs in a median <strong>1.023 s</strong> versus <strong>5.332 s</strong> for a compact autoregressive JSON-array baseline. The portfolio keeps this marked <strong>reported</strong> until the frozen result/method/reproduction artifacts are promoted into the canonical manifest at an exact revision.</p>
+
+    <h2>Publication rules are intentionally strict</h2>
+    <ul>
+      <li>Every public post claim should resolve to a frozen study artifact.</li>
+      <li>Source-reported benchmark numbers and reproduced measurements are different fields.</li>
+      <li>Training/evaluation splits preserve work-item lineage.</li>
+      <li>The system generating a label cannot silently become its own verifier.</li>
+      <li>Negative and incomplete results are publishable; failed hypotheses are not hidden.</li>
+      <li>Raw secrets, personal traces, and private prompts do not enter the public evaluation repository.</li>
+    </ul>
+
+    <div class="section-head"><h2>Receipts</h2><p>Current public contracts</p></div>
+    <div class="receipt-list">
+      <div class="receipt"><div><a href="https://github.com/kvnloo/z0">Zer0 architecture registry</a><div class="repo">map / installer / contracts</div></div><div class="state">active</div></div>
+      <div class="receipt"><div><a href="https://github.com/kvnloo/z0intelligence">z0intelligence / OpenJev</a><div class="repo">runtime + benchmark substrate</div></div><div class="state">active</div></div>
+      <div class="receipt"><div><a href="https://github.com/kvnloo/z0intelligence/blob/master/docs/RESULTS.md">OpenJev results</a><div class="repo">scope and reported benchmark</div></div><div class="state">reported</div></div>
+      <div class="receipt"><div><a href="https://github.com/kvnloo/z0evals">z0evals</a><div class="repo">frozen evidence / publication layer</div></div><div class="state">active</div></div>
+      <div class="receipt"><div><a href="https://github.com/kvnloo/evolution-lab">Evolution Lab</a><div class="repo">experiment engine</div></div><div class="state">active</div></div>
+      <div class="receipt"><div><a href="https://github.com/kvnloo/aodl">AODL</a><div class="repo">typed orchestration IR</div></div><div class="state">active</div></div>
+    </div>
+
+    <h2>Why this belongs in the portfolio</h2>
+    <p>The strongest signal is not “many AI repos.” It is the repeated insistence on ownership boundaries, explicit contracts, frozen evidence, abstention, and promotion gates. The ecosystem is the case study; the individual repositories are components and receipts.</p>
+  </main>
+  <footer class="shell footer">Observed state → provenance → validation → promotion → projection.</footer>
+</body>
+</html>

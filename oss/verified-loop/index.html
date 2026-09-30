@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Verified OSS Loop — Kevin Rajan</title>
+  <meta name="description" content="An evidence-backed open-source contribution loop: claim, isolate, implement, verify, and leave merge authority with maintainers.">
+  <link rel="stylesheet" href="../../shared/surfaces.css">
+  <style>
+    .case{max-width:900px}.case h2{margin:56px 0 12px;font-size:28px;letter-spacing:-.035em}.case p,.case li{color:#c7ccd6;font-size:16px}.case ul{padding-left:22px}
+    .flow{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin:26px 0}.flow div{border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center;color:#dbe1ea;background:rgba(255,255,255,.02)}.flow b{display:block;color:var(--accent);font-size:11px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px}
+    @media(max-width:800px){.flow{grid-template-columns:repeat(2,1fr)}}
+  </style>
+</head>
+<body>
+  <header class="topbar"><nav class="shell nav" aria-label="Portfolio"><a class="brand" href="../../">Kevin Rajan</a><div class="navlinks"><a href="../../work/">Work</a><a href="../../lab/">Lab</a><a href="../" aria-current="page">OSS</a><a href="/boplog/">Log</a></div></nav></header>
+  <main class="shell case">
+    <section class="hero">
+      <div class="eyebrow">Case study · Verified OSS Loop</div>
+      <h1>Contribution quality over contribution volume.</h1>
+      <p class="lede">The OSS portfolio is organized around inspectable contribution trails: what problem existed, what changed, what exact revision was tested, what failed, and what the upstream maintainer ultimately decided.</p>
+    </section>
+
+    <div class="flow">
+      <div><b>1</b>roadmap</div><div><b>2</b>claim</div><div><b>3</b>isolate</div><div><b>4</b>implement</div><div><b>5</b>verify</div><div><b>6</b>human merge</div>
+    </div>
+
+    <h2>The protocol</h2>
+    <p>Verified OSS Loop treats agent-assisted contribution as a controlled engineering process rather than a PR factory. Workers claim bounded work, operate on isolated revisions, attach evidence, and can request independent review. They do not get merge authority.</p>
+    <ul>
+      <li>claim leases make ownership/expiry visible;</li>
+      <li>evidence is revision-bound instead of described vaguely;</li>
+      <li>failures and blocked attempts remain receipts rather than disappearing;</li>
+      <li>independent verification can check the exact head;</li>
+      <li>the upstream maintainer remains the final authority.</li>
+    </ul>
+
+    <h2>Example: a merged correctness proof in CUA</h2>
+    <p><a href="https://github.com/trycua/cua/pull/4317">trycua/cua #4317</a> added a real two-session Driver/MCP/Chromium isolation proof. The test deliberately crossed browser targets and refs between sessions and required structured refusal before either wrong fixture could mutate. It then retired one session and proved the unrelated session remained usable.</p>
+    <p>The PR is explicit about scope: it proves the browser target/ref plus session-end portion of the isolation matrix; capture/native-token and cancellation ownership remain separate owners. That limitation is part of the evidence, not an inconvenient footnote.</p>
+
+    <h2>Example: a small merged fix in Raspberry Pi tooling</h2>
+    <p><a href="https://github.com/raspberrypi/rpi-image-gen/pull/334">raspberrypi/rpi-image-gen #334</a> declared two host dependencies the build already used directly—<code>ca-certificates</code> for HTTPS fetches and <code>xz-utils</code> for <code>.tar.xz</code> extraction—rather than relying on them arriving transitively on normal Debian installs.</p>
+    <p>This is deliberately shown beside the larger CUA proof. Useful OSS work ranges from deep behavioral evidence to a small dependency correction; the common standard is that the problem and outcome are inspectable.</p>
+
+    <h2>Example: open is not merged</h2>
+    <p><a href="https://github.com/openmc-dev/openmc/pull/4151">openmc-dev/openmc #4151</a> currently remains open. It consolidates duplicated weight-window test inputs onto canonical regression fixtures and reports passing format plus test/coverage checks at head <code>3f4a8c6f56b2d0742e4ac7c1e0134d2ebc981944</code>. The portfolio should present it as reviewed/open evidence, not as shipped upstream work until the maintainer disposition changes.</p>
+
+    <div class="section-head"><h2>Receipts</h2><p>Representative, not exhaustive</p></div>
+    <div class="receipt-list">
+      <div class="receipt"><div><a href="https://github.com/trycua/cua/pull/4317">CUA #4317 · session authority isolation</a><div class="repo">real Driver/MCP/Chromium two-session proof</div></div><div class="state">merged</div></div>
+      <div class="receipt"><div><a href="https://github.com/raspberrypi/rpi-image-gen/pull/334">rpi-image-gen #334 · explicit fetch/unpack deps</a><div class="repo">minimal-environment dependency correctness</div></div><div class="state">merged</div></div>
+      <div class="receipt"><div><a href="https://github.com/openmc-dev/openmc/pull/4151">OpenMC #4151 · shared weight-window paths</a><div class="repo">exact-head checks + maintainer review requested</div></div><div class="state">open</div></div>
+      <div class="receipt"><div><a href="https://github.com/kvnloo/verified-oss-loop">Verified OSS Loop</a><div class="repo">public protocol / onboarding kit / smoke test</div></div><div class="state">active</div></div>
+    </div>
+
+    <h2>What the OSS page should optimize for</h2>
+    <p>Not “hundreds of PRs.” The useful unit is a contribution trail with upstream context, exact state, evidence, maintainer interaction, and an honest outcome. Aggregate counts can exist as secondary metadata once the ingestion corpus is fresh.</p>
+  </main>
+  <footer class="shell footer">Merged, open, rejected, and experimental are different facts.</footer>
+</body>
+</html>

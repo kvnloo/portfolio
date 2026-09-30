@@ -1,0 +1,444 @@
+{
+  "schemaVersion": "portfolio.v1",
+  "updatedAt": "2026-09-29",
+  "owner": "kvnloo",
+  "thesis": "Build evidence-driven systems: turn hypotheses into software, instrument the result, test it against explicit constraints, and feed what works into the next system or upstream project.",
+  "verificationStates": [
+    "verified",
+    "reported",
+    "provisional",
+    "deprecated"
+  ],
+  "promotionStates": [
+    "discovered",
+    "verified",
+    "featured"
+  ],
+  "surfaces": {
+    "card": {
+      "audience": "anyone",
+      "job": "identity and routing"
+    },
+    "work": {
+      "audience": "recruiters, founders, engineers",
+      "job": "curated high-signal case studies"
+    },
+    "lab": {
+      "audience": "researchers and AI/systems builders",
+      "job": "experiments, methods, benchmarks, and negative results"
+    },
+    "oss": {
+      "audience": "maintainers and technical peers",
+      "job": "upstream contribution trails and evidence"
+    },
+    "log": {
+      "audience": "deep investigators and agents",
+      "job": "chronological public activity stream"
+    },
+    "resume": {
+      "audience": "hiring and application contexts",
+      "job": "role-specific compression of verified claims"
+    },
+    "archive": {
+      "audience": "people looking for historical depth",
+      "job": "earlier iOS, BCI, audio, design, and systems work"
+    }
+  },
+  "projects": [
+    {
+      "id": "quackles",
+      "title": "Quackles / Microduck",
+      "repo": {
+        "url": "https://github.com/kvnloo/quackles",
+        "license": null
+      },
+      "status": "active",
+      "health": "healthy",
+      "roles": [
+        "creator",
+        "frontend-engineer",
+        "performance-engineer",
+        "researcher"
+      ],
+      "summary": "Interaction-heavy Microduck product experience used as a browser performance and visual-verification laboratory.",
+      "promotion": "featured",
+      "surfaces": {
+        "card": {
+          "priority": 1
+        },
+        "work": {
+          "priority": 1
+        },
+        "lab": {
+          "priority": 2
+        },
+        "resume": {
+          "variants": [
+            "systems",
+            "software"
+          ]
+        }
+      },
+      "claims": [
+        {
+          "id": "blue-dzi-200mp",
+          "text": "Integrated an 11,584 × 17,376 (201.284 MP) source into a progressive 1,055-tile WebP deep-zoom path while retaining a 1,024 px base hero for first paint.",
+          "verification": "verified",
+          "publishability": "public",
+          "evidence": [
+            {
+              "type": "pull_request",
+              "url": "https://github.com/kvnloo/quackles/pull/39",
+              "revision": "0b0735f08d032e11f5e0c607dd4dc3c754e7d9ac"
+            }
+          ]
+        },
+        {
+          "id": "adaptive-mobile-budgets",
+          "text": "Added a zero-fetch viewfinder and adaptive mobile deep-zoom policy with browser acceptance covering at most two concurrent jobs, at most 64 MiB decoded cache, zero tile overscan, and an 8,192 px detail tier.",
+          "verification": "verified",
+          "publishability": "public",
+          "evidence": [
+            {
+              "type": "pull_request",
+              "url": "https://github.com/kvnloo/quackles/pull/31",
+              "revision": "5269ce9d75c547a39833f29fe91b0545bb306021"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "zer0",
+      "title": "Zer0 ecosystem",
+      "repo": {
+        "url": "https://github.com/kvnloo/z0",
+        "license": "GPL-3.0"
+      },
+      "status": "active",
+      "health": "healthy",
+      "roles": [
+        "architect",
+        "maintainer"
+      ],
+      "summary": "Architecture map, installer, and contract registry for a multi-repository personal AI and systems ecosystem.",
+      "promotion": "featured",
+      "surfaces": {
+        "work": {
+          "priority": 2
+        },
+        "lab": {
+          "priority": 1
+        },
+        "resume": {
+          "variants": [
+            "systems",
+            "research",
+            "product"
+          ]
+        }
+      },
+      "claims": []
+    },
+    {
+      "id": "z0intelligence",
+      "title": "z0intelligence / OpenJev",
+      "repo": {
+        "url": "https://github.com/kvnloo/z0intelligence",
+        "license": "MIT"
+      },
+      "status": "active",
+      "health": "healthy",
+      "roles": [
+        "creator",
+        "researcher",
+        "systems-engineer"
+      ],
+      "summary": "Typed local decision runtime and experimentation surface for fast, bounded model decisions and specialist systems.",
+      "promotion": "featured",
+      "surfaces": {
+        "work": {
+          "priority": 3
+        },
+        "lab": {
+          "priority": 1
+        },
+        "resume": {
+          "variants": [
+            "systems",
+            "research"
+          ]
+        }
+      },
+      "claims": [
+        {
+          "id": "typed-logit-latency",
+          "text": "Repository reports an RTX 3090 experiment with 21 direct typed-logit probability pairs at 1.023 s median versus a 5.332 s compact autoregressive JSON-array baseline.",
+          "verification": "reported",
+          "publishability": "public",
+          "evidence": [
+            {
+              "type": "repository_documentation",
+              "url": "https://github.com/kvnloo/z0intelligence"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "z0evals",
+      "title": "z0evals",
+      "repo": {
+        "url": "https://github.com/kvnloo/z0evals",
+        "license": "MIT"
+      },
+      "status": "active",
+      "health": "healthy",
+      "roles": [
+        "creator",
+        "researcher"
+      ],
+      "summary": "Frozen evidence and publication layer for reproducible Zer0 experiments.",
+      "promotion": "featured",
+      "surfaces": {
+        "work": {
+          "priority": 3
+        },
+        "lab": {
+          "priority": 1
+        },
+        "resume": {
+          "variants": [
+            "research",
+            "systems"
+          ]
+        }
+      },
+      "claims": [
+        {
+          "id": "evidence-contract",
+          "text": "Separates reported benchmarks from reproduced measurements and requires published claims to resolve to frozen evidence and provenance.",
+          "verification": "verified",
+          "publishability": "public",
+          "evidence": [
+            {
+              "type": "repository_documentation",
+              "url": "https://github.com/kvnloo/z0evals"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "verified-oss-loop",
+      "title": "Verified OSS Loop",
+      "repo": {
+        "url": "https://github.com/kvnloo/verified-oss-loop",
+        "license": "Apache-2.0"
+      },
+      "status": "active",
+      "health": "healthy",
+      "roles": [
+        "creator",
+        "maintainer"
+      ],
+      "summary": "Contribution protocol for human and coding-agent work using claim leases, revision-bound evidence, independent verification, and human merge authority.",
+      "promotion": "featured",
+      "surfaces": {
+        "work": {
+          "priority": 4
+        },
+        "oss": {
+          "priority": 1
+        },
+        "resume": {
+          "variants": [
+            "software",
+            "systems",
+            "product"
+          ]
+        }
+      },
+      "claims": [
+        {
+          "id": "human-merge-gate",
+          "text": "Workers can claim and verify work, but the protocol reserves merge authority for a human maintainer.",
+          "verification": "verified",
+          "publishability": "public",
+          "evidence": [
+            {
+              "type": "repository_documentation",
+              "url": "https://github.com/kvnloo/verified-oss-loop"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "aodl",
+      "title": "AODL",
+      "repo": {
+        "url": "https://github.com/kvnloo/aodl",
+        "license": "MIT"
+      },
+      "status": "active",
+      "health": "healthy",
+      "roles": [
+        "creator",
+        "architect"
+      ],
+      "summary": "Typed orchestration IR with a fail-closed validator and Hermes dry-run compiler; deliberately not a scheduler or runtime.",
+      "promotion": "verified",
+      "surfaces": {
+        "lab": {
+          "priority": 2
+        },
+        "work": {
+          "priority": 5
+        },
+        "resume": {
+          "variants": [
+            "systems",
+            "research"
+          ]
+        }
+      },
+      "claims": [
+        {
+          "id": "validator-scope",
+          "text": "The pure-Python validator rejects all 18 checked invalid examples while the structural JSON Schema intentionally covers only the subset expressible there.",
+          "verification": "verified",
+          "publishability": "public",
+          "evidence": [
+            {
+              "type": "repository_documentation",
+              "url": "https://github.com/kvnloo/aodl"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "evolution-lab",
+      "title": "Evolution Lab",
+      "repo": {
+        "url": "https://github.com/kvnloo/evolution-lab",
+        "license": "MIT"
+      },
+      "status": "active",
+      "health": "healthy",
+      "roles": [
+        "creator",
+        "researcher"
+      ],
+      "summary": "Experiment engine for measured specialist-system search using genomes, locked splits, promotion ladders, Pareto selection, and MAP-Elites niches.",
+      "promotion": "verified",
+      "surfaces": {
+        "lab": {
+          "priority": 2
+        },
+        "work": {
+          "priority": 5
+        },
+        "resume": {
+          "variants": [
+            "research",
+            "systems"
+          ]
+        }
+      },
+      "claims": []
+    },
+    {
+      "id": "boplog",
+      "title": "Boplog",
+      "repo": {
+        "url": "https://github.com/kvnloo/boplog",
+        "license": "MIT"
+      },
+      "status": "active",
+      "health": "degraded",
+      "roles": [
+        "creator",
+        "maintainer"
+      ],
+      "summary": "Public build and contribution log intended to be the chronological evidence stream feeding the portfolio system.",
+      "promotion": "verified",
+      "surfaces": {
+        "log": {
+          "priority": 1
+        },
+        "work": {
+          "priority": 6
+        }
+      },
+      "claims": []
+    },
+    {
+      "id": "portfolio",
+      "title": "Kevin's Ramen & Boba / Portfolio",
+      "repo": {
+        "url": "https://github.com/kvnloo/portfolio",
+        "license": null
+      },
+      "status": "active",
+      "health": "stale",
+      "roles": [
+        "creator"
+      ],
+      "summary": "Curated interactive portfolio surface; current content needs migration from the late-2025 narrative to manifest-backed case studies.",
+      "promotion": "discovered",
+      "surfaces": {
+        "work": {
+          "priority": 1
+        },
+        "archive": {
+          "priority": 1
+        }
+      },
+      "claims": []
+    },
+    {
+      "id": "metallic-card",
+      "title": "Metallic Card",
+      "repo": {
+        "url": "https://github.com/kvnloo/metallic-card",
+        "license": null
+      },
+      "status": "active",
+      "health": "healthy",
+      "roles": [
+        "creator"
+      ],
+      "summary": "High-polish identity card that should become a maintenance-light router into Work, Lab, OSS, Log, and Resume.",
+      "promotion": "verified",
+      "surfaces": {
+        "card": {
+          "priority": 1
+        }
+      },
+      "claims": []
+    },
+    {
+      "id": "cv",
+      "title": "CV / Resume Generator",
+      "repo": {
+        "url": "https://github.com/kvnloo/cv",
+        "license": null
+      },
+      "status": "active",
+      "health": "stale",
+      "roles": [
+        "author"
+      ],
+      "summary": "Role-specific LaTeX resume/CV sources that should consume verified manifest claims instead of maintaining independent facts.",
+      "promotion": "discovered",
+      "surfaces": {
+        "resume": {
+          "priority": 1
+        }
+      },
+      "claims": []
+    }
+  ]
+}
