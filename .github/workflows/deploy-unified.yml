@@ -59,7 +59,7 @@ jobs:
           cp temp/main/index.html deploy/
 
           # Copy all content directories
-          for dir in ai-engineering mobile-development frontend-development devops-systems assets demos; do
+          for dir in ai-engineering mobile-development frontend-development devops-systems assets demos work lab oss shared; do
             if [ -d "temp/main/$dir" ]; then
               cp -r "temp/main/$dir" deploy/
             fi
@@ -108,7 +108,7 @@ jobs:
           cp temp/dev/index.html deploy/dev/
 
           # Copy all content directories to dev subdirectory
-          for dir in ai-engineering mobile-development frontend-development devops-systems assets demos; do
+          for dir in ai-engineering mobile-development frontend-development devops-systems assets demos work lab oss shared; do
             if [ -d "temp/dev/$dir" ]; then
               cp -r "temp/dev/$dir" deploy/dev/
             fi
