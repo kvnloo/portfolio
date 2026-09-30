@@ -1,6 +1,6 @@
 const { test, expect } = require('@playwright/test');
 const sections = ['about', 'contact', 'experience', 'services', 'resources'];
-const employers = ['synchrony', 'amazon', 'bcbs', 'unassigned'];
+const employers = ['synchrony', 'amazon', 'bcbs'];
 
 test('every section fits the viewport and loads all local assets without errors', async ({ page }) => {
   const errors = []; page.on('pageerror', (error) => errors.push(error.message));
@@ -47,34 +47,26 @@ test('employer rail is keyboard-operable with an unambiguous focus target', asyn
   await page.keyboard.press('ArrowDown');
   await expect(page.locator('[data-employer="amazon"]')).toBeFocused();
   await expect(page.locator('#panel-amazon')).toBeVisible();
-  await page.keyboard.press('End'); await expect(page.locator('[data-employer="unassigned"]')).toBeFocused();
+  await page.keyboard.press('End'); await expect(page.locator('[data-employer="bcbs"]')).toBeFocused();
   await page.keyboard.press('ArrowRight'); await expect(page.locator('[data-employer="synchrony"]')).toBeFocused();
   await page.keyboard.press('Escape'); await expect(page.locator('[data-overview]')).toBeVisible();
   await page.keyboard.press('Space'); await expect(page.locator('#panel-synchrony')).toBeVisible();
 });
-test('desktop shell and recovered SVGs occupy exact original design slots', async ({ page }, info) => {
-  test.skip(info.project.name !== 'figma-desktop', '1440 × 900 authored reference only');
-  await page.emulateMedia({ reducedMotion: 'reduce' });
+test('editorial overview has three legible stories and preserves original asset dimensions', async ({ page }, info) => {
   await page.goto('./'); await page.evaluate(() => document.fonts.ready);
-  const expectedNav = { about: 198, contact: 359, experience: 531, services: 793, resources: 966 };
-  for (const [key, x] of Object.entries(expectedNav)) {
-    const box = await page.locator(`.primary-nav [data-page="${key}"]`).boundingBox();
-    expect(box.x).toBeCloseTo(x, 0); expect(box.y).toBeCloseTo(41, 0);
+  await expect(page.locator('.role-index-link')).toHaveCount(3);
+  await expect(page.locator('.wordmark')).toContainText('Kevin Rajan');
+  for (const selector of ['.synchrony-mark', '.synchrony-outline', '.employer--amazon .employer-art']) {
+    const image = page.locator(selector);
+    if (info.project.name === 'figma-desktop') {
+      const size = await image.boundingBox();
+      expect(size.width).toBe(Number(await image.getAttribute('width')));
+      expect(size.height).toBe(Number(await image.getAttribute('height')));
+    }
   }
-  const boxes = [ ['.synchrony-mark', 24, 291, 54, 54], ['.synchrony-outline', 25.02, 288, 52, 60], ['.employer--amazon .employer-art', 11, 356, 78, 78], ['.employer--unassigned .employer-art', 12, 542, 78, 78] ];
-  for (const [selector, x, y, width, height] of boxes) {
-    const box = await page.locator(selector).boundingBox();
-    expect(box.x).toBeCloseTo(x, 0); expect(box.y).toBeCloseTo(y, 0); expect(box.width).toBe(width); expect(box.height).toBe(height);
-  }
-  await page.locator('[data-employer="synchrony"]').click();
-  for (const [key, y] of [['amazon', 369], ['bcbs', 405], ['unassigned', 441]]) {
-    const box = await page.locator(`[data-employer="${key}"] .employer-dot`).boundingBox();
-    expect(box.x).toBe(45); expect(box.y).toBe(y); expect(box.width).toBe(12);
-  }
-  await page.locator('[data-employer="amazon"]').click();
-  for (const [key, y] of [['synchrony', 282], ['bcbs', 420], ['unassigned', 456]]) {
-    const box = await page.locator(`[data-employer="${key}"] .employer-dot`).boundingBox();
-    expect(box.x).toBe(45); expect(box.y).toBe(y); expect(box.width).toBe(12);
+  if (info.project.name === 'figma-desktop') {
+    const last = await page.locator('.role-index-link').last().boundingBox();
+    expect(last.y + last.height).toBeLessThan(900);
   }
 });
 test('small screens retain usable touch targets and avoid overlapping rail hit regions', async ({ page }, info) => {
@@ -82,7 +74,7 @@ test('small screens retain usable touch targets and avoid overlapping rail hit r
   const boxes = await page.locator('[data-employer]').evaluateAll((nodes) => nodes.map((node) => {
     const b = node.getBoundingClientRect(); return { left: b.left, right: b.right, top: b.top, bottom: b.bottom, width: b.width, height: b.height };
   }));
-  for (const box of boxes) { expect(box.width).toBeGreaterThanOrEqual(24); expect(box.height).toBeGreaterThanOrEqual(24); }
+  for (const box of boxes) { expect(box.width).toBeGreaterThanOrEqual(44); expect(box.height).toBeGreaterThanOrEqual(44); }
   for (let i = 0; i < boxes.length - 1; i++) {
     if (info.project.name === 'figma-desktop') expect(boxes[i].bottom).toBeLessThanOrEqual(boxes[i + 1].top);
     else expect(boxes[i].right).toBeLessThanOrEqual(boxes[i + 1].left);
@@ -95,12 +87,17 @@ test('reduced motion disables rail transitions', async ({ page }) => {
 });
 test('all reference states produce inspectable review screenshots', async ({ page }, info) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
-  for (const route of ['experience', 'experience/synchrony', 'experience/amazon', 'resources']) {
+  for (const route of ['experience', 'experience/synchrony', 'experience/amazon', 'experience/bcbs', 'about', 'resources']) {
     await page.goto(`./#/${route}`); await page.evaluate(() => document.fonts.ready);
     const [section, employer] = route.split('/');
     await expect(page.locator(`[data-screen="${section}"]`)).toBeVisible();
     if (employer) await expect(page.locator(`[data-employer="${employer}"]`)).toHaveAttribute('aria-selected', 'true');
     await page.screenshot({ path: info.outputPath(`${route.replaceAll('/', '-')}.png`), fullPage: true, animations: 'disabled' });
+    if (employer) {
+      await page.locator(`#panel-${employer} [data-focus="1"]`).click();
+      await expect(page.locator(`#panel-${employer}`)).toHaveAttribute('data-focus', '1');
+      await page.screenshot({ path: info.outputPath(`${route.replaceAll('/', '-')}-second-focus.png`), fullPage: true, animations: 'disabled' });
+    }
   }
 });
 
@@ -123,4 +120,55 @@ test('navigation target positions stay stable when the active label changes', as
     await page.locator(`.primary-nav [data-page="${section}"]`).click();
     expect(await positions()).toEqual(before);
   }
+});
+
+
+test('contribution controls are immediate, reversible and stable through rapid input', async ({ page }) => {
+  await page.goto('./#/experience/amazon');
+  const panel = page.locator('#panel-amazon');
+  const first = panel.locator('button[data-focus="0"]');
+  const second = panel.locator('button[data-focus="1"]');
+  const before = await second.boundingBox();
+  await second.click();
+  await expect(second).toHaveAttribute('aria-pressed', 'true');
+  await expect(panel.locator('[data-contribution="1"]')).toBeVisible();
+  expect(await second.boundingBox()).toEqual(before);
+  await first.click(); await second.click(); await first.click();
+  await expect(panel).toHaveAttribute('data-focus', '0');
+  await expect(panel.locator('[data-contribution="0"]')).toBeVisible();
+  await expect(panel.locator('[data-contribution="1"]')).toBeHidden();
+  await second.focus(); await page.keyboard.press('Enter');
+  await expect(panel).toHaveAttribute('data-focus', '1');
+  await page.locator('[data-employer="synchrony"]').click();
+  await page.goBack();
+  await expect(panel).toBeVisible();
+  await expect(panel).toHaveAttribute('data-focus', '1');
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1)).toBe(true);
+});
+
+test('illustrations remain semantic and stable with reduced motion', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  for (const employer of employers) {
+    await page.goto(`./#/experience/${employer}`);
+    const panel = page.locator(`#panel-${employer}`);
+    await expect(panel.locator('figcaption')).toContainText('Illustrative model');
+    await panel.locator('button[data-focus="1"]').click();
+    await expect(panel.locator('[data-contribution="1"]')).toBeVisible();
+    expect(await panel.locator('[data-contribution="1"]').evaluate(el => getComputedStyle(el).animationName)).toBe('none');
+    const figure = await panel.locator('figure').boundingBox();
+    await panel.locator('button[data-focus="0"]').click();
+    expect(await panel.locator('figure').boundingBox()).toEqual(figure);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1)).toBe(true);
+  }
+});
+
+test('runtime is local-only and keeps a small script and style budget', async ({ page }) => {
+  const requested = [];
+  page.on('request', request => requested.push(request.url()));
+  await page.goto('./'); await page.evaluate(() => document.fonts.ready);
+  const origin = new URL(page.url()).origin;
+  expect(requested.every(url => new URL(url).origin === origin)).toBe(true);
+  const resources = await page.evaluate(() => performance.getEntriesByType('resource').filter(e => /portfolio\.(js|css)/.test(e.name)).map(e => ({ name: e.name, size: e.decodedBodySize })));
+  expect(resources).toHaveLength(2);
+  for (const resource of resources) expect(resource.size).toBeLessThan(resource.name.endsWith('.js') ? 12000 : 32000);
 });

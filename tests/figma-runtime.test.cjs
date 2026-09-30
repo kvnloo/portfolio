@@ -75,7 +75,7 @@ test('arrows wrap through employer tabs, Home/End jump, Escape restores overview
   doc.querySelector('[data-employer="synchrony"]').focus(); key('ArrowDown');
   assert.equal(doc.activeElement.dataset.employer, 'amazon');
   assert.equal(dom.window.location.hash, '#/experience/amazon');
-  key('End'); assert.equal(doc.activeElement.dataset.employer, 'unassigned');
+  key('End'); assert.equal(doc.activeElement.dataset.employer, 'bcbs');
   key('ArrowRight'); assert.equal(doc.activeElement.dataset.employer, 'synchrony');
   key('Home'); assert.equal(doc.activeElement.dataset.employer, 'synchrony');
   key('Escape'); assert.equal(dom.window.location.hash, '#/experience');
@@ -91,19 +91,12 @@ test('close restores overview and focus without resetting subsequent navigation'
   click(dom, 'a[data-page="experience"]'); assert.equal(current(dom), 'experience');
   dom.window.close();
 });
-test('advance control cycles through all four marks and returns to first', () => {
+test('advance control cycles through the three verified employers and returns to first', () => {
   const dom = app();
-  for (const employer of ['synchrony', 'amazon', 'bcbs', 'unassigned', 'synchrony']) {
+  for (const employer of ['synchrony', 'amazon', 'bcbs', 'synchrony']) {
     click(dom, '[data-next-employer]');
     assert.equal(dom.window.location.hash, `#/experience/${employer}`);
   }
-  dom.window.close();
-});
-test('unknown logo is not silently attributed to an employer', () => {
-  const dom = app('#/experience/unassigned');
-  const panel = dom.window.document.querySelector('[data-employer-panel="unassigned"]');
-  assert.match(panel.textContent, /identity.*confirm/i);
-  assert.doesNotMatch(panel.textContent, /Prenosis/);
   dom.window.close();
 });
 test('draft source boundaries retain dates and omit disputed current roles, private contacts, and metrics', () => {
@@ -113,9 +106,9 @@ test('draft source boundaries retain dates and omit disputed current roles, priv
   assert.match(html, /noindex, nofollow/);
   assert.ok(!/fetch\(/.test(script()), 'private career draft must not request third-party data');
 });
-test('styles preserve the exact desktop shell with responsive and accessibility rules', () => {
+test('editorial styles retain source accents, responsive layout, focus and reduced-motion rules', () => {
   const css = load('figma/portfolio.css');
-  for (const contract of ['Inter', '1440px', '900px', '198px', '41px', '12px', '700', '#fbc600', '#ff9900', '#0094d7', '#c0162f', ':focus-visible', 'prefers-reduced-motion', 'max-width: 700px']) assert.ok(css.includes(contract), contract);
+  for (const contract of ['Inter', 'Georgia', '1440px', '#fbc600', '#ff9900', '#0094d7', ':focus-visible', 'prefers-reduced-motion', 'max-width: 700px']) assert.ok(css.includes(contract), contract);
   assert.doesNotMatch(css, /img\s*\{[^}]*width:\s*100%/s, 'do not override exported SVG root dimensions');
 });
 test('all linked local assets and resource targets exist, with no temporary Figma URLs', () => {
@@ -172,9 +165,11 @@ test('all recovered static SVGs retain exact bytes and intrinsic dimensions at t
     assert.equal(bytes.length, asset.bytes);
     assert.equal(createHash('sha256').update(bytes).digest('hex'), asset.sha256);
     const images = doc.querySelectorAll(`img[src="./assets/${asset.file}"]`);
-    assert.equal(images.length, 1, asset.file);
-    assert.equal(images[0].getAttribute('width'), String(asset.width));
-    assert.equal(images[0].getAttribute('height'), String(asset.height));
+    assert.equal(images.length, ['unidentified-tile.svg', 'dot-unidentified.svg'].includes(asset.file) ? 0 : 1, asset.file);
+    for (const image of images) {
+      assert.equal(image.getAttribute('width'), String(asset.width));
+      assert.equal(image.getAttribute('height'), String(asset.height));
+    }
   }
   assert.deepEqual(manifest.missing.map((asset) => asset.node), ['319:65', '326:99']);
   dom.window.close();
@@ -205,4 +200,47 @@ test('invalid same-document hash navigation canonicalizes the fallback without e
   assert.equal(dom.window.history.length, before + 1);
   assert.equal(dom.window.document.querySelector('[data-overview]').hidden, false);
   dom.window.close();
+});
+
+test('contribution focus switches the explanation and illustrative model together', () => {
+  const dom = app('#/experience/amazon'); const doc = dom.window.document;
+  const panel = doc.querySelector('#panel-amazon');
+  assert.equal(panel.dataset.focus, '0');
+  const toggle = panel.querySelector('[data-focus="1"]');
+  assert.ok(toggle, 'an explicit contribution control exists');
+  toggle.click();
+  assert.equal(panel.dataset.focus, '1');
+  assert.equal(toggle.getAttribute('aria-pressed'), 'true');
+  assert.equal(panel.querySelector('[data-contribution="1"]').hidden, false);
+  assert.equal(panel.querySelector('[data-contribution="0"]').hidden, true);
+  assert.match(panel.querySelector('figcaption').textContent, /illustrative model/i);
+  assert.equal(dom.window.location.hash, '#/experience/amazon');
+  dom.window.close();
+});
+test('rapid contribution and employer changes leave only the latest view active', async () => {
+  const dom = app('#/experience/synchrony'); const doc = dom.window.document;
+  for (let i = 0; i < 8; i++) {
+    click(dom, '[data-employer="amazon"]');
+    click(dom, '#panel-amazon [data-focus="1"]');
+    click(dom, '[data-employer="synchrony"]');
+    click(dom, '#panel-synchrony [data-focus="1"]');
+  }
+  await new Promise(resolve => setTimeout(resolve, 350));
+  assert.equal(doc.querySelectorAll('[data-employer-panel]:not([hidden])').length, 1);
+  assert.equal(doc.querySelector('#panel-synchrony').hidden, false);
+  assert.equal(doc.querySelector('#panel-synchrony').dataset.focus, '1');
+  assert.equal(doc.querySelector('#panel-amazon').dataset.focus, '1');
+  dom.window.close();
+});
+test('unknown employer has no fabricated public experience or selectable tab', () => {
+  const dom = app('#/experience/unassigned'); const doc = dom.window.document;
+  assert.equal(doc.querySelector('[data-employer="unassigned"]'), null);
+  assert.equal(doc.querySelector('[data-overview]').hidden, false);
+  dom.window.close();
+});
+test('push runs can validate but never enter the protected deployment environment', () => {
+  const workflow = load('.github/workflows/deploy-nightly.yml');
+  assert.match(workflow, /workflow_dispatch:/);
+  assert.match(workflow, /if: \$\{\{ github.event_name == 'workflow_dispatch' && inputs.deploy == true \}\}/);
+  assert.match(workflow, /default: false/);
 });

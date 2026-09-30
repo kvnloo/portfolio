@@ -11,9 +11,9 @@
 })(typeof window !== 'undefined' ? window : null, function () {
   'use strict';
   const pages = ['about', 'contact', 'experience', 'services', 'resources'];
-  const employers = ['synchrony', 'amazon', 'bcbs', 'unassigned'];
+  const employers = ['synchrony', 'amazon', 'bcbs'];
   const titles = { about: 'About', contact: 'Contact', experience: 'Professional Experience', services: 'Services', resources: 'Resources' };
-  const names = { synchrony: 'Synchrony Financial', amazon: 'Amazon Web Services', bcbs: 'BlueCross BlueShield', unassigned: 'Original design mark' };
+  const names = { synchrony: 'Synchrony Financial', amazon: 'Amazon Web Services', bcbs: 'BlueCross BlueShield' };
 
   function parseFigmaRoute(hash) {
     const parts = String(hash || '').replace(/^#\//, '').split('/');
@@ -80,6 +80,16 @@
         const main = document.querySelector('#main');
         main.focus({ preventScroll: true });
         main.scrollIntoView?.({ block: 'start' });
+        return;
+      }
+      const contribution = event.target.closest('[data-focus]');
+      if (contribution && contribution.tagName === 'BUTTON') {
+        const panel = contribution.closest('[data-employer-panel]');
+        const selected = contribution.dataset.focus;
+        panel.dataset.focus = selected;
+        panel.querySelectorAll('button[data-focus]').forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.focus === selected)));
+        panel.querySelectorAll('[data-contribution]').forEach((section) => { section.hidden = section.dataset.contribution !== selected; });
+        panel.querySelectorAll('[data-model-label]').forEach((label) => { label.hidden = label.dataset.modelLabel !== selected; });
         return;
       }
       const anchor = event.target.closest('a[href^="#/"]');
