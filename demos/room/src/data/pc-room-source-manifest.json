@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "acceptanceClaim": false,
+  "sliceId": "pc-room-v1",
+  "sourceManifestHashDomain": "semantic-json-without-private-paths-or-timestamps",
+  "privateSourceAlias": "PRIVATE_INGEST/Recvd",
+  "privateSourcePolicy": "evidence-only; no image bytes, thumbnails, EXIF, filenames, host identifiers, serials, or screen content may enter Git or build output",
+  "equipment": [
+    {
+      "category": "room shell",
+      "publicSafeDimensionsMeters": { "width": 8.4, "height": 4.3, "depth": 5.2 },
+      "confidence": "low",
+      "provenance": ["audit:t_1bf0bd85", "procedural hypothesis"]
+    },
+    {
+      "category": "desk",
+      "publicSafeDimensionsMeters": { "width": 4.25, "height": 0.99, "depth": 1.15 },
+      "confidence": "low",
+      "provenance": ["audit:t_1bf0bd85", "silhouette hypothesis"]
+    },
+    {
+      "category": "desktop tower",
+      "publicSafeDimensionsMeters": { "width": 0.72, "height": 1.48, "depth": 0.82 },
+      "confidence": "low",
+      "provenance": ["audit:t_1bf0bd85", "dimension-informed procedural hypothesis"]
+    },
+    {
+      "category": "primary display",
+      "publicSafeDimensionsMeters": { "width": 1.9, "height": 1.08, "depth": 0.09 },
+      "confidence": "low",
+      "provenance": ["audit:t_1bf0bd85", "aspect-ratio hypothesis"]
+    }
+  ],
+  "rights": {
+    "privateOwnedEvidenceRedistributed": false,
+    "manufacturerImageryIncluded": false,
+    "copyrightedTexturesIncluded": false,
+    "proceduralGeometryStatus": "hypothesis pending independent mechanical and visual verification"
+  }
+}

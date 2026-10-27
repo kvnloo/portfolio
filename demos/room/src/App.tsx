@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import type { ShopData } from './types'
 import { ShopCanvas } from './ShopCanvas'
+import { PcRoomExperience } from './PcRoomExperience'
 import {
   BAKED_SHOP,
   bakedResolved,
@@ -23,8 +24,20 @@ function useBeautyMode() {
   }, [])
 }
 
+function usePcRoomMode() {
+  return useMemo(() => {
+    if (typeof window === 'undefined') return false
+    try {
+      return new URLSearchParams(window.location.search).get('setup') === '1'
+    } catch {
+      return false
+    }
+  }, [])
+}
+
 export default function App() {
   const beauty = useBeautyMode()
+  const pcRoom = usePcRoomMode()
   const initial = bakedResolved()
   const [data, setData] = useState<ShopData>(initial.data)
   const [source, setSource] = useState<ShopDataSource>(initial.source)
@@ -61,6 +74,8 @@ export default function App() {
   )
 
   const boplogUrl = data.boplogUrl || BAKED_SHOP.boplogUrl || 'https://kvnloo.github.io/boplog/'
+
+  if (pcRoom) return <PcRoomExperience />
 
   return (
     <div
