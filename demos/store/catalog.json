@@ -1,0 +1,936 @@
+{
+  "updated": "2026-11-04",
+  "products": [
+    {
+      "id": "ramen-shop",
+      "name": "Ramen & Boba",
+      "category": "Spatial & creative",
+      "summary": "Step inside an interactive 3D portfolio \u2014 the original shop, still here.",
+      "role": "Original product",
+      "features": [
+        "Explore the 3D shop",
+        "Discover projects inside the room",
+        "Watch an existing orbit capture"
+      ],
+      "repo": "https://github.com/kvnloo/portfolio",
+      "source": "https://github.com/kvnloo/portfolio/tree/dev/demos/room",
+      "demo": "../room/",
+      "availability": "Interactive prototype",
+      "sourceDate": "2026-11-04",
+      "fork": false,
+      "image": "media/ramen.png",
+      "video": "media/ramen.mp4",
+      "caveat": "The video is a recorded orbit, not a live interaction."
+    },
+    {
+      "id": "dash",
+      "name": "Dash",
+      "category": "Agents & interfaces",
+      "summary": "Phone UI for laptop coding agents.",
+      "role": "Original product",
+      "features": [
+        "Multi-harness conversations",
+        "Phone-to-agent bridge",
+        "Voice and roadmap experiments"
+      ],
+      "repo": "https://github.com/kvnloo/dash",
+      "source": "https://github.com/kvnloo/dash",
+      "demo": null,
+      "availability": "Source available",
+      "caveat": "A project page is not a production-readiness guarantee.",
+      "sourceDate": "2026-11-04",
+      "fork": false
+    },
+    {
+      "id": "hermes-tern",
+      "name": "Hermes \u00d7 Tern",
+      "category": "Agents & interfaces",
+      "summary": "A native terminal surface for Hermes conversations.",
+      "role": "Downstream development",
+      "features": [
+        "Native transcript and tool surfaces",
+        "Composer and keyboard interaction",
+        "Media and preview experiments"
+      ],
+      "repo": "https://github.com/kvnloo/hermes-tern",
+      "source": "https://github.com/kvnloo/hermes-tern",
+      "demo": null,
+      "availability": "Source available",
+      "caveat": "Downstream work and proposals are not claims of upstream adoption.",
+      "sourceDate": "2026-11-04",
+      "fork": true
+    },
+    {
+      "id": "gods-eye-view",
+      "name": "God\u2019s Eye View",
+      "category": "Spatial & creative",
+      "summary": "Explore live spatial intelligence on a 3D globe.",
+      "role": "Open-source collaboration",
+      "features": [
+        "Geospatial and disaster-awareness work",
+        "Realtime controls",
+        "Attention-aware UX"
+      ],
+      "repo": "https://github.com/kvnloo/gods-eye-view",
+      "source": "https://github.com/kvnloo/gods-eye-view",
+      "demo": null,
+      "availability": "Source available",
+      "caveat": "Downstream work and proposals are not claims of upstream adoption.",
+      "sourceDate": "2026-11-04",
+      "fork": true
+    },
+    {
+      "id": "oh-my-pi",
+      "name": "Oh My Pi",
+      "category": "Agents & interfaces",
+      "summary": "A coding agent designed around the terminal.",
+      "role": "Open-source collaboration",
+      "features": [
+        "TUI performance and ergonomics",
+        "Context and tool workflows",
+        "Live and voice interaction experiments"
+      ],
+      "repo": "https://github.com/kvnloo/oh-my-pi",
+      "source": "https://github.com/kvnloo/oh-my-pi",
+      "demo": null,
+      "availability": "Source available",
+      "caveat": "Downstream work and proposals are not claims of upstream adoption.",
+      "sourceDate": "2026-11-04",
+      "fork": true
+    },
+    {
+      "id": "cua",
+      "name": "CUA",
+      "category": "Agents & interfaces",
+      "summary": "Tools for agents to work with real computer interfaces.",
+      "role": "Open-source collaboration",
+      "features": [
+        "Semantic computer-use work",
+        "Native control and latency studies",
+        "Execution safety and verification"
+      ],
+      "repo": "https://github.com/kvnloo/cua",
+      "source": "https://github.com/kvnloo/cua",
+      "demo": null,
+      "availability": "Source available",
+      "caveat": "Downstream work and proposals are not claims of upstream adoption.",
+      "sourceDate": "2026-11-04",
+      "fork": true
+    },
+    {
+      "id": "fframestudio",
+      "name": "fframestudio",
+      "category": "Spatial & creative",
+      "summary": "A film studio with an agent in the editing workflow.",
+      "role": "Original product",
+      "features": [
+        "Film editing workflows",
+        "ACP assistant integration",
+        "Preview and delivery experiments"
+      ],
+      "repo": "https://github.com/kvnloo/fframestudio",
+      "source": "https://github.com/kvnloo/fframestudio",
+      "demo": null,
+      "availability": "Source available",
+      "caveat": "A project page is not a production-readiness guarantee.",
+      "sourceDate": "2026-11-04",
+      "fork": false
+    },
+    {
+      "id": "ephemeral-ui",
+      "name": "Ephemeral UI",
+      "category": "Agents & interfaces",
+      "summary": "Small, interactive app cards for agent hosts.",
+      "role": "Public showcase",
+      "features": [
+        "Interactive card catalog",
+        "Host-agnostic surfaces",
+        "Public built site; source is private"
+      ],
+      "repo": "https://github.com/kvnloo/ephemeral-ui",
+      "source": "https://github.com/kvnloo/ephemeral-ui",
+      "demo": "https://kvnloo.github.io/ephemeral-ui/",
+      "availability": "Public preview",
+      "caveat": "Downstream work and proposals are not claims of upstream adoption.",
+      "sourceDate": "2026-11-04",
+      "fork": false
+    },
+    {
+      "id": "ace",
+      "name": "ACE",
+      "category": "Spatial & creative",
+      "summary": "A racquet-sports campus and digital-twin pretotype.",
+      "role": "Original product",
+      "features": [
+        "3D campus exploration",
+        "Facility planning",
+        "Human-flourishing campus concept"
+      ],
+      "repo": "https://github.com/kvnloo/ace",
+      "source": "https://github.com/kvnloo/ace",
+      "demo": "https://kvnloo.github.io/ace/",
+      "availability": "Public preview",
+      "caveat": "A project page is not a production-readiness guarantee.",
+      "sourceDate": "2026-11-04",
+      "fork": false
+    },
+    {
+      "id": "quackles",
+      "name": "Quackles",
+      "category": "Spatial & creative",
+      "summary": "A Microduck product study in materials, light, and detail.",
+      "role": "Original product",
+      "features": [
+        "Product-page exploration",
+        "Blender look development",
+        "Deep-zoom visual studies"
+      ],
+      "repo": "https://github.com/kvnloo/quackles",
+      "source": "https://github.com/kvnloo/quackles",
+      "demo": "https://kvnloo.github.io/quackles-nightly/",
+      "availability": "Public preview",
+      "caveat": "A project page is not a production-readiness guarantee.",
+      "sourceDate": "2026-11-04",
+      "fork": false
+    },
+    {
+      "id": "garden-room",
+      "name": "Garden Room",
+      "category": "Life & learning",
+      "summary": "A 3D planner for plants and the spaces they live in.",
+      "role": "Original product",
+      "features": [
+        "Room and plant planning",
+        "Voice interaction",
+        "WebXR measurement experiments"
+      ],
+      "repo": "https://github.com/kvnloo/garden-room",
+      "source": "https://github.com/kvnloo/garden-room",
+      "demo": null,
+      "availability": "Source available",
+      "caveat": "A project page is not a production-readiness guarantee.",
+      "sourceDate": "2026-11-04",
+      "fork": false
+    },
+    {
+      "id": "noop",
+      "name": "NOOP",
+      "category": "Life & learning",
+      "summary": "An offline companion for wearable data.",
+      "role": "Downstream development",
+      "features": [
+        "On-device experience",
+        "Cross-platform work",
+        "Privacy-conscious interaction"
+      ],
+      "repo": "https://github.com/kvnloo/noop",
+      "source": "https://github.com/kvnloo/noop",
+      "demo": null,
+      "availability": "Source available",
+      "caveat": "Downstream work and proposals are not claims of upstream adoption.",
+      "sourceDate": "2026-11-04",
+      "fork": true
+    },
+    {
+      "id": "kvn",
+      "name": "/kvn",
+      "category": "Agents & interfaces",
+      "summary": "A living public knowledge base of my tools, workflows, and voice.",
+      "role": "Original product",
+      "features": [
+        "Public-source ledger",
+        "Evidence-grounded answers",
+        "Installable agent skill"
+      ],
+      "repo": "https://github.com/kvnloo/kvn",
+      "source": "https://github.com/kvnloo/kvn",
+      "demo": null,
+      "availability": "Source available",
+      "caveat": "A project page is not a production-readiness guarantee.",
+      "sourceDate": "2026-11-04",
+      "fork": false
+    },
+    {
+      "id": "hermes-maintainer",
+      "name": "Hermes Maintainer",
+      "category": "Infrastructure & research",
+      "summary": "A backlog graph that organizes problems, candidate fixes, and evidence.",
+      "role": "Original product",
+      "features": [
+        "Problem-family graphs",
+        "Survivor and donor relationships",
+        "Audit-seed public snapshot, not a live scan"
+      ],
+      "repo": "https://github.com/kvnloo/hermes-maintainer",
+      "source": "https://github.com/kvnloo/hermes-maintainer",
+      "demo": "https://kvnloo.github.io/hermes-maintainer/",
+      "availability": "Public preview",
+      "caveat": "A project page is not a production-readiness guarantee.",
+      "sourceDate": "2026-11-04",
+      "fork": false
+    },
+    {
+      "id": "gh-contrib-archive",
+      "name": "Contribution Archive",
+      "category": "Infrastructure & research",
+      "summary": "A public-safe explorer of GitHub contributions.",
+      "role": "Original product",
+      "features": [
+        "Issues, PRs and discussion history",
+        "Public contribution visualization",
+        "Private source material stays out"
+      ],
+      "repo": "https://github.com/kvnloo/gh-contrib-archive",
+      "source": "https://github.com/kvnloo/gh-contrib-archive",
+      "demo": "https://kvnloo.github.io/gh-contrib-archive/",
+      "availability": "Public preview",
+      "caveat": "A project page is not a production-readiness guarantee.",
+      "sourceDate": "2026-11-04",
+      "fork": false
+    },
+    {
+      "id": "boplog",
+      "name": "Boplog",
+      "category": "Infrastructure & research",
+      "summary": "A build-in-public log with source-linked project activity.",
+      "role": "Original product",
+      "features": [
+        "Project activity feed",
+        "Contribution ledger",
+        "Agent-readable interfaces"
+      ],
+      "repo": "https://github.com/kvnloo/boplog",
+      "source": "https://github.com/kvnloo/boplog",
+      "demo": null,
+      "availability": "Source available",
+      "caveat": "A project page is not a production-readiness guarantee.",
+      "sourceDate": "2026-11-04",
+      "fork": false
+    },
+    {
+      "id": "noctalia",
+      "name": "Noctalia",
+      "category": "Desktop & tools",
+      "summary": "A customizable Wayland desktop shell.",
+      "role": "Open-source collaboration",
+      "features": [
+        "Accessibility and layout work",
+        "Media and network interaction",
+        "Desktop-shell polish"
+      ],
+      "repo": "https://github.com/kvnloo/noctalia",
+      "source": "https://github.com/kvnloo/noctalia",
+      "demo": null,
+      "availability": "Source available",
+      "caveat": "Downstream work and proposals are not claims of upstream adoption.",
+      "sourceDate": "2026-11-04",
+      "fork": true
+    },
+    {
+      "id": "t3code",
+      "name": "T3 Code",
+      "category": "Desktop & tools",
+      "summary": "A workspace for agent-assisted software development.",
+      "role": "Open-source collaboration",
+      "features": [
+        "Agent workflow integration",
+        "Interface and interaction work",
+        "Downstream experiments"
+      ],
+      "repo": "https://github.com/kvnloo/t3code",
+      "source": "https://github.com/kvnloo/t3code",
+      "demo": null,
+      "availability": "Source available",
+      "caveat": "Downstream work and proposals are not claims of upstream adoption.",
+      "sourceDate": "2026-11-04",
+      "fork": true
+    },
+    {
+      "id": "o8",
+      "name": "o8",
+      "category": "Desktop & tools",
+      "summary": "Multi-agent desktop workflows.",
+      "role": "Open-source collaboration",
+      "features": [
+        "Responsive interfaces",
+        "Hermes integration",
+        "Mobile voice experiments"
+      ],
+      "repo": "https://github.com/kvnloo/o8",
+      "source": "https://github.com/kvnloo/o8",
+      "demo": null,
+      "availability": "Source available",
+      "caveat": "Downstream work and proposals are not claims of upstream adoption.",
+      "sourceDate": "2026-11-04",
+      "fork": true
+    },
+    {
+      "id": ".files",
+      "name": "Flow / .files",
+      "category": "Desktop & tools",
+      "summary": "A Linux workspace built to protect flow.",
+      "role": "Original product",
+      "features": [
+        "Workspace and terminal configuration",
+        "Audio DSP environment",
+        "Desktop interaction experiments"
+      ],
+      "repo": "https://github.com/kvnloo/.files",
+      "source": "https://github.com/kvnloo/.files",
+      "demo": null,
+      "availability": "Source available",
+      "caveat": "A project page is not a production-readiness guarantee.",
+      "sourceDate": "2026-11-04",
+      "fork": false
+    },
+    {
+      "id": "z0live",
+      "name": "z0live",
+      "category": "Agents & interfaces",
+      "summary": "Realtime voice interaction for agent workflows.",
+      "role": "Original product",
+      "features": [
+        "Voice interaction experiments",
+        "Portable runtime",
+        "Agent handoff"
+      ],
+      "repo": "https://github.com/kvnloo/z0live",
+      "source": "https://github.com/kvnloo/z0live",
+      "demo": null,
+      "availability": "Source available",
+      "caveat": "A project page is not a production-readiness guarantee.",
+      "sourceDate": "2026-11-04",
+      "fork": false
+    },
+    {
+      "id": "openpaw",
+      "name": "OpenPaw",
+      "category": "Life & learning",
+      "summary": "An early evidence-first approach to canine wellbeing.",
+      "role": "Original product",
+      "features": [
+        "Behavior observation",
+        "Wellbeing-oriented design",
+        "Early exploration"
+      ],
+      "repo": "https://github.com/kvnloo/openpaw",
+      "source": "https://github.com/kvnloo/openpaw",
+      "demo": null,
+      "availability": "Source available",
+      "caveat": "A project page is not a production-readiness guarantee.",
+      "sourceDate": "2026-11-04",
+      "fork": false
+    },
+    {
+      "id": "humanity-vault",
+      "name": "Humanity Vault",
+      "category": "Life & learning",
+      "summary": "A mobile-first learning interface for a research knowledge base.",
+      "role": "Original product",
+      "features": [
+        "Encode and retrieve",
+        "Learning workflows",
+        "Measurement and pruning"
+      ],
+      "repo": "https://github.com/kvnloo/humanity-vault",
+      "source": "https://github.com/kvnloo/humanity-vault",
+      "demo": "https://kvnloo.github.io/humanity-vault/",
+      "availability": "Public preview",
+      "caveat": "A project page is not a production-readiness guarantee.",
+      "sourceDate": "2026-11-04",
+      "fork": false
+    },
+    {
+      "id": "smartcity",
+      "name": "Smartcity",
+      "category": "Spatial & creative",
+      "summary": "A nested city digital-twin exploration.",
+      "role": "Original product",
+      "features": [
+        "Spatial visualization",
+        "Simulation exploration",
+        "Digital-twin look development"
+      ],
+      "repo": "https://github.com/kvnloo/smartcity",
+      "source": "https://github.com/kvnloo/smartcity",
+      "demo": "https://kvnloo.github.io/smartcity/",
+      "availability": "Public preview",
+      "caveat": "A project page is not a production-readiness guarantee.",
+      "sourceDate": "2026-11-04",
+      "fork": false
+    },
+    {
+      "id": "elemental-ui",
+      "name": "Elemental UI",
+      "category": "Spatial & creative",
+      "summary": "Interface explorations for expressive software.",
+      "role": "Original product",
+      "features": [
+        "UI studies",
+        "Visual language",
+        "Interaction exploration"
+      ],
+      "repo": "https://github.com/kvnloo/elemental-ui",
+      "source": "https://github.com/kvnloo/elemental-ui",
+      "demo": null,
+      "availability": "Source available",
+      "caveat": "A project page is not a production-readiness guarantee.",
+      "sourceDate": "2026-11-04",
+      "fork": false
+    },
+    {
+      "id": "img2threejs",
+      "name": "img2threejs",
+      "category": "Spatial & creative",
+      "summary": "Reference images to procedural, quality-gated 3D models.",
+      "role": "Downstream development",
+      "features": [
+        "Reconstruction evidence",
+        "Renderer validation",
+        "Procedural model experiments"
+      ],
+      "repo": "https://github.com/kvnloo/img2threejs",
+      "source": "https://github.com/kvnloo/img2threejs",
+      "demo": null,
+      "availability": "Source available",
+      "caveat": "Downstream work and proposals are not claims of upstream adoption.",
+      "sourceDate": "2026-11-04",
+      "fork": true
+    },
+    {
+      "id": "dream-loop",
+      "name": "Dream Loop",
+      "category": "Spatial & creative",
+      "summary": "Evidence-driven visual iteration for agents.",
+      "role": "Downstream development",
+      "features": [
+        "Reference-led iteration",
+        "Visual review gates",
+        "Discovery history"
+      ],
+      "repo": "https://github.com/kvnloo/dream-loop",
+      "source": "https://github.com/kvnloo/dream-loop",
+      "demo": null,
+      "availability": "Source available",
+      "caveat": "Downstream work and proposals are not claims of upstream adoption.",
+      "sourceDate": "2026-11-04",
+      "fork": true
+    },
+    {
+      "id": "detent",
+      "name": "Detent",
+      "category": "Desktop & tools",
+      "summary": "An Android launcher with an edge-of-screen app dial.",
+      "role": "Downstream development",
+      "features": [
+        "Launcher fork work",
+        "Theme exploration",
+        "Dial interaction"
+      ],
+      "repo": "https://github.com/kvnloo/detent",
+      "source": "https://github.com/kvnloo/detent",
+      "demo": null,
+      "availability": "Source available",
+      "caveat": "Downstream work and proposals are not claims of upstream adoption.",
+      "sourceDate": "2026-11-04",
+      "fork": true
+    },
+    {
+      "id": "omalauncher",
+      "name": "oMaLauncher",
+      "category": "Desktop & tools",
+      "summary": "An agentic Android launcher for apps and widgets.",
+      "role": "Open-source collaboration",
+      "features": [
+        "Agentic launcher workflows",
+        "Widget exploration",
+        "Android interaction"
+      ],
+      "repo": "https://github.com/kvnloo/omalauncher",
+      "source": "https://github.com/kvnloo/omalauncher",
+      "demo": null,
+      "availability": "Source available",
+      "caveat": "Downstream work and proposals are not claims of upstream adoption.",
+      "sourceDate": "2026-11-04",
+      "fork": true
+    },
+    {
+      "id": "z0intelligence",
+      "name": "z0intelligence",
+      "category": "Infrastructure & research",
+      "summary": "Personal intelligence layer: provenance-backed context resolution, bounded decision backends, specialist/routine runtime, and auditable receipts.",
+      "role": "Original product",
+      "features": [
+        "Read the project source and documentation",
+        "Explore the linked architecture and evidence"
+      ],
+      "repo": "https://github.com/kvnloo/z0intelligence",
+      "source": "https://github.com/kvnloo/z0/blob/main/registry/components.yaml",
+      "demo": null,
+      "availability": "Source available",
+      "caveat": "Registry status is not a runtime or deployment verification.",
+      "sourceDate": "2026-11-04",
+      "fork": false
+    },
+    {
+      "id": "kerdoios",
+      "name": "Kerdoios",
+      "category": "Infrastructure & research",
+      "summary": "Compute and provider allocation \u2014 routes work to frontier vs local models with cost/latency awareness.",
+      "role": "Original product",
+      "features": [
+        "Read the project source and documentation",
+        "Explore the linked architecture and evidence"
+      ],
+      "repo": "https://github.com/kvnloo/kerdoios",
+      "source": "https://github.com/kvnloo/z0/blob/main/registry/components.yaml",
+      "demo": null,
+      "availability": "Source available",
+      "caveat": "Registry status is not a runtime or deployment verification.",
+      "sourceDate": "2026-11-04",
+      "fork": false
+    },
+    {
+      "id": "evolution-lab",
+      "name": "Evolution Lab",
+      "category": "Infrastructure & research",
+      "summary": "Experiment engine for locked corpora/splits, candidate evolution, DAgger, Pareto/MAP-Elites comparison, and verified specialist promotion.",
+      "role": "Original product",
+      "features": [
+        "Read the project source and documentation",
+        "Explore the linked architecture and evidence"
+      ],
+      "repo": "https://github.com/kvnloo/evolution-lab",
+      "source": "https://github.com/kvnloo/z0/blob/main/registry/components.yaml",
+      "demo": null,
+      "availability": "Source available",
+      "caveat": "Registry status is not a runtime or deployment verification.",
+      "sourceDate": "2026-11-04",
+      "fork": false
+    },
+    {
+      "id": "frontier-kb",
+      "name": "frontier-kb",
+      "category": "Infrastructure & research",
+      "summary": "Research knowledge base: papers, external systems, hypotheses, and kill criteria \u2014 not private user traces.",
+      "role": "Original product",
+      "features": [
+        "Read the project source and documentation",
+        "Explore the linked architecture and evidence"
+      ],
+      "repo": "https://github.com/kvnloo/frontier-kb",
+      "source": "https://github.com/kvnloo/z0/blob/main/registry/components.yaml",
+      "demo": null,
+      "availability": "Source available",
+      "caveat": "Registry status is not a runtime or deployment verification.",
+      "sourceDate": "2026-11-04",
+      "fork": false
+    },
+    {
+      "id": "aodl",
+      "name": "AODL",
+      "category": "Infrastructure & research",
+      "summary": "Typed intent and plan schema \u2014 contracts only, not runtime execution.",
+      "role": "Original product",
+      "features": [
+        "Read the project source and documentation",
+        "Explore the linked architecture and evidence"
+      ],
+      "repo": "https://github.com/kvnloo/aodl",
+      "source": "https://github.com/kvnloo/z0/blob/main/registry/components.yaml",
+      "demo": "https://kvnloo.github.io/aodl/",
+      "availability": "Public preview",
+      "caveat": "Registry status is not a runtime or deployment verification.",
+      "sourceDate": "2026-11-04",
+      "fork": false
+    },
+    {
+      "id": "z0evals",
+      "name": "z0evals",
+      "category": "Infrastructure & research",
+      "summary": "Reproducible evaluations, frozen datasets, analysis, figures, and public reports for Zer0 studies.",
+      "role": "Original product",
+      "features": [
+        "Read the project source and documentation",
+        "Explore the linked architecture and evidence"
+      ],
+      "repo": "https://github.com/kvnloo/z0evals",
+      "source": "https://github.com/kvnloo/z0/blob/main/registry/components.yaml",
+      "demo": "https://kvnloo.github.io/z0evals/",
+      "availability": "Public preview",
+      "caveat": "Registry status is not a runtime or deployment verification.",
+      "sourceDate": "2026-11-04",
+      "fork": false
+    },
+    {
+      "id": "activegraph",
+      "name": "ActiveGraph",
+      "category": "Infrastructure & research",
+      "summary": "Event-sourced reactive graph runtime used by z0archy for resumable, forkable, diffable architecture history.",
+      "role": "Downstream development",
+      "features": [
+        "Read the project source and documentation",
+        "Explore the linked architecture and evidence"
+      ],
+      "repo": "https://github.com/kvnloo/activegraph",
+      "source": "https://github.com/kvnloo/z0/blob/main/registry/suite.yaml",
+      "demo": null,
+      "availability": "Source available",
+      "caveat": "Registry status is not a runtime or deployment verification.",
+      "sourceDate": "2026-11-04",
+      "fork": true
+    },
+    {
+      "id": "z0",
+      "name": "Zer0",
+      "category": "Infrastructure & research",
+      "summary": "Canonical semantic architecture registries, install profiles, generated docs, and onboarding.",
+      "role": "Original product",
+      "features": [
+        "Read the project source and documentation",
+        "Explore the linked architecture and evidence"
+      ],
+      "repo": "https://github.com/kvnloo/z0",
+      "source": "https://github.com/kvnloo/z0/blob/main/registry/suite.yaml",
+      "demo": null,
+      "availability": "Source available",
+      "caveat": "Registry status is not a runtime or deployment verification.",
+      "sourceDate": "2026-11-04",
+      "fork": false
+    },
+    {
+      "id": "z0archy",
+      "name": "z0archy",
+      "category": "Infrastructure & research",
+      "summary": "Dynamic architecture world model, exact-ref implementation evidence, history, counterfactuals, and semantic compression.",
+      "role": "Original product",
+      "features": [
+        "Read the project source and documentation",
+        "Explore the linked architecture and evidence"
+      ],
+      "repo": "https://github.com/kvnloo/z0archy",
+      "source": "https://github.com/kvnloo/z0/blob/main/registry/suite.yaml",
+      "demo": null,
+      "availability": "Source available",
+      "caveat": "Registry status is not a runtime or deployment verification.",
+      "sourceDate": "2026-11-04",
+      "fork": false
+    },
+    {
+      "id": "ripple",
+      "name": "Ripple",
+      "category": "Infrastructure & research",
+      "summary": "Ephemeral multimodal intent surface that consumes AODL contracts while keeping AODL itself as IR.",
+      "role": "Original product",
+      "features": [
+        "Read the project source and documentation",
+        "Explore the linked architecture and evidence"
+      ],
+      "repo": "https://github.com/kvnloo/ripple",
+      "source": "https://github.com/kvnloo/z0/blob/main/registry/suite.yaml",
+      "demo": null,
+      "availability": "Source available",
+      "caveat": "Registry status is not a runtime or deployment verification.",
+      "sourceDate": "2026-11-04",
+      "fork": false
+    },
+    {
+      "id": "company-os",
+      "name": "Company OS",
+      "category": "Infrastructure & research",
+      "summary": "Thin Hermes HUD that projects live host state without becoming a second control plane or execution authority.",
+      "role": "Original product",
+      "features": [
+        "Read the project source and documentation",
+        "Explore the linked architecture and evidence"
+      ],
+      "repo": "https://github.com/kvnloo/company-os",
+      "source": "https://github.com/kvnloo/z0/blob/main/registry/suite.yaml",
+      "demo": null,
+      "availability": "Source available",
+      "caveat": "Registry status is not a runtime or deployment verification.",
+      "sourceDate": "2026-11-04",
+      "fork": false
+    },
+    {
+      "id": "hermes-talk",
+      "name": "Hermes Talk",
+      "category": "Infrastructure & research",
+      "summary": "Realtime duplex voice control layer that delegates work to Hermes agents while the conversation continues.",
+      "role": "Downstream development",
+      "features": [
+        "Read the project source and documentation",
+        "Explore the linked architecture and evidence"
+      ],
+      "repo": "https://github.com/kvnloo/hermes-talk",
+      "source": "https://github.com/kvnloo/z0/blob/main/registry/suite.yaml",
+      "demo": null,
+      "availability": "Source available",
+      "caveat": "Registry status is not a runtime or deployment verification.",
+      "sourceDate": "2026-11-04",
+      "fork": true
+    },
+    {
+      "id": "codex-router",
+      "name": "Codex Router",
+      "category": "Infrastructure & research",
+      "summary": "Local provider/model routing surface serving Codex and additional harnesses while keeping provider credentials local.",
+      "role": "Downstream development",
+      "features": [
+        "Read the project source and documentation",
+        "Explore the linked architecture and evidence"
+      ],
+      "repo": "https://github.com/kvnloo/codex-router",
+      "source": "https://github.com/kvnloo/z0/blob/main/registry/suite.yaml",
+      "demo": null,
+      "availability": "Source available",
+      "caveat": "Registry status is not a runtime or deployment verification.",
+      "sourceDate": "2026-11-04",
+      "fork": true
+    },
+    {
+      "id": "ds4",
+      "name": "DwarfStar",
+      "category": "Infrastructure & research",
+      "summary": "Narrow native inference engine for capable open-weight models on consumer hardware across Metal, CUDA, and ROCm.",
+      "role": "Downstream development",
+      "features": [
+        "Read the project source and documentation",
+        "Explore the linked architecture and evidence"
+      ],
+      "repo": "https://github.com/kvnloo/ds4",
+      "source": "https://github.com/kvnloo/z0/blob/main/registry/suite.yaml",
+      "demo": null,
+      "availability": "Source available",
+      "caveat": "Registry status is not a runtime or deployment verification.",
+      "sourceDate": "2026-11-04",
+      "fork": true
+    },
+    {
+      "id": "hermes-agent",
+      "name": "Hermes Agent",
+      "category": "Infrastructure & research",
+      "summary": "Cross-platform self-improving agent runtime with gateway, memory, skills, subagents, automation, and trajectory tooling.",
+      "role": "Downstream development",
+      "features": [
+        "Read the project source and documentation",
+        "Explore the linked architecture and evidence"
+      ],
+      "repo": "https://github.com/kvnloo/hermes-agent",
+      "source": "https://github.com/kvnloo/z0/blob/main/registry/suite.yaml",
+      "demo": null,
+      "availability": "Source available",
+      "caveat": "Registry status is not a runtime or deployment verification.",
+      "sourceDate": "2026-11-04",
+      "fork": true
+    },
+    {
+      "id": "deepseek-harness",
+      "name": "DeepSeek Harness",
+      "category": "Infrastructure & research",
+      "summary": "Plugin-tree agent harness used as a Zer0 execution and inspection surface.",
+      "role": "Downstream development",
+      "features": [
+        "Read the project source and documentation",
+        "Explore the linked architecture and evidence"
+      ],
+      "repo": "https://github.com/kvnloo/deepseek-harness",
+      "source": "https://github.com/kvnloo/z0/blob/main/registry/suite.yaml",
+      "demo": null,
+      "availability": "Source available",
+      "caveat": "Registry status is not a runtime or deployment verification.",
+      "sourceDate": "2026-11-04",
+      "fork": true
+    },
+    {
+      "id": "hermes-jev-skills",
+      "name": "Hermes Jev Skills",
+      "category": "Infrastructure & research",
+      "summary": "Typed Jev decision skills for routing, retrieval, turn selection, triage, and computer-use decisions.",
+      "role": "Downstream development",
+      "features": [
+        "Read the project source and documentation",
+        "Explore the linked architecture and evidence"
+      ],
+      "repo": "https://github.com/kvnloo/hermes-jev-skills",
+      "source": "https://github.com/kvnloo/z0/blob/main/registry/suite.yaml",
+      "demo": null,
+      "availability": "Source available",
+      "caveat": "Registry status is not a runtime or deployment verification.",
+      "sourceDate": "2026-11-04",
+      "fork": true
+    },
+    {
+      "id": "verified-oss-loop",
+      "name": "Verified OSS Loop",
+      "category": "Infrastructure & research",
+      "summary": "Evidence-gated distributed OSS contribution protocol with claim leases, isolated work, verification, and human merge authority.",
+      "role": "Original product",
+      "features": [
+        "Read the project source and documentation",
+        "Explore the linked architecture and evidence"
+      ],
+      "repo": "https://github.com/kvnloo/verified-oss-loop",
+      "source": "https://github.com/kvnloo/z0/blob/main/registry/suite.yaml",
+      "demo": null,
+      "availability": "Source available",
+      "caveat": "Registry status is not a runtime or deployment verification.",
+      "sourceDate": "2026-11-04",
+      "fork": false
+    },
+    {
+      "id": "agent-orchestrator",
+      "name": "Agent Orchestrator",
+      "category": "Infrastructure & research",
+      "summary": "Agent orchestration surface integrated with z0intelligence decision and outcome contracts.",
+      "role": "Downstream development",
+      "features": [
+        "Read the project source and documentation",
+        "Explore the linked architecture and evidence"
+      ],
+      "repo": "https://github.com/kvnloo/agent-orchestrator",
+      "source": "https://github.com/kvnloo/z0/blob/main/registry/suite.yaml",
+      "demo": null,
+      "availability": "Source available",
+      "caveat": "Registry status is not a runtime or deployment verification.",
+      "sourceDate": "2026-11-04",
+      "fork": true
+    },
+    {
+      "id": "optmem",
+      "name": "OptMem",
+      "category": "Infrastructure & research",
+      "summary": "Memory research substrate used for temporal projection and bounded-cover experiments without becoming canonical memory authority.",
+      "role": "Downstream development",
+      "features": [
+        "Read the project source and documentation",
+        "Explore the linked architecture and evidence"
+      ],
+      "repo": "https://github.com/kvnloo/OptMem",
+      "source": "https://github.com/kvnloo/z0/blob/main/registry/suite.yaml",
+      "demo": null,
+      "availability": "Source available",
+      "caveat": "Registry status is not a runtime or deployment verification.",
+      "sourceDate": "2026-11-04",
+      "fork": true
+    },
+    {
+      "id": "bend",
+      "name": "Bend",
+      "category": "Infrastructure & research",
+      "summary": "Parallel proof-oriented language explored as an enforceable compilation target for Zer0 orchestration contracts.",
+      "role": "Downstream development",
+      "features": [
+        "Read the project source and documentation",
+        "Explore the linked architecture and evidence"
+      ],
+      "repo": "https://github.com/kvnloo/bend",
+      "source": "https://github.com/kvnloo/z0/blob/main/registry/suite.yaml",
+      "demo": null,
+      "availability": "Source available",
+      "caveat": "Registry status is not a runtime or deployment verification.",
+      "sourceDate": "2026-11-04",
+      "fork": true
+    }
+  ]
+}
